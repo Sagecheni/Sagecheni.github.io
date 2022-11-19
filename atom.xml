@@ -6,7 +6,7 @@
   <link href="http://www.sa1ge.ink/atom.xml" rel="self"/>
   
   <link href="http://www.sa1ge.ink/"/>
-  <updated>2022-11-19T12:29:15.358Z</updated>
+  <updated>2022-11-19T12:10:45.198Z</updated>
   <id>http://www.sa1ge.ink/</id>
   
   <author>
@@ -15,35 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>向量组的线性相关性</title>
-    <link href="http://www.sa1ge.ink/post/e59008e8.html"/>
-    <id>http://www.sa1ge.ink/post/e59008e8.html</id>
-    <published>2022-11-19T12:03:56.000Z</published>
-    <updated>2022-11-19T12:29:15.358Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;小明在打geekgame，小美在学no_F5动调,小陈在学Linear
-Algebra，他们都有光明的未来（&lt;/p&gt;
-&lt;p&gt;&lt;del&gt;正经人谁打geekgame啊&lt;/del&gt;&lt;/p&gt;
-&lt;p&gt;geekgame一道题不会写，只好跑来写写线代的&lt;del&gt;部分总结&lt;/del&gt;定理大全了&lt;/p&gt;
-&lt;h1 id=&quot;n维向量的概念及其线性运算&quot;&gt;n维向量的概念及其线性运算&lt;/h1&gt;
-&lt;h2 id</summary>
-      
-    
-    
-    
-    <category term="Math" scheme="http://www.sa1ge.ink/categories/Math/"/>
-    
-    
-    <category term="Linear Algebra" scheme="http://www.sa1ge.ink/tags/Linear-Algebra/"/>
-    
-    <category term="vector" scheme="http://www.sa1ge.ink/tags/vector/"/>
-    
-  </entry>
   
   <entry>
     <title>模运算以及乘法逆元</title>
@@ -72,6 +43,36 @@ Algebra，他们都有光明的未来（&lt;/p&gt;
     <category term="乘法逆元" scheme="http://www.sa1ge.ink/tags/%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83/"/>
     
     <category term="Number Theory" scheme="http://www.sa1ge.ink/tags/Number-Theory/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WP-For-TSCTF-J</title>
+    <link href="http://www.sa1ge.ink/post/7ad6ebfa.html"/>
+    <id>http://www.sa1ge.ink/post/7ad6ebfa.html</id>
+    <published>2022-11-09T03:12:00.000Z</published>
+    <updated>2022-11-19T12:10:54.257Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;第一次打这种短时间的比赛，还是校内赛，&lt;del&gt;多少有点累&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;（现在已经习惯了）&lt;/p&gt;
+&lt;p&gt;但好在结果还是令人满意的，感谢校内的出题人提供了一次优秀的&lt;del&gt;拷打&lt;/del&gt;比赛&lt;/p&gt;
+&lt;h1 id=&quot;reverse&quot;&gt;Reverse&lt;/h1&gt;
+&lt;h2 id=&quot;baby_xor&quot;&gt;baby_xor&lt;/h2&gt;
+&lt;p&gt;Re的签到题&lt;/p&gt;
+&lt;figur</summary>
+      
+    
+    
+    
+    <category term="比赛wp" scheme="http://www.sa1ge.ink/categories/%E6%AF%94%E8%B5%9Bwp/"/>
+    
+    
+    <category term="Crypto" scheme="http://www.sa1ge.ink/tags/Crypto/"/>
+    
+    <category term="Reverse" scheme="http://www.sa1ge.ink/tags/Reverse/"/>
     
   </entry>
   
