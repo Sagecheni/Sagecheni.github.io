@@ -44,27 +44,31 @@
   </entry>
   
   <entry>
-    <title>一些数学知识</title>
-    <link href="http://www.sa1ge.ink/post/dfe8bc6a.html"/>
-    <id>http://www.sa1ge.ink/post/dfe8bc6a.html</id>
-    <published>2022-11-21T14:38:29.000Z</published>
-    <updated>2022-11-21T14:42:30.273Z</updated>
+    <title>向量组的线性相关性</title>
+    <link href="http://www.sa1ge.ink/post/e59008e8.html"/>
+    <id>http://www.sa1ge.ink/post/e59008e8.html</id>
+    <published>2022-11-19T12:40:34.000Z</published>
+    <updated>2022-11-19T12:45:03.120Z</updated>
     
     
       
       
-    <summary type="html">&lt;h1 id=&quot;中国剩余定理&quot;&gt;中国剩余定理&lt;/h1&gt;
-&lt;p&gt;关于一元线性同余方程组的定理，说明了一元线性同余方程组有解的准则以及求解方法&lt;/p&gt;
-&lt;h2 id=&quot;定理本身&quot;&gt;定理本身&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[
-\begin{cases}
-x\equiv a_1\mod m_1 \\
-x\equiv a_2\mod m_2 \\
-\c</summary>
+    <summary type="html">&lt;p&gt;小明在打geekgame，小美在学no_F5动调,小陈在学Linear
+Algebra，他们都有光明的未来（&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;正经人谁打geekgame啊&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;geekgame一道题不会写，只好跑来写写线代的&lt;del&gt;部分总结&lt;/del&gt;定理大全了&lt;/p&gt;
+&lt;h1 id=&quot;n维向量的概念及其线性运算&quot;&gt;n维向量的概念及其线性运算&lt;/h1&gt;
+&lt;h2 id</summary>
       
     
     
     
+    <category term="Math" scheme="http://www.sa1ge.ink/categories/Math/"/>
+    
+    
+    <category term="Linear Algebra" scheme="http://www.sa1ge.ink/tags/Linear-Algebra/"/>
+    
+    <category term="vector" scheme="http://www.sa1ge.ink/tags/vector/"/>
     
   </entry>
   
