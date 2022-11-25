@@ -1,0 +1,444 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>特征值与特征向量 | Sa1ge 's Blog</title><meta name="author" content="Sa1ge"><meta name="copyright" content="Sa1ge"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="CTF这周又被成功的出脑了，光搞数学去了。 虽然还写了一页buuctf的题，但感觉没啥价值，还得先把之前那几场比赛的题以及涉及到的知识点弄明白先 一向直性子的范大将军直言： “诶哟，谢天谢地了，我已经说了，你像这样的比赛本身就没有打好基础，你能跟我保证在关键的比赛能赢？务实一点，我劝你先把数学这个理念先搞懂。” 还被阿根廷球迷舍友拉去看世界杯了（） 昨晚凌晨进球，整栋宿舍楼在震，迷迷糊糊">
+<meta property="og:type" content="article">
+<meta property="og:title" content="特征值与特征向量">
+<meta property="og:url" content="http://www.sa1ge.ink/post/767cd5d9.html">
+<meta property="og:site_name" content="Sa1ge &#39;s Blog">
+<meta property="og:description" content="CTF这周又被成功的出脑了，光搞数学去了。 虽然还写了一页buuctf的题，但感觉没啥价值，还得先把之前那几场比赛的题以及涉及到的知识点弄明白先 一向直性子的范大将军直言： “诶哟，谢天谢地了，我已经说了，你像这样的比赛本身就没有打好基础，你能跟我保证在关键的比赛能赢？务实一点，我劝你先把数学这个理念先搞懂。” 还被阿根廷球迷舍友拉去看世界杯了（） 昨晚凌晨进球，整栋宿舍楼在震，迷迷糊糊">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sa1geblog.oss-cn-beijing.aliyuncs.com/img/hongxue.jpg">
+<meta property="article:published_time" content="2022-11-25T01:55:22.000Z">
+<meta property="article:modified_time" content="2022-11-25T02:07:59.200Z">
+<meta property="article:author" content="Sa1ge">
+<meta property="article:tag" content="Linear Algebra">
+<meta property="article:tag" content="vector">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sa1geblog.oss-cn-beijing.aliyuncs.com/img/hongxue.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://www.sa1ge.ink/post/767cd5d9"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '特征值与特征向量',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-25 10:07:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><script async="async">var preloader = {
+   endLoading: () => {
+     document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+   },
+   initLoading: () => {
+     document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+   }
+ }
+ window.addEventListener('load',()=> {preloader.endLoading()})
+ setTimeout(function(){preloader.endLoading();}, 5000);</script></body><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/universe.css"><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://sa1geblog.oss-cn-beijing.aliyuncs.com/img/f2901b1c4f857e56b29ec15b5f0b1f7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://sa1geblog.oss-cn-beijing.aliyuncs.com/img/hongxue.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Sa1ge 's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">特征值与特征向量</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-25T01:55:22.000Z" title="发表于 2022-11-25 09:55:22">2022-11-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-25T02:07:59.200Z" title="更新于 2022-11-25 10:07:59">2022-11-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Math/">Math</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="特征值与特征向量"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>CTF这周又被成功的出脑了，光搞数学去了。</p>
+<p><del>虽然还写了一页buuctf的题，但感觉没啥价值</del>，还得先把之前那几场比赛的题以及涉及到的知识点弄明白先</p>
+<p>一向直性子的范大将军直言：</p>
+<p>“诶哟，谢天谢地了，我已经说了，你像这样的比赛本身就没有打好基础，你能跟我保证在关键的比赛能赢？务实一点，我劝你先把<strong>数学</strong>这个理念先搞懂。”</p>
+<p><del>还被阿根廷球迷舍友拉去看世界杯了（）</del></p>
+<p>昨晚凌晨进球，整栋宿舍楼在震，迷迷糊糊垂死病中惊坐起。</p>
+<h1 id="特征值与特征向量">特征值与特征向量</h1>
+<p>设A为n阶方阵，如果有可逆矩阵 <span
+class="math inline">\(P=(\alpha_1,\alpha_2,\cdots,\alpha_n)\)</span>
+，使得 <span
+class="math inline">\(P^{-1}AP=diag(\lambda_1,\lambda_2,\cdots,\lambda_n)\)</span>
+为对角矩阵，则 <span
+class="math inline">\(AP=Pdiag(\lambda_1,\lambda_2,\cdots,\lambda_n)\)</span>
+，于是 <span class="math display">\[
+(A\alpha_1,A\alpha_2,\cdots,A\alpha_n)=(\lambda_1\alpha_1,\lambda_2\alpha_2,\cdots,\lambda_n\alpha_n)
+\]</span> 即 <span
+class="math inline">\(A\alpha_i=\lambda_i,i=1,2,\cdots,n.\)</span></p>
+<p>称 <span
+class="math inline">\(\alpha_1,\alpha_2,\cdots,\alpha_n\)</span>
+为方阵<strong>A</strong>的特征向量.</p>
+<h2 id="定义1特征值的定义">定义1（特征值的定义）</h2>
+<p>设<strong>A</strong>为n阶方阵.如果存在数λ和非零向量<strong>α</strong>，使得<strong>Aα</strong>=λ<strong>α</strong>，则称λ为<strong>A</strong>的特征值，称<strong>α</strong>为<strong>A</strong>的属于特征值λ的特征向量（或<strong>A</strong>对应于特征值λ的特征向量）</p>
+<p>将<strong>Aα</strong>=λ<strong>α</strong>改写为(λ<strong>E</strong>-<strong>A</strong>)<strong>α</strong>=<strong>0</strong>，——&gt;对于特征值λ，齐次线性方程组(λ<strong>E</strong>-<strong>A</strong>)<strong>x</strong>=<strong>0</strong>是有非零解的</p>
+<p>若齐次线性方程组(λ<strong>E</strong>-<strong>A</strong>)<strong>x</strong>=<strong>0</strong>有非零解<strong>α<sub>0</sub></strong>，则数λ<sub>0</sub>是<strong>A</strong>的特征值，<strong>α<sub>0</sub></strong>是属于特征值<strong>λ<sub>0</sub></strong>的特征向量.</p>
+<p>数λ是A的特征值当且仅当齐次线性方程组(λ<strong>E</strong>-<strong>A</strong>)<strong>x</strong>=<strong>0</strong>有非零解</p>
+<p>齐次线性方程组(λ<strong>E</strong>-<strong>A</strong>)<strong>x</strong>=<strong>0</strong>有非零解的充要条件是|(λ<strong>E</strong>-<strong>A</strong>)|=<strong>0</strong></p>
+<p>因此，数λ是<strong>A</strong>的特征值当且仅当|(λ<strong>E</strong>-<strong>A</strong>)|=<strong>0</strong></p>
+<h2 id="定义2特征方程">定义2（特征方程）</h2>
+<p>设<strong>A</strong>=(<strong>a<sub>ij</sub></strong>)为n阶方阵，
+<span class="math display">\[
+|\lambda E-A|=\begin{vmatrix}\
+\lambda-a_{11} &amp;-a_{12} &amp;\cdots &amp;-a_{1n}\\
+-a_{21} &amp;\lambda-a_{22} &amp;\cdots &amp;-a_{2n}\\
+\vdots &amp;\vdots &amp; &amp; \vdots\\
+-a_{n1} &amp;-a{n2} &amp;\cdots &amp;\lambda-a_{nn}
+\end{vmatrix}
+\]</span>
+是一个关于λ的n次多项式，称为<strong>A</strong>的特征多项式.</p>
+<p>方程|(λ<strong>E</strong>-<strong>A</strong>)|=<strong>0</strong>是一个以λ为未知量的一元n次方程，称为A的<strong>特征方程</strong></p>
+<p>显然，<strong>A</strong>的特征值就是<strong>A</strong>的特征方程的根（因而又将<strong>特征值</strong>称为<strong>特征根</strong>）</p>
+<p>n阶方阵A的特征方程在复数范围有n个根（重根按重数计），所以n阶方阵<strong>A</strong>在复数范围内有n个特征值.对于<strong>A</strong>的特征值λ，<strong>A</strong>的属于特征值λ的特征向量<strong>α</strong>就是齐次线性方程组(λ<strong>E</strong>-<strong>A</strong>)<strong>x</strong>=<strong>0</strong>的非零解</p>
+<p>特征向量总是相对于特征值而言的，一个特征值所具有的特征向量不唯一</p>
+<h2 id="求解步骤">求解步骤</h2>
+<p>(1)求出特征值（根）|(λ<strong>E</strong>-<strong>A</strong>)|=<strong>0</strong></p>
+<p>(2)求出特征向量——&gt;求出方程组(λ<strong>E</strong>-<strong>A</strong>)<strong>x</strong>=<strong>0</strong>的非零解</p>
+<p>设λ=λ<sub>i</sub>为方阵A的一个特征值，则由方程(<strong>A</strong>-λ<sub>i</sub><strong>E</strong>)<strong>x</strong>=<strong>0</strong>
+可求得非零解<strong>x</strong>=<strong>p<sub>i</sub></strong> ，</p>
+<p><strong>p<sub>i</sub></strong>即是对应于特征值λ<sub>i</sub>的特征向量</p>
+<h2 id="性质1">性质1</h2>
+<p>若<strong>α<sub>1</sub>，α<sub>2</sub></strong>都是<strong>A</strong>的属于特征值λ<sub>0</sub>的特征向量，则对任意使
+<span class="math inline">\(k_1\alpha_1+k_2\alpha_2 \neq0\)</span>
+的数k<sub>1</sub>和k<sub>2</sub>，<span
+class="math inline">\(\alpha=k_1\alpha_1+k_2\alpha_2\)</span>
+仍是<strong>A</strong>属于特征值λ<sub>0</sub>的特征向量</p>
+<p><strong>属于同一特征值</strong>的<strong>特征向量</strong>的<strong>非零线性组合</strong>仍是属于这个特征值的特征向量</p>
+<p>每个特征值对应有无穷多个特征向量</p>
+<p>解空间的线性封闭性</p>
+<h2 id="性质2">性质2</h2>
+<p>设 <span
+class="math inline">\(\lambda_1,\lambda_2,\cdots,\lambda_n\)</span>
+为n阶方阵<strong>A</strong>= <span
+class="math inline">\((a_{ij})\)</span> 的n个特征值，则 <span
+class="math display">\[
+\begin{split}
+&amp;(1)\lambda_1\lambda_2\cdots\lambda_n=|A|\\
+&amp;(2)\lambda_1+\lambda_2+\cdots+\lambda_n=a_{11}+a_{22}+\cdots+a_{nn}\\
+&amp;记a_{11}+a_{22}+\cdots+a_{nn}为trA，称为A的迹
+\end{split}
+\]</span> 证明： <span class="math display">\[
+|\lambda E-A|=\begin{vmatrix}\
+\lambda-a_{11} &amp;-a_{12} &amp;\cdots &amp;-a_{1n}\\
+-a_{21} &amp;\lambda-a_{22} &amp;\cdots &amp;-a_{2n}\\
+\vdots &amp;\vdots &amp; &amp; \vdots\\
+-a_{n1} &amp;-a{n2} &amp;\cdots &amp;\lambda-a_{nn}\
+\end{vmatrix}
+\]</span> 右式的展开式只有项 <span class="math inline">\((\lambda
+a_{11})(\lambda a_{22})\cdots(\lambda a_{nn})\)</span>
+的展开式由λ的n和n-1次项。这个行列式的展开式中其它项都含有至少一个不在对角线上的元素，设为a<sub>ij</sub>，该行列式对角线上的元素a<sub>ii</sub>-λ和a<sub>jj</sub>-λ都不能出现在这个项中，于是这个项的最高次数为n-2</p>
+<h2 id="推论1">推论1</h2>
+<p>设<strong>A</strong>为<strong>n</strong>阶方阵，则|<strong>A</strong>|=<strong>0</strong>的充要条件是是λ=<strong>0</strong>为<strong>A</strong>的特征值</p>
+<p>由(1)可得</p>
+<h2 id="推论2">推论2</h2>
+<p>n阶矩阵可逆 = <strong>A</strong>的n个特征值 <span
+class="math inline">\(\lambda_1,\lambda_2,\cdots,\lambda_n\)</span>
+全不为零</p>
+<h2 id="性质3">性质3</h2>
+<p>n阶方阵<strong>A</strong>与它的转置矩阵<strong>A<sup>T</sup></strong>有相同的特征多项式，因而有相同的特征值</p>
+<p>但<strong>A</strong>与<strong>A<sup>T</sup></strong>未必有相同的特征向量</p>
+<h2 id="性质4">性质4</h2>
+<p>若λ为<strong>A</strong>的特征值，则对任意多项式 <span
+class="math inline">\(f(x)=a_mx^m+a_{m-1}x^{m-1}+\cdots+a_1x+a_0\)</span>
+，<span class="math inline">\(f(\lambda)\)</span> 为 <span
+class="math inline">\(f(A)\)</span> 的特征值，其中 <span
+class="math inline">\(f(A)=a_mA^m+a_{m-1}A^{m-1}+\cdots+a_1A+a_0E\)</span>
+为与f(x)对应的<strong>A</strong>的矩阵多项式；当<strong>A</strong>可逆时，
+<span class="math inline">\(\frac{1}{\lambda}\)</span>
+是<strong>A<sup>-1</sup></strong>的特征值</p>
+<p>λ是方阵<strong>A</strong>的特征值，λ<sup>k</sup>是<strong>A<sup>k</sup></strong>的特征值（数学归纳法可证），
+<span class="math display">\[
+\begin{split}
+&amp;\varphi(\lambda)=a_0+a_1\lambda+\cdots+a_m\lambda^m\\
+&amp;\varphi(A)=a_0E+a_1A+\cdots+a_mA^m
+\end{split}
+\]</span>
+<strong>A</strong>与f(x)及<strong>A<sup>-1</sup></strong>（在可逆的前提下）有相同的特征向量<strong>α</strong></p>
+<p><strong>A<sup>T</sup></strong>=-<strong>A</strong>(反对称阵)，则<strong>A</strong>+<strong>E</strong>可逆</p>
+<p><strong>A<sup>2</sup></strong>=E（称<strong>A</strong>为对合矩阵），则<strong>A</strong>的特征值只能为1或-1</p>
+<h1 id="方阵的相似化简">方阵的相似化简</h1>
+<h2 id="定义3相似矩阵">定义3（相似矩阵）</h2>
+<p>设<strong>A</strong>，<strong>B</strong>为n阶方阵。如果存在某个n阶可逆矩阵<strong>P</strong>，使得<strong>B</strong>=<strong>P<sup>-1</sup>AP</strong>，则称<strong>B</strong>是<strong>A</strong>的相似矩阵，或称<strong>A</strong>与<strong>B</strong>相似，记为<strong>A</strong>~<strong>B</strong></p>
+<p>(1)反身性：<strong>A</strong>~<strong>A</strong></p>
+<p>(2)对称性：<strong>A</strong>~<strong>B</strong>，则<strong>B</strong>~<strong>A</strong></p>
+<p>(3)传递性：若<strong>A</strong>~<strong>B</strong>,<strong>B</strong>~<strong>C</strong>,则<strong>A</strong>~<strong>C</strong></p>
+<p>相似矩阵有相同的行列式</p>
+<h2 id="性质5">性质5</h2>
+<p>如果<strong>A</strong>~<strong>B</strong>,则<strong>A</strong>与<strong>B</strong>有相同的特征多项式，因而有相同的特征值与行列式</p>
+<h2 id="性质6">性质6</h2>
+<p>如果<strong>A</strong>~<strong>B</strong>，则f(<strong>A</strong>)~f(<strong>B</strong>),其中f(x)=a<sub>m</sub>x<sup>m</sup>+a<sub>m-1</sub>m<sup>m-1</sup>+...+a<sub>1</sub>x+a<sub>0</sub></p>
+<h2 id="性质7">性质7</h2>
+<p>如果<strong>A</strong>~<strong>B</strong>，<strong>A</strong>可逆，则<strong>B</strong>可逆，且<strong>A<sup>-1</sup></strong>~<strong>B<sup>-1</sup></strong></p>
+<h2 id="a可对角化">A可对角化</h2>
+<p>能找到可逆的矩阵P，使得<strong>P<sup>-1</sup>AP</strong>为对角矩阵</p>
+<h2 id="定理1">定理1</h2>
+<p>n阶方阵<strong>A</strong>相似于对角矩阵的充分必要条件是<strong>A</strong>有n个<strong>线性无关</strong>的特征向量.</p>
+<p>可逆矩阵P的行(列)向量组是<strong>线性无关向量组</strong></p>
+<p>定理告诉我们：只需要找出A的n个线性无关的特征向量 <span
+class="math inline">\(p_1,p_2,\cdots,p_n\)</span>
+以它们为<strong>列向量</strong>构成 <span
+class="math inline">\(P=(p_1,p_2,\cdots,p_n)\)</span> ，则 <span
+class="math inline">\(P^-1AP\)</span>
+为对角矩阵.这个对角矩阵称为<strong>A</strong>的<strong>相似标准形</strong>，其对角元素恰好为<strong>A</strong>的n个特征值</p>
+<h2 id="定义4">定义4</h2>
+<p>如果存在可逆矩阵<strong>P</strong>，使得<strong>P<sup>-1</sup>AP</strong>=<strong>Λ</strong>为对角矩阵，则称对角矩阵<strong>Λ</strong>为<strong>A</strong>的<strong>相似标准形</strong></p>
+<p>在求<strong>A</strong>的相似标准形<strong>Λ</strong>时，<strong>Λ</strong>的对角元可以是按任意顺序排列的.但是<strong>P</strong>的各列的排列次序与<strong>Λ</strong>中各个对角元（即<strong>A</strong>的全体特征值）的排列次序必须互相对应，<strong>P</strong>的第k列所对应的特征值就是<strong>Λ</strong>的第k个对角元素（k=1,2...,n）.</p>
+<h2 id="定理2">定理2</h2>
+<p>设 <span
+class="math inline">\(\lambda_1,\lambda_2,\cdots,\lambda_m\)</span>是方阵<strong>A</strong>的m个特征值，<span
+class="math inline">\(p_1,p_2,\cdots,p_m\)</span>
+依次是与之对应的特征向量.如果 <span
+class="math inline">\(\lambda_1,\lambda_2,\cdots,\lambda_m\)</span>
+各不相等，则 <span class="math inline">\(p_1,p_2,\cdots,p_m\)</span>
+线性无关</p>
+<blockquote>
+<p>证明：设有常数 <span
+class="math inline">\(x_1,x_2,\cdots,x_m\)</span> 使 <span
+class="math inline">\(x_1p_1+x_2p_2+\cdots+x_mp_m=0\)</span></p>
+<p>则 <span
+class="math inline">\(A(x_1p_1+x_2p_2+\cdots+x_mp_m)=0\)</span> ，即</p>
+<p><span
+class="math inline">\(x_1Ap_1+x_2Ap_2+\cdots+x_mAp_m=0\)</span></p>
+<p><span class="math inline">\(x_1\lambda_1
+p_1+x_2\lambda_2p_2+\cdots+x_m\lambda_mp_m=0\)</span></p>
+<p>类推之，有</p>
+<p><span
+class="math inline">\(\lambda_1^kx_1p_1+\lambda_2^kx_2p_2+\cdots+\lambda_m^kx_mp_m=0(k=1,2,\cdots,m-1)\)</span></p>
+<p>把以上各式写成矩阵形式，得： <span class="math display">\[
+\begin{matrix}\left(x_1p_1,x_2p_2,\cdots,x_mp_m\right)\end{matrix}
+\left[
+\begin{matrix}
+1 &amp;\lambda_1 &amp;\cdots &amp;\lambda_1^{m-1}\\
+1 &amp;\lambda_2 &amp;\cdots &amp;\lambda_2^{m-1}\\
+\vdots &amp;\vdots &amp; &amp;\vdots\\
+1 &amp;\lambda_m &amp;\cdots &amp;\lambda_m^{m-1}
+\end{matrix}
+\right]
+=(0,0,\cdots,0)
+\]</span>
+上式等号左端第二个矩阵的行列式为范德蒙行列式，当λ<sub>i</sub>各不相等时该行列式不等于0，从而该矩阵可逆，于是有</p>
+<p><span
+class="math inline">\((x_1p_1,x_2p_2,\cdots,x_mp_m)=(0,0,\cdots,0)\)</span></p>
+<p>即 <span class="math inline">\(x_jp_j=0(j=1,2,\cdots,m)\)</span></p>
+<p>但 <span class="math inline">\(p_j\neq 0\)</span> ,故 <span
+class="math inline">\(x_j=0(j=1,2,\cdots,m)\)</span> 所以向量组 <span
+class="math inline">\(p_1,p_2,\cdots,p_m\)</span> 线性无关</p>
+</blockquote>
+<p>还可用数学归纳法证明</p>
+<blockquote>
+<p>证明：当k=1时，定理显然成立.</p>
+<p>假设k=m时定理成立，当k=m+1时，设 <span class="math display">\[
+a_1p_1+a_2p_2+\cdots+a_{m+1}p_{m+1}=0 \tag{1}
+\]</span> 则 <span class="math display">\[
+\begin{split}
+&amp;A(a_1p_1+a_2p_2+\cdots+a_{m+1}p_{m+1}=0)\\
+&amp;a_1Ap_1+a_2Ap_2+\cdots+a_{m+1}Ap_{m+1}=0\\
+\end{split}
+\]</span></p>
+<p><span class="math display">\[
+a_1\lambda_1p_1+a_2\lambda_2p_2+\cdots+a_{m+1}\lambda_{m+1}p_{m+1}=0\tag{2}
+\]</span></p>
+<p>将式(1)两边乘以λ<sub>m+1</sub>，再与式(2)相减得： <span
+class="math display">\[
+a_1(\lambda_{m+1}-\lambda_1)p_1+a_2(\lambda_{m+1}-\lambda_2)p_2
++\cdots+a_m(\lambda_{m+1}-\lambda_m)p_m=0
+\]</span> 由假设归纳可得：<span
+class="math inline">\(p_1,p_2,\cdots,p_m\)</span> 线性无关，所以 <span
+class="math display">\[
+a_1(\lambda_{m+1}-\lambda_1)p_1=0,a_2(\lambda_{m+1}-\lambda_2)p_2
+=0,\cdots,a_m(\lambda_{m+1}-\lambda_m)p_m=0
+\]</span> 因为 <span
+class="math inline">\(\lambda_{m+1}-\lambda_i\neq0,i=1,2,\cdots,m\)</span>，
+所以 <span class="math inline">\(a_1=a_2=\cdots=a_m=0\)</span>
+代入式(1)得</p>
+<p><span class="math inline">\(a_{m+1}p_{m+1}=0\)</span> 因为 <span
+class="math inline">\(p_{m+1}\neq0\)</span> ，故a<sub>m+1</sub>=0
+,这表明 <span class="math inline">\(p_1,p_2,\cdots,p_{m+1}\)</span>
+线性无关,定理得证</p>
+</blockquote>
+<h3 id="推论2-1">推论2</h3>
+<p>如果n阶方阵<strong>A</strong>有n个两两不同得特征值，则<strong>A</strong>可对角化</p>
+<h3 id="推论3">推论3</h3>
+<p>设 <span
+class="math inline">\(\lambda_1,\lambda_2,\cdots,\lambda_m\)</span>是方阵<strong>A</strong>的两两不同特征值，<span
+class="math inline">\(p_{i1},p_{i2},\cdots,p_{ir_i}\)</span>
+是<strong>A</strong>的属于λ<sub>i</sub>的线性无关的特征向量 <span
+class="math inline">\((1\leq i\leq m)\)</span> ,则</p>
+<p><span
+class="math inline">\(p_{11},p_{12},\cdots,p_{1r_1},p_{21},\cdots,p_{2r_2},\cdots,p_{m1},p_{m2},\cdots,p_{mr_m}\)</span></p>
+<p>共 <span class="math inline">\((r_1+r_2+\cdots+r_m个向量)\)</span>
+仍线性无关</p>
+<p>即若选取λ<sub>i</sub>对应<strong>A</strong>的特征向量内部线性无关，那么多个λ对应<strong>A</strong>的特征向量仍线性无关</p>
+<p>将属于不同特征值的线性无关的特征向量合并在一起，可以组成个数更多的线性无关的特征向量组</p>
+<h2 id="定理3">定理3</h2>
+<p>设λ<sub>0</sub>是n阶方阵<strong>A</strong>的重数为k的特征值，对应于λ<sub>0</sub>，<strong>A</strong>最多有m个线性无关的特征向量，则
+<span class="math inline">\(m\leq k\)</span></p>
+<p>例：λ<sub>1</sub>=2,λ<sub>2</sub>=3,k=1，最多有1个线性无关的特征向量</p>
+<p>λ<sub>1</sub>=λ<sub>2</sub>=2,k=2,最多有2个线性无关的特征向量</p>
+<p>对于n阶方阵<strong>A</strong>，最多能有n个线性无关的特征向量&lt;——<strong>A</strong>最多能有重数为n的特征值</p>
+<h2 id="定理4">定理4</h2>
+<p>方阵<strong>A</strong>可对角化的充分必要条件是对应于<strong>A</strong>的任意特征值λ，<strong>A</strong>有k个线性无关的特征向量，其中k是λ作为特征值的重数</p>
+<p>线性无关的特征向量个数=齐次线性方程组(λ<strong>E</strong>-<strong>A</strong>)<strong>x</strong>=<strong>0</strong>基础解析的向量个数</p>
+<p><strong>对于单特征值，必有属于它的特征向量</strong></p>
+<h3 id="推论4">推论4</h3>
+<p>如果n阶方阵<strong>A</strong>的n个特征值个不相等，则<strong>A</strong>与对角矩阵相似，（也称<strong>A</strong>可对角化）</p>
+<h2 id="定理5">定理5</h2>
+<p>若n阶方阵<strong>A</strong>与<strong>B</strong>相似，则<strong>A</strong>与<strong>B</strong>的特征多项式相同，从而<strong>A</strong>与<strong>B</strong>的特征值亦相同</p>
+<h3 id="推论5">推论5</h3>
+<p>若n阶方阵A与对角阵 <span class="math display">\[
+A=
+\left[
+\begin{matrix}
+\lambda_1 &amp; &amp; &amp; \\
+&amp; &amp;\lambda_2 &amp; &amp; \\
+&amp; &amp; &amp;\ddots &amp; \\
+&amp; &amp; &amp; &amp;\lambda_n
+\end{matrix}
+\right]
+\]</span> 相似，则 <span
+class="math inline">\(\lambda_!,\lambda_2,\cdots,\lambda_n\)</span>
+就是A的n个特征值</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://www.sa1ge.ink">Sa1ge</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://www.sa1ge.ink/post/767cd5d9.html">http://www.sa1ge.ink/post/767cd5d9.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://www.sa1ge.ink" target="_blank">Sa1ge 's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linear-Algebra/">Linear Algebra</a><a class="post-meta__tags" href="/tags/vector/">vector</a></div><div class="post_share"><div class="social-share" data-image="https://sa1geblog.oss-cn-beijing.aliyuncs.com/img/hongxue.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/dfe8bc6a.html"><img class="next-cover" src="https://sa1geblog.oss-cn-beijing.aliyuncs.com/img/hongxue.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">一些数学知识</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/e59008e8.html" title="向量组的线性相关性"><img class="cover" src="https://sa1geblog.oss-cn-beijing.aliyuncs.com/img/hongxue.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-19</div><div class="title">向量组的线性相关性</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客终于搭好了</div></div><div class="xpand" style="height:200px;"><canvas class="illo" width="800" height="800" style="max-width: 200px; max-height: 200px; touch-action: none; width: 640px; height: 640px;"></canvas></div><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text">特征值与特征向量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%891%E7%89%B9%E5%BE%81%E5%80%BC%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">定义1（特征值的定义）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%892%E7%89%B9%E5%BE%81%E6%96%B9%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">定义2（特征方程）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E8%A7%A3%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.3.</span> <span class="toc-text">求解步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%B4%A81"><span class="toc-number">1.4.</span> <span class="toc-text">性质1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%B4%A82"><span class="toc-number">1.5.</span> <span class="toc-text">性质2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA1"><span class="toc-number">1.6.</span> <span class="toc-text">推论1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA2"><span class="toc-number">1.7.</span> <span class="toc-text">推论2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%B4%A83"><span class="toc-number">1.8.</span> <span class="toc-text">性质3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%B4%A84"><span class="toc-number">1.9.</span> <span class="toc-text">性质4</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E9%98%B5%E7%9A%84%E7%9B%B8%E4%BC%BC%E5%8C%96%E7%AE%80"><span class="toc-number">2.</span> <span class="toc-text">方阵的相似化简</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%893%E7%9B%B8%E4%BC%BC%E7%9F%A9%E9%98%B5"><span class="toc-number">2.1.</span> <span class="toc-text">定义3（相似矩阵）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%B4%A85"><span class="toc-number">2.2.</span> <span class="toc-text">性质5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%B4%A86"><span class="toc-number">2.3.</span> <span class="toc-text">性质6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%B4%A87"><span class="toc-number">2.4.</span> <span class="toc-text">性质7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#a%E5%8F%AF%E5%AF%B9%E8%A7%92%E5%8C%96"><span class="toc-number">2.5.</span> <span class="toc-text">A可对角化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%861"><span class="toc-number">2.6.</span> <span class="toc-text">定理1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%894"><span class="toc-number">2.7.</span> <span class="toc-text">定义4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%862"><span class="toc-number">2.8.</span> <span class="toc-text">定理2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA2-1"><span class="toc-number">2.8.1.</span> <span class="toc-text">推论2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA3"><span class="toc-number">2.8.2.</span> <span class="toc-text">推论3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%863"><span class="toc-number">2.9.</span> <span class="toc-text">定理3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%864"><span class="toc-number">2.10.</span> <span class="toc-text">定理4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA4"><span class="toc-number">2.10.1.</span> <span class="toc-text">推论4</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%865"><span class="toc-number">2.11.</span> <span class="toc-text">定理5</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA5"><span class="toc-number">2.11.1.</span> <span class="toc-text">推论5</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/767cd5d9.html" title="特征值与特征向量">特征值与特征向量</a><time datetime="2022-11-25T01:55:22.000Z" title="发表于 2022-11-25 09:55:22">2022-11-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/dfe8bc6a.html" title="一些数学知识">一些数学知识</a><time datetime="2022-11-21T14:38:29.000Z" title="发表于 2022-11-21 22:38:29">2022-11-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/e59008e8.html" title="向量组的线性相关性">向量组的线性相关性</a><time datetime="2022-11-19T12:40:34.000Z" title="发表于 2022-11-19 20:40:34">2022-11-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/ab5f57f8.html" title="模运算以及乘法逆元">模运算以及乘法逆元</a><time datetime="2022-11-15T01:07:33.000Z" title="发表于 2022-11-15 09:07:33">2022-11-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/7ad6ebfa.html" title="WP-For-TSCTF-J">WP-For-TSCTF-J</a><time datetime="2022-11-09T03:12:00.000Z" title="发表于 2022-11-09 11:12:00">2022-11-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By Sa1ge</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">且视他人之疑目如盏盏鬼火，大胆地去走你的夜路。</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Sa1ge 's Blog" type="application/atom+xml">
+</head></html>

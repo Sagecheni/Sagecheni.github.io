@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.sa1ge.ink/post/767cd5d9.html</loc>
+    
+    <lastmod>2022-11-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.sa1ge.ink/post/dfe8bc6a.html</loc>
+    
+    <lastmod>2022-11-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://www.sa1ge.ink/post/e59008e8.html</loc>
     
     <lastmod>2022-11-19</lastmod>
@@ -67,57 +85,57 @@
 
   <url>
     <loc>http://www.sa1ge.ink/</loc>
-    <lastmod>2022-11-19</lastmod>
+    <lastmod>2022-11-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>http://www.sa1ge.ink/tags/Linear-Algebra/</loc>
-    <lastmod>2022-11-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.sa1ge.ink/tags/vector/</loc>
-    <lastmod>2022-11-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.sa1ge.ink/tags/Crypto/</loc>
-    <lastmod>2022-11-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.sa1ge.ink/tags/Reverse/</loc>
-    <lastmod>2022-11-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://www.sa1ge.ink/tags/%E6%A8%A1%E8%BF%90%E7%AE%97/</loc>
-    <lastmod>2022-11-19</lastmod>
+    <lastmod>2022-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.sa1ge.ink/tags/%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83/</loc>
-    <lastmod>2022-11-19</lastmod>
+    <lastmod>2022-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.sa1ge.ink/tags/Number-Theory/</loc>
-    <lastmod>2022-11-19</lastmod>
+    <lastmod>2022-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.sa1ge.ink/tags/Linear-Algebra/</loc>
+    <lastmod>2022-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.sa1ge.ink/tags/vector/</loc>
+    <lastmod>2022-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.sa1ge.ink/tags/Crypto/</loc>
+    <lastmod>2022-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.sa1ge.ink/tags/Reverse/</loc>
+    <lastmod>2022-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -126,14 +144,14 @@
   
   <url>
     <loc>http://www.sa1ge.ink/categories/Math/</loc>
-    <lastmod>2022-11-19</lastmod>
+    <lastmod>2022-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.sa1ge.ink/categories/%E6%AF%94%E8%B5%9Bwp/</loc>
-    <lastmod>2022-11-19</lastmod>
+    <lastmod>2022-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

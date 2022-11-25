@@ -6,7 +6,7 @@
   <link href="http://www.sa1ge.ink/atom.xml" rel="self"/>
   
   <link href="http://www.sa1ge.ink/"/>
-  <updated>2022-11-19T12:45:03.120Z</updated>
+  <updated>2022-11-25T02:07:59.200Z</updated>
   <id>http://www.sa1ge.ink/</id>
   
   <author>
@@ -17,21 +17,19 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>向量组的线性相关性</title>
-    <link href="http://www.sa1ge.ink/post/e59008e8.html"/>
-    <id>http://www.sa1ge.ink/post/e59008e8.html</id>
-    <published>2022-11-19T12:40:34.000Z</published>
-    <updated>2022-11-19T12:45:03.120Z</updated>
+    <title>特征值与特征向量</title>
+    <link href="http://www.sa1ge.ink/post/767cd5d9.html"/>
+    <id>http://www.sa1ge.ink/post/767cd5d9.html</id>
+    <published>2022-11-25T01:55:22.000Z</published>
+    <updated>2022-11-25T02:07:59.200Z</updated>
     
     
       
       
-    <summary type="html">&lt;p&gt;小明在打geekgame，小美在学no_F5动调,小陈在学Linear
-Algebra，他们都有光明的未来（&lt;/p&gt;
-&lt;p&gt;&lt;del&gt;正经人谁打geekgame啊&lt;/del&gt;&lt;/p&gt;
-&lt;p&gt;geekgame一道题不会写，只好跑来写写线代的&lt;del&gt;部分总结&lt;/del&gt;定理大全了&lt;/p&gt;
-&lt;h1 id=&quot;n维向量的概念及其线性运算&quot;&gt;n维向量的概念及其线性运算&lt;/h1&gt;
-&lt;h2 id</summary>
+    <summary type="html">&lt;p&gt;CTF这周又被成功的出脑了，光搞数学去了。&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;虽然还写了一页buuctf的题，但感觉没啥价值&lt;/del&gt;，还得先把之前那几场比赛的题以及涉及到的知识点弄明白先&lt;/p&gt;
+&lt;p&gt;一向直性子的范大将军直言：&lt;/p&gt;
+&lt;p&gt;“诶哟，谢天谢地了，我已经说了，你像这样的比赛本身就没有打好基础，你能跟我保证在关键的比赛能赢？务实一点，我劝你先把&lt;strong&gt;数学&lt;/stron</summary>
       
     
     
@@ -46,32 +44,27 @@ Algebra，他们都有光明的未来（&lt;/p&gt;
   </entry>
   
   <entry>
-    <title>模运算以及乘法逆元</title>
-    <link href="http://www.sa1ge.ink/post/ab5f57f8.html"/>
-    <id>http://www.sa1ge.ink/post/ab5f57f8.html</id>
-    <published>2022-11-15T01:07:33.000Z</published>
-    <updated>2022-11-19T12:10:45.198Z</updated>
+    <title>一些数学知识</title>
+    <link href="http://www.sa1ge.ink/post/dfe8bc6a.html"/>
+    <id>http://www.sa1ge.ink/post/dfe8bc6a.html</id>
+    <published>2022-11-21T14:38:29.000Z</published>
+    <updated>2022-11-21T14:42:30.273Z</updated>
     
     
       
       
-    <summary type="html">&lt;h1 id=&quot;基本的模运算&quot;&gt;基本的模运算&lt;/h1&gt;
-&lt;p&gt;a,b,p均为整数&lt;/p&gt;
-&lt;p&gt;模p加法：&lt;span class=&quot;math inline&quot;&gt;\((a+b)\%p\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;模p减法：&lt;span class=&quot;math inline&quot;&gt;\((a-b)\%p\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;模p乘法：&lt;span class=&quot;math inline&quot;&gt;\</summary>
+    <summary type="html">&lt;h1 id=&quot;中国剩余定理&quot;&gt;中国剩余定理&lt;/h1&gt;
+&lt;p&gt;关于一元线性同余方程组的定理，说明了一元线性同余方程组有解的准则以及求解方法&lt;/p&gt;
+&lt;h2 id=&quot;定理本身&quot;&gt;定理本身&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[
+\begin{cases}
+x\equiv a_1\mod m_1 \\
+x\equiv a_2\mod m_2 \\
+\c</summary>
       
     
     
     
-    <category term="Math" scheme="http://www.sa1ge.ink/categories/Math/"/>
-    
-    
-    <category term="模运算" scheme="http://www.sa1ge.ink/tags/%E6%A8%A1%E8%BF%90%E7%AE%97/"/>
-    
-    <category term="乘法逆元" scheme="http://www.sa1ge.ink/tags/%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83/"/>
-    
-    <category term="Number Theory" scheme="http://www.sa1ge.ink/tags/Number-Theory/"/>
     
   </entry>
   
