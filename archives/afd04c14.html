@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.proxy.ustclug.org/css?family=Source+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.sa1ge.ink","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="RSA Basic Have a lot waiting to be written, but just post them for convenience. RSA is the first full public-key cryptosystem. All operations in RSA involve modular exponentiation.  Modular exponentia">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RSA-Basic">
+<meta property="og:url" content="http://blog.sa1ge.ink/archives/afd04c14.html">
+<meta property="og:site_name" content="Sa1ge &#39;s Blog">
+<meta property="og:description" content="RSA Basic Have a lot waiting to be written, but just post them for convenience. RSA is the first full public-key cryptosystem. All operations in RSA involve modular exponentiation.  Modular exponentia">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-26T14:43:15.000Z">
+<meta property="article:modified_time" content="2024-01-29T03:28:24.220Z">
+<meta property="article:author" content="Sa1geChen">
+<meta property="article:tag" content="Crypto">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://blog.sa1ge.ink/archives/afd04c14.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://blog.sa1ge.ink/archives/afd04c14.html","path":"archives/afd04c14.html","title":"RSA-Basic"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>RSA-Basic | Sa1ge 's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sa1ge 's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#rsa-basic"><span class="nav-number">1.</span> <span class="nav-text">RSA Basic</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#prerequisites"><span class="nav-number">1.1.</span> <span class="nav-text">Prerequisites:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#operation"><span class="nav-number">1.2.</span> <span class="nav-text">Operation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#basic-principle"><span class="nav-number">1.2.1.</span> <span class="nav-text">Basic Principle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#key-generation"><span class="nav-number">1.2.2.</span> <span class="nav-text">Key Generation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#encryptiondecryption"><span class="nav-number">1.2.3.</span> <span class="nav-text">Encryption&amp;Decryption</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sign-message"><span class="nav-number">1.2.4.</span> <span class="nav-text">Sign Message</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#proof-of-correctness"><span class="nav-number">1.3.</span> <span class="nav-text">Proof of correctness</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#attacks"><span class="nav-number">2.</span> <span class="nav-text">Attacks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#low-exponentssmall-values-of-m"><span class="nav-number">2.1.</span> <span class="nav-text">Low exponents&amp;small values
+of m</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mathematica-basic"><span class="nav-number">3.</span> <span class="nav-text">Mathematica Basic</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#eulers-totient-function"><span class="nav-number">3.1.</span> <span class="nav-text">Euler&#39;s Totient Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fermats-little-theorem"><span class="nav-number">3.2.</span> <span class="nav-text">Fermat&#39;s Little Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#eulers-theorem"><span class="nav-number">3.2.1.</span> <span class="nav-text">Euler&#39;s Theorem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#modular-multiplicative-inverse"><span class="nav-number">3.3.</span> <span class="nav-text">Modular multiplicative
+inverse</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#quadratic-residues"><span class="nav-number">3.4.</span> <span class="nav-text">Quadratic Residues</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#eulers-criterion"><span class="nav-number">3.4.1.</span> <span class="nav-text">Euler&#39;s criterion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#legendre-symbol"><span class="nav-number">3.4.2.</span> <span class="nav-text">Legendre Symbol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tonellishanks-algorithm"><span class="nav-number">3.4.3.</span> <span class="nav-text">Tonelli–Shanks algorithm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86-chinese-remainder-theorem"><span class="nav-number">3.5.</span> <span class="nav-text">中国剩余定理 (Chinese
+remainder theorem)</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sa1geChen"
+      src="/uploads/sageac.jpg">
+  <p class="site-author-name" itemprop="name">Sa1geChen</p>
+  <div class="site-description" itemprop="description">Talk is cheap.Show me the code.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Sagecheni" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Sagecheni" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.sa1ge.ink/archives/afd04c14.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/sageac.jpg">
+      <meta itemprop="name" content="Sa1geChen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sa1ge 's Blog">
+      <meta itemprop="description" content="Talk is cheap.Show me the code.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="RSA-Basic | Sa1ge 's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          RSA-Basic
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-07-26 22:43:15" itemprop="dateCreated datePublished" datetime="2023-07-26T22:43:15+08:00">2023-07-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-01-29 11:28:24" itemprop="dateModified" datetime="2024-01-29T11:28:24+08:00">2024-01-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>3.6k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>13 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="rsa-basic">RSA Basic</h1>
+<p>Have a lot waiting to be written, but just post them for
+convenience.</p>
+<p>RSA is the first full public-key cryptosystem.</p>
+<p>All operations in RSA involve <strong>modular
+exponentiation.</strong></p>
+<blockquote>
+<p>Modular exponentiation is exponentiation performed over a
+modulus.</p>
+<p>Modular exponentiation is the remainder when an integer <span
+class="math inline">\(b\)</span> (the base) is raised to the power <span
+class="math inline">\(e\)</span> (the exponent), and divided by a
+positive integer <span class="math inline">\(m\)</span> (the modulus);
+that is, <span class="math inline">\(c=b^e \mod m\)</span>. Form the
+definition of division, it follows that <span class="math inline">\(0
+\leq c &lt; m\)</span>.</p>
+<p>Modular exponentiation can be performed with a negative exponent
+<span class="math inline">\(e\)</span> by finding the modular
+multiplicative inverse <span class="math inline">\(d\)</span> of <span
+class="math inline">\(b\)</span> modulo <span
+class="math inline">\(m\)</span> using the extended Euclidean algorithm.
+<span class="math display">\[ c=b^e \mod m=d^{-e} \mod m,where \space
+e&lt;0 \space and \space b\cdot d \equiv 1\mod m \]</span></p>
+</blockquote>
+<blockquote>
+<p>In RSA, modular exponentiation, together with the problem of prime
+factorisation, helps us to build a "<a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Trapdoor_function">trapdoor
+function</a>". This is a function that is easy to compute in one
+direction, but hard to do in reverse unless you have the right
+information. It allows us to encrypt a message, and only the person with
+the key can perform the inverse operation to decrypt it.</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="prerequisites">Prerequisites:</h2>
+<ul>
+<li>Euler's Totient Function</li>
+<li>Euler's Theorem</li>
+<li>Multiplicative Inverse Theorem</li>
+</ul>
+<h2 id="operation">Operation</h2>
+<h3 id="basic-principle">Basic Principle</h3>
+<p>Find three large positive integers <em>e,d</em> and <em>n</em>, such
+that <span class="math display">\[ (m^e)^d\equiv m\mod n \]</span> and
+that knowing <em>e</em> and <em>n</em>, or even <em>m</em> will be
+extremely difficult to find <em>d</em>.</p>
+<p>In addition, for some operations it is convenient that the order of
+the two exponentiations can be changed and that this relation also
+implies <span class="math display">\[ (m^d)^e\equiv m\mod n \]</span>
+RSA involves a <strong>public key</strong> and a <strong>private
+key</strong>.</p>
+<h3 id="key-generation">Key Generation</h3>
+<ol type="1">
+<li>Choose two large prime numbers p and q
+<ul>
+<li><em>p</em> and <em>q</em> should be chosen at random, be both large
+and have a large difference.</li>
+<li><em>p</em> and <em>q</em> should keep secret</li>
+</ul></li>
+<li>Compute <em>n=pq</em></li>
+<li>Compute<span class="math inline">\(\space \space \varphi
+(n)\space\)</span> ,where<span class="math inline">\(\space
+\varphi(n)\space\)</span>is Euler's Totient Function.</li>
+<li>Choose an integer <em>e</em> such that <span
+class="math inline">\(2&lt;e&lt;\varphi(n)\)</span> and <span
+class="math inline">\(gcd(e,\varphi(n))=1\)</span>,that is <em>e</em>
+and <span class="math inline">\(\varphi(n)\)</span> is coprime.</li>
+<li>Determined <em>d</em> as <span class="math inline">\(ed\equiv 1 \mod
+n\)</span>. <em>d</em> is the modular multiplicative inverse of
+<em>e</em> modulo <span class="math inline">\(\varphi(n)\)</span></li>
+</ol>
+<p>So, we get public key <em>n</em> and <em>e</em> , and private key
+<em>n</em> and <em>d</em>.</p>
+<h3 id="encryptiondecryption">Encryption&amp;Decryption</h3>
+<p>Encry: <span class="math display">\[ c\equiv m^e \mod n \]</span>
+Decry: <span class="math display">\[ c^d\equiv (m^e) m\mod n
+\]</span></p>
+<h3 id="sign-message">Sign Message</h3>
+<p>Suppose Alice uses Bob's public key to send him an encrypted message.
+In the message, she claimed to be Alice, but Bob has no way of verifying
+that the message was from Alice, since anyone can use Bob's public key
+to send him encrypted messages. So, we should sign the message.</p>
+<p>Suppose message <em>m</em>,and <em>n,e,d</em>.</p>
+<p>Suppose Alice want to send message <em>m</em> to Bob. She can use her
+own private key to do so. She <strong>produces a hash value of the
+message</strong>, and <span class="math inline">\(S=H(M)^d \mod
+n\)</span>, and attaches it as a "signature" to the message. When Bob
+receives the signed message, he <strong>uses the same hash algorithm in
+conjunction with Alice's public key</strong>. He <span
+class="math inline">\(H(M)=S^e\mod n\)</span> (as he does when
+encrypting a message), and compares the resulting hash value with the
+message's hash value. If the two agree, he knows that the author of the
+message was in possession of Alice's private key and that the message
+has not been tampered with since being sent.</p>
+<p>Why: <span class="math display">\[ h(m)=hash(m) \]</span></p>
+<p><span class="math display">\[ (h^e)^d=(h^d)^e\equiv h\mod n
+\]</span></p>
+<h2 id="proof-of-correctness">Proof of correctness</h2>
+<p>(This part is not necessary to look.)</p>
+<p><strong>Using Fermat's little theorem</strong></p>
+<p>We want to show that <span class="math display">\[ \space
+m^{ed}\equiv m \mod pq \]</span> for every integer <em>m</em> when
+<em>p</em> and <em>q</em> are distinct prime numbers and <em>e</em> and
+<em>d</em> are positive integers satisfying <span
+class="math inline">\(ed\equiv 1 \mod \varphi(pq)\)</span></p>
+<p>Since<span class="math inline">\(\space \space
+\varphi(pq)=(p-1)(q-1)\space\)</span>so,we can write <span
+class="math display">\[ ed-1=h(p-1)=k(q-1) \]</span> To check whether
+two numbers, such as<span class="math inline">\(\space
+m^{ed}\space\)</span>and <em>m</em>, are congruent mod <em>pq</em> , it
+suffices to check that they are congruent mod <em>p</em> and mod
+<em>q</em> separately.</p>
+<p>To show<span class="math inline">\(\space m^{ed}\equiv m \mod
+p\space\)</span>,we consider two cases:</p>
+<ol type="1">
+<li>If<span class="math inline">\(\space m\equiv 0 \mod
+p\space\)</span>,<em>m</em> is a multiple of <em>p</em>. Thus <span
+class="math inline">\(m^{ed}\)</span> is a multiple of <em>p</em>. So
+<span class="math inline">\(m^{ed}\equiv 0\equiv m \mod p\)</span></li>
+<li>If <span class="math inline">\(m\equiv 0 \mod p\)</span>, <span
+class="math display">\[ m^{ed}=m^{ed-1}m=m^{h(p-1)}m=(m^{p-1})^hm\equiv
+1^h m\equiv m\mod p \]</span> where we used Fermat's little theorem to
+replace <span class="math inline">\(m^{p-1}\mod p\)</span> with 1.</li>
+</ol>
+<p>The verification that<span class="math inline">\(\space m^{ed}\equiv
+m\mod q\space\)</span>proceeds in a completely analogous way.</p>
+<p>So we can prove that <span class="math display">\[ (m^e)^d\equiv m
+\mod pq \]</span></p>
+<h1 id="attacks">Attacks</h1>
+<h2 id="low-exponentssmall-values-of-m">Low exponents&amp;small values
+of m</h2>
+<p>low exponents and small values of m has a judgment <span
+class="math display">\[ m&lt;n^{\frac{1}{e}} \]</span> the result of
+<span class="math inline">\(m^e\)</span> is strictly less than modulus
+<em>n</em>.</p>
+<p>we can just taking the <em>e</em>th root of the ciphertext over the
+integers.</p>
+<h1 id="mathematica-basic">Mathematica Basic</h1>
+<h2 id="eulers-totient-function">Euler's Totient Function</h2>
+<p>Euler's Totient function counts the positive integers up to a given
+integer <span class="math inline">\(n\)</span> that are relatively prime
+to <span class="math inline">\(n\)</span>. also be called
+<strong>Euler's phi function</strong>.</p>
+<p>It is the number of integers <span class="math inline">\(k\)</span>
+in the range(1,n) for which the greatest common divisor <span
+class="math inline">\(gcd(n,k)=1\)</span>. The integers <span
+class="math inline">\(k\)</span> of this form are sometimes referred to
+as totatives of <span class="math inline">\(n\)</span>.</p>
+<p>Euler's totient function is a multiplicative function, meaning that
+if two numbers <span class="math inline">\(m\)</span> and <span
+class="math inline">\(n\)</span> are relatively prime, then <span
+class="math inline">\(\varphi(mn)=\varphi(m)\varphi(n)\)</span>. The
+function gives the order of the multiplicative group of integers modulo
+n(the group of units of the ring <span class="math inline">\(\mathbb
+Z/n\mathbb Z\)</span>).</p>
+<p><strong>Computing Euler's totient function</strong></p>
+<p>It states: <span class="math display">\[ \varphi (n)=n \prod
+_{p|n}(1-\frac{1}{p}) \]</span> where the product is over the distinct
+prime numbers dividing <span class="math inline">\(n\)</span>.</p>
+<p>An equivalent formulation is <span class="math display">\[
+\varphi(n)=p_1^{k_1-1}(p_1-1)p_2^{k_2-1}(p_2-1)\cdots p_r^{k_r-1}(p_r-1)
+\]</span> where <span class="math inline">\(n=p_1^{k_1}p_2^{k_2}\cdots
+p_n^{k_n}\)</span> is the prime factorization of <span
+class="math inline">\(n\)</span> (this is ,<span
+class="math inline">\(p_1,p_2,\cdots,p_r\)</span> are distinct prime
+numbers)</p>
+<p>Based on <strong>Phi is a multiplicative function</strong> and
+<strong>Value of phi for a prime power argument</strong></p>
+<p>IF <span class="math inline">\(p\)</span> is a prime and <span
+class="math inline">\(k\ge 1\)</span> then: <span
+class="math display">\[
+\varphi(p^k)=p^k-p^{k-1}=p^{k-1}(p-1)=p^k(1-\frac{1}{p}) \]</span></p>
+<blockquote>
+<p>Proof: Since <span class="math inline">\(p\)</span> is a prime
+number, the only possible values of <span class="math inline">\(gcd
+(p^k,m)\)</span>are <span class="math inline">\(1, p, p^2, ...,
+p^k\)</span>, and the only way to have <span
+class="math inline">\(gcd(p^k, m) &gt; 1\)</span> is if <em>m</em> is a
+multiple of <em>p</em>, that is, <span class="math inline">\(m \in {p,
+2p, 3p, ..., p^{k − 1}p = p^k}\)</span>, and there are <span
+class="math inline">\(p^k − 1\)</span> such multiples not greater than
+<span class="math inline">\(p^k\)</span>. Therefore, the other <span
+class="math inline">\(p^k − p^k − 1\)</span> numbers are all relatively
+prime to <span class="math inline">\(p^k\)</span>.</p>
+</blockquote>
+<h2 id="fermats-little-theorem">Fermat's Little Theorem</h2>
+<p>If <span class="math inline">\(p\)</span> is a prime number,then for
+any integer <span class="math inline">\(a\)</span>, the number <span
+class="math inline">\(a^p-a\)</span> is an integer multiple of p. In the
+notation of modular arithmetic, this is expressed as: <span
+class="math display">\[ a^p\equiv a\mod p \]</span></p>
+<p>If <span class="math inline">\(a\)</span> is not divisible by <span
+class="math inline">\(p\)</span>, that is if <span
+class="math inline">\(a\)</span> is coprime to <span
+class="math inline">\(p\)</span>, Fermat's little theorem is equivalent
+to the statement that <span class="math inline">\(a^{p-1}-1\)</span> is
+an integer multiple of <span class="math inline">\(p\)</span>, or in
+symbols: <span class="math display">\[ a^{p-1}\equiv 1 \mod p
+\]</span></p>
+<h3 id="eulers-theorem">Euler's Theorem</h3>
+<p>Let <span class="math inline">\(n\)</span> be a <strong>positive
+integer,</strong> and let <em>a</em> be an integer that is relatively
+prime to <em>n</em>. Then <span class="math display">\[
+a^{\varphi(n)}\equiv 1 \mod n \]</span> where <em>ϕ</em>(<em>n</em>) is
+Euler's totient function.</p>
+<h2 id="modular-multiplicative-inverse">Modular multiplicative
+inverse</h2>
+<p>a modular multiplicative inverse of an integer <em>a</em> is an
+integer <em>x</em> such that <span class="math display">\[ ax\equiv 1
+\mod m \]</span> which is the shorthand way of writing that<span
+class="math inline">\(\space \space (ax-1)|m\)</span>.</p>
+<p><span class="math inline">\(x\mod m\)</span> exists if and only
+if<span class="math inline">\(\space \space gcd(a,m)=1\)</span>,and<span
+class="math inline">\(xm\)</span>is unique.</p>
+<p>There is only one integer that<span class="math inline">\(\space 0\le
+x\le m-1\)</span>.</p>
+<p>Not every element of a complete residue system modulo <em>m</em> has
+a modular multiplicative inverse. After removing the elements of a
+complete residue system that are not relatively prime to <em>m</em>,
+what is left is called a areduced residue system, all of whose elements
+have modular multiplicative inverse. The number of element in a reduced
+residue system is<span class="math inline">\(\space \space
+\varphi(m)\)</span>.</p>
+<h2 id="quadratic-residues">Quadratic Residues</h2>
+<p>An integer <span class="math inline">\(q\)</span> is called a
+quadratic residue modulo <span class="math inline">\(n\)</span> if it is
+congruent to a perfect square modulo <span
+class="math inline">\(n\)</span> <span class="math display">\[ x^2\equiv
+q\mod n \]</span> Otherwise,<span class="math inline">\(q\)</span> is
+called a quadratic non-residue modulo n.</p>
+<h3 id="eulers-criterion">Euler's criterion</h3>
+<p>A formula for determining <strong>whether an integer is a quadratic
+residue modulo a prime</strong>. Precisely,</p>
+<p>Let <span class="math inline">\(p\)</span> be an odd prime and <span
+class="math inline">\(a\)</span> be an integer coprime to <span
+class="math inline">\(p\)</span>. Then <span class="math display">\[
+(\frac{a}{p})=\begin{cases}\ 1 \mod p\quad &amp;&amp;if \space there
+\space is \space an \space integer \space x \space such \space that
+\space x^2\equiv a \mod p\\ -1 \mod p &amp;&amp;if \space there \space
+is \space no \space such \space integer \space \end{cases} \]</span>
+<strong>Proof</strong>(may not important):</p>
+<p>Because the modulus is prime, Lagrange's theorem applies: a
+polynomial of degree <span class="math inline">\(k\)</span> can only
+have at most <span class="math inline">\(k\)</span> roots. In
+particular, <span class="math inline">\(x^2\equiv a \mod p\)</span> has
+at most 2 solutions for each <span class="math inline">\(a\)</span>.</p>
+<p>This implies that besides 0 there are at least <span
+class="math inline">\(\frac{p-1}{2}\)</span> distinct quadratic residues
+modulo <span class="math inline">\(p\)</span>: each of the <span
+class="math inline">\(p-1\)</span> possible values of <span
+class="math inline">\(x\)</span> can only be accompanied by one other to
+give the same residue.</p>
+<p>In fact, <span class="math inline">\((p-x)^2\equiv x^2 \mod
+p\)</span>.This is because <span class="math inline">\((p-x)^2\equiv p^2
+-2px+x^2\equiv x^2 \mod p\)</span>. So the <span
+class="math inline">\(\frac{p-1}{2}\)</span> distinct quadratic residues
+are: <span class="math inline">\(1^2,2^2,\cdots,(\frac{p-1}{2})^2\mod
+p\)</span>.</p>
+<p>As <span class="math inline">\(a\)</span> is coprime to <span
+class="math inline">\(p\)</span> ,Fermat's little theorem says that:
+<span class="math display">\[ a^{p-1}\equiv 1\mod p \]</span> which can
+be written as <span class="math display">\[
+(a^{\frac{p-1}{2}}-1)(a^{\frac{p-1}{2}}+1)\equiv 0\mod p \]</span> Since
+the integers mod <span class="math inline">\(p\)</span> from a field,
+for each <span class="math inline">\(a\)</span>, one or the other of
+these factors must be zero.</p>
+<p>Now if <span class="math inline">\(a\)</span> is a quadratic residue,
+<span class="math inline">\(a\equiv x^2\)</span>, <span
+class="math display">\[ a^{\frac{p-1}{2}}\equiv
+(x^2)^{\frac{p-1}{2}}\equiv x^{p-1}\equiv 1\mod p \]</span> So every
+quadratic residue (mod <span class="math inline">\(p\)</span>) makes the
+first factor zero.</p>
+<p>Applying Lagrange's theorem again, we note that there can be
+<strong>no more than</strong> <span
+class="math inline">\(\frac{p-1}{2}\)</span> values of <span
+class="math inline">\(a\)</span> that make the first factor zero. But as
+we noted at the beginning, there are <strong>at least</strong> <span
+class="math inline">\(\frac{p-1}{2}\)</span> distinct quadratic residues
+(mod p) (besides 0).Therefore, they are <strong>precisely the residue
+classes</strong> that make the first factor zero. The other <span
+class="math inline">\(\frac{p-1}{2}\)</span> residue classes, the
+non-residues, must make the second factor zero, or they would not
+satisfy Fermat's little theorem.</p>
+<h3 id="legendre-symbol">Legendre Symbol</h3>
+<p><strong>Legendre symbol</strong> is a multiplicative function with
+values 1, −1, 0 that is a quadratic character modulo of an odd prime
+number <span class="math inline">\(p\)</span>: its value at a (nonzero)
+quadratic residue mod <span class="math inline">\(p\)</span> is 1 and at
+a non-quadratic residue (<em>non-residue</em>) is −1. Its value at zero
+is 0.</p>
+<p><strong>Definition:</strong></p>
+<p>Let <span class="math inline">\(p\)</span> be an odd prime number. An
+integer <span class="math inline">\(a\)</span> is a quadratic residue
+modulo <span class="math inline">\(p\)</span> if it is congruent to a
+perfect square modulo <span class="math inline">\(p\)</span> and is a
+quadratic non-residue modulo <span class="math inline">\(p\)</span>
+otherwise. The <strong>Legendre symbol</strong> is a function of <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(p\)</span> defined as: <span
+class="math display">\[ (\frac{a}{p})=\begin{cases}\ 1 \quad
+&amp;&amp;if \space a \space is \space quadratic \space residue \space
+modulo \space p \space and \space a\not\equiv 0 \mod p\\ -1 \quad
+&amp;&amp;if \space a \space is \space quadratic \space nonresidue
+\space modulo \space p \space \\ 0 \quad &amp;&amp;if\space a\equiv 0
+\mod p \end{cases} \]</span></p>
+<p>Explicit Formula: <span class="math display">\[ (\frac{a}{p})\equiv
+a^{\frac{p-1}{2}}\mod p \quad and \quad (\frac{a}{p})\in\{-1,0,1\}
+\]</span></p>
+<p><strong>Properties of the Legendre symbol</strong></p>
+<ul>
+<li><p>Given a generator <span class="math inline">\(g\in \mathbb F_p^*
+,if \space x=g^r\)</span>,then <span class="math inline">\(x\)</span> is
+a quadratic residue if and only if <span
+class="math inline">\(r\)</span> is <strong>even</strong>. This show
+that <strong>half of</strong> the nonzero elements in <span
+class="math inline">\(\mathbb F^* _p\)</span> are quadratic
+residues.</p></li>
+<li><p>(<strong>Important</strong>)If <span
+class="math inline">\(p\equiv 3 \mod 4\)</span> then the fact that</p>
+<p><span
+class="math inline">\(\frac{p+1}{4}+\frac{p+1}{4}=\frac{(p-1)+2}{2}\)</span>
+givens us that <span class="math inline">\(a=x^{\frac{p+1}{4}}\)</span>
+is the square root of the quadratic residue <span
+class="math inline">\(x\)</span>.</p></li>
+<li><p>The Legendre symbol is periodic in its first( or top) argument
+:if <span class="math inline">\(a\equiv b\mod p\)</span>,then <span
+class="math display">\[ (\frac{a}{p})=(\frac{b}{p}) \]</span></p></li>
+<li><p>The Legendre symbol is a completely multiplicative function of
+its top argument: <span class="math display">\[
+(\frac{ab}{p})=(\frac{a}{p})(\frac{b}{p}) \]</span> make compute an easy
+job.</p></li>
+<li><p>In particular, the product of two numbers that are both quadratic
+residues or quadratic non-residues modulo <span
+class="math inline">\(p\)</span> is a residue, whereas the product a
+residue with a non-residue is an non-residue.</p>
+<p>Quadratic Residue * Quadratic Residue = Quadratic Residue Quadratic
+Residue * Quadratic Non-residue = Quadratic Non-residue Quadratic
+Non-residue * Quadratic Non-residue = Quadratic Residue</p>
+<p>A special case is the Legendre symbol of a square:</p></li>
+</ul>
+<p><span class="math display">\[ (\frac{x^2}{p})=\begin{cases} 1
+&amp;&amp;\quad if\space p \not\mid x\\ 0 &amp;&amp;\quad if \space
+p\mid x \end{cases} \]</span></p>
+<h3 id="tonellishanks-algorithm">Tonelli–Shanks algorithm</h3>
+<p>(maybe you can block this part, you just need to know its
+function,and when to use it)</p>
+<p>The <strong>Tonelli–Shanks algorithm</strong> is used in modular
+arithmetic to solve for <span class="math inline">\(r\)</span> in a
+congruence of the form <span class="math inline">\(r^2 \equiv n \mod
+p\)</span>, where <span class="math inline">\(p\)</span> is a prime:
+that is, to find a square root of <span class="math inline">\(n\)</span>
+modulo <span class="math inline">\(p\)</span>.</p>
+<p>Tonelli–Shanks cannot be used for composite moduli: finding square
+roots modulo composite numbers is a computational problem equivalent to
+integer factorization.</p>
+<p><strong>Algorithm</strong>:</p>
+<p>Inputs:</p>
+<ul>
+<li><span class="math inline">\(p\)</span> ,a prime</li>
+<li><span class="math inline">\(n\)</span>, an element of <span
+class="math inline">\(\mathbb Z/p\mathbb Z\)</span> such that solutions
+to the congruence <span class="math inline">\(r^2=n\)</span> exist;when
+this is so we say that <span class="math inline">\(n\)</span> is
+quadratic residue mod p</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li><span class="math inline">\(r\)</span> in <span
+class="math inline">\(\mathbb Z /p\mathbb Z\)</span> such that <span
+class="math inline">\(r^2=n\)</span></li>
+</ul>
+<p>Algorithm:</p>
+<ol type="1">
+<li><p>By factoring out powers of 2, find Q and S such that <span
+class="math inline">\(p-1=Q2^S\)</span> with Q odd</p>
+<p>If S=1, output <span class="math inline">\(r=\pm
+a^{\frac{p+1}{4}}\)</span> Time spend <span
+class="math inline">\(O(ln(p)^3)\)</span></p></li>
+<li><p>Search for a <span class="math inline">\(z\)</span> in <span
+class="math inline">\(\mathbb Z/p\mathbb Z\)</span> which is a quadratic
+non-residue</p>
+<ul>
+<li>Half of the elements in the set will be quadratic non-residues</li>
+<li>Candidates can be tested with Euler's criterion</li>
+<li>So we can randomly choose integer <span class="math inline">\(u \in
+\mathbb Z/p\mathbb Z\)</span> , until we find a <span
+class="math inline">\(z\)</span> such that <span
+class="math inline">\((\frac{z}{p})=-1\)</span>, the time spend is <span
+class="math inline">\(O(ln(p)^2)\)</span></li>
+</ul></li>
+<li><p>Let <span class="math display">\[ M\leftarrow S\\ c\leftarrow
+z^Q\\ t \leftarrow n^Q\\ R \leftarrow n^{\frac{Q+1}{2}}
+\]</span></p></li>
+<li><p>Loop:</p>
+<ul>
+<li>If <span class="math inline">\(t=0\)</span>, return <span
+class="math inline">\(r=0\)</span></li>
+<li>If <span class="math inline">\(t=1\)</span> ,return <span
+class="math inline">\(r=R\)</span></li>
+<li>Otherwise, use repeated squaring to find the least <span
+class="math inline">\(i,0&lt;i&lt;M\)</span> such that <span
+class="math inline">\(t^{2^i}=1\)</span></li>
+<li>Let <span class="math display">\[ b \leftarrow c^{2^{M-i-1}}\\ M
+\leftarrow i\\ c \leftarrow b^2\\ t \leftarrow tb^2\\ R \leftarrow Rb
+\]</span></li>
+</ul></li>
+</ol>
+<p>Once you have solved the congruence with <span
+class="math inline">\(r\)</span> the second solution is <span
+class="math inline">\(-r\mod p\)</span> . If the least <span
+class="math inline">\(i\)</span> such that <span
+class="math inline">\(t^{2^i}=1\)</span> is M,then no solution to the
+congruence exists , i.e. <span class="math inline">\(n\)</span> is not a
+quadratic residue.</p>
+<p>Example:</p>
+<p>Solving the congruence <span class="math inline">\(r^2\equiv 5\mod
+41\)</span>, 41 is prime as required and <span
+class="math inline">\(41\equiv 1\mod 4\)</span>, 5 is quadratic residue
+by Euler's criterion: <span
+class="math inline">\(5^\frac{41-1}{2}=5^{20}\equiv 1\mod p\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(p-1=40=5\cdot 2^3\)</span> so <span
+class="math inline">\(Q\leftarrow5,S\leftarrow 3\)</span></li>
+<li>Find a value for z:
+<ul>
+<li><span class="math inline">\(2^\frac{41-1}{2}=1\)</span>, so 2 is a
+quadratic residue by Euler's criterion</li>
+<li><span class="math inline">\(3^\frac{41-1}{2}=40=-1\)</span>, so 3 is
+a quadratic non-residue: set<span class="math inline">\(z
+\leftarrow3\)</span></li>
+</ul></li>
+<li>Let:
+<ul>
+<li><span class="math inline">\(M\leftarrow S=3\)</span></li>
+<li><span class="math inline">\(c\leftarrow z^Q=3^5=38\)</span></li>
+<li><span class="math inline">\(t\leftarrow n^Q=5^5=9\)</span></li>
+<li><span class="math inline">\(R\leftarrow
+n^\frac{Q+1}{2}=5^\frac{5+1}{2}=2\)</span></li>
+</ul></li>
+<li>Loop:
+<ul>
+<li>First iteration:
+<ul>
+<li><span class="math inline">\(t\neq 1\)</span>, so we're not
+finished</li>
+<li><span class="math inline">\(t^{2^1}=40.t^{2^2}=1\)</span> ,so <span
+class="math inline">\(i\leftarrow2\)</span></li>
+<li><span class="math inline">\(b\leftarrow
+c^{2^{M-i-1}}=38^{2^{3-2-1}}=38\)</span></li>
+<li><span class="math inline">\(M\leftarrow i=2\)</span></li>
+<li><span class="math inline">\(c\leftarrow b^2=38^2=9\)</span></li>
+<li><span class="math inline">\(t\leftarrow tb^2=9\cdot
+9=40\)</span></li>
+<li><span class="math inline">\(R\leftarrow Rb=2\cdot
+38=35\)</span></li>
+</ul></li>
+<li>Second iteration:
+<ul>
+<li><span class="math inline">\(t\neq 1\)</span>, so we're still not
+finished</li>
+<li><span class="math inline">\(t^{2^1}=1\)</span>, so <span
+class="math inline">\(i\leftarrow1\)</span></li>
+<li><span class="math inline">\(b\leftarrow
+c^{2^{M-i-1}}=9^{2^{2-1-1}}=9\)</span></li>
+<li><span class="math inline">\(M\leftarrow i=1\)</span></li>
+<li><span class="math inline">\(c \leftarrow b^2=9^2=40\)</span></li>
+<li><span class="math inline">\(t\leftarrow tb^2=40\cdot 40
+=1\)</span></li>
+<li><span class="math inline">\(R \leftarrow Rb=35 \cdot
+9=28\)</span></li>
+</ul></li>
+<li>Third iteration:
+<ul>
+<li><span class="math inline">\(t=1\)</span>, and we are finished;return
+<span class="math inline">\(r=R=28\)</span></li>
+</ul></li>
+</ul></li>
+</ol>
+<p>Algorithm implementation</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">8479994658316772151941616510097127087554541274812435112009425778595495359700244470400642403747058566807127814165396640215844192327900454116257979487432016769329970767046735091249898678088061634796559556704959846424131820416048436501387617211770124292793308079214153179977624440438616958575058361193975686620046439877308339989295604537867493683872778843921771307305602776398786978353866231661453376056771972069776398999013769588936194859344941268223184197231368887060609212875507518936172060702209557124430477137421847130682601666968691651447236917018634902407704797328509461854842432015009878011354022108661461024768</span></span><br><span class="line">p = <span class="number">30531851861994333252675935111487950694414332763909083514133769861350960895076504687261369815735742549428789138300843082086550059082835141454526618160634109969195486322015775943030060449557090064811940139431735209185996454739163555910726493597222646855506445602953689527405362207926990442391705014604777038685880527537489845359101552442292804398472642356609304810680731556542002301547846635101455995732584071355903010856718680732337369128498655255277003643669031694516851390505923416710601212618443109844041514942401969629158975457079026906304328749039997262960301209158175920051890620947063936347307238412281568760161</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">Legendre</span>(<span class="params">a,p</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">pow</span>(a,(p-<span class="number">1</span>)//<span class="number">2</span>,p)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">Tonelli</span>(<span class="params">n,p</span>):</span><br><span class="line">    <span class="keyword">assert</span> Legendre(n,p)==<span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> p%<span class="number">4</span>==<span class="number">3</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">pow</span>(n,(p+<span class="number">1</span>)//<span class="number">4</span>,p)</span><br><span class="line">    q=p-<span class="number">1</span></span><br><span class="line">    s=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> q%<span class="number">2</span> ==<span class="number">0</span>:</span><br><span class="line">        q = q// <span class="number">2</span></span><br><span class="line">        s += <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> z <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>,p):</span><br><span class="line">        <span class="keyword">if</span> Legendre(z,p)==p-<span class="number">1</span>:</span><br><span class="line">            c=<span class="built_in">pow</span>(z,q,p)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    r = <span class="built_in">pow</span>(n,(q+<span class="number">1</span>)//<span class="number">2</span>,p)</span><br><span class="line">    t = <span class="built_in">pow</span>(n,q,p)</span><br><span class="line">    m=s</span><br><span class="line">    <span class="keyword">if</span> t%p ==<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> r</span><br><span class="line">    <span class="keyword">else</span> :</span><br><span class="line">        i=<span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> t%p !=<span class="number">1</span>:</span><br><span class="line">            temp=<span class="built_in">pow</span>(t,<span class="number">2</span>**(i+<span class="number">1</span>),p)</span><br><span class="line">            i+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> temp%p==<span class="number">1</span>:</span><br><span class="line">                b=<span class="built_in">pow</span>(c,<span class="number">2</span>**(m-i-<span class="number">1</span>),p)</span><br><span class="line">                r=(r*b)%p</span><br><span class="line">                c=(b*b)%p</span><br><span class="line">                t=(t*c)%p</span><br><span class="line">                m=i</span><br><span class="line">                i=<span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> r</span><br><span class="line"><span class="built_in">print</span>(Tonelli(a,p))</span><br></pre></td></tr></table></figure>
+<h2 id="中国剩余定理-chinese-remainder-theorem">中国剩余定理 (Chinese
+remainder theorem)</h2>
+<p>(中国剩余定理肯定是要用中文的)</p>
+<p>关于一元线性同余方程组的定理，说明了一元线性同余方程组有解的准则以及求解方法.</p>
+<p>对于以下一元线性方程组 <span class="math display">\[ \begin{cases} x
+\equiv a_1 \mod m_1\\ x\equiv a_2 \mod m_2\\ \vdots\\ x\equiv a_n \mod
+m_n \end{cases} \]</span> 且 <span
+class="math inline">\(m_1,m_2,\cdots,m_n\)</span>
+其中任意两数互质，则对任意的整数 <span
+class="math inline">\(a_1,a_2,\cdots,a_n\)</span>,
+方程组有解，并且通解可以用如下方式构造得到:</p>
+<ol type="1">
+<li>设 <span class="math inline">\(M=m_1\times m_2\times \cdots \times
+m_n=\prod _{i=1}^n m_i\)</span> 是整数 <span
+class="math inline">\(m_1,m_2,\cdots,m_n\)</span> 的乘积，并设 <span
+class="math inline">\(M_i=M/m_i,\forall i\in\{1,2,\cdots,n\}\)</span>,
+即 <span class="math inline">\(M_i\)</span> 是除了 <span
+class="math inline">\(m_i\)</span> 以外的 <span
+class="math inline">\(n-1\)</span> 个整数的乘积.</li>
+<li>设 $t_i=M_i^{-1} 为 $<span class="math inline">\(M_i\)</span> 模
+<span class="math inline">\(m_i\)</span> 的数论倒数:<span
+class="math inline">\(t_iM_i\equiv 1\mod m_i,\forall i\in
+\{1,2,\cdots,n\}\)</span></li>
+<li>方程组的通解形式为:<span
+class="math inline">\(x=a_1t_1M_1+a_2t_2M_2+\cdots+a_nt_nM_n+kM=kM+\sum_{i=1}^n
+a_it_iM_i,k\in \mathbb Z\)</span>. 在模 <span
+class="math inline">\(M\)</span> 的意义下，方程组只有一个解 <span
+class="math inline">\(\sum_{i=1}^n a_it_iM_i\)</span></li>
+</ol>
+<p>脚本如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">a=[<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>]</span><br><span class="line">m=[<span class="number">5</span>,<span class="number">11</span>,<span class="number">17</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a,b</span>):</span><br><span class="line">    <span class="keyword">return</span> gcd(b,a%b) <span class="keyword">if</span> b <span class="keyword">else</span> a</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">Crt</span>(<span class="params">a,m</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(m)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,<span class="built_in">len</span>(m)):</span><br><span class="line">            <span class="keyword">if</span> gcd(m[i],m[j])!=<span class="number">1</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;not coprime&quot;</span>)</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">    M=<span class="number">1</span></span><br><span class="line">    <span class="comment">#Calculate the product of m</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> m:</span><br><span class="line">        M=M*i</span><br><span class="line">    Mm=[]</span><br><span class="line">    <span class="comment">#Calculate each M//m</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> m:</span><br><span class="line">        Mm.append(M//i)</span><br><span class="line">    t=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(m)):</span><br><span class="line">        t.append(gmpy2.invert(Mm[i],m[i]))</span><br><span class="line">    <span class="comment">#Calculate the answer</span></span><br><span class="line">    x=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(m)):</span><br><span class="line">        <span class="built_in">print</span>(Mm[i]*t[i]*a[i])</span><br><span class="line">        x+=Mm[i]*t[i]*a[i]</span><br><span class="line">    x=x%M</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(Crt(a,m))</span><br></pre></td></tr></table></figure>
+<p>实现 2:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span>  <span class="title function_">merge</span>(<span class="params">a1,n1,a2,n2</span>):</span><br><span class="line">    d = math.gcd(n1,n2)</span><br><span class="line">    c = a2-a1</span><br><span class="line">    <span class="keyword">if</span> c%d!=<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    c = (c%n2+n2)%n2</span><br><span class="line">    c = c//d</span><br><span class="line">    n1 = n1//d</span><br><span class="line">    n2 = n2//d</span><br><span class="line">    c *= gmpy2.invert(n1,n2)</span><br><span class="line">    c %= n2</span><br><span class="line">    c *= n1*d</span><br><span class="line">    c += a1</span><br><span class="line">    <span class="keyword">global</span> n3</span><br><span class="line">    <span class="keyword">global</span> a3</span><br><span class="line">    n3 = n1*n2*d</span><br><span class="line">    a3 = (c%n3+n3)%n3</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">exCRT</span>(<span class="params">a,n</span>):</span><br><span class="line">    a1=a[<span class="number">0</span>]</span><br><span class="line">    n1=n[<span class="number">0</span>]</span><br><span class="line">    le= <span class="built_in">len</span>(a)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,le):</span><br><span class="line">        a2 = a[i]</span><br><span class="line">        n2=n[i]</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> merge(a1,n1,a2,n2):</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        a1 = a3</span><br><span class="line">        n1 = n3</span><br><span class="line">    <span class="keyword">global</span> mod</span><br><span class="line">    mod=n1</span><br><span class="line">    <span class="keyword">return</span> (a1%n1+n1)%n1</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">exCRT_getequation</span>(<span class="params">a,n</span>):</span><br><span class="line">    a1=a[<span class="number">0</span>]</span><br><span class="line">    n1=n[<span class="number">0</span>]</span><br><span class="line">    le= <span class="built_in">len</span>(a)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,le):</span><br><span class="line">        a2 = a[i]</span><br><span class="line">        n2=n[i]</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> merge(a1,n1,a2,n2):</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        a1 = a3</span><br><span class="line">        n1 = n3</span><br><span class="line">    <span class="keyword">return</span> (a1,n1)</span><br><span class="line"><span class="comment">#a为余数列表</span></span><br><span class="line"><span class="comment">#n为模数列表</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Crypto/" rel="tag"># Crypto</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/archives/58a6f505.html" rel="prev" title="多元函数微分学">
+                  <i class="fa fa-angle-left"></i> 多元函数微分学
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/archives/60882abe.html" rel="next" title="Come back!">
+                  Come back! <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Sa1geChen</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js","integrity":"sha256-mm3Re3y7xlvh+yCD+l/Zs1d+PU0AEad93MkWvljfm/s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

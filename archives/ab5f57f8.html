@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.proxy.ustclug.org/css?family=Source+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.sa1ge.ink","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="基本的模运算 a,b,p均为整数 模p加法：\((a+b)\%p\) 模p减法：\((a-b)\%p\) 模p乘法：\((a*b)\%p\)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模运算以及乘法逆元">
+<meta property="og:url" content="http://blog.sa1ge.ink/archives/ab5f57f8.html">
+<meta property="og:site_name" content="Sa1ge &#39;s Blog">
+<meta property="og:description" content="基本的模运算 a,b,p均为整数 模p加法：\((a+b)\%p\) 模p减法：\((a-b)\%p\) 模p乘法：\((a*b)\%p\)">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-11-15T01:07:33.000Z">
+<meta property="article:modified_time" content="2024-01-26T14:59:53.834Z">
+<meta property="article:author" content="Sa1geChen">
+<meta property="article:tag" content="模运算">
+<meta property="article:tag" content="乘法逆元">
+<meta property="article:tag" content="Number Theory">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://blog.sa1ge.ink/archives/ab5f57f8.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://blog.sa1ge.ink/archives/ab5f57f8.html","path":"archives/ab5f57f8.html","title":"模运算以及乘法逆元"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>模运算以及乘法逆元 | Sa1ge 's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sa1ge 's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%9A%84%E6%A8%A1%E8%BF%90%E7%AE%97"><span class="nav-number">1.</span> <span class="nav-text">基本的模运算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8"><span class="nav-number">1.1.</span> <span class="nav-text">基本性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E8%A7%84%E5%88%99"><span class="nav-number">1.2.</span> <span class="nav-text">运算规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E5%90%88%E5%BE%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">结合律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E5%BE%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">交换律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E9%85%8D%E5%BE%8B"><span class="nav-number">1.2.3.</span> <span class="nav-text">分配律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E5%AE%9A%E7%90%86"><span class="nav-number">1.2.4.</span> <span class="nav-text">重要定理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83"><span class="nav-number">2.</span> <span class="nav-text">乘法逆元</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="nav-number">2.1.1.</span> <span class="nav-text">例子</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E5%AE%9A%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">扩展欧几里得定理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95%E8%BE%97%E8%BD%AC%E7%9B%B8%E9%99%A4%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">欧几里得算法(辗转相除法)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%81%E6%98%8E"><span class="nav-number">3.1.1.</span> <span class="nav-text">证明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E4%BD%93"><span class="nav-number">3.2.</span> <span class="nav-text">本体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.4.</span> <span class="nav-text">具体步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.4.1.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82%E9%80%86%E5%85%83"><span class="nav-number">3.5.</span> <span class="nav-text">求逆元</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">3.5.1.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">3.6.</span> <span class="nav-text">补充</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">费马小定理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="nav-number">4.1.</span> <span class="nav-text">前置知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86-1"><span class="nav-number">4.1.1.</span> <span class="nav-text">费马小定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%B9%82%E5%8F%96%E6%A8%A1"><span class="nav-number">4.1.2.</span> <span class="nav-text">快速幂取模</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-2"><span class="nav-number">4.1.2.1.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82%E9%80%86%E5%85%83-1"><span class="nav-number">4.2.</span> <span class="nav-text">求逆元</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#stein%E7%AE%97%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">Stein算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86-1"><span class="nav-number">5.1.</span> <span class="nav-text">前置知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%AD%A5%E9%AA%A4"><span class="nav-number">5.2.</span> <span class="nav-text">算法步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-3"><span class="nav-number">5.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sa1geChen"
+      src="/uploads/sageac.jpg">
+  <p class="site-author-name" itemprop="name">Sa1geChen</p>
+  <div class="site-description" itemprop="description">Talk is cheap.Show me the code.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Sagecheni" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Sagecheni" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.sa1ge.ink/archives/ab5f57f8.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/sageac.jpg">
+      <meta itemprop="name" content="Sa1geChen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sa1ge 's Blog">
+      <meta itemprop="description" content="Talk is cheap.Show me the code.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="模运算以及乘法逆元 | Sa1ge 's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          模运算以及乘法逆元
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-11-15 09:07:33" itemprop="dateCreated datePublished" datetime="2022-11-15T09:07:33+08:00">2022-11-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-01-26 22:59:53" itemprop="dateModified" datetime="2024-01-26T22:59:53+08:00">2024-01-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Math/" itemprop="url" rel="index"><span itemprop="name">Math</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>7 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="基本的模运算">基本的模运算</h1>
+<p>a,b,p均为整数</p>
+<p>模p加法：<span class="math inline">\((a+b)\%p\)</span></p>
+<p>模p减法：<span class="math inline">\((a-b)\%p\)</span></p>
+<p>模p乘法：<span class="math inline">\((a*b)\%p\)</span> <span id="more"></span>
+## Notes</p>
+<p>同余式：正整数a,b对p取模，它们的余数相同，记作<span
+class="math inline">\(a \equiv b(mod\space p)\)</span></p>
+<h2 id="基本性质">基本性质</h2>
+<p>1.若p=a-b,则<span class="math inline">\(a \equiv b\mod p\)</span>
+例如 <span class="math inline">\(11\equiv 4\mod 7\)</span></p>
+<p>2.传递性：若<span class="math inline">\(a\equiv b\mod
+p\)</span>且<span class="math inline">\(b\equiv c\mod p\)</span>,则<span
+class="math inline">\(a\equiv c\mod p\)</span></p>
+<h2 id="运算规则">运算规则</h2>
+<p><span class="math display">\[
+\begin{split}
+(a+b)\mod p&amp;=(a\mod p+b\mod p)\mod p\\\\
+(a-b)\mod p&amp;=(a\mod p-b\mod p)\mod p\\\\
+(a*b)\mod p&amp;=(a\mod p*b\mod p)\mod p\\\\
+(a^b)\mod p&amp;=((a\mod p)^b)\mod p\\\\
+\nonumber
+\end{split}
+\]</span></p>
+<h3 id="结合律">结合律</h3>
+<p><span class="math display">\[
+\begin{split}
+((a+b\mod p+c)\mod p&amp;=(a+(b+c)\mod p)\mod p\\\\
+((a*b\mod p*c)\mod p&amp;=(a*(b*c)\mod p)\mod p\\\\
+\nonumber
+\end{split}
+\]</span></p>
+<h3 id="交换律">交换律</h3>
+<h3 id="分配律">分配律</h3>
+<p><span class="math display">\[
+(((a+b)\mod p)*c)\mod p=((a*c)\mod p+(b*c)\mod p)\mod p
+\]</span></p>
+<h3 id="重要定理">重要定理</h3>
+<p><span class="math inline">\(若a\equiv b\mod p\)</span>
+则对于任意的c,都有 <span class="math inline">\((a+c)\equiv(b+c)\mod
+p\)</span></p>
+<p><span class="math inline">\(若a\equiv b\mod p\)</span>
+则对于任意的正整数c,都有 <span
+class="math inline">\((a*c)\equiv(b*c)\mod p\)</span></p>
+<p><span class="math inline">\(若a\equiv b\mod p,c\equiv d\mod
+p\)</span> 则对于任意的c,都有 <span
+class="math inline">\((a+c)\equiv(b+d)\mod p,(a-c)\equiv(b-d)\mod
+p,(a*c)\equiv(b*d)\mod p\)</span></p>
+<h1 id="乘法逆元">乘法逆元</h1>
+<h2 id="定义">定义</h2>
+<p>如果ax≡1 (mod
+p),且gcd(a,p)=1（a与p互质），则称a关于模p的乘法逆元为x。</p>
+<h3 id="例子">例子</h3>
+<p>例如：4关于1模7的乘法逆元为多少？</p>
+<p>4X≡1 mod 7</p>
+<p>这个方程等价于求一个X和K，满足</p>
+<p>4X=7K+1</p>
+<p>其中X和K都是整数。</p>
+<p>若ax≡1(mod f), 则称a关于1模f的乘法逆元为x。也可表示为ax≡1(mod
+f)。</p>
+<p>当a与f互素时，a关于模f的乘法逆元有解。如果不互素，则无解。如果f为素数，则从1到f-1的任意数都与f互素，即在1到f-1之间都恰好有一个关于模f的乘法逆元。</p>
+<p>例如，求5关于模14的乘法逆元：</p>
+<p>14=5*2+4</p>
+<p>5=4*1+1</p>
+<p>说明5与14互素，存在5关于14的乘法逆元。</p>
+<p>1=5-4=5-(14-5*2)=5*3-14</p>
+<p>因此，5关于模14的乘法逆元为3。</p>
+<h1 id="扩展欧几里得定理">扩展欧几里得定理</h1>
+<h2 id="欧几里得算法辗转相除法">欧几里得算法(辗转相除法)</h2>
+<p>即以除数和余数反复做除法运算，当余数为0时，取当前算式除数为最大公约数</p>
+<h3 id="证明">证明</h3>
+<p>引理1：若d是a和b的公约数，那么d也是b和c的公约数（c=a%b）</p>
+<p>引理2：若d是b和c的公约数(c=a%b)那么d也是b和c的公约数</p>
+<p>定理：两个整数的最大公约数等于其中较小的那个数和两数相除余数的最大公约数。</p>
+<p>证法：</p>
+<p>a可以表示成<span
+class="math inline">\(a=kb+r\)</span>(a,b,k,r均为正整数且r&lt;b)</p>
+<p>假设d是a，b的一个公约数，记作<span
+class="math inline">\(d|a,d|b\)</span>，即a和b都可以被d整除</p>
+<p>而<span class="math inline">\(r=a-kb\)</span>，两边同时除以d，<span
+class="math inline">\(r/d=a/d-kb/d\)</span>，由等式右边可知<span
+class="math inline">\(m=r/d\)</span>为整数，因此<span
+class="math inline">\(d|r\)</span></p>
+<p>因此d也是b，a mod b的公约数</p>
+<p>因(a,b)和(b,a mod b)的公约数相等，则其最大公约数也相等</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a,b</span>):</span><br><span class="line">    <span class="keyword">return</span> gcd(b,a%b) <span class="keyword">if</span> b <span class="keyword">else</span> a</span><br></pre></td></tr></table></figure>
+<p>时间复杂度为O(log n)</p>
+<h2 id="本体">本体</h2>
+<p>设两个式子 <span class="math display">\[
+\begin{split}
+ax+by&amp;=gcd(a,b)\\\\
+bx&#39;+(a\mod b)y&#39;&amp;=gcd(b,a\mod b)
+\nonumber
+\end{split}
+\]</span> 由欧几里得算法知:<span
+class="math inline">\(gcd(a,b)=gcd(b,a\mod b)\)</span></p>
+<p>所以 <span class="math inline">\(ax+by=bx&#39;+(a\mod
+b)y&#39;\)</span></p>
+<p>而 <span class="math inline">\(a\mod b=a-kb\)</span></p>
+<p>其中k=[a/b]</p>
+<p>所以有<span
+class="math inline">\(ax+by=bx&#39;+(a-kb)y&#39;\)</span></p>
+<p>展开移项得：<span
+class="math inline">\(ax+by=ay&#39;+b(x&#39;-ky&#39;)\)</span></p>
+<p>根据对应系数关系，可以设</p>
+<p>$ x=y'、y=x'-ky'$来进一步求一个可行解</p>
+<p>递归地使用x'、y'表示“上一步”的x、y，就能递归地把问题转化为 <span
+class="math display">\[
+bx&#39;+(a\mod b)y&#39;=gcd(b,a\mod b)
+\]</span>
+x和y会不断减小，类似gcd()的递归终点，当扩展欧几里得算法exgcd()的a<span
+class="math inline">\(a&#39;x&#39;+b&#39;y&#39;=gcd(a&#39;,b&#39;)\)</span>中的<span
+class="math inline">\(b&#39;\)</span>为0时，可以得到递归终点的<span
+class="math inline">\(x&#39;=1,y&#39;=0\)</span>，层层回溯套用前面等式
+<span class="math display">\[
+\begin{split}
+x&amp;=y&#39;\\\\y&amp;=x&#39;-ky&#39;
+\end{split}
+\]</span> 就能得到<span
+class="math inline">\(ax+by=gcd(a,b)\)</span>的一组可行解</p>
+<h2 id="算法">算法</h2>
+<p>对于任意两个整数 a, b，必存在整数 x, y，使得 ax + by = gcd(a,b)
+成立，求出整数解 x, y，可以得到 gcd(a,b).</p>
+<h2 id="具体步骤">具体步骤</h2>
+<p>1.定义 x<sub>1</sub> = 1, y<sub>1</sub> = 0, x<sub>2</sub> = 0,
+y<sub>2</sub> = 1</p>
+<p>2.若 b ≠ 0，使用带余除法，用 b 除以 a 得到余数 r；否则转到第4步</p>
+<p>3.用 b 代替 a, 用 r 代替 b， 令 x<sub>1</sub>, y<sub>1</sub>,
+x<sub>2</sub>, y<sub>2</sub> = x<sub>2</sub>, y<sub>2</sub>,
+x<sub>1</sub> - q·x<sub>2</sub>, y<sub>1</sub> -
+q·y<sub>2</sub>，重复第2步</p>
+<p>4.a 的值就是最大公约数 d，x<sub>1</sub> 和 y<sub>1</sub> 的值就是所求
+x 和 y</p>
+<h3 id="代码实现">代码实现</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exgcd</span>(<span class="params">a,b</span>):</span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>,<span class="number">0</span>,a</span><br><span class="line">    x,y,g=exgcd(b,a%b)</span><br><span class="line">    x,y=y,(x-(a//b)*y)</span><br><span class="line">    <span class="keyword">return</span> x,y,g</span><br></pre></td></tr></table></figure>
+<p>模拟矩阵运算的扩展欧几里得算法：https://www.cnblogs.com/kentle/p/14975039.html</p>
+<h2 id="求逆元">求逆元</h2>
+<p>逆元：a关于模b得逆元整数d满足<span class="math inline">\(a*d\mod
+b\equiv 1\)</span></p>
+<p>扩展欧几里得：求方程<span
+class="math inline">\(ax+by=gcd(a,b)\)</span> 的一组可行解</p>
+<p>关系：<span class="math inline">\((a*d) (mod\space
+b)\equiv1\)</span>，等价于 ad-kb=1,其中k为未知整数</p>
+<p>设d为x，-k为y，则<span
+class="math inline">\(ad-kb=1\)</span>转化为<span
+class="math inline">\(ax+by=1\)</span></p>
+<p>求出x即可得到a关于模b的逆元</p>
+<p>当x为负值的时候</p>
+<h3 id="代码实现-1">代码实现</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">exgcdinv</span>(<span class="params">a,b</span>):</span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>,<span class="number">0</span>,a</span><br><span class="line">    x,y,g=exgcdinv(b,a%b)</span><br><span class="line">    t=x</span><br><span class="line">    x=y</span><br><span class="line">    y=t-a//b*y</span><br><span class="line">    <span class="keyword">return</span> x,y,g</span><br></pre></td></tr></table></figure>
+<p>时间复杂度为O(log n)（斐波那契复杂度）</p>
+<h2 id="补充">补充</h2>
+<p>1.显然，当x求出负值时，由于乘法逆元应为正，经验证,若<span
+class="math inline">\(a*d\mod b\equiv
+1\)</span>，d=x+b（证明推导留待时候）</p>
+<p>2.python自带的pow函数pow(a,b,c)，当b为-1的时候，可以求a关于模c的乘法逆元</p>
+<p><strong>存在即可求</strong></p>
+<h1 id="费马小定理">费马小定理</h1>
+<h2 id="前置知识">前置知识</h2>
+<h3 id="费马小定理-1">费马小定理</h3>
+<p>对于整数a与质数b，若a与b互质，则有 <span class="math display">\[
+a^{b-1}\mod b\equiv 1
+\]</span></p>
+<h3 id="快速幂取模">快速幂取模</h3>
+<p>两数之积取模等于对两数分别取模然后对积取模 <span
+class="math display">\[
+(a*b)\mod p=((a\mod p)*(b\mod p))\mod p
+\]</span></p>
+<h4 id="代码实现-2">代码实现</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">powmod</span>(<span class="params">a,n,mod</span>):</span><br><span class="line">    ret=<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> n&gt;<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> n%<span class="number">2</span> ==<span class="number">1</span>:</span><br><span class="line">            ret=a*a % mod</span><br><span class="line">        a=a*a % mod</span><br><span class="line">        n//=<span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> ret</span><br></pre></td></tr></table></figure>
+<h2 id="求逆元-1">求逆元</h2>
+<p><span class="math inline">\(a^{b-1}\mod b\equiv 1\)</span> 等价于
+<span class="math inline">\(a*a^{b-2}\mod b\equiv 1\)</span></p>
+<p>显然<span class="math inline">\(a^{b-2}\)</span>就是a mod b
+的逆元</p>
+<p>用b-2和b代替快速幂取模中的n和mod:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">Fermatinv</span>(<span class="params">a,b</span>):</span><br><span class="line">    <span class="keyword">return</span> powmod(a,b-<span class="number">2</span>,b)</span><br></pre></td></tr></table></figure>
+<p>时间复杂度：大约O(log b)</p>
+<p>适用范围：在模数b是质数时</p>
+<h1 id="stein算法">Stein算法</h1>
+<p>只有整数的移位和加减法，便于大素数求公约数</p>
+<h2 id="前置知识-1">前置知识</h2>
+<p><span
+class="math inline">\(gcd(a,a)=a\)</span>，即一个数和他自身的公约数是其自身</p>
+<p><span
+class="math inline">\(gcd(ka,kb)=kgcd(a,b)\)</span>也就是最大公约数运算和倍乘运算可以交换，特殊的，当k=2时，说明两个偶数的最大公约数必然能被2整除</p>
+<h2 id="算法步骤">算法步骤</h2>
+<p>假设A<sub>1</sub>=A,B<sub>1</sub>=B,C<sub>1</sub>=1</p>
+<p>for n=1,2,3...do:</p>
+<p>1.若A<sub>n</sub>=0或B<sub>n</sub>=0，则max(A<sub>n</sub>,B<sub>n</sub>)*C<sub>n</sub>为最大公约数，算法结束</p>
+<p>2.若A<sub>n</sub>和B<sub>n</sub>均为偶数，则A<sub>n+1</sub>=若A<sub>n</sub>/2，B<sub>n+1</sub>=B<sub>n</sub>/2，C<sub>n+1</sub>=2*C<sub>n</sub></p>
+<p>3.若A<sub>n</sub>为偶数，B<sub>n</sub>为奇数，则A<sub>n+1</sub>=A<sub>n</sub>/2,B<sub>n+1</sub>=B<sub>n</sub></p>
+<p>4.若A<sub>n</sub>为奇数，B<sub>n</sub>为偶数，则A<sub>n+1</sub>=A<sub>n</sub>，B<sub>n+1</sub>=B<sub>n</sub>/2</p>
+<p>5.若A<sub>n</sub>，B<sub>n</sub>均为奇数，则A<sub>n+1</sub>=|A<sub>n</sub>-B<sub>n</sub>|/2</p>
+<p>B<sub>n+1</sub>=min（A<sub>n</sub>,B<sub>n</sub>）,C<sub>n+`</sub>=C<sub>n</sub></p>
+<h2 id="代码实现-3">代码实现</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">Stein</span>(<span class="params">a,b</span>):</span><br><span class="line">    <span class="keyword">if</span> a&lt;b:</span><br><span class="line">        a,b=b,a</span><br><span class="line">        <span class="keyword">if</span>(b==<span class="number">0</span>):<span class="keyword">return</span> a</span><br><span class="line">    <span class="keyword">if</span> a%<span class="number">2</span>==<span class="number">0</span> <span class="keyword">and</span> b%<span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>*Stein(a&gt;&gt;<span class="number">1</span>,b&gt;&gt;<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> a%<span class="number">2</span>==<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> Stein(a&gt;&gt;<span class="number">1</span>,b)</span><br><span class="line">    <span class="keyword">if</span> b%<span class="number">2</span>==<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> Stein(a,b&gt;&gt;<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> Stein(<span class="built_in">abs</span>(a-b)&gt;&gt;<span class="number">1</span>,<span class="built_in">min</span>(a,b))</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%A8%A1%E8%BF%90%E7%AE%97/" rel="tag"># 模运算</a>
+              <a href="/tags/%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83/" rel="tag"># 乘法逆元</a>
+              <a href="/tags/Number-Theory/" rel="tag"># Number Theory</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/archives/7ad6ebfa.html" rel="prev" title="WP-For-TSCTF-J">
+                  <i class="fa fa-angle-left"></i> WP-For-TSCTF-J
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/archives/e59008e8.html" rel="next" title="向量组的线性相关性">
+                  向量组的线性相关性 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Sa1geChen</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js","integrity":"sha256-mm3Re3y7xlvh+yCD+l/Zs1d+PU0AEad93MkWvljfm/s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

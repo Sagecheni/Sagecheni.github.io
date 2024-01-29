@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.proxy.ustclug.org/css?family=Source+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.sa1ge.ink","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="绪论 ​ 数据表示的本质是数据结构设计，数据处理的本质是算法设计。 ​ 算法+数据结构&#x3D;程序 ——Niklaus Wirth  数值计算问题：如概率统计，求极限等，用数学建模、公式推导来解决 非数值计算问题：对弈问题等，用数据结构和算法来解决  ​ 数据结构解决数据如何存储的问题，算法解决如何操作数据的问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构">
+<meta property="og:url" content="http://blog.sa1ge.ink/archives/79666db.html">
+<meta property="og:site_name" content="Sa1ge &#39;s Blog">
+<meta property="og:description" content="绪论 ​ 数据表示的本质是数据结构设计，数据处理的本质是算法设计。 ​ 算法+数据结构&#x3D;程序 ——Niklaus Wirth  数值计算问题：如概率统计，求极限等，用数学建模、公式推导来解决 非数值计算问题：对弈问题等，用数据结构和算法来解决  ​ 数据结构解决数据如何存储的问题，算法解决如何操作数据的问题。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230219112538584.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230219112601216.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230219112620335.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230220091308711.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230220095225767.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230220101549397.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230220105020876.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230220105345203.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230220105610048.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230220110112768.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230220112600377.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230227105936583.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230227111125202.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230227114905323.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230305224122086.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230305230205366.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230305230950316.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230306103212474.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230307085856447.png">
+<meta property="article:published_time" content="2023-03-05T13:43:34.000Z">
+<meta property="article:modified_time" content="2024-01-26T14:59:48.354Z">
+<meta property="article:author" content="Sa1geChen">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="code">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230219112538584.png">
+
+
+<link rel="canonical" href="http://blog.sa1ge.ink/archives/79666db.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://blog.sa1ge.ink/archives/79666db.html","path":"archives/79666db.html","title":"数据结构"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据结构 | Sa1ge 's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sa1ge 's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%AA%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">数据结构的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">算法与算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.2.1.</span> <span class="nav-text">算法描述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90"><span class="nav-number">1.3.</span> <span class="nav-text">算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.3.1.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.3.2.</span> <span class="nav-text">空间复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#np%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.</span> <span class="nav-text">NP问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stl%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.5.</span> <span class="nav-text">STL与数据结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text">线性表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E8%BF%90%E7%AE%97"><span class="nav-number">2.2.</span> <span class="nav-text">线性表的运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E5%B8%B8%E7%94%A8%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">2.3.</span> <span class="nav-text">各种常用的存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8"><span class="nav-number">2.3.1.</span> <span class="nav-text">顺序表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">顺序表的优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">顺序表的缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">2.4.</span> <span class="nav-text">链式存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E9%93%BE%E8%A1%A8"><span class="nav-number">2.4.1.</span> <span class="nav-text">单链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8"><span class="nav-number">2.4.2.</span> <span class="nav-text">循环链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E9%93%BE%E8%A1%A8"><span class="nav-number">2.4.3.</span> <span class="nav-text">双链表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.5.</span> <span class="nav-text">顺序表的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">2.5.1.</span> <span class="nav-text">顺序表的存储结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97"><span class="nav-number">2.5.2.</span> <span class="nav-text">顺序表的基本运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%81%8D%E5%8E%86%E9%A1%BA%E5%BA%8F%E8%A1%A8"><span class="nav-number">2.5.2.1.</span> <span class="nav-text">遍历顺序表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C"><span class="nav-number">2.5.2.2.</span> <span class="nav-text">插入操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="nav-number">2.5.2.3.</span> <span class="nav-text">删除操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E6%93%8D%E4%BD%9C"><span class="nav-number">2.5.2.4.</span> <span class="nav-text">查找操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%89%E4%BD%8D%E6%9F%A5%E6%89%BE"><span class="nav-number">2.5.2.4.1.</span> <span class="nav-text">按位查找</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%89%E5%80%BC%E6%9F%A5%E6%89%BE"><span class="nav-number">2.5.2.4.2.</span> <span class="nav-text">按值查找</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">2.6.</span> <span class="nav-text">顺序表的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stl%E4%B8%AD%E7%9A%84%E9%A1%BA%E5%BA%8F%E8%A1%A8"><span class="nav-number">2.7.</span> <span class="nav-text">STL中的顺序表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.8.</span> <span class="nav-text">单链表的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">2.8.1.</span> <span class="nav-text">单链表的存储结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97"><span class="nav-number">2.8.2.</span> <span class="nav-text">单链表的基本运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">2.8.2.1.</span> <span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0"><span class="nav-number">2.8.2.2.</span> <span class="nav-text">析构函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95"><span class="nav-number">2.8.2.3.</span> <span class="nav-text">查找算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%89%E4%BD%8D%E6%9F%A5%E6%89%BE-1"><span class="nav-number">2.8.2.3.1.</span> <span class="nav-text">按位查找</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%89%E5%80%BC%E6%9F%A5%E6%89%BE-1"><span class="nav-number">2.8.2.3.2.</span> <span class="nav-text">按值查找</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C-1"><span class="nav-number">2.8.2.4.</span> <span class="nav-text">插入操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C-1"><span class="nav-number">2.8.2.5.</span> <span class="nav-text">删除操作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E5%BA%94%E7%94%A8%E9%80%9A%E4%BF%A1%E5%BD%95"><span class="nav-number">2.9.</span> <span class="nav-text">单链表的应用——通信录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.10.</span> <span class="nav-text">循环链表的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%A1%A8%E7%9A%84%E9%93%BE%E6%8E%A5"><span class="nav-number">2.11.</span> <span class="nav-text">实现链表的链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E9%93%BE%E8%A1%A8-1"><span class="nav-number">2.12.</span> <span class="nav-text">双链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stl%E4%B8%AD%E7%9A%84%E5%8F%8C%E9%93%BE%E8%A1%A8list"><span class="nav-number">2.13.</span> <span class="nav-text">STL中的双链表——list</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91"><span class="nav-number">3.</span> <span class="nav-text">树</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sa1geChen"
+      src="/uploads/sageac.jpg">
+  <p class="site-author-name" itemprop="name">Sa1geChen</p>
+  <div class="site-description" itemprop="description">Talk is cheap.Show me the code.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Sagecheni" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Sagecheni" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.sa1ge.ink/archives/79666db.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/sageac.jpg">
+      <meta itemprop="name" content="Sa1geChen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sa1ge 's Blog">
+      <meta itemprop="description" content="Talk is cheap.Show me the code.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据结构 | Sa1ge 's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据结构
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-03-05 21:43:34" itemprop="dateCreated datePublished" datetime="2023-03-05T21:43:34+08:00">2023-03-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-01-26 22:59:48" itemprop="dateModified" datetime="2024-01-26T22:59:48+08:00">2024-01-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Review/" itemprop="url" rel="index"><span itemprop="name">Review</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>12k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>43 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="绪论">绪论</h1>
+<p>​ 数据表示的本质是数据结构设计，数据处理的本质是算法设计。</p>
+<p>​ 算法+数据结构=程序 ——Niklaus Wirth</p>
+<ul>
+<li>数值计算问题：如概率统计，求极限等，用数学建模、公式推导来解决</li>
+<li>非数值计算问题：对弈问题等，用数据结构和算法来解决</li>
+</ul>
+<p>​ 数据结构解决数据如何存储的问题，算法解决如何操作数据的问题。
+<span id="more"></span></p>
+<h2 id="数据结构的基本概念">数据结构的基本概念</h2>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230219112538584.png" /></p>
+<p>​ 数据元素是数据的基本单位。</p>
+<p>​
+数据项是构成数据元素的不可分割的最小单位，每个数据元素可以包含多个不同的数据项，每个数据项具有独立的含义。</p>
+<p>​
+数据类型是具有相同性质的数据的集合以及在这个数据集合上的一组操作。</p>
+<p>​ 数据类型分为简单类型（原子类型）和构造类型（结构类型）。</p>
+<p>​
+数据结构是指按照某种逻辑关系组织起来的一组数据，按照一定的存储方法存储在存储器中，并在这些数据上定义一组运算的集合。通常认为数据结构包含以下3方面的内容。</p>
+<ul>
+<li>数据元素之间的逻辑关系，称为数据的逻辑结构。</li>
+<li>数据元素及其关系在计算机存储器内的存储形式，称为数据的存储类型，物理结构。</li>
+<li>对数据的操作或运算。</li>
+</ul>
+<p>​
+逻辑结构描述了数据相互间的关联形式或邻接形式，反映了数据内部的构成方式，定义了数据的本质特点，因此人们常常将数据的逻辑结构称为数据结构。</p>
+<p>​ 常见的逻辑结构共有4种：</p>
+<ul>
+<li>集合，共同属于一个集合的关系，通常要求集合中的元素不可重复；</li>
+<li>线性结构，其数据元素之间的逻辑特点是有且仅有一个起始结点和一个终端结点，并且其他结点的前面有且只有一个结点（称为直接前驱），每个结点的后面有且只有一个结点（称为直接后继）。</li>
+<li>树结构，其数据元素之间存在着一对多的层次关系。</li>
+<li>图结构，数据元素之间存在多对多的关系。</li>
+</ul>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230219112601216.png" /></p>
+<p>​
+数据的存储结构考虑的是如何在计算机的存储器中存储各个数据元素，并同时反映数据元素间的逻辑关系。基本的存储结构通常有两大类：</p>
+<ul>
+<li><p>顺序存储结构：用一组连续的存储单元一次存储各个数据元素，数据元素之间的逻辑关系由存储单位的邻接关系体现。顺序存储通常借助于数组来体现。</p></li>
+<li><p>链式存储结构：即用一组任意的存储单位来存储各个数据元素，数据元素之间的关系通常用指针来表示，例如后一个元素的地址存储在前一个元素的某个特定数据项中。</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230219112620335.png" /></p></li>
+</ul>
+<p>​
+学习一种数据结构，首先分析其逻辑结构及其相关操作，掌握了各种数据结构的逻辑特点，当分析待处理数据时可以根据数据特点来确定数据结构类型。分析了逻辑结构后，再学习其各种常见存储方式。</p>
+<h2 id="算法与算法分析">算法与算法分析</h2>
+<p>​ 数据的运算是通过算法描述的。</p>
+<h3 id="算法描述">算法描述</h3>
+<p>​ 每个算法必须满足以下5个准则：</p>
+<ul>
+<li>输入：具有0或多个输入参数</li>
+<li>输出</li>
+<li>有穷性：每条指令的执行次数必须是有限的，即执行了有穷步后能结束</li>
+<li>确定性：每条指令必须有确切的含义，无二义性</li>
+<li>可行性：每条指令的执行时间都是有限的</li>
+</ul>
+<p>​
+在用面向对象的思想设计算法时，往往将算法看作某个类的某种运算方法，例如每个自然数都可以与其他自然数求解两者的最大公约数，因此这个求解运算可认为是自然数类的一种操作方法。</p>
+<h2 id="算法分析">算法分析</h2>
+<h3 id="时间复杂度">时间复杂度</h3>
+<p>​
+将问题规模设为n，作为参数进行分析，运行算法的时间T可看成问题规模n的函数，记为T(n)</p>
+<p>​
+假定每条语句执行一次所需是时间是单位时间，则每条语句执行的时间正比于该语句执行的次数。</p>
+<p>​
+通常将语句执行的次数称为该语句的频度，算法运行的时间可认为是算法中所有语句的频度之和。</p>
+<p>​ 时间复杂度O：如果存在两个正常数c和n<sub>0</sub>，对于任意<span
+class="math inline">\(n\geq n_0\)</span>，都有<span
+class="math inline">\(T(n)\leq c\times
+f(n)\)</span>，则称T(n)=O(f(n))</p>
+<p>​
+一般来说，只要算法的执行时间不随着问题规模n的增加而增长，即使算法中有上千条语句，其执行时间也只是一个常数，此时算法的复杂度为O(1)</p>
+<p>​ 常见的时间复杂度有：常数阶O(1)、对数阶O(log
+n)、线性阶O(n)、线性对数阶O(nlog
+n)等。解决同一问题的不同算法，算法的时间复杂度越低越好。当问题的规模较大时，通常认为具有指数阶的算法是不可以计算的。</p>
+<h3 id="空间复杂度">空间复杂度</h3>
+<p>​ 算法执行过程中所耗费的存储空间。通常可以以空间换时间。</p>
+<h2 id="np问题">NP问题</h2>
+<p>​
+<strong>P问题</strong>：若存在以<strong>问题规模n为变量</strong>的多<strong>项式函数p(n)</strong>，解决该问题的算法的<strong>时间复杂度为O(p(n))</strong>，则称该问题为多<strong>项式时间问题</strong>，即P问题。其解决算法为多项式时间算法</p>
+<p>​
+还有另一类算法，其时间复杂度不能用多项式函数去界定，称为指数时间算法，例如O(2<sup>n</sup>),O(n!)等</p>
+<p>​ 如果问题规模n较大，显然多项式时间算法优于指数时间算法。</p>
+<p>​
+对于很多问题，可能不清楚是否存在一个能在多项式时间里解决它的算法，但是可以<strong>在多项式的时间里验证一个解</strong>，这种问题称为<strong>非确定性多项式时间问题</strong>，简称<strong>NP问题</strong>，显然<span
+class="math inline">\(P\subseteq NP\)</span></p>
+<p>​
+例如，大的合数分解质因数，没有同一个公式可以直接得到因子，无法直接计算得到，只能通过间接的猜算得到结果，这就是非确定性问题。</p>
+<p>​
+这些问题通常有个算法，它不能直接告知答案是什么，但可以告知某个可能的结果是正确的还是错误的，这个可以告知猜算结果正确与否的算法，假如<strong>可以在多项式时间内算出来</strong>，就称为<strong>NP问题</strong>。</p>
+<p>​
+如果这个问题的<strong>所有可能答案</strong>都是可以在多项式时间内进行正确与否的验算的话，就称为<strong>NP完全问题</strong>，即<strong>NPC问题</strong>。</p>
+<p>​
+NP问题通俗来说就是其解的正确性能够被“很容易检查”的问题，即存在一个多项式检查算法。若NP中所有问题到某一个问题是图灵可归约的，则该问题为NP-hard问题。</p>
+<p>​
+NP-hard问题不一定是一个NP问题，但所有的NP问题都可以约化到该问题，例如，售货员旅行问题即TSP，是最具有代表性的NP问题之一。</p>
+<h2 id="stl与数据结构">STL与数据结构</h2>
+<p>​ STL（Standard Template
+Library，标准模板类）是C++语言提供的一个基础模板类型，包含了各种常用的存储数据的模板类及相应的操作函数，为开发者提供了一种快速有效的访问机制。</p>
+<p>​
+从根本上来说，STL是一些容器、算法合其他一些组件的集合，这些容器有list，vector，set，map等。基本达到了各种存储方法合相关算法的高度优化。STL已经是C++的一部分，不用额外安装。</p>
+<p>​
+在C++标准中，STL被组织为以下13个头文件：&lt;algorithm&gt;,&lt;deque&gt;,&lt;functional&gt;,&lt;iterator&gt;,&lt;vector&gt;,&lt;list&gt;,&lt;map&gt;,&lt;memory&gt;,&lt;numeric&gt;,&lt;queue&gt;,&lt;set&gt;,&lt;set&gt;,&lt;stack&gt;和&lt;utility&gt;。通常认为STL由空间管理器、迭代器、泛函、适配器、容器和算法6部分构成，其中前面4部分用于服务后面两部分。</p>
+<p>​
+空间管理器：为容器类模板提供用户自定义的内存申请和释放功能。默认情况下，STL仍然使用C++的内存管理函数或操作符来完成动态内存申请和释放。</p>
+<p>​
+迭代器：类似于指针，存储某个对象的地址或者说指向某个对象，有时也被称为广义指针。迭代器可以为STL中的算法提供数据的输入，也可以用来遍历容器类或流中的对象。指针本身也可以认为是一个迭代器，用户也可以自定义迭代器。</p>
+<p>​
+泛函：在STL中，如果某个类重载了函数调用运算符“()”，则称该类为泛函类，称其对象为泛函。通过引入泛函，可以为算法提供某个策略。例如，同一个排序算法，可以利用泛函完成对不同关键字进行升序或降序等各种排列策略。</p>
+<p>​
+适配器：适配器对象将自己与另外一个对象进行绑定，使对适配器对象的操作转换为被绑定对象的操作。STL中适配器应用较广，有容器适配器，如栈(stack)、队列(queue)、优先队列(priority_queue)，以及迭代器适配器和泛函适配器。</p>
+<p>​
+容器：包含若干对象的数据结构，并提供少量操作接口。STL提供3类标准容器：顺序容器、排序容器和哈希容器，后两类容器有时也统称为关联容器。</p>
+<ul>
+<li>顺序容器：包括向量(vector)、列表(list)、双端队列(deque)。顺序容器将单一类型元素聚集起来称为容器，然后根据位置来存储和访问这些元素。</li>
+<li>排序容器：包括集合(set)、多重集合(multiset)、映射(map)以及多重映射(multimap)。排序容器的元素位置一般通过元素键值的大小关系来确定，可以通过键值高效地查找和读取元素。</li>
+<li>哈希容器：包括哈希集合(hash_set)、哈希多重集合(hash_multiset)、哈希映射(hash-map)以及哈希多重映射(hash_multimap)。哈希容器中的元素位置直接通过元素的键值确定，通过键值将会更加高效地查找和读取元素。</li>
+</ul>
+<p>​
+算法可以认为是STL的精髓，所有算法都是采用函数模板的形式提供的。STL提供的算法大致分为4类：日常事务算法、查找类算法、排序类算法、工作类算法。</p>
+<h1 id="线性表">线性表</h1>
+<p>​
+线性表的逻辑结构简单，相邻元素之间只有单一的前驱和后继的关系，便于实现和操作。</p>
+<h2 id="定义">定义</h2>
+<p>​
+线性表简称表，是由具有零个或多个相同类型的数据元素构成的有限序列。元素的个数称为线性表的长度。长度为零的线性表称为空表。对于非空表，通常记为：
+<span class="math display">\[
+L=(a_1,a_2,\cdots,a_n)
+\]</span> ​ 其中，n为线性表的长度，<span class="math inline">\(a_i(1\leq
+i \leq
+n)\)</span>称为数据元素或结点，i表示该元素在线性表中的位置或序号，称a<sub>i</sub>是线性表的L的第i个数据元素。a<sub>i</sub>称为第一个元素或开始结点，a<sub>n</sub>称为最后一个元素或终端结点。对于中间任意一个元素<span
+class="math inline">\(a_i(1&lt; i &lt;
+n)\)</span>，称a<sub>i-1</sub>为a<sub>i</sub>的直接前驱，称a<sub>i+1</sub>为a<sub>i</sub>的直接后继。线性表的实例如图</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230220091308711.png" /></p>
+<p>对于非空的线性表L，具有如下性质：</p>
+<ul>
+<li>有且仅有一个开始结点a<sub>1</sub>，a<sub>1</sub>没有直接前驱，有且仅有一个直接后继a<sub>2</sub>；</li>
+<li>有且仅有一个终端结点a<sub>n</sub>，a<sub>n</sub>没有直接后继，有且仅有一个直接前驱a<sub>n-1</sub>；</li>
+<li>其余的任意内部结点a<sub>i</sub>(1&lt;i&lt;n)有且仅有一个直接前驱结点a<sub>i-1</sub>，有且仅有一个直接后继结点a<sub>i+1</sub>；</li>
+</ul>
+<p>​
+对于一个含有相同类型元素的有限数据集合，如果满足上述性质，则认为该数据集合是线性表结构。例如一周的7天，英文字母表。</p>
+<h2 id="线性表的运算">线性表的运算</h2>
+<p>​
+线性表的运算是指对线性表的基本操作，这里所说的运算是在逻辑结构上的定义，只是确定这些功能是什么，而不去考虑其具体实现。</p>
+<ol type="1">
+<li>求长度GetLength(L)，求线性表L的长度；</li>
+<li>置空表SetNull(L)，将线性表置成空表；</li>
+<li>按位置找Get(L,i)，查找线性表的第i个元素，i应满足<span
+class="math inline">\(1\leq i\leq GetLength(L)\)</span>；</li>
+<li>修改Set(L,i,x)，修改线性表中第i个元素的值为x；</li>
+<li>删除Delete(L,I)，删除线性表L中的第i个元素；</li>
+<li>插入Insert(L,i,x)，在线性表L的第i个位置插入一个值为x的新元素；</li>
+<li>按值查找Locate(L,x)，查找线性表L中值为x的元素；</li>
+<li>排序sort(L)，按某种要求重新将线性表L中各元素进行排列；</li>
+</ol>
+<h2 id="各种常用的存储结构">各种常用的存储结构</h2>
+<h3 id="顺序表">顺序表</h3>
+<p>​
+把线性表中的数据元素按逻辑次序一次存放在一组地址连续的存储空间。通常认为线性表中的所有数据元素具有相同的数据类型，占用相同的存储空间。</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230220095225767.png" /></p>
+<p>​
+假定顺序表长度为n，每个元素占用c个存储单位，其中第一个存储单元的地址就是该元素的存储地址，第i个数据元素a<sub>i</sub>的地址记为LOC(a<sub>i</sub>)，则有如下计算公式：
+<span class="math display">\[
+LOC(a_i)=LOC(a_1)+(i-1)\times c\space \space 1\leq i \leq n
+\]</span> ​
+也就是说，顺序表中的每个元素的存储地址是该元素在表位置的线性函数，只要知道第一个元素的存储地址以及每个元素占用的存储空间，就可以直接计算得到任意元素的存储地址。</p>
+<p>​ 因此顺序表是一种<strong>随机存储结构</strong>。</p>
+<p>​ 显然，在C++中，可以用数组来顺序存储顺序表中的所有元素。</p>
+<h4 id="顺序表的优点">顺序表的优点</h4>
+<ol type="1">
+<li>不需要为表示元素之间的逻辑关系而增加额外的存储空间；</li>
+<li>可以方便的随机访问顺序表中的任一位置的元素；</li>
+</ol>
+<h4 id="顺序表的缺点">顺序表的缺点</h4>
+<ol type="1">
+<li>插入和删除操作需移动大量的数据元素，效率较低。在等概率条件下，两种操作平均需要移动顺序表中约一半的元素；</li>
+<li>顺序表难以选择合适的存储容量。</li>
+</ol>
+<h2 id="链式存储结构">链式存储结构</h2>
+<p>​
+链表用一组任意的存储单元存放线性表中的各个元素，这组存储单元可以是连续的，也可以是分散的。因此，链表中数据元素的逻辑次序和物理次序不一定相同。为了正确地表示结点的逻辑关系，在存储每个元素值的同时，还要存储该元素的直接后继元素的位置信息，这个信息称为指针(pointer)或链(link)，这个两部分信息构成了实际的存储结构，称为结点(node)，然后各个结点通过指针链接起来形成一个完整的链式结构，称为链表，示例如下图：</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230220101549397.png" /></p>
+<p>​
+通常人们关心的是单链表中各个结点的逻辑次序，而不关心其实际存储的位置。</p>
+<p>​
+指向第一个结点的指针，我们称为头指针；指向最后一个结点的指针，由于其没有后继结点，我们设置为NULL</p>
+<p>​
+根据链表结构或者节点结构的不同，可以把链表分为：单链表，循环链表和双链表三种。。</p>
+<h3 id="单链表">单链表</h3>
+<p>​
+链表中的每个结点只包含一个指向直接后继的指针即为单链表。若链表为空，则头指针为NULL，若链表不为空，头指针存储第一个结点的地址。有时，单链表的第一个结点不存放数据，仅作为表头使用，则称其为带头节点的单链表；否则称其为不带头结点的单链表</p>
+<figure>
+<img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230220105020876.png"
+alt="、" />
+<figcaption aria-hidden="true">、</figcaption>
+</figure>
+<h3 id="循环链表">循环链表</h3>
+<p>​
+如果将单链表的最后一个结点的指针指向头节点，则整个链表构成一个环，这种首尾相接的单链表被称为单循环链表。</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230220105345203.png" /></p>
+<p>​
+这种循环链表查找第一个元素很方便，但查找最后一个元素很慢，因此常常使用尾指针rear来表示单循环链表，如下图所示，即设指针rear指向单循环链表的最后一个结点，这样就可以很方便地访问首尾两端的元素了。</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230220105610048.png" /></p>
+<h3 id="双链表">双链表</h3>
+<p>​
+对于单链表，由于前一个结点已经存储了直接后继结点的地址，因此可以直接得到直接后继结点。而如果查找当前结点的直接前驱结点，则需要从第一个元素开始遍历，操作比较繁琐，为此，可以在每个结点中再加入一个指针域，用于存储前一个元素的地址，这样便可以方便地得到直接前驱元素，这种链表中有两条方向相反的链，因此称为双向链表，简称双链表。</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230220110112768.png" /></p>
+<h2 id="顺序表的实现">顺序表的实现</h2>
+<h3 id="顺序表的存储结构">顺序表的存储结构</h3>
+<p>​
+由于顺序表中的数据元素可以是任意类型，因此在定义顺序表时可采用C++模板的机制。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>,<span class="type">int</span> N&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SeqList</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="built_in">SeqList</span>()&#123;length=<span class="number">0</span>;&#125;</span><br><span class="line">    	<span class="built_in">SeqList</span>(T a[],<span class="type">int</span> n);</span><br><span class="line">        <span class="function"><span class="type">int</span> <span class="title">GetLength</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> length;&#125;</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">PrintList</span><span class="params">()</span></span>;</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">Insert</span><span class="params">(<span class="type">int</span> i,T x)</span></span>;</span><br><span class="line">    	<span class="function">T <span class="title">Delete</span><span class="params">(<span class="type">int</span> i)</span></span>;</span><br><span class="line">    	<span class="function">T <span class="title">Get</span><span class="params">(<span class="type">int</span> i)</span></span>;</span><br><span class="line">    	<span class="function"><span class="type">int</span> <span class="title">Locate</span><span class="params">(T x)</span></span>;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    	T data[N];</span><br><span class="line">    	<span class="type">int</span> length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​
+该类含有两个私有变量，数组data存储顺序表的所有数据元素，length表示顺序表当前的长度。</p>
+<h3 id="顺序表的基本运算">顺序表的基本运算</h3>
+<p>#### 构造函数</p>
+<p>​
+模板类中含有两个构造函数，无参构造用于建立空顺序表，有参构造函数SeqList(T
+a[],int
+n)创建一个长度为n的顺序表，其数据元素依次来自参数数组a的各个元素，其长度为传入的参数n。如果n超出了顺序表的最大长度，则应该抛出异常，终止操作。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>,<span class="type">int</span> N&gt;</span><br><span class="line">SeqList&lt;T,N&gt;::<span class="built_in">SeqList</span>(T a[],<span class="type">int</span> n)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&gt;N)<span class="keyword">throw</span><span class="string">&quot;数组超出顺序表的最大长度&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        data[i]=a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    length=n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="遍历顺序表">遍历顺序表</h4>
+<p>​
+遍历顺序表是指按序号依次访问顺序表中的各个数据元素。为简单起见，“访问”在这里表示为将元素的值显示。需要注意的是，由于数据类型不确定，显示操作可能有多种不同处理方式。</p>
+<p>​ 简单数据类型的遍历操作如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>,<span class="type">int</span> N&gt;</span><br><span class="line"><span class="type">void</span> SeqList&lt;T,N&gt;::<span class="built_in">PrintList</span>()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;length;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;data[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​ 若元素为构造类型，则需要使用对应的显示函数。</p>
+<h4 id="插入操作">插入操作</h4>
+<p>​
+在顺序表的第i个位置上插入值为x的新元素。若在表尾追加，则不涉及表中已有元素的移动；若在表头或中间某个位置i插入，则顺序表中原来序号从i到n的元素都要后移一个位置，最终顺序表的长度由n变为n+1。</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230220112600377.png" /></p>
+<p>​
+需要注意的是，数据元素在后移时，必须从最后一个元素开始移动，即先移动a<sub>n</sub>到n+1的位置，再移动a<sub>n-1</sub>到n位置，依次类推，知道将a<sub>i</sub>移动到i+1的位置。对于一些操作不成功的情况，需要抛出异常</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>,<span class="type">int</span> N&gt;</span><br><span class="line"><span class="type">void</span> SeqList&lt;T,N&gt;::<span class="built_in">Insert</span>(<span class="type">int</span> i,T x)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(length&gt;=N)<span class="keyword">throw</span><span class="string">&quot;上溢异常&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;<span class="number">1</span>||i&gt;length+<span class="number">1</span>)<span class="keyword">throw</span><span class="string">&quot;位置异常&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=length;j&gt;=i;j--)</span><br><span class="line">        data[j]=data[j<span class="number">-1</span>];</span><br><span class="line">    data[i<span class="number">-1</span>]=x;</span><br><span class="line">    length++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​
+下面对算法的时间复杂度进行分析，该算法的问题规模是顺序表的长度n，基本语句是for循环中元素后移的语句。</p>
+<p>​
+当插入的位置在表尾，即i=n+1时，不执行元素后移操作，这是最好的情况，时间复杂度为O(1)；</p>
+<p>​
+当插入的位置在表头，即i=1时，所有元素都要后移，这是最坏的情况，时间复杂度为O(n)；</p>
+<p>​
+当插入的位置在表的中间某一位置时，则要分析算法的平均时间复杂度。设T(n)表示元素移动过的平均次数，插入位置为i<span
+class="math inline">\((1\leq i\leq
+n+1)\)</span>，元素的移动次数为n-i+1，因此有 <span
+class="math display">\[
+T(n)=\sum_{i=1}^{n+1}p_i(n-i+1)
+\]</span> ​
+其中，pi表示在表中第i个位置插入新元素的概率，假定在任意位置进行插入操作的概率都相同，则对于任意的i，有：
+<span class="math display">\[
+p=\frac{1}{n+1}
+\]</span> ​ 因此， <span class="math display">\[
+T(n)=\sum^{n+1}_{i=1}p_i(n-i+1)=\frac{1}{n+1}\sum_{i=1}^{n+1}(n-i+1)=\frac{n}{2}=O(n)
+\]</span> ​
+也就是说，对顺序表进行插入操作，在等概率的情况下，平均要移动表中一半的元素，算法的平均复杂度为O(n)。</p>
+<h4 id="删除操作">删除操作</h4>
+<p>​
+把第i个位置的元素删除并返回删除的元素。若要删除表头或中间某个位置i上的元素，则顺序表中原来序号从i+1到n的元素都要向前移动一个位置。</p>
+<p>​
+与插入操作相反，数据元素在位移时，必须从第n+1个元素开始移动，即先移动a<sub>i+1</sub>到i位置，再移动a<sub>i+2</sub>到i+1的位置，以此类推，对于操作不成功的的特殊情况需要抛出异常或返回错误号。例如，如果在删除操作之前顺序表已经为空表，则抛出下溢异常；如果删除的位置不合理，则抛出位置异常。</p>
+<p>​ 伪代码描述：</p>
+<blockquote>
+<p>[1]如果表空，则抛出下溢异常；</p>
+<p>[2]如果删除位置不合理，则抛出位置异常；</p>
+<p>[3]取出将被删除的元素；</p>
+<p>[4]依次从第i+1个元素开始到第n个元素分别前移1个位置；</p>
+<p>[5]表长减1，并返回被删除元素的值。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>,<span class="type">int</span> N&gt;</span><br><span class="line">T SeqList&lt;T,N&gt;::<span class="built_in">Delete</span>(<span class="type">int</span> i)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="number">0</span>==length)<span class="keyword">throw</span><span class="string">&quot;下溢错误&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;<span class="number">1</span>||i&gt;length)<span class="keyword">throw</span><span class="string">&quot;位置错误&quot;</span>;</span><br><span class="line">    T x=data[i<span class="number">-1</span>];<span class="comment">//将待删除元素暂存</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=i;j&lt;length;j++)</span><br><span class="line">    &#123;</span><br><span class="line">        data[j<span class="number">-1</span>]=data[j];<span class="comment">//从第i+1个元素开始(下标为i)开始顺序前移，直到最后一个元素</span></span><br><span class="line">    &#125;</span><br><span class="line">    length--;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​ 算法时间复杂度：</p>
+<p>​ 类似于插入运算，表头的为O(n)，表尾的为O(1)，中间某个位置时： <span
+class="math display">\[
+T(n)=\sum _{i=1}^n p_i(n-1)
+\]</span> ​
+其中p<sub>i</sub>表示删除表中第i个位置上元素的概率。假定在任意位置进行删除操作的概率都相同，则对于任意的i，有
+<span class="math display">\[
+p_i=\frac{1}{n}
+\]</span> ​ 因此 <span class="math display">\[
+T(n)=\sum^n_{i=1}p_i(n-1)=\frac{1}{n}\sum^n_{i=1}p_i(n-1)=\frac{n-1}{2}=O(n)
+\]</span></p>
+<p>​ 也就是说，算法的平均时间复杂度为O(n)</p>
+<p>​</p>
+<h4 id="查找操作">查找操作</h4>
+<h5 id="按位查找">按位查找</h5>
+<p>​ 查找顺序表中指定位置的数据元素</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>,<span class="type">int</span> N&gt;</span><br><span class="line">T SeqList&lt;T,N&gt;::<span class="built_in">Get</span>(<span class="type">int</span> i)<span class="comment">//获取线性表第i个位置的元素</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;<span class="number">1</span>||i&gt;length)<span class="keyword">throw</span><span class="string">&quot;查找位置非法&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> data[i<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​ 显然，时间复杂度为O(1)</p>
+<h5 id="按值查找">按值查找</h5>
+<p>​
+查找顺序表中指定数值的数据元素。需要依次比较顺序表中的每个数据元素，直到找到指定数值的数据元素或遍历完整数据表为止。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>,<span class="type">int</span> N&gt;</span><br><span class="line"><span class="type">int</span> SeqList&lt;T,N&gt;::<span class="built_in">Locate</span>(T x)<span class="comment">//查找线性表中值为x的元素，找到后返回其位置</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;length;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(data[i]==x)<span class="keyword">return</span> i+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//查找失败</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​
+进行值比较的语句，对于复杂类型，如自定义类，需要在自定义类中对“==”进行运算符重载。</p>
+<p>​ 算法的平均时间复杂度为O(n)</p>
+<p>​
+如果data数组从data[1]开始存储顺序表数据元素，data[0]不存储顺序表数据元素，能否设计更高效的方法</p>
+<p>​ 可以采用“<strong>哨兵</strong>”</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>,<span class="type">int</span> N&gt;</span><br><span class="line"><span class="type">int</span> SeqList&lt;T,N&gt;::<span class="built_in">Locate</span>(T x)<span class="comment">//查找线性表中值为x的元素，找到后返回其位置</span></span><br><span class="line">&#123;</span><br><span class="line">    data[<span class="number">0</span>]=x;</span><br><span class="line">    <span class="type">int</span> i=length<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(x!=data[i])i--;</span><br><span class="line">    <span class="keyword">return</span> i+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="顺序表的应用">顺序表的应用</h2>
+<p>​
+模板类SeqList中的形式化参数T，在实例化时可以用任何的数据类型来替换。</p>
+<p>SeqList.h</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>, <span class="type">int</span> N&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SeqList</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">SeqList</span>() &#123; length = <span class="number">0</span>; &#125;</span><br><span class="line">    <span class="built_in">SeqList</span>(T a[], <span class="type">int</span> n);</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">GetLength</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> length; &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">PrintList</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Insert</span><span class="params">(<span class="type">int</span> i, T x)</span></span>;</span><br><span class="line">    <span class="function">T <span class="title">Delete</span><span class="params">(<span class="type">int</span> i)</span></span>;</span><br><span class="line">    <span class="function">T <span class="title">Get</span><span class="params">(<span class="type">int</span> i)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">Locate</span><span class="params">(T x)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    T data[N];</span><br><span class="line">    <span class="type">int</span> length;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>, <span class="type">int</span> N&gt;</span><br><span class="line">SeqList&lt;T, N&gt;::<span class="built_in">SeqList</span>(T a[], <span class="type">int</span> n)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &gt; N)</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;数组超出顺序表最大长度&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        data[i] = a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    length = n;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>, <span class="type">int</span> N&gt;</span><br><span class="line"><span class="type">void</span> SeqList&lt;T, N&gt;::<span class="built_in">PrintList</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        data[i].<span class="built_in">print</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>, <span class="type">int</span> N&gt;</span><br><span class="line"><span class="type">void</span> SeqList&lt;T, N&gt;::<span class="built_in">Insert</span>(<span class="type">int</span> i, T x)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (length &gt;= N)</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;上溢异常&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; length + <span class="number">1</span>)</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;位置异常&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = length; j &gt;= i; j--)</span><br><span class="line">        data[j] = data[j - <span class="number">1</span>];</span><br><span class="line">    data[i - <span class="number">1</span>] = x;</span><br><span class="line">    length++;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>, <span class="type">int</span> N&gt;</span><br><span class="line">T SeqList&lt;T,N&gt;::<span class="built_in">Delete</span>(<span class="type">int</span> i)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (length == <span class="number">0</span>)</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;下溢错误&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; length)</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;位置错误&quot;</span>;</span><br><span class="line">    T x = data[i - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = i; j &lt; length; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        data[j - <span class="number">1</span>] = data[j];</span><br><span class="line">    &#125;</span><br><span class="line">    length--;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>, <span class="type">int</span> N&gt;</span><br><span class="line">T SeqList&lt;T, N&gt;::<span class="built_in">Get</span>(<span class="type">int</span> i) <span class="comment">// 获取线性表第i个位置的元素</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; length)</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;查找位置非法&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> data[i - <span class="number">1</span>];</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>, <span class="type">int</span> N&gt;</span><br><span class="line"><span class="type">int</span> SeqList&lt;T, N&gt;::<span class="built_in">Locate</span>(T x) <span class="comment">// 查找线性表中值为x的元素，找到后返回其位置</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (data[i] == x)</span><br><span class="line">            <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// 查找失败</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>PHONEBOOK.h</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PHONEBOOK</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> m_ID;</span><br><span class="line">    std::string m_name;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">PHONEBOOK</span>() &#123;&#125;</span><br><span class="line">    <span class="built_in">PHONEBOOK</span>(<span class="type">int</span> id, <span class="type">char</span> *name)</span><br><span class="line">    &#123;</span><br><span class="line">        m_ID = id;</span><br><span class="line">        m_name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; m_ID &lt;&lt; <span class="string">&#x27;\t&#x27;</span> &lt;&lt; m_name &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>==(PHONEBOOK &amp;p)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (p.m_ID == m_ID)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>主程序</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;PHONEBOOK.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Seqlist.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    PHONEBOOK pbook[<span class="number">2</span>] = &#123;&#123;<span class="number">20181208</span>, <span class="string">&quot;Mary&quot;</span>&#125;, &#123;<span class="number">20181127</span>, <span class="string">&quot;Tom&quot;</span>&#125;&#125;;</span><br><span class="line">    <span class="function">PHONEBOOK <span class="title">record</span><span class="params">(<span class="number">20181209</span>, <span class="string">&quot;Phoenix&quot;</span>)</span></span>;</span><br><span class="line">    <span class="function">SeqList&lt;PHONEBOOK, 100&gt; <span class="title">list</span><span class="params">(pbook, <span class="number">2</span>)</span></span>;</span><br><span class="line">    list.<span class="built_in">PrintList</span>();</span><br><span class="line">    list.<span class="built_in">Insert</span>(<span class="number">1</span>, record);</span><br><span class="line">    list.<span class="built_in">PrintList</span>();</span><br><span class="line">    PHONEBOOK x = list.<span class="built_in">Delete</span>(<span class="number">3</span>);</span><br><span class="line">    x.<span class="built_in">print</span>();</span><br><span class="line">    list.<span class="built_in">PrintList</span>();</span><br><span class="line">    <span class="type">int</span> p = list.<span class="built_in">Locate</span>(record);</span><br><span class="line">    cout &lt;&lt; p &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="stl中的顺序表">STL中的顺序表</h2>
+<p>​
+向量(vector)就是使用顺序结构存储实现的模板类，即内部使用数组来实现的模板类，因此vector具有顺序表的所有特点</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">方法名</th>
+<th style="text-align: center;">方法描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">back()</td>
+<td style="text-align: center;">返回最后一个向量的值</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">begin()</td>
+<td style="text-align: center;">返回指向第一个元素的迭代器</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">capacity()</td>
+<td style="text-align: center;">返回容量</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">clear()</td>
+<td style="text-align: center;">将容器清空</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">empty()</td>
+<td
+style="text-align: center;">若大小为0，则返回true；否则返回false</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">end()</td>
+<td style="text-align: center;">返回指向最后一个容器的迭代器</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">erase()</td>
+<td style="text-align: center;">在向量的任意位置删除元素</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">insert()</td>
+<td style="text-align: center;">在向量的任意位置插入元素</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">pop_back()</td>
+<td style="text-align: center;">删除最后一个元素</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">push_back()</td>
+<td style="text-align: center;">在向量的尾部添加元素</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">resize()</td>
+<td style="text-align: center;">改变容量</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">size()</td>
+<td style="text-align: center;">返回向量中的元素个数</td>
+</tr>
+</tbody>
+</table>
+<p>​ 在使用vector之前，需要包含相应的头文件：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vectore&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt;ivec;<span class="comment">//定义向量对象ivec，向量中每一个元素都是int类型</span></span><br><span class="line">vector&lt;PHONEBOOK&gt;vec;<span class="comment">//定义向量对象vec，向量中每一个元素都是PHONEBOOK类型</span></span><br></pre></td></tr></table></figure>
+<p>​
+vector在实例化时不需要声明长度。标准库负责管理与存储元素相关的内存，用户不用担心内存不够。</p>
+<p>​ 为了防止访问时地址越界，一般使用迭代器</p>
+<p>​ 定义迭代器：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;PHONEBOOK&gt;::iterator it;</span><br></pre></td></tr></table></figure>
+<p>​ 迭代器类似于指针，可以使用*it
+来访问相应元素。如it=vec.begin()表示迭代器it指向vec的第一个元素；it=vec.end()表示迭代器指向vec的最后一个元素。</p>
+<p>​
+vector容器是自动增长的，随着数据元素的增多，vector能自动申请内存（自动扩容）</p>
+<h2 id="单链表的实现">单链表的实现</h2>
+<p>​ 动画理解链表</p>
+<p>​
+顺序表利用<strong>物理位置上的相邻关系</strong>来表示数据元素之间的逻辑关系，这一特点使得存储结构具有以下优缺点：</p>
+<p>优点：</p>
+<ul>
+<li>不需要为表示元素之间的逻辑关系而增加额外的存储空间</li>
+<li>可以方便地随机访问顺序表中任一位置的元素</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>插入和删除操作需移动大量的数据元素，效率较低；在等概率的情况下，两种操作平均需要移动顺序表中约一半的元素</li>
+<li>顺序表难以选择合适的存储容量。顺序表要求占用连续的存储空间，存储分配只能预先进行，因此属于静态存储分配方式，若开始时分配的空间过小，则插入操作很容易引起顺序表的溢出，若开始时分配的空间过大，则可能造成一部分的空间长期空置，不能被充分利用。</li>
+</ul>
+<p>​
+为了克服顺序表的缺点，可以采用链式存储方式存储线性表，最简单的链式存储方式就是单链表，这种方法采用动态存储分配方式，即根据实际需要随时申请内存，在不需要时将内存释放。</p>
+<h3 id="单链表的存储结构">单链表的存储结构</h3>
+<p>​
+单链表由一个一个结点通过结点的指针(pointer)或链(link)按照元素逻辑顺序链接而成，因此，单链表的每一个结点都由数据域(data)和指针域(next)两部分构成，data域用来存储元素的值，next域用来存储直接后继的地址或位置。</p>
+<p>​ <img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230227105936583.png" /></p>
+<p>​
+由于结点的数据类型不确定，因此可以采用模板机制，使用结构类型或类来描述单链表的结点。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span></span><br><span class="line">&#123;</span><br><span class="line">    T data;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span>&lt;T&gt; * next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​
+单链表除第一个结点外，其他每个结点的地址都存储在前一个结点的next域中，因此，只要取得第一个结点的地址，就能顺序遍历单链表的所有结点，因此头指针具有标识一个单链表的功能。</p>
+<p>​
+对于不带头节点的单链表，若表为空则头指针值为NULL；若表不为空，头指针存储第一个结点的地址。实际操作下，由于不能确定表是否为空，因此处理头指针时往往需要按两种情况分开讨论。</p>
+<p>​
+需要修改头指针和不需要修改头指针。使用头指针时，插入删除首结点与修改其他结点的操作不同。</p>
+<p>​
+so，为了统一处理上述情况，通常在单链表的开始结点之前附设一个类型相同的结点，称为头结点(head
+node)。头节点虽然增加了一点内存开销，却使得单链表的很多操作实现起来更加方便。头节点的地址保存在头指针中。</p>
+<p>​ <img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230227111125202.png" /></p>
+<p>​</p>
+<p>​ 下面给出C++描述的单链表模板类</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LinkList</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="built_in">LinkList</span>()&#123;front =<span class="keyword">new</span> Node&lt;T&gt;;front-&gt;next=<span class="literal">NULL</span>;&#125;<span class="comment">//无参构造函数</span></span><br><span class="line">    	<span class="built_in">LinkList</span>(T a[],<span class="type">int</span> n);<span class="comment">//有参构造函数</span></span><br><span class="line">    	~<span class="built_in">LinkList</span>();<span class="comment">//析构函数</span></span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">PrintList</span><span class="params">()</span></span>;</span><br><span class="line">    	<span class="function"><span class="type">int</span> <span class="title">GetLength</span><span class="params">()</span></span>;</span><br><span class="line">    	<span class="function">Node&lt;T&gt; * <span class="title">Get</span><span class="params">(<span class="type">int</span> i)</span></span>;<span class="comment">//获取线性表第i个位置上的元素结点地址</span></span><br><span class="line">    	<span class="function"><span class="type">int</span> <span class="title">Locate</span><span class="params">(T x)</span></span>;</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">Insert</span><span class="params">(<span class="type">int</span> i,T x)</span></span>;<span class="comment">//在线性表的第i个位置插入值为x的新元素</span></span><br><span class="line">    	<span class="function">T <span class="title">Delete</span><span class="params">(<span class="type">int</span> i)</span></span>;<span class="comment">//删除线性表的第i个元素，并将该元素返回</span></span><br><span class="line">    <span class="keyword">private</span>：</span><br><span class="line">        Node&lt;T&gt; * front;<span class="comment">//头指针</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>​
+在单链表模板类中，结点类型Node已经在前面给出，私有成员front为头指针，用于存储头结点的地址。</p>
+<h3 id="单链表的基本运算">单链表的基本运算</h3>
+<h4 id="构造函数">构造函数</h4>
+<p>​
+如果建立空单链表，只需要建立头结点，在单链表模板类中已经给出了无参构造函数的实现，</p>
+<p>​ 建立单链表的方法有两种，分别为头插法和尾插法</p>
+<p>头插法：</p>
+<p>​
+每次插入元素都从单链表的第一个结点位置插入，先前插入的结点随着新节点的插入而不断后移，因此，若希望数组a中各个元素插入后在单链表后的次序依然为a[0],a[1],...,a[n-1]，则插入时应先插入a[n-1]，再插入a[n-2]，依次类推，最后插入a[0]。</p>
+<p>​
+头插法的执行过程如图所示，无论是插入第一个结点还是插入第k个结点，操作都分为4个步骤，3和4不能互换</p>
+<ol type="1">
+<li><p>在堆中建立新结点</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Node&lt;T&gt; * s=<span class="keyword">new</span> Node&lt;T&gt;;</span><br></pre></td></tr></table></figure></li>
+<li><p>将a[i]写入新结点的数据域：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s-&gt;data=a[i];</span><br></pre></td></tr></table></figure></li>
+<li><p>修改新结点的指针域</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s-&gt;next=front-&gt;next;</span><br></pre></td></tr></table></figure></li>
+<li><p>修改头结点的指针域，将新结点加入链表中</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">front-&gt;next=s;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230227114905323.png" /></p>
+<p>​
+带头结点的单链表对于所有的结点的操作都是相同的，而不带头结点的单链表则需要判断。</p>
+<p>​ 算法如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line">LinkList&lt;T&gt;::<span class="built_in">LinkList</span>(T a[],<span class="type">int</span> n)</span><br><span class="line">&#123;</span><br><span class="line">    front=<span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">    front-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        Node&lt;T&gt; * s=<span class="keyword">new</span> Node&lt;T&gt;;<span class="comment">//建立新结点</span></span><br><span class="line">        s-&gt;data=a[i];<span class="comment">//将a[i]写入新结点的数据域</span></span><br><span class="line">        s-&gt;next=front-&gt;next;<span class="comment">//修改新结点的的指针域</span></span><br><span class="line">        front-&gt;next=s;<span class="comment">//修改头结点的指针域，将新结点加入到链表当中</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​ 显然，时间复杂度为O(n)</p>
+<p>尾插法：</p>
+<p>​
+通常尾插法需要一个指针变量保存终端结点的地址，称为尾指针，设为r，每插入一个新结点后，r指向新插入的终端结点。</p>
+<p>​ 步骤如下</p>
+<ol type="1">
+<li><p>在堆中建立新结点；</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Node&lt;T&gt; *s=<span class="keyword">new</span> Node&lt;T&gt;;</span><br></pre></td></tr></table></figure></li>
+<li><p>将a[i]写入新结点的数据域；</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s-&gt;data=a[i];</span><br></pre></td></tr></table></figure></li>
+<li><p>将新结点加入链表中；</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r-&gt;next=s;</span><br></pre></td></tr></table></figure></li>
+<li><p>修改尾指针；</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r=s;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>​ 需要注意的是，全部结点插入后，需要将终端结点的指针域设为空。</p>
+<p>​ 算法如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line">LinkList&lt;T&gt;::<span class="built_in">LinkList</span>(T a[],<span class="type">int</span> n)<span class="comment">//尾插法建立链表</span></span><br><span class="line">&#123;</span><br><span class="line">    front = <span class="keyword">new</span> Node &lt;T&gt;;</span><br><span class="line">    Node &lt;T&gt; *r =front;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        Node &lt;T&gt; *s =<span class="keyword">new</span> Node &lt;T&gt;;</span><br><span class="line">        s-&gt;data=a[i];</span><br><span class="line">        r-&gt;next=s;</span><br><span class="line">        r=s;</span><br><span class="line">    &#125;</span><br><span class="line">    r-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​ 显然算法的时间复杂度为O(n)</p>
+<h4 id="析构函数">析构函数</h4>
+<p>​
+各个结点都是采用操作符new动态申请的，因此在单链表对象生命周期结束时，需要将这些结点释放。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line">LinkList&lt;T&gt;::~<span class="built_in">LinkList</span>()</span><br><span class="line">&#123;</span><br><span class="line">    Node &lt;T&gt; * p=front;<span class="comment">//初始化工作指针p</span></span><br><span class="line">    <span class="keyword">while</span>(p)<span class="comment">//要释放的结点存在</span></span><br><span class="line">    &#123;</span><br><span class="line">        front=p;<span class="comment">//暂存要释放的结点</span></span><br><span class="line">        p=p-&gt;next;<span class="comment">//移动工作指针</span></span><br><span class="line">        <span class="keyword">delete</span> front;<span class="comment">//释放结点</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​
+若链表长度为n，则包括头结点在内需要进行n+1次循环释放结点空间，所以析构函数的时间复杂度为O(n);</p>
+<h4 id="查找算法">查找算法</h4>
+<h5 id="按位查找-1">按位查找</h5>
+<p>​
+链表是一种顺序存储结构，只能从链表的表头出发，顺着每个结点的指针域往后依次访问每个结点。</p>
+<p>​ 设单链表的长度为n，要查找表中的第i个元素，则i应满足<span
+class="math inline">\(1\leq i\leq
+n\)</span>。设工作指针为p，当开始查找时，p指向第一个结点，用整型变量j作计数器，初始时j=1。p每指向下一个结点，j进行加1操作，直到j等于i，此时p的结点（有时简称p结点）就是要找的结点；或者j不等于i但p已经为空，此时说明i是不合法的，算法可抛出异常或返回错误标识。在实现时，可直接返回p，因为若p为空，说明第i个元素不存在，返回空地址；否则，p指向的元素就是要找到，返回元素地址。</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230305224122086.png" /></p>
+<p>伪代码</p>
+<blockquote>
+<p>[1]初始化工作指针p和计数器j，p指向第一个结点，j=1；</p>
+<p>[2]循环以下操作；</p>
+<p>​ [2.1]p指向下一个结点；</p>
+<p>​ [2.2]j+1；</p>
+<p>[3]返回p</p>
+</blockquote>
+<p>实现代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line">Node &lt;T&gt; * LinkList&lt;T&gt;::<span class="built_in">Get</span>(<span class="type">int</span> i)<span class="comment">//获取线性表第i个位置的元素</span></span><br><span class="line">&#123;</span><br><span class="line">    Node &lt;T&gt; *p=front-&gt;next;</span><br><span class="line">    <span class="type">int</span> j=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(p&amp;&amp;j!=i)</span><br><span class="line">    &#123;</span><br><span class="line">        p=p—&gt;next;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​
+算法中p=p-&gt;next；是其中一条基本语句，该语句的执行次数玉被查找结点在单链表中的位置有关。在查找超过的情况下，查找位置i满足<span
+class="math inline">\(1\leq i \leq
+n\)</span>，则基本语句的执行次数为i-1，假定查找每个结点的概率相同(p<sub>i</sub>=1/n)，则查找成功的平均时间复杂度为
+<span class="math display">\[
+T(n)=\sum_{i=1}^np_i\times (i-1)=\frac1n
+\sum_{i=1}^n(i-1)=\frac{n-1}{2}=O(n)
+\]</span> ​ 查找不成功的时间复杂度为O(n);</p>
+<h5 id="按值查找-1">按值查找</h5>
+<p>​ 按值查找是在单链表中查找给定值的结点，找到后返回元素地址或序号。</p>
+<p>​ 返回序号：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">int</span> LinkList&lt;T&gt;::<span class="built_in">Locate</span>(T x)</span><br><span class="line">&#123;</span><br><span class="line">    Node &lt;T&gt; *p=front-&gt;next;</span><br><span class="line">    <span class="type">int</span> j=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(p)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(p-&gt;data==x)<span class="keyword">return</span> j;</span><br><span class="line">        p=p-&gt;next;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​ 返回元素地址：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line">Node &lt;T&gt; * LinkList&lt;T&gt;::<span class="built_in">Locate</span>(T x)</span><br><span class="line">&#123;</span><br><span class="line">    Node &lt;T&gt; *p=front-&gt;next;</span><br><span class="line">    <span class="type">int</span> j=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(p)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(p-&gt;data==x)<span class="keyword">return</span> p;</span><br><span class="line">        p=p-&gt;next;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="插入操作-1">插入操作</h4>
+<p>​ 在链表的第i个位置插入值为x的元素，共分为两步：</p>
+<ol type="1">
+<li>查找到位置为i-1的元素</li>
+<li>在该元素后插入新元素</li>
+</ol>
+<p>​ 算法实现：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">void</span> LinkList&lt;T&gt;::<span class="built_in">Insert</span>(<span class="type">int</span> i,T x)</span><br><span class="line">&#123;</span><br><span class="line">    Node &lt;T&gt; *p=front;</span><br><span class="line">    <span class="keyword">if</span>(i!=<span class="number">1</span>)p=<span class="built_in">Get</span>(i<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span>(p)</span><br><span class="line">    &#123;</span><br><span class="line">        Node &lt;T&gt; *s=<span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">        s-&gt;data=x;</span><br><span class="line">        s-&gt;next=p-&gt;next;</span><br><span class="line">        p-&gt;next=s;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">throw</span><span class="string">&quot;插入位置错误&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​ 平均时间复杂度与按位查找的时间复杂度相同为O(n);</p>
+<p>​ 还有一类插入操作是在给定元素的前或后进行插入。</p>
+<p>​
+如果插入位置的前一个元素的地址已知，设为p，则只需要在p所指元素后插入一个新结点，时间复杂度为O(1)，这种操作称为<strong>后插操作</strong>。</p>
+<p>​
+如果p指向待插入的元素，则新元素实际插入p所指元素的前一个元素，这种操作称为<strong>前插</strong>。</p>
+<p>​
+如果为了找到p所指结点的前一个结点，需要从第一个元素开始遍历，时间复杂度为O(n)，实际可以改造算法，使其时间复杂度为O(1)</p>
+<p>​
+改进方法的思想是：在p结点后插入新结点，让新结点的数据域存储原来p结点的数据域，而p结点的数据域存储新插入的值。</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230305230205366.png" /></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">void</span> LinkList&lt;T&gt;::<span class="built_in">Insertup</span>(T *p,T x)</span><br><span class="line">&#123;</span><br><span class="line">    Node&lt;T&gt; *s=<span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">    s-&gt;data=p-&gt;data;</span><br><span class="line">    s-&gt;next=p-&gt;next;</span><br><span class="line">    p-&gt;next=s;</span><br><span class="line">    p-&gt;data=x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="删除操作-1">删除操作</h4>
+<p>​ 操作过程可分为5个步骤：</p>
+<ol type="1">
+<li>从第一个结点开始，查找第i-1个结点，设为p指向该结点；</li>
+<li>设q指向第i个元素；</li>
+<li>摘链，即将q元素从链表中摘除；</li>
+<li>保存q元素的数据；</li>
+<li>释放q元素；</li>
+</ol>
+<p>​ <img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230305230950316.png" /></p>
+<p>​ 下面给出代码实现:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line">T LinkList&lt;T&gt;::<span class="built_in">Delete</span>(<span class="type">int</span> i)</span><br><span class="line">&#123;</span><br><span class="line">    Node&lt;T&gt; *p=front;</span><br><span class="line">    <span class="keyword">if</span>(i!=<span class="number">1</span>)p=<span class="built_in">Get</span>(i<span class="number">-1</span>);<span class="comment">//若不是在第一个位置删除，得到第i-1个个元素的地址</span></span><br><span class="line">    Node&lt;T&gt; *q=p-&gt;next;</span><br><span class="line">    p-next=q-&gt;next;</span><br><span class="line">    T x=q-&gt;data;</span><br><span class="line">    <span class="keyword">delete</span> q;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​ 如果要删除单链表中p所指的某个结点：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line">T LinkList&lt;T&gt;::<span class="built_in">Delete</span>(T *p)</span><br><span class="line">&#123;</span><br><span class="line">    T x=p-&gt;data;</span><br><span class="line">    Node&lt;T&gt; *q=p-&gt;next;</span><br><span class="line">    p-&gt;data=q-&gt;data;</span><br><span class="line">    p-&gt;next=q-&gt;next;</span><br><span class="line">    <span class="keyword">delete</span> q;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="单链表的应用通信录">单链表的应用——通信录</h2>
+<p>​ 下面给出实现代码</p>
+<p>​ LinkList.h</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span></span><br><span class="line">&#123;</span><br><span class="line">    T data;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span>&lt;T&gt; *next;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LinkList</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        Node&lt;T&gt; *front;</span><br><span class="line">        <span class="type">int</span> length;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="built_in">LinkList</span>() &#123; front = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">            front-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">            length = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">LinkList</span>(T a[], <span class="type">int</span> n);</span><br><span class="line">        ~<span class="built_in">LinkList</span>();</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">PrintList</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">GetLength</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="function">Node&lt;T&gt; * <span class="title">Get</span><span class="params">(<span class="type">int</span> i)</span></span>;</span><br><span class="line">        <span class="function"><span class="type">int</span> <span class="title">Locate</span><span class="params">(T x)</span></span>;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">Insert</span><span class="params">(<span class="type">int</span> i, T x)</span></span>;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">Insertbh</span><span class="params">(Node&lt;T&gt; *p,T x)</span></span>;</span><br><span class="line">        <span class="function">T <span class="title">Delete</span><span class="params">(<span class="type">int</span> i)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//前插法</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">template&lt;class T&gt;</span></span><br><span class="line"><span class="comment">LinkList&lt;T&gt;::LinkList(T a[],int n)</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    front = new Node&lt;T&gt;;</span></span><br><span class="line"><span class="comment">    front-&gt;next = NULL;</span></span><br><span class="line"><span class="comment">    for (int i = n - 1; i &gt;= 0;i--)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">         Node&lt;T&gt; *s = new Node&lt;T&gt;;</span></span><br><span class="line"><span class="comment">         s-&gt;data = a[i];</span></span><br><span class="line"><span class="comment">         s-&gt;next = front-&gt;next;</span></span><br><span class="line"><span class="comment">         fornt-&gt;next = s;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    length=n;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 尾插法</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line">LinkList&lt;T&gt;::<span class="built_in">LinkList</span>(T a[], <span class="type">int</span> n)</span><br><span class="line">&#123;</span><br><span class="line">    front = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">    front-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    Node&lt;T&gt; *r = front;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        Node&lt;T&gt; *s = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">        s-&gt;data = a[i];</span><br><span class="line">        r-&gt;next = s;</span><br><span class="line">        r = s;</span><br><span class="line">    &#125;</span><br><span class="line">    r-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    length = n;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line">LinkList&lt;T&gt;::~<span class="built_in">LinkList</span>()</span><br><span class="line">&#123;</span><br><span class="line">    Node&lt;T&gt; *p = front;</span><br><span class="line">    <span class="keyword">while</span>(p)</span><br><span class="line">    &#123;</span><br><span class="line">        front = p;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        <span class="keyword">delete</span> front;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">void</span> LinkList&lt;T&gt;::<span class="built_in">PrintList</span>()</span><br><span class="line">&#123;</span><br><span class="line">    Node&lt;T&gt; *p = front-&gt;next;</span><br><span class="line">    <span class="keyword">while</span>(p)</span><br><span class="line">    &#123;</span><br><span class="line">        p-&gt;data.<span class="built_in">print</span>();</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">void</span> LinkList&lt;T&gt;::<span class="built_in">GetLength</span>()</span><br><span class="line">&#123;</span><br><span class="line">    std::cout &lt;&lt; length;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line">Node&lt;T&gt; * LinkList&lt;T&gt;::<span class="built_in">Get</span>(<span class="type">int</span> i)</span><br><span class="line">&#123;</span><br><span class="line">    Node&lt;T&gt; *p = front-&gt;next;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(p&amp;&amp;j!=i)</span><br><span class="line">    &#123;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">int</span> LinkList&lt;T&gt;::<span class="built_in">Locate</span>(T x)</span><br><span class="line">&#123;</span><br><span class="line">    Node&lt;T&gt; *p = front-&gt;next;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(p)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(p-&gt;data==x)</span><br><span class="line">            <span class="keyword">return</span> j;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//插入操作</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">void</span> LinkList&lt;T&gt;::<span class="built_in">Insert</span>(<span class="type">int</span> i, T x)</span><br><span class="line">&#123;</span><br><span class="line">    Node&lt;T&gt; *p = front;</span><br><span class="line">    <span class="keyword">if</span> (i != <span class="number">1</span>)</span><br><span class="line">        p = <span class="built_in">Get</span>(i<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span>(p)</span><br><span class="line">    &#123;</span><br><span class="line">        Node&lt;T&gt; *s = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">        s-&gt;data = x;</span><br><span class="line">        s-&gt;next = p-&gt;next;</span><br><span class="line">        p-&gt;next = s;</span><br><span class="line">        length++;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;wrong&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//前插操作</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">void</span> LinkList&lt;T&gt;::<span class="built_in">Insertbh</span>(Node&lt;T&gt; *p,T x)</span><br><span class="line">&#123;</span><br><span class="line">    Node&lt;T&gt; *s = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">    s-&gt;data = p-&gt;data;</span><br><span class="line">    s-&gt;naxt = p-&gt;next;</span><br><span class="line">    p-&gt;next = s;</span><br><span class="line">    p-&gt;data = x;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line">T LinkList&lt;T&gt;::<span class="built_in">Delete</span>(<span class="type">int</span> i)</span><br><span class="line">&#123;</span><br><span class="line">    Node&lt;T&gt; *p = front;</span><br><span class="line">    <span class="keyword">if</span>(i!=<span class="number">1</span>)</span><br><span class="line">        p = <span class="built_in">Get</span>(i - <span class="number">1</span>);</span><br><span class="line">    Node&lt;T&gt; *q = p-&gt;next;</span><br><span class="line">    T x = q-&gt;data;</span><br><span class="line">    p-&gt;next = q-&gt;next;</span><br><span class="line">    <span class="keyword">delete</span> q;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 删除单链表中p所指的某个结点</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">template &lt;class T&gt;</span></span><br><span class="line"><span class="comment">T LinkList&lt;T&gt;::Delete(T *p)</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    T x=p-&gt;data;</span></span><br><span class="line"><span class="comment">    Node&lt;T&gt; *q=p-&gt;next;</span></span><br><span class="line"><span class="comment">    p-&gt;data=q-&gt;data;</span></span><br><span class="line"><span class="comment">    p-&gt;next=q-&gt;next;</span></span><br><span class="line"><span class="comment">    delete q;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>PHONEBOOK.h</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PHONEBOOK</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> m_ID;</span><br><span class="line">    std::string m_name;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">PHONEBOOK</span>() &#123;&#125;</span><br><span class="line">    <span class="built_in">PHONEBOOK</span>(<span class="type">int</span> id, std::string name)</span><br><span class="line">    &#123;</span><br><span class="line">        m_ID = id;</span><br><span class="line">        m_name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; m_ID &lt;&lt; <span class="string">&#x27;\t&#x27;</span> &lt;&lt; m_name &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>==(PHONEBOOK &amp;p)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (p.m_ID == m_ID)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>​ 主程序</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;PHONEBOOK.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;LinkList.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    PHONEBOOK pbook[<span class="number">2</span>] = &#123;&#123;<span class="number">20181208</span>, <span class="string">&quot;Mary&quot;</span>&#125;, &#123;<span class="number">20181127</span>, <span class="string">&quot;Tom&quot;</span>&#125;&#125;;</span><br><span class="line">    <span class="function">PHONEBOOK <span class="title">record</span><span class="params">(<span class="number">20181209</span>, <span class="string">&quot;Phoenix&quot;</span>)</span></span>;</span><br><span class="line">    <span class="function">LinkList&lt;PHONEBOOK&gt; <span class="title">list</span><span class="params">(pbook, <span class="number">2</span>)</span></span>;</span><br><span class="line">    list.<span class="built_in">PrintList</span>();</span><br><span class="line">    list.<span class="built_in">Insert</span>(<span class="number">1</span>, record);</span><br><span class="line">    list.<span class="built_in">PrintList</span>();</span><br><span class="line">    PHONEBOOK x = list.<span class="built_in">Delete</span>(<span class="number">3</span>);</span><br><span class="line">    x.<span class="built_in">print</span>();</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    list.<span class="built_in">PrintList</span>();</span><br><span class="line">    <span class="type">int</span> p = list.<span class="built_in">Locate</span>(record);</span><br><span class="line">    cout &lt;&lt; p &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="循环链表的实现">循环链表的实现</h2>
+<p>​ 循环链表即链表首尾相接的链表</p>
+<p>​ <img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230306103212474.png" /></p>
+<p>​
+带尾指针的单循环链表相对于单链表，只是改用指向终端结点的尾指针，并且尾结点的指针域指向头结点；</p>
+<ul>
+<li>头指针的表示：单链表使用front标识头指针，单循环链表使用rear-&gt;next标识头指针；</li>
+<li>判断p指向的某结点是否为尾结点的方法：单链表中若p-&gt;next=NULL，单循环链表中p==rear；</li>
+</ul>
+<p>​
+带尾结点的单循环链表的C++语言描述(还能实现带头结点的单循环链表，在此不做展开)</p>
+<p>​ CLinkList.h</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span></span><br><span class="line">&#123;</span><br><span class="line">    T data;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span>&lt;T&gt; *next;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CLinkList</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Node&lt;T&gt; *rear;</span><br><span class="line">    <span class="type">int</span> length;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">CLinkList</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        rear = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">        rear-&gt;next = rear;</span><br><span class="line">        length = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">CLinkList</span>(T a[], <span class="type">int</span> n);</span><br><span class="line">    ~<span class="built_in">CLinkList</span>();</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">PrintList</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">GetLength</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Node&lt;T&gt; *<span class="title">Get</span><span class="params">(<span class="type">int</span> i)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">Locate</span><span class="params">(T x)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Insert</span><span class="params">(<span class="type">int</span> i, T x)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Insertbh</span><span class="params">(Node&lt;T&gt; *p, T x)</span></span>;</span><br><span class="line">    <span class="function">T <span class="title">Delete</span><span class="params">(<span class="type">int</span> i)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 头插法</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">template &lt;class T&gt;</span></span><br><span class="line"><span class="comment">CLinkList&lt;T&gt;::CLinkList(T a[], int n)</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    rear = new Node&lt;T&gt;;</span></span><br><span class="line"><span class="comment">    rear-&gt;next = rear;</span></span><br><span class="line"><span class="comment">    for (int i = n - 1; i &gt;= 0; i++)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        Node&lt;T&gt; *s = new Node&lt;T&gt;;</span></span><br><span class="line"><span class="comment">        s-&gt;data = a[i];</span></span><br><span class="line"><span class="comment">        s-&gt;next = rear-&gt;next;</span></span><br><span class="line"><span class="comment">        rear-&gt;next = s;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    length = n;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 尾插法</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line">CLinkList&lt;T&gt;::<span class="built_in">CLinkList</span>(T a[], <span class="type">int</span> n)</span><br><span class="line">&#123;</span><br><span class="line">    rear = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">    rear-&gt;next = rear;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        Node&lt;T&gt; *s = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">        rear-&gt;data = a[i];</span><br><span class="line">        s-&gt;next = rear-&gt;next;</span><br><span class="line">        rear-&gt;next = s;</span><br><span class="line">        rear = s;</span><br><span class="line">    &#125;</span><br><span class="line">    length = n;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line">CLinkList&lt;T&gt;::~<span class="built_in">CLinkList</span>()</span><br><span class="line">&#123;</span><br><span class="line">    Node&lt;T&gt; *p = rear-&gt;next;</span><br><span class="line">    <span class="keyword">while</span> (p!=rear)</span><br><span class="line">    &#123;</span><br><span class="line">        rear-&gt;next = p;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        <span class="keyword">delete</span> rear-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">void</span> CLinkList&lt;T&gt;::<span class="built_in">PrintList</span>()</span><br><span class="line">&#123;</span><br><span class="line">    Node&lt;T&gt; *p = rear-&gt;next;</span><br><span class="line">    <span class="keyword">while</span> (p != rear)</span><br><span class="line">    &#123;</span><br><span class="line">        p-&gt;data.<span class="built_in">print</span>();</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">void</span> CLinkList&lt;T&gt;::<span class="built_in">GetLength</span>()</span><br><span class="line">&#123;</span><br><span class="line">    std::cout &lt;&lt; length;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line">Node&lt;T&gt; *CLinkList&lt;T&gt;::<span class="built_in">Get</span>(<span class="type">int</span> i)</span><br><span class="line">&#123;</span><br><span class="line">    Node&lt;T&gt; *p = rear-&gt;next;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (p == rear &amp;&amp; j != i)</span><br><span class="line">    &#123;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">int</span> CLinkList&lt;T&gt;::<span class="built_in">Locate</span>(T x)</span><br><span class="line">&#123;</span><br><span class="line">    Node&lt;T&gt; *p = rear-&gt;next;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (p != rear)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (p-&gt;data == x)</span><br><span class="line">            <span class="keyword">return</span> j;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 插入操作</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">void</span> CLinkList&lt;T&gt;::<span class="built_in">Insert</span>(<span class="type">int</span> i, T x)</span><br><span class="line">&#123;</span><br><span class="line">    Node&lt;T&gt; *p = rear;</span><br><span class="line">    <span class="keyword">if</span> (i != <span class="number">1</span>)</span><br><span class="line">        p = <span class="built_in">Get</span>(i - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (p != rear-&gt;next)</span><br><span class="line">    &#123;</span><br><span class="line">        Node&lt;T&gt; *s = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">        s-&gt;data = x;</span><br><span class="line">        s-&gt;next = p-&gt;next;</span><br><span class="line">        p-&gt;next = s;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;wrong&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 前插操作</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">void</span> CLinkList&lt;T&gt;::<span class="built_in">Insertbh</span>(Node&lt;T&gt; *p, T x)</span><br><span class="line">&#123;</span><br><span class="line">    Node&lt;T&gt; *s = <span class="keyword">new</span> Node&lt;T&gt;;</span><br><span class="line">    s-&gt;data = p-&gt;data;</span><br><span class="line">    s-&gt;naxt = p-&gt;next;</span><br><span class="line">    p-&gt;next = s;</span><br><span class="line">    p-&gt;data = x;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line">T CLinkList&lt;T&gt;::<span class="built_in">Delete</span>(<span class="type">int</span> i)</span><br><span class="line">&#123;</span><br><span class="line">    Node&lt;T&gt; *p = rear-&gt;next;</span><br><span class="line">    <span class="keyword">if</span> (i != <span class="number">1</span>)</span><br><span class="line">        p = <span class="built_in">Get</span>(i - <span class="number">1</span>);</span><br><span class="line">    Node&lt;T&gt; *q = p-&gt;next;</span><br><span class="line">    T x = q-&gt;data;</span><br><span class="line">    p-&gt;next = q-&gt;next;</span><br><span class="line">    <span class="keyword">delete</span> q;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 删除单链表中p所指的某个结点</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">template &lt;class T&gt;</span></span><br><span class="line"><span class="comment">T LinkList&lt;T&gt;::Delete(T *p)</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    T x=p-&gt;data;</span></span><br><span class="line"><span class="comment">    Node&lt;T&gt; *q=p-&gt;next;</span></span><br><span class="line"><span class="comment">    p-&gt;data=q-&gt;data;</span></span><br><span class="line"><span class="comment">    p-&gt;next=q-&gt;next;</span></span><br><span class="line"><span class="comment">    delete q;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>​ PHONEBOOK.h</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PHONEBOOK</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> m_ID;</span><br><span class="line">    std::string m_name;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">PHONEBOOK</span>() &#123;&#125;</span><br><span class="line">    <span class="built_in">PHONEBOOK</span>(<span class="type">int</span> id, std::string name)</span><br><span class="line">    &#123;</span><br><span class="line">        m_ID = id;</span><br><span class="line">        m_name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; m_ID &lt;&lt; <span class="string">&#x27;\t&#x27;</span> &lt;&lt; m_name &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>==(PHONEBOOK &amp;p)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (p.m_ID == m_ID)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>​ main.cpp</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;PHONEBOOK.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;LinkList.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    PHONEBOOK pbook[<span class="number">2</span>] = &#123;&#123;<span class="number">20181208</span>, <span class="string">&quot;Mary&quot;</span>&#125;, &#123;<span class="number">20181127</span>, <span class="string">&quot;Tom&quot;</span>&#125;&#125;;</span><br><span class="line">    <span class="function">PHONEBOOK <span class="title">record</span><span class="params">(<span class="number">20181209</span>, <span class="string">&quot;Phoenix&quot;</span>)</span></span>;</span><br><span class="line">    <span class="function">LinkList&lt;PHONEBOOK&gt; <span class="title">list</span><span class="params">(pbook, <span class="number">2</span>)</span></span>;</span><br><span class="line">    list.<span class="built_in">PrintList</span>();</span><br><span class="line">    list.<span class="built_in">Insert</span>(<span class="number">1</span>, record);</span><br><span class="line">    list.<span class="built_in">PrintList</span>();</span><br><span class="line">    PHONEBOOK x = list.<span class="built_in">Delete</span>(<span class="number">3</span>);</span><br><span class="line">    x.<span class="built_in">print</span>();</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    list.<span class="built_in">PrintList</span>();</span><br><span class="line">    <span class="type">int</span> p = list.<span class="built_in">Locate</span>(record);</span><br><span class="line">    cout &lt;&lt; p &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实现链表的链接">实现链表的链接</h2>
+<p>​
+对于只带有头结点的单链表，需要遍历找到链表的尾结点，再进行链表的链接</p>
+<p>​ 而对于带有尾结点的循环链表，只需要链接即可，故时间复杂度为O(1)</p>
+<p>​ <img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230307085856447.png" /></p>
+<p>​ 教材中给出的为带头结点的单循环链表的链接实现代码。</p>
+<p>​ 下面给出带尾结点单循环链表链接的实现代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="type">void</span> CLinkList&lt;T&gt;::<span class="built_in">Connect</span>(CLinkList&lt;T&gt; &amp;b)<span class="comment">//b为链接的链表</span></span><br><span class="line">&#123;</span><br><span class="line">    Node&lt;T&gt; *q=b.rear-&gt;next;<span class="comment">//保存b链表的表头</span></span><br><span class="line">    b.rear-&gt;next=rear-&gt;next;<span class="comment">//b链表的表尾指向当前链表的表头</span></span><br><span class="line">    rear-&gt;next=q-&gt;next;<span class="comment">//当前链表的表尾指向b链表的起始元素</span></span><br><span class="line">    rear-&gt;data=q-&gt;data;</span><br><span class="line">    rear=b.rear;</span><br><span class="line">    <span class="keyword">delete</span> q;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="双链表-1">双链表</h2>
+<p>​ 有一个直接前驱结点和一个直接后继结点，表中有两条方向相反的链</p>
+<p>​ 双链表的实现：</p>
+<h2 id="stl中的双链表list">STL中的双链表——list</h2>
+<p>​
+list容器使用不连续的空间区域，允许向前或向后遍历元素，但是不支持随机访问，查找某个元素时往往需要遍历相邻的若干元素，优点在于任何位置都可以高效地插入或删除，并不需要移动其他元素。</p>
+<p>​</p>
+<h1 id="树">树</h1>
+<p>​ 非线性，结点之间有分支，并具有层次关系。</p>
+<p>​</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C++</a>
+              <a href="/tags/code/" rel="tag"># code</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/archives/705520af.html" rel="prev" title="数分复习">
+                  <i class="fa fa-angle-left"></i> 数分复习
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/archives/a5d49d08.html" rel="next" title="大雾的一点">
+                  大雾的一点 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Sa1geChen</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js","integrity":"sha256-mm3Re3y7xlvh+yCD+l/Zs1d+PU0AEad93MkWvljfm/s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

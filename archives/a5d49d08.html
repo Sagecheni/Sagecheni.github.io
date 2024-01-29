@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.proxy.ustclug.org/css?family=Source+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.sa1ge.ink","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="动力学 质心运动定理 ​ 将质心位矢\(\mathbf{r_c}&#x3D;\frac{\sum(m_i\mathbf{r_i})}{m}\),对时间求导得到质心运动的速度 \[ \mathbf{v_c}&#x3D;\frac{d\mathbf{r_c}}{dt}&#x3D;\frac{1}{m}\sum(m_i\mathbf{v_i}) \] ​ 可以得到 \[ m\mathbf{v_c}&#x3D;\sum(m_i\mathbf{v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大雾的一点">
+<meta property="og:url" content="http://blog.sa1ge.ink/archives/a5d49d08.html">
+<meta property="og:site_name" content="Sa1ge &#39;s Blog">
+<meta property="og:description" content="动力学 质心运动定理 ​ 将质心位矢\(\mathbf{r_c}&#x3D;\frac{\sum(m_i\mathbf{r_i})}{m}\),对时间求导得到质心运动的速度 \[ \mathbf{v_c}&#x3D;\frac{d\mathbf{r_c}}{dt}&#x3D;\frac{1}{m}\sum(m_i\mathbf{v_i}) \] ​ 可以得到 \[ m\mathbf{v_c}&#x3D;\sum(m_i\mathbf{v">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230402133018740.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230402133031125.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/%E6%97%A0%E6%A0%87%E9%A2%98%E7%9A%84%E7%AC%94%E8%AE%B0%E6%9C%AC-25.jpg">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230402133654596.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230402133708532.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230512232511997.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513181937321.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513195221018.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513195305671.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513211138573.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513214655544.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513214710686.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513232514698.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514000546144.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513233449993.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513233541540.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513233643735.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513233739529.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513234225361.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513234531478.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513234544927.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513234610013.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513234734296.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514001727663.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514002106920.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514003102137.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514003133923.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514003312573.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514010734118.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514011508864.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514011820820.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/James-Clerk-Maxwell-1831-1879.jpg/800px-James-Clerk-Maxwell-1831-1879.jpg">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514171700202.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514171713590.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514171918932.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514172042511.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514175229473.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514175527244.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514200231584.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514200304448.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514200812883.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514201700766.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514210509356.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514214609825.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514215212510.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514215226494.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514220224884.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514221337215.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514221436202.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514221450942.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514223646619.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514224613228.png">
+<meta property="og:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514224817403.png">
+<meta property="article:published_time" content="2023-04-15T16:02:31.000Z">
+<meta property="article:modified_time" content="2024-01-26T15:01:28.264Z">
+<meta property="article:author" content="Sa1geChen">
+<meta property="article:tag" content="Review">
+<meta property="article:tag" content="Physics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230402133018740.png">
+
+
+<link rel="canonical" href="http://blog.sa1ge.ink/archives/a5d49d08.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://blog.sa1ge.ink/archives/a5d49d08.html","path":"archives/a5d49d08.html","title":"大雾的一点"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>大雾的一点 | Sa1ge 's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sa1ge 's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A8%E5%8A%9B%E5%AD%A6"><span class="nav-number">1.</span> <span class="nav-text">动力学</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%A8%E5%BF%83%E8%BF%90%E5%8A%A8%E5%AE%9A%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">质心运动定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%92%E5%8A%A8%E9%87%8F"><span class="nav-number">1.2.</span> <span class="nav-text">角动量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%92%E5%8A%A8%E9%87%8F%E5%AE%9A%E7%90%86"><span class="nav-number">1.2.1.</span> <span class="nav-text">角动量定理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%92%E5%8A%A8%E9%87%8F%E5%AE%88%E6%81%92"><span class="nav-number">1.3.</span> <span class="nav-text">角动量守恒</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%B5%E5%AD%A6"><span class="nav-number">2.</span> <span class="nav-text">电学</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%93%E4%BB%91%E5%AE%9A%E5%BE%8B"><span class="nav-number">2.1.</span> <span class="nav-text">库仑定律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E7%94%B5%E5%9C%BAe"><span class="nav-number">2.2.</span> <span class="nav-text">静电场(E)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E5%BC%BAe"><span class="nav-number">2.2.1.</span> <span class="nav-text">场强E</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%9C%BA%E5%BC%BA%E5%BA%A6%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">电场强度计算公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E9%80%9A%E9%87%8F%E9%AB%98%E6%96%AF%E5%AE%9A%E7%90%86"><span class="nav-number">2.4.</span> <span class="nav-text">电通量&amp;高斯定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E8%B7%AF%E5%AE%9A%E7%90%86%E7%94%B5%E5%8A%BF"><span class="nav-number">2.5.</span> <span class="nav-text">环路定理&amp;电势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%8A%BF%E7%94%B5%E5%8A%BF%E8%83%BD"><span class="nav-number">2.5.1.</span> <span class="nav-text">电势&#x2F;电势能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%8A%BF%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="nav-number">2.5.2.</span> <span class="nav-text">电势的计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%B8%A6%E7%94%B5%E4%BD%93%E7%9A%84%E7%94%B5%E5%8A%BF"><span class="nav-number">2.6.</span> <span class="nav-text">常见带电体的电势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%9C%BA%E5%BC%BA%E5%BA%A6%E4%B8%8E%E7%94%B5%E5%8A%BF%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">2.7.</span> <span class="nav-text">电场强度与电势的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%9D%E5%AE%88%E5%8A%9B%E7%9A%84%E4%B8%80%E7%82%B9%E5%B0%8F%E8%A7%81%E8%A7%A3"><span class="nav-number">2.8.</span> <span class="nav-text">保守力的一点小见解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%8B%E5%BA%A6"><span class="nav-number">2.8.1.</span> <span class="nav-text">旋度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A8%E7%A4%BA"><span class="nav-number">2.8.1.1.</span> <span class="nav-text">表示</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E7%94%B5%E5%9C%BA%E7%9A%84%E5%AF%BC%E4%BD%93%E5%92%8C%E7%94%B5%E4%BB%8B%E8%B4%A8"><span class="nav-number">2.9.</span> <span class="nav-text">静电场的导体和电介质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E7%94%B5%E5%B9%B3%E8%A1%A1"><span class="nav-number">2.9.1.</span> <span class="nav-text">静电平衡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%B5%E8%8D%B7%E5%88%86%E5%B8%83"><span class="nav-number">2.9.1.1.</span> <span class="nav-text">电荷分布</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E7%94%B5%E6%84%9F%E5%BA%94%E5%92%8C%E9%9D%99%E7%94%B5%E5%B1%8F%E8%94%BD"><span class="nav-number">2.9.2.</span> <span class="nav-text">静电感应和静电屏蔽</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%AE%B9"><span class="nav-number">2.10.</span> <span class="nav-text">电容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%9C%BA%E8%83%BD%E9%87%8F"><span class="nav-number">2.11.</span> <span class="nav-text">电场能量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A3%81%E5%AD%A6"><span class="nav-number">3.</span> <span class="nav-text">磁学</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%B3%E6%81%92%E7%94%B5%E6%B5%81%E7%9A%84%E7%A3%81%E5%9C%BA"><span class="nav-number">3.1.</span> <span class="nav-text">稳恒电流的磁场</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%95%E5%A5%A5-%E8%90%A8%E4%BC%90%E5%B0%94%E5%AE%9A%E5%BE%8B%E5%AE%9A%E5%BE%8B"><span class="nav-number">3.2.</span> <span class="nav-text">毕奥-萨伐尔定律定律</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%BD%E6%B5%81%E7%9B%B4%E5%AF%BC%E7%BA%BF"><span class="nav-number">3.2.1.</span> <span class="nav-text">载流直导线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%BD%E6%B5%81%E5%9C%86%E7%BA%BF%E5%9C%88%E8%BD%B4%E7%BA%BF"><span class="nav-number">3.2.2.</span> <span class="nav-text">载流圆线圈轴线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E5%81%B6%E6%9E%81%E5%AD%90"><span class="nav-number">3.2.3.</span> <span class="nav-text">磁偶极子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E7%94%B5%E5%9D%87%E5%8C%80%E5%9C%86%E7%9B%98"><span class="nav-number">3.2.4.</span> <span class="nav-text">带电均匀圆盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95%E5%B8%B8%E7%94%A8%E7%9A%84%E7%A3%81%E6%84%9F%E5%BA%94%E5%BC%BA%E5%BA%A6%E5%85%AC%E5%BC%8F"><span class="nav-number">3.2.5.</span> <span class="nav-text">计算方法&amp;常用的磁感应强度公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8%E7%94%B5%E8%8D%B7%E7%9A%84%E7%A3%81%E5%9C%BA"><span class="nav-number">3.2.6.</span> <span class="nav-text">运动电荷的磁场</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A3%81%E9%80%9A%E9%87%8F%E9%AB%98%E6%96%AF%E5%AE%9A%E7%90%86"><span class="nav-number">3.3.</span> <span class="nav-text">磁通量&amp;高斯定理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E9%80%9A%E9%87%8F"><span class="nav-number">3.3.1.</span> <span class="nav-text">磁通量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E5%9C%BA%E9%AB%98%E6%96%AF%E5%AE%9A%E7%90%86"><span class="nav-number">3.3.2.</span> <span class="nav-text">磁场高斯定理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%9F%B9%E7%8E%AF%E8%B7%AF%E5%AE%9A%E7%90%86"><span class="nav-number">3.4.</span> <span class="nav-text">安培环路定理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E9%99%90%E9%95%BF%E5%9D%87%E5%8C%80%E8%BD%BD%E6%B5%81%E7%A9%BA%E5%BF%83%E5%9C%86%E6%9F%B1%E5%AF%BC%E4%BD%93%E7%9A%84%E7%A3%81%E5%9C%BA"><span class="nav-number">3.4.1.</span> <span class="nav-text">无限长均匀载流空心圆柱导体的磁场</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E9%99%90%E9%95%BF%E8%BD%BD%E6%B5%81%E5%AF%86%E7%BB%95%E8%9E%BA%E7%BA%BF%E7%AE%A1"><span class="nav-number">3.4.2.</span> <span class="nav-text">无限长载流密绕螺线管</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E9%99%90%E5%A4%A7%E5%9D%87%E5%8C%80%E8%BD%BD%E9%87%8F%E5%B9%B3%E9%9D%A2"><span class="nav-number">3.4.3.</span> <span class="nav-text">无限大均匀载量平面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%BD%E6%B5%81%E5%AF%86%E7%BB%95%E8%9E%BA%E7%BA%BF%E7%AE%A1"><span class="nav-number">3.4.4.</span> <span class="nav-text">载流密绕螺线管</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95"><span class="nav-number">3.4.5.</span> <span class="nav-text">计算方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A3%81%E5%9C%BA%E5%AF%B9%E7%94%B5%E6%B5%81%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">3.5.</span> <span class="nav-text">磁场对电流的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E5%9C%BA%E5%AF%B9%E8%BD%BD%E6%B5%81%E5%AF%BC%E7%BA%BF%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">3.5.1.</span> <span class="nav-text">磁场对载流导线的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E6%B5%81%E5%BC%BA%E5%BA%A6%E7%9A%84%E5%8D%95%E4%BD%8D%E5%AE%89%E5%9F%B9"><span class="nav-number">3.5.2.</span> <span class="nav-text">电流强度的单位——安培</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%87%E5%8C%80%E7%A3%81%E5%9C%BA%E5%AF%B9%E5%B9%B3%E9%9D%A2%E8%BD%BD%E6%B5%81%E7%BA%BF%E5%9C%88%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">3.5.3.</span> <span class="nav-text">均匀磁场对平面载流线圈的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E5%8A%9B%E7%9A%84%E5%8A%9F"><span class="nav-number">3.5.4.</span> <span class="nav-text">磁力的功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%B3%95"><span class="nav-number">3.5.5.</span> <span class="nav-text">计算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A3%81%E5%9C%BA%E5%AF%B9%E8%BF%90%E5%8A%A8%E7%94%B5%E8%8D%B7%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">3.6.</span> <span class="nav-text">磁场对运动电荷的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#v%E5%92%8Cb%E5%9E%82%E7%9B%B4"><span class="nav-number">3.6.1.</span> <span class="nav-text">v和B垂直</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v%E5%92%8Cb%E6%88%90%CE%B8%E8%A7%92"><span class="nav-number">3.6.2.</span> <span class="nav-text">v和B成θ角</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%8D%E5%B0%94%E6%95%88%E5%BA%94"><span class="nav-number">3.7.</span> <span class="nav-text">霍尔效应</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%B5%E7%A3%81%E6%84%9F%E5%BA%94"><span class="nav-number">4.</span> <span class="nav-text">电磁感应</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%95%E6%8B%89%E7%AC%AC%E7%94%B5%E7%A3%81%E6%84%9F%E5%BA%94%E5%AE%9A%E5%BE%8B"><span class="nav-number">4.1.</span> <span class="nav-text">法拉第电磁感应定律</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E6%BA%90%E7%94%B5%E5%8A%A8%E5%8A%BF"><span class="nav-number">4.1.1.</span> <span class="nav-text">电源电动势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%95%E6%8B%89%E7%AC%AC%E7%94%B5%E7%A3%81%E6%84%9F%E5%BA%94%E5%AE%9A%E5%BE%8B-1"><span class="nav-number">4.2.</span> <span class="nav-text">法拉第电磁感应定律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E7%94%9F%E7%94%B5%E5%8A%A8%E5%8A%BF"><span class="nav-number">4.3.</span> <span class="nav-text">动生电动势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8%E5%AF%BC%E4%BD%93%E4%B8%AD%E7%9A%84%E6%84%9F%E5%BA%94%E7%94%B5%E5%8A%A8%E5%8A%BF"><span class="nav-number">4.3.1.</span> <span class="nav-text">运动导体中的感应电动势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E5%8A%A8%E7%BA%BF%E5%9C%88%E7%9A%84%E6%84%9F%E5%BA%94%E7%94%B5%E5%8A%A8%E5%8A%BF"><span class="nav-number">4.3.2.</span> <span class="nav-text">转动线圈的感应电动势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%B3%95-1"><span class="nav-number">4.3.3.</span> <span class="nav-text">计算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%84%9F%E7%94%9F%E7%94%B5%E5%8A%A8%E5%8A%BF"><span class="nav-number">4.4.</span> <span class="nav-text">感生电动势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%84%9F%E7%94%9F%E7%94%B5%E5%8A%A8%E5%8A%BF%E6%96%B9%E5%90%91%E7%9A%84%E7%A1%AE%E5%AE%9A"><span class="nav-number">4.4.1.</span> <span class="nav-text">感生电动势方向的确定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%B3%95-2"><span class="nav-number">4.4.2.</span> <span class="nav-text">计算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E6%84%9F%E5%BA%94%E5%8A%A0%E9%80%9F%E5%99%A8"><span class="nav-number">4.4.3.</span> <span class="nav-text">电子感应加速器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%A1%E7%94%B5%E6%B5%81"><span class="nav-number">4.4.4.</span> <span class="nav-text">涡电流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E7%A3%81%E9%98%BB%E5%B0%BC"><span class="nav-number">4.4.5.</span> <span class="nav-text">电磁阻尼</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E6%84%9F%E4%B8%8E%E4%BA%92%E6%84%9F"><span class="nav-number">4.5.</span> <span class="nav-text">自感与互感</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E6%84%9F"><span class="nav-number">4.5.1.</span> <span class="nav-text">自感</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E8%87%AA%E6%84%9F%E7%B3%BB%E6%95%B0%E5%85%AC%E5%BC%8F"><span class="nav-number">4.5.2.</span> <span class="nav-text">常用的自感系数公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%92%E6%84%9F"><span class="nav-number">4.5.3.</span> <span class="nav-text">互感</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BA%92%E6%84%9F%E7%B3%BB%E6%95%B0"><span class="nav-number">4.5.4.</span> <span class="nav-text">常用的互感系数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%B3%95-3"><span class="nav-number">4.5.5.</span> <span class="nav-text">计算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A3%81%E5%9C%BA%E8%83%BD%E9%87%8F"><span class="nav-number">4.6.</span> <span class="nav-text">磁场能量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E5%9C%BA%E8%83%BD%E9%87%8F%E5%AF%86%E5%BA%A6"><span class="nav-number">4.6.1.</span> <span class="nav-text">磁场能量密度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%B3%95-4"><span class="nav-number">4.6.2.</span> <span class="nav-text">计算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BA%A6%E5%85%8B%E6%96%AF%E9%9F%A6%E7%94%B5%E7%A3%81%E5%9C%BA%E7%90%86%E8%AE%BA"><span class="nav-number">4.7.</span> <span class="nav-text">麦克斯韦电磁场理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E7%A7%BB%E7%94%B5%E6%B5%81"><span class="nav-number">4.7.1.</span> <span class="nav-text">位移电流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E7%94%B5%E6%B5%81%E5%85%A8%E7%94%B5%E6%B5%81%E5%AE%9A%E5%BE%8B"><span class="nav-number">4.7.2.</span> <span class="nav-text">全电流&amp;全电流定律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%BA%A6%E5%85%8B%E6%96%AF%E9%9F%A6%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">4.7.3.</span> <span class="nav-text">麦克斯韦方程组</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sa1geChen"
+      src="/uploads/sageac.jpg">
+  <p class="site-author-name" itemprop="name">Sa1geChen</p>
+  <div class="site-description" itemprop="description">Talk is cheap.Show me the code.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Sagecheni" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Sagecheni" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.sa1ge.ink/archives/a5d49d08.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/sageac.jpg">
+      <meta itemprop="name" content="Sa1geChen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sa1ge 's Blog">
+      <meta itemprop="description" content="Talk is cheap.Show me the code.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="大雾的一点 | Sa1ge 's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          大雾的一点
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-04-16 00:02:31" itemprop="dateCreated datePublished" datetime="2023-04-16T00:02:31+08:00">2023-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-01-26 23:01:28" itemprop="dateModified" datetime="2024-01-26T23:01:28+08:00">2024-01-26</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>13k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>48 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="动力学">动力学</h1>
+<h2 id="质心运动定理">质心运动定理</h2>
+<p>​ 将质心位矢<span
+class="math inline">\(\mathbf{r_c}=\frac{\sum(m_i\mathbf{r_i})}{m}\)</span>,对时间求导得到质心运动的速度
+<span class="math display">\[
+\mathbf{v_c}=\frac{d\mathbf{r_c}}{dt}=\frac{1}{m}\sum(m_i\mathbf{v_i})
+\]</span> ​ 可以得到 <span class="math display">\[
+m\mathbf{v_c}=\sum(m_i\mathbf{v_i})
+\]</span> ​ 质点的动量等于该质点系的质量与质心速度的乘积，即 <span
+class="math display">\[
+\mathbf{p}=m\mathbf{v_c}
+\]</span> ​
+质点系的总动量<strong>p</strong>的时间变化率即为该质点系所收到的合外力<strong>F</strong>
+<span class="math display">\[
+\mathbf{F}=\frac{d\mathbf{p}}{dt}=m\frac{d\mathbf{v_c}}{dt}
+\]</span> ​ 式中<span
+class="math inline">\(\frac{d\mathbf{v_c}}{dt}\)</span>为质心加速度，以<span
+class="math inline">\(\mathbf{a_c}\)</span>表示，则有 <span
+class="math display">\[
+\mathbf{F}=\frac{d\mathbf{p}}{dt}=m\mathbf{a_c}
+\]</span> ​
+质点系的质量与其质心加速度的乘积等于该<strong>质点系所受到的合外力</strong></p>
+<span id="more"></span>
+<h2 id="角动量">角动量</h2>
+<p>​ 以某固定点为参考点，位矢<strong>r</strong></p>
+<p>​
+定义：设质点质量为m，速度为<strong>v</strong>，动量<strong>p</strong>=m<strong>v</strong>，相对于固定参考点O的位矢为<strong>r</strong>.质点对O点的位矢与其动量的矢积为质点对O点的角动量<strong>L</strong>，即
+<span class="math display">\[
+\mathbf{L}=\mathbf{r}\times m\mathbf{v}
+\]</span> ​
+角动量是矢量，垂直于<strong>r</strong>和<strong>p</strong>所组成的平面，其指向右手螺旋法则来确定。</p>
+<h3 id="角动量定理">角动量定理</h3>
+<p>​ 将<span class="math inline">\(\mathbf{L}=\mathbf{r}\times
+m\mathbf{v}\)</span>对时间求导 <span class="math display">\[
+\frac{\mathrm{d\mathbf{L} } }{\mathrm{d} t}= \frac{\mathrm{d }
+}{\mathrm{d}t}(\mathbf{r}\times m\mathbf{v})=\mathbf{r}\times
+\frac{\mathrm{d}( m\mathbf{v})}{\mathrm{d} t} +\frac{d\mathbf{r}
+}{dt}\times m\mathbf{v}
+\]</span></p>
+<p><span class="math display">\[
+\frac{\mathrm{d\mathbf{L} } }{\mathrm{d} t}= \mathbf{r}\times
+\mathbf{F}+\mathbf{v}\times(m\mathbf{v})
+\]</span></p>
+<p>​ 而 <span class="math display">\[
+\mathbf{v}\times m\mathbf{v}=0  
+\]</span> ​ 所以 <span class="math display">\[
+\frac{\mathrm{d\mathbf{L} } }{\mathrm{d} t}= \mathbf{r}\times \mathbf{F}
+\]</span> ​
+我们定义力的作用点相对参考点的位矢<strong>r</strong>与力<strong>F</strong>的矢积为力对参考点的力矩，以<strong>M</strong>表示，即有
+<span class="math display">\[
+\mathbf{M}=\mathbf{r}\times \mathbf{F}
+\]</span> ​ 微分形式下则有： <span class="math display">\[
+\mathbf{M}=\frac{d\mathbf{L}}{dt}
+\]</span> ​
+即作用在质点上的合力对任意固定点O的<strong>力矩</strong>等于质点对同一点的<strong>角动量的时间变化率</strong></p>
+<p>​ 此即质点的角动量定理，可以改写为 <span class="math display">\[
+\mathbf{M}dt=d\mathbf{L}
+\]</span> ​ 上式为质点的角动量定理的微分式，对上式积分得到： <span
+class="math display">\[
+\int_{t_1}^{t_2}\mathbf{M}dt=\mathbf{L_2}-\mathbf{L_1}
+\]</span> ​ 力矩对时间的积分<span
+class="math inline">\(\int_{t_1}^{t_2}\mathbf{M}dt\)</span>称为冲量矩。</p>
+<p>​
+上式表示：作用在质点上所有力的合力在某段时间内的冲量矩等于质点在同一时间内角动量的增量</p>
+<p>​
+质点的角动量定理是支配质点绕定点运动的动力学基本规律，实质上仍然是牛顿第二定律，与牛二相比只是用力矩替代了作用在质点上的力，用角动量代替了动量。</p>
+<p>​ <strong>力矩是角动量发生变化的原因。</strong></p>
+<h2 id="角动量守恒">角动量守恒</h2>
+<p>​ 当作用在质点上的合力对固定点的力矩为零，即<strong>M</strong>=0</p>
+<p>​ 那么由质点的角动量定理可得 <span class="math display">\[
+\mathbf{L}=\mathbf{r}\times m\mathbf{v}=常矢量
+\]</span> ​
+如果作用在质点上的合力对某一规定点的力矩为零，则质点对该点的角动量保持不变</p>
+<p>​ 该定理称为质点的角动量守恒定理</p>
+<p>​ 由力矩的定义<span class="math inline">\(\mathbf{M}=\mathbf{r}\times
+\mathbf{F}\)</span>可知，力矩为零有两种情况：</p>
+<ol type="1">
+<li>当<strong>F</strong>=0，质点不受外力作用时</li>
+<li>虽然<span
+class="math inline">\(\mathbf{F\neq0}\)</span>但力的作用线始终通过某一固定点，这样的力称为有心力，这一固定点被称为力心，力矩也为零</li>
+</ol>
+<h1 id="电学">电学</h1>
+<h2 id="库仑定律">库仑定律</h2>
+<p>​ 静止的点电荷，静电力正比于所带电荷量的乘积，反比于他们距离的平方
+<span class="math display">\[
+\mathbf{F}=k\frac{q_1q_2}{r^2}\mathbf{e_r}\\
+\]</span></p>
+<p><span class="math display">\[
+k=\frac{1}{4\pi\varepsilon_0}\space (\varepsilon_0为真空介电常数)
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{F}=\frac{1}{4\pi\varepsilon_0}\frac{q_1q_2}{r^2}\mathbf{e_r}\\
+\]</span></p>
+<p>​ 静电力满足叠加原理，对元电荷产生的静电力积分得到整体的静电力</p>
+<h2 id="静电场e">静电场(E)</h2>
+<p>​ 激发电场</p>
+<p>​ 变化电场产生变化磁场</p>
+<p>​ 场具备能量和动量，是物质</p>
+<p>​
+描述电场性质的物理量：<strong>电场强度E</strong>,<strong>电势V</strong></p>
+<h3 id="场强e">场强E</h3>
+<p><span class="math display">\[
+\mathbf{E}=\frac{\mathbf{F}}{q_0}
+\]</span></p>
+<p>​ 电场强度<strong>E</strong>是空间坐标的矢量函数 <span
+class="math display">\[
+\mathbf{E}=\mathbf{E(r)}或\mathbf{E}=\mathbf{E(x,y,z)}
+\]</span> ​
+静电场中，任一点只有一个电场强度与之对应，<strong>静电场具有单值性</strong>
+<span class="math display">\[
+\mathbf{E}=\frac{1}{4\pi \varepsilon_0}\frac{q}{r^2}\mathbf{e_r}
+\]</span> ​ 叠加原理： <span class="math display">\[
+\mathbf{E}=\sum_{i=1}^{n}{E_i}=\frac{1}{4\pi
+\varepsilon_0}\sum^n_{i=1}\frac{q_i}{r_i^2}\mathbf{e_ri}
+\]</span> ​ 连续分布电荷的电场强度： <span class="math display">\[
+\mathbf{E}=\int d\mathbf{E}=\int \frac{1}{4\pi
+\varepsilon_0}\frac{dq}{r^2}\mathbf{e_r}
+\]</span> ​ 电荷密度： <span class="math display">\[
+dq=\begin{cases}\rho dV\\\sigma dS \\ \lambda dl\end{cases}
+\]</span></p>
+<h2 id="电场强度计算公式">电场强度计算公式</h2>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230402133018740.png" /></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230402133031125.png" /></p>
+<p>​ 补偿法计算电场强度：将空处用负电荷填充</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/%E6%97%A0%E6%A0%87%E9%A2%98%E7%9A%84%E7%AC%94%E8%AE%B0%E6%9C%AC-25.jpg" /></p>
+<h2 id="电通量高斯定理">电通量&amp;高斯定理</h2>
+<p>​
+电场线密度：通过电场某点，垂直于场强<strong>E</strong>的单位面积上电场线条数等于该点电场强度<strong>E</strong>的大小
+<span class="math display">\[
+\mathbf{E}=\frac{d\Phi_e }{dS}
+\]</span> ​ <span
+class="math inline">\(\mathbf{\Phi_e}\)</span>称为穿过该面的<strong>电场强度通量</strong></p>
+<p>​
+规定：自闭合曲面<strong>向外</strong>的方向为各面积分<strong>法线的正方向</strong>。
+<span class="math display">\[
+\Phi_e=\oint_S \mathbf{E}\cdot dS
+\]</span> ​ SI中，电场强度通量单位为:<span class="math inline">\(N\cdot
+m^2 \cdot C^{-1}\)</span></p>
+<p>​ 高斯定理： <span class="math display">\[
+\Phi_e=\oint_S \mathbf{E}\cdot dS=\frac{\sum_iq_i}{\varepsilon_0}
+\]</span> ​
+在真空中的静电场中，通过任意封闭曲面的电场强度通量等于该封闭曲面所<strong>包围的</strong>电荷的代数和除以<span
+class="math inline">\(\varepsilon_0\)</span>。</p>
+<p>​
+闭合曲面外的电荷对闭合曲面的电场强度通量<strong>无贡献</strong>。</p>
+<p>​ 高斯定理中闭合积分曲面通常称为<strong>高斯面</strong></p>
+<p>​ 意义：</p>
+<ul>
+<li>正电荷称为静电场的<strong>源头</strong>，负电荷称为静电场的尾闾，<strong>静电场是有源场</strong></li>
+<li>高斯定理适用于静电场、运动电荷和迅速变化的电磁场</li>
+<li>对称可以考虑使用高斯定理</li>
+</ul>
+<p>​ 高斯定理求电势：</p>
+<ol type="1">
+<li>进行对称性分析：球对称（均匀带电球面、球体、球壳）；轴对称性（直线、圆柱体、圆柱面）；面对称性</li>
+<li>选取高斯面</li>
+<li>计算</li>
+</ol>
+<h2 id="环路定理电势">环路定理&amp;电势</h2>
+<p>​ 静电力是<strong>保守力</strong>，静电场是<strong>保守场</strong></p>
+<p>​ 电场强度<strong>E</strong>沿任意路径的线积分为零，积分<span
+class="math inline">\(\oint _L \mathbf{E}\cdot
+d\mathbf{l}\)</span>称为<strong>E</strong>的环流 <span
+class="math display">\[
+\oint _L \mathbf{E}\cdot d\mathbf{l}=0
+\]</span> ​
+静电场的环路定理：在静电场中电场强度<strong>E</strong>的<strong>环流为零</strong></p>
+<h3 id="电势电势能">电势/电势能</h3>
+<p>​ 静电势能差等于电场力的功 <span class="math display">\[
+W_{ab}=\int ^b _a q_0\mathbf{E}\cdot d\mathbf{l}
+\]</span> ​ 电势定义为： <span class="math display">\[
+V_a=\frac{W_a}{q_0}=\int ^\infty _a \mathbf{E}\cdot d\mathbf{l}
+\]</span> ​ 结合后得到： <span class="math display">\[
+A_{ab}=q_0\int_a ^b \mathbf{E}\cdot d\mathbf{l} =q_0(V_a-V_b)=W_a-W_b
+\]</span></p>
+<h3 id="电势的计算">电势的计算</h3>
+<p><span class="math display">\[
+v_a=\int \frac{dq}{4\pi \varepsilon_0 r}
+\]</span></p>
+<p>​ 若电荷分布延伸到无限远处，不能把势能零点选在无限远处</p>
+<h2 id="常见带电体的电势">常见带电体的电势</h2>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230402133654596.png" /></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230402133708532.png" /></p>
+<h2 id="电场强度与电势的关系">电场强度与电势的关系</h2>
+<p>​ 电场强度是电势的微分，电势是电场强度的积分</p>
+<p>​ 积分关系： <span class="math display">\[
+V_a-V_b=\int_a ^b \mathbf{E}\cdot d\mathbf{l}=\int _a ^b \mathbf{E}\cos
+\theta dl
+\]</span> ​ 微分关系： <span class="math display">\[
+\mathbf{E_l}=-\frac{dV}{dl},\mathbf{E_l}=\mathbf{E}\cos \theta
+\]</span> ​
+电场强度在d<strong>l</strong>方向的分量等于电势沿该方向的<strong>变化率的负值</strong></p>
+<p>​
+如果d<strong>l</strong>沿着等势面的法线方向，写为d<strong>n</strong>，d<strong>n</strong>是两等势面间的最小位移，因此<span
+class="math inline">\(\frac{dV}{dn}\)</span>为<span
+class="math inline">\(\frac{dV}{dl}\)</span>的最大值 <span
+class="math display">\[
+\mathbf{E}=-\frac{dV}{dn}
+\]</span> ​
+电场强度大小等于<strong>过该点等势面的法线方向电势的变化率</strong>，方向与法线方向相反
+<span class="math display">\[
+\mathbf{E}=-(\frac{\partial V}{\partial x}\mathbf{i}+\frac{\partial
+V}{\partial y}\mathbf{j}+\frac{\partial V}{\partial z}\mathbf{k})
+\]</span></p>
+<h2 id="保守力的一点小见解">保守力的一点小见解</h2>
+<p>​
+判定保守力的充要条件是场矢量的<strong>旋度</strong>为0，即为无旋场。</p>
+<h3 id="旋度">旋度</h3>
+<p>​
+环量：给定一个三维空间中的向量场<strong>v</strong>，以及一个简单闭合有向（平面）曲线L，v沿着曲线的环量就是速度沿着路径的闭合曲线积分
+<span class="math display">\[
+Circ_v(L)=\oint_{L}v\cdot dr
+\]</span> ​
+线元dr方向是曲线的<strong>切线方向</strong>，其正方向规定为使得<strong>闭合曲线包围的面积在它的左侧。</strong></p>
+<p>​
+环量强度（环量的面密度）：向量场沿着L的<strong>环量与面元的比值</strong>在趋于0时候的极限值
+<span class="math display">\[
+lim_{\Delta S\to 0}\frac{1}{\Delta S}\oint_{L}v\cdot dr
+\]</span> ​
+如果要表现一点附近向量场的旋转程度，应表现其<strong>最大可能值</strong>及其所在面积的方向。</p>
+<p>​
+向量场的旋度是一个向量，它在一个方向上的投影的大小表示了在这个方向上的<strong>环量面密度的大小</strong>。</p>
+<p>​ 记一点的旋度为<span class="math inline">\(rot \space
+v\)</span>或<span class="math inline">\(curl\space v\)</span>满足：
+<span class="math display">\[
+\widehat{n}\cdot curl \space v=lim_{\Delta S\to 0}\frac{1}{\Delta
+S}\oint_{L}v\cdot dr,\widehat{n}为\Delta S 所在平面的法向量
+\]</span> ​ 如果用<strong>Nabla算子</strong>表示，向量场的旋度记作：
+<span class="math display">\[
+\nabla \times v
+\]</span> ​
+旋度是向量场的一种强度性质，对应的广延性质是向量场沿一个闭合曲线的环量。</p>
+<h4 id="表示">表示</h4>
+<p>​ 在三维直角坐标系<span
+class="math inline">\(Oxyz\)</span>中，设向量场 <span
+class="math display">\[
+v=v_x\mathbf{i}+v_y\mathbf{j}+v_z\mathbf{k}
+\]</span> ​ 场的分量<span
+class="math inline">\(v_x,v_y,v_z\)</span>具有一阶连续偏导数，那么在各个坐标下的投影分别为：
+<span class="math display">\[
+\cases{(curl \space v)_x=\frac{\partial v_z}{\partial y}-\frac{\partial
+v_y}{\partial z}  \\(curl \space v)_y=\frac{\partial v_x}{\partial z}
+-\frac{\partial v_z}{\partial x} \\(curl\space v)_z=\frac{\partial
+v_y}{\partial x}-\frac{\partial v_x}{\partial y}  }
+\]</span> ​ 的向量叫做向量场<strong>v</strong>的旋度，也即是 <span
+class="math display">\[
+curl \space v=(\frac{\partial v_z}{\partial y}-\frac{\partial
+v_y}{\partial z})i +(\frac{\partial v_x}{\partial z} -\frac{\partial
+v_z}{\partial x})j+(\frac{\partial v_y}{\partial x}-\frac{\partial
+v_x}{\partial y})k
+\]</span> ​</p>
+<p>​ 行列式记号为： <span class="math display">\[
+\nabla \times \mathbf{v}=\begin{vmatrix}
+\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k}\\
+\frac{\partial }{\partial x} &amp; \frac{\partial }{\partial y} &amp;
+\frac{\partial }{\partial z}\\
+v_x &amp; v_y &amp;v_z
+\end{vmatrix}
+\]</span></p>
+<h2 id="静电场的导体和电介质">静电场的导体和电介质</h2>
+<h3 id="静电平衡">静电平衡</h3>
+<p>​
+静电平衡时，导体内和表面的自由电子不再运动，由此能推导出静电平衡条件</p>
+<p>​ 导体达到静电平衡的条件：</p>
+<ul>
+<li>导体内部的每一点 的电场强度为0</li>
+<li>导体表面处的电场强度必定处处垂直于导体表面</li>
+</ul>
+<p>​ 导体静电平衡时是一个等势体，导体的表面是一个等势面</p>
+<h4 id="电荷分布">电荷分布</h4>
+<p>​
+导体内部处处没有净电荷存在，电荷只分布在导体的外表面上；若导体内部有空腔，而且空腔内部没有其他带电体，空腔表面上也不存在净电荷。</p>
+<p>​
+处于静电平衡的导体，表面上一点的电场强度和该点处导体表面电荷的面密度成正比，即
+<span class="math display">\[
+\mathbf{E}=\frac{\sigma}{\varepsilon_0}
+\]</span> ​
+处于静电平衡的孤立导体，其表面上电荷面密度的大小与表面的曲率有关</p>
+<h3 id="静电感应和静电屏蔽">静电感应和静电屏蔽</h3>
+<p>​
+静电感应：导体在<strong>外电场的作用</strong>下导体出现电荷重新分布的现象</p>
+<p>​ 静电屏蔽：空腔导体内的物体不受外界电场影响</p>
+<p>​
+如果导体空腔内部有电荷，由于静电感应，导体的内外表面也会产生等量异号的感应电荷，若此时接地，外表面电荷将全部导入地下，接地的导体外壳把内部电场对外界的影响隔绝了，这也是一种屏蔽现象。</p>
+<h2 id="电容">电容</h2>
+<p>​ 平行板电容器： <span class="math display">\[
+C=\frac{\varepsilon_0 \varepsilon_r S}{d}
+\]</span> ​ 球形电容器： <span class="math display">\[
+C=\frac{4\pi \varepsilon_0 \varepsilon_rR_1R_2}{R_2-R_1}
+\]</span> ​
+若R<sub>1</sub>和R<sub>2</sub>都很大，且两球壳的间距d=R<sub>2</sub>-R<sub>1</sub>很小，于是近似地有<span
+class="math inline">\(R_1R_2=R_1^2\)</span>。得： <span
+class="math display">\[
+C=\frac{\varepsilon_0 \varepsilon_r S}{d}
+\]</span> ​ 若<span class="math inline">\(R_2 \gg R_1 ,则R_2-R_1\approx
+R_2\)</span>： <span class="math display">\[
+C=\frac{4\pi \varepsilon_0 \varepsilon_rR_1R_2}{R_2}=4\pi
+\varepsilon_0\varepsilon_r R_1
+\]</span> ​</p>
+<h2 id="电场能量">电场能量</h2>
+<p>​ 对于平行板电容器： <span class="math display">\[
+U=Ed,C=\frac{\varepsilon S}{d}
+\]</span></p>
+<p><span class="math display">\[
+W_e=\frac{1}{2}CU^2=\frac{1}{2}\frac{\varepsilon
+S}{d}(Ed)^2=\frac{1}{2}\varepsilon E^2 \cdot Sd=\frac{1}{2}\varepsilon
+E^2\cdot V
+\]</span></p>
+<p>​ 式中V为电容器中电场遍及的空间体积</p>
+<p>​ 引入电场能量的体密度，即单位体积电场内所具有的电场能量，用符号$_e
+<span class="math inline">\(表示：\)</span>$ _e==E^2 $$ ​
+可以看出，只要空间任一处存在电场，电场强度为<strong>E</strong>，该处单位体积就存储着能量<span
+class="math inline">\(\frac{1}{2}\varepsilon E^2\)</span></p>
+<p>​ 在不均匀电场， <span class="math display">\[
+dW_e=\omega _edV
+\]</span> ​ 整个电场存储的静电能为： <span class="math display">\[
+W_e=\int _V d W_e=\int _V \frac{1}{2}\varepsilon E^2 dV
+\]</span> ​ 式中的积分遍及整个电场分布的空间。</p>
+<h1 id="磁学">磁学</h1>
+<p>​ <img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230512232511997.png" /></p>
+<p>运动电荷、载流导线、磁体能产生磁场.</p>
+<p>磁场对运动电荷、载流导线、磁体均有作用力.</p>
+<h2 id="稳恒电流的磁场">稳恒电流的磁场</h2>
+<p>​ 电流元：在导线上任取以有向线元<span
+class="math inline">\(d\mathbf{l}\)</span>，其方向<strong>沿电流方向</strong>.电流强度<span
+class="math inline">\(I\)</span>与<span class="math inline">\(d\mathbf
+l\)</span>的乘积，即<span class="math inline">\(\mathbf Id\mathbf
+l\)</span>称为电流元矢量，简称<strong>电流元</strong>，其大小等于电流强度<span
+class="math inline">\(\mathbf I\)</span>与线元长度<span
+class="math inline">\(d\mathbf
+l\)</span>的乘积，方向<strong>沿电流方向</strong>.</p>
+<p>​ 磁感应强度大小（比值定义）： <span class="math display">\[
+B=\frac{d \mathbf F}{\mathbf I dl\sin \theta}
+\]</span> ​ 电流元受到磁场作用力<span class="math inline">\(d\mathbf
+F\)</span>的大小为 <span class="math display">\[
+d \mathbf F=BIdl\sin \theta
+\]</span> ​ 方向由右手螺旋定则确定.</p>
+<p>​ 矢量式： <span class="math display">\[
+d\mathbf F=Id\mathbf l \times \mathbf B
+\]</span> ​ 通常，<span class="math inline">\(d\mathbf
+F\)</span>被称为安培力，上式被称为安培力公式. ​ 当<span
+class="math inline">\(\theta
+=\frac{\pi}{2}\)</span>时，电流元受到磁场的作用力最大，有 <span
+class="math display">\[
+B=\frac{dF_{max}}{Idl}
+\]</span> ​ 磁感应强度B的大小等于单位电流元受到的最大磁场力. ​
+综上，<strong>磁感应强度B的定义</strong>为：</p>
+<p>​
+磁场中某点的磁感应强度B是一个<strong>矢量</strong>，其方向沿该点处静止小磁针的N极指向，其大小等于单位电流元在该点处受到的最大磁场力.</p>
+<p>​ SI中，磁感应强度B的单位为<strong>特斯拉(T)</strong>,简称特。</p>
+<p>​ 非SI单位——高斯(Gs)，它与T的换算关系是 <span class="math display">\[
+1T=10^4Gs
+\]</span> ​ 载流闭合线圈在匀强磁场中受到的安培力矢量和恒为零。</p>
+<h2 id="毕奥-萨伐尔定律定律">毕奥-萨伐尔定律定律</h2>
+<p>​ 在导线上任取一电流元<span class="math inline">\(\mathbf Id\mathbf
+l\)</span>,P为空间中任意一点，由<span class="math inline">\(\mathbf
+Id\mathbf l\)</span>到P点的位矢为<span class="math inline">\(\mathbf
+r\)</span>，<span class="math inline">\(\mathbf Id\mathbf
+l\)</span>和<span class="math inline">\(\mathbf
+r\)</span>之间的夹角为<span class="math inline">\(\theta\)</span>.</p>
+<p>​ <strong>毕-萨定律</strong>的数学表达式为： <span
+class="math display">\[
+dB=\frac{\mu_0}{4\pi}\frac{\mathbf I dl\sin \theta}{r^2}
+\]</span> ​ 式中<span class="math inline">\(\mu_0=4\pi \times 10^{-7}N
+\cdot A ^{-2}\)</span>，称为<strong>真空磁导率</strong>. ​
+方向由右手螺旋定则确定.</p>
+<p>​ 矢量式： <span class="math display">\[
+d\mathbf B=\frac{\mu_0}{4\pi}\frac{\mathbf I d\mathbf l \times \mathbf
+r}{r^3}=\frac{\mu_0}{4\pi}\frac{\mathbf I d\mathbf l \mathbf e_r}{r^2}
+\]</span> ​ 式中<span class="math inline">\(\mathbf e_r\)</span>是<span
+class="math inline">\(\mathbf
+r\)</span>方向的<strong>单位矢量</strong>.</p>
+<p>​ 遵从<strong>矢量叠加定律</strong>，则有 <span
+class="math display">\[
+\mathbf \int d \mathbf B=\int \frac{\mu _0}{4\pi}\frac{\mathbf I
+d\mathbf l\times \mathbf e_r}{r^2}
+\]</span> ​ 积分遍及整个载流导体或导体回路. ​ 常选取适当坐标系将<span
+class="math inline">\(d\mathbf B\)</span>进行分解，例如在直角坐标系
+<span class="math display">\[
+d \mathbf B=d B_x \mathbf i+d B_y \mathbf j+d B_z \mathbf k
+\]</span> ​ 然后分别对<span class="math inline">\(d\mathbf
+B\)</span>的三个直角分量进行积分，得: <span class="math display">\[
+B_x=\int dB_x ,\space B_y=\int dB_y,\space B_z=\int dB_z
+\]</span> ​ 而总磁感应强度为： <span class="math display">\[
+\mathbf B=B_x \mathbf i+ B_y \mathbf j+ B_z \mathbf k
+\]</span> ​ 一般情况下<span class="math inline">\(B\neq \int
+dB\)</span>，除非所以的<span class="math inline">\(d\mathbf
+B\)</span>的方向都相同，才能直接对<span class="math inline">\(d\mathbf
+B\)</span>的大小进行积分得到总磁感应强度B的大小.</p>
+<h3 id="载流直导线">载流直导线</h3>
+<p>​ <img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513181937321.png" /></p>
+<p>​ 若载流直导线两端延伸到无限远，成为无限长载流直导线，则： <span
+class="math display">\[
+B=\frac{\mu _0 I}{2\pi a}
+\]</span> ​ 上述是一个<strong>常用公式</strong>.(非常重要)</p>
+<h3 id="载流圆线圈轴线">载流圆线圈轴线</h3>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513195221018.png" /></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513195305671.png" /></p>
+<h3 id="磁偶极子">磁偶极子</h3>
+<p>​ 由右手螺旋定则可以将载流线圈看作“磁偶极子”</p>
+<p>​ 载流线圈的磁矩定义为： <span class="math display">\[
+\mathbf m=\mathbf I S\mathbf e_n
+\]</span> ​ 式中的<span class="math inline">\(\mathbf
+e_n\)</span>是载流线圈平面正法线方向的单位矢量，其方向与线圈中电流的绕行方向满足右手螺旋定则.
+​
+磁矩是一个矢量，其大小等于IS，此举的方向沿载流线圈的<strong>正法线方向</strong>.
+​磁矩的定义对于电流为I的任意形状的平面载流线圈都适用.</p>
+<p>​ 若线圈是由紧靠在一起、载流为<span
+class="math inline">\(I\)</span>的N匝相同线圈组成的，其磁矩可写作：
+<span class="math display">\[
+\mathbf m=NIS\mathbf e_n
+\]</span> ​ 利用磁矩的概念，载流圆线圈轴线上的磁感应强度<span
+class="math inline">\(\mathbf B\)</span>可写作： <span
+class="math display">\[
+\mathbf B=\frac{\mu _0}{2\pi}\frac{\mathbf m}{(x^2+R^2)^{\frac{3}{2}}}
+\]</span> ​
+两根载有反方向电流的导线在两线外侧单独产生的磁场部分抵消，使得总磁感应强度以更快的速度衰减，即与距离的二次方成反比.</p>
+<h3 id="带电均匀圆盘">带电均匀圆盘</h3>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513211138573.png" /></p>
+<h3
+id="计算方法常用的磁感应强度公式">计算方法&amp;常用的磁感应强度公式</h3>
+<ol type="1">
+<li>将电流分割为无限多个<strong>电流元</strong></li>
+<li>任取一个电流元，根据毕-萨定律写出该电流元在P点产生的磁感应强度<span
+class="math inline">\(d\mathbf B\)</span>的大小并判断方向</li>
+<li>如果所有电流元在P点产生的磁感应强度<span
+class="math inline">\(d\mathbf
+B\)</span>的方向都相同，则直接积分得到</li>
+<li>如果不同，则需要将<span class="math inline">\(d\mathbf
+B\)</span>分解，然后对各分量进行积分，积分应遍及整个电流分布</li>
+</ol>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513214655544.png" /></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513214710686.png" /></p>
+<h3 id="运动电荷的磁场">运动电荷的磁场</h3>
+<p>​ 在载流导体上任取一个电流元<span class="math inline">\(\mathbf I
+d\mathbf l\)</span>,P点为空间中任意一点，由电流元到P点的位矢<span
+class="math inline">\(\mathbf
+r\)</span>，根据毕--萨定律，该电流元在P点产生的磁感应强度为： <span
+class="math display">\[
+d\mathbf B=\frac{\mu _0 }{4\pi}\frac{Id\mathbf l}{r^3}
+\]</span> ​ 设导体的横截面积为<span
+class="math inline">\(S\)</span>，单位体积内载流子数目为<span
+class="math inline">\(n\)</span>，每个载流子所带电荷为<span
+class="math inline">\(q\)</span>，并以平均速度<span
+class="math inline">\(v\)</span>定向运动，根据电流定义<span
+class="math inline">\(I=nqvS\)</span>，因此电流元的大小可表示为： <span
+class="math display">\[
+Idl=nqvSdl=qvdN
+\]</span> ​ 其中，<span
+class="math inline">\(dN=nSdl\)</span>是所考察的<strong>电流元中包含的载流子数.</strong></p>
+<p>​ 因此，电流元矢量可写为 <span class="math display">\[
+Id\mathbf l=q\mathbf vdN
+\]</span> ​ 将这一结果代入毕萨定律得： <span class="math display">\[
+d\mathbf B=\frac{\mu _0 }{4\pi}\frac{q\mathbf v\times \mathbf r}{r^3}dN
+\]</span> ​
+上式说明，电流元产生的磁场正是由电流元中dN个运动着的电荷所产生的.由此，得到带电为q、运动速度为<span
+class="math inline">\(\mathbf
+v\)</span>的一个带电粒子在P点产生的磁感应强度<span
+class="math inline">\(\mathbf B\)</span>为 <span class="math display">\[
+\mathbf B=\frac{d\mathbf B}{dN}=\frac{\mu _0 }{4\pi}\frac{q\mathbf
+v\times \mathbf r}{r^3}
+\]</span> ​ 其中<span class="math inline">\(\mathbf
+r\)</span>是由运动电荷到P点的<strong>位矢</strong>.</p>
+<p>​ 运动电荷在P点产生的磁感应强度<span class="math inline">\(\mathbf
+B\)</span>的大小为： <span class="math display">\[
+\mathbf B=\frac{\mu _0 }{4\pi}\frac{|q| v \sin \theta }{r^2}
+\]</span> ​ 其中<span
+class="math inline">\(\theta\)</span>是电荷定向运动速度<span
+class="math inline">\(\mathbf v\)</span>与位矢<span
+class="math inline">\(\mathbf
+r\)</span>之间的<strong>夹角</strong>.<span
+class="math inline">\(\mathbf B\)</span>的大小垂直与速度<span
+class="math inline">\(\mathbf v\)</span>和位矢<span
+class="math inline">\(\mathbf
+r\)</span>所决定的平面，由右手螺旋法则确定.</p>
+<p>​ 该式只适应于<strong>电荷的运动速度远小于光速的情况.</strong></p>
+<p>​
+运动电荷除了产生磁场外，还在其周围空间产生电场，在电荷运动速度远小于光速的情况下，运动电荷在P点产生的电场强度为
+<span class="math display">\[
+\mathbf E=\frac{q}{4\pi \varepsilon_0 r^3}\mathbf r
+\]</span> ​ 运动电荷的电场和磁场之间有如下关系： <span
+class="math display">\[
+\mathbf B=\mu _0 \varepsilon_0 \mathbf v\times \mathbf E
+\]</span> ​ 上式表明，运动电荷产生的电场和磁场是紧密联系的.</p>
+<h2 id="磁通量高斯定理">磁通量&amp;高斯定理</h2>
+<h3 id="磁通量">磁通量</h3>
+<p>​ 磁场线的每一点的切线方向代表<span class="math inline">\(\mathbf
+B\)</span>的方向，磁场的强弱由磁场线的疏密来表示. ​
+在磁场中某点处取一个和该点处磁感应强度<span
+class="math inline">\(\mathbf B\)</span>相垂直的面积元，其面积为<span
+class="math inline">\(dS_\bot\)</span>，让穿过这一面积元的磁场线条数<span
+class="math inline">\(d\Phi_m\)</span>和面元面积<span
+class="math inline">\(dS_\bot\)</span>的比值等于该点处磁感应强度<span
+class="math inline">\(\mathbf B\)</span>的大小 <span
+class="math display">\[
+B=\frac{d\Phi_m}{dS_\bot}
+\]</span> ​ 也就是说，磁场中某点处的磁感应强度<span
+class="math inline">\(\mathbf
+B\)</span>的大小等于通过和该点处磁感应强度<span
+class="math inline">\(\mathbf
+B\)</span>相垂直的单位面积的磁场线条数(<strong>磁场线密度</strong>)</p>
+<p>​ 将一曲面分割为无限多个面积元.任取一个面积元<span
+class="math inline">\(dS\)</span>，根据磁场线的定义，穿过该面积元的磁通量，即磁场线条数为
+<span class="math display">\[
+d\Phi_m=BdS_\bot=B\cos \theta dS=\mathbf B \cdot d \mathbf S
+\]</span> ​ 式中<span class="math inline">\(\theta\)</span>是面积元<span
+class="math inline">\(dS\)</span>的法向单位矢量<span
+class="math inline">\(\mathbf e_r\)</span>与磁感应强度<span
+class="math inline">\(\mathbf B\)</span>之间的夹角，<span
+class="math inline">\(d\mathbf S=dS\mathbf e_r\)</span>是面积元矢量. ​
+磁通量是标量，穿过整个曲面S的磁通量等于穿过每一个面积元磁通量的代数和，因此，对上式积分，可得到穿过整个曲面S的磁通量
+<span class="math display">\[
+\Phi_m=\int_S \mathbf B\cdot d\mathbf S=\int _S B\cos \theta dS
+\]</span> ​ 积分遍及整个曲面S. ​
+对于闭合曲面，磁场线穿出时相应的磁通量为正，穿入时相应的磁通量为负.</p>
+<p>​ 在SI中，磁通量的单位时韦伯(Wb),<span
+class="math inline">\(1Wb=1T\cdot m^2=1N\cdot m \cdot
+A^{-1}\)</span></p>
+<h3 id="磁场高斯定理">磁场高斯定理</h3>
+<p>​
+由于磁场线都是无头无尾的闭合曲线，显然，从一个闭合曲面S某处穿入的磁场线将要从该闭合曲面的另一处穿出.</p>
+<p>​
+所以，在任意磁场，<strong>通过任意闭合曲面S的磁通量必定为零</strong>，即
+<span class="math display">\[
+\oint _S\mathbf B\cdot d\mathbf S=\oint _S B\cos \theta dS=0
+\]</span> ​ 上述结论即为磁场的高斯定理. ​ 与静电场的高斯定理进行对比 <span
+class="math display">\[
+\oint _S \mathbf E\cdot d \mathbf S=\frac{1}{\varepsilon_0}\sum_S q_i
+\]</span> ​
+静电场的高斯定理表明：静电场时由静电荷产生的，是有源场，电场线不闭合，起于正电荷，终止于负电荷;</p>
+<p>​
+磁场的高斯定理表明：磁场是既无起点也无终点的闭合曲线，没有源头和尾闾，是无源场.</p>
+<h2 id="安培环路定理">安培环路定理</h2>
+<p>​ 静电场的环路定理表明，静电场强<span class="math inline">\(\mathbf
+E\)</span>沿任意闭合路径L的环流<strong>恒等于零</strong>，即 <span
+class="math display">\[
+\oint _L\mathbf E\cdot d\mathbf l\equiv 0
+\]</span> ​ 它反映了<strong>静电场是保守场</strong>这一特点.</p>
+<p><strong>安培环路定理</strong>：</p>
+<p>​ 真空中，稳恒磁场的磁感应强度<span
+class="math inline">\(\mathbf  B\)</span>沿任意闭合路径L的线积分等于真空磁导率<span
+class="math inline">\(\mu_0\)</span>乘以穿过该闭合路径的<strong>所有电流的代数和</strong>，其数学表达式为
+<span class="math display">\[
+\oint _L \mathbf B \cdot d\mathbf l=\mu_0 \sum_L  I_i
+\]</span> ​ <span class="math inline">\(\mathbf
+B\)</span>的环流与积分路径外的电流及其分布<strong>无关</strong>.</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513232514698.png" /></p>
+<p>​ 如上图，<span class="math inline">\(\mathbf
+B\)</span>的环流仅于<span
+class="math inline">\(I_1、I_2\)</span>有关.</p>
+<p>​
+在安培环路定理中，电流是<strong>代数量</strong>，其正、负由右手螺旋定则确定.</p>
+<p>​ 可从</p>
+<ul>
+<li>闭合路径包围电流</li>
+</ul>
+<p>​ <img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514000546144.png" /></p>
+<ul>
+<li>闭合路径不包围电流</li>
+<li>闭合回路内外均有多个直线电流</li>
+</ul>
+<p>​ 磁感应强度<span class="math inline">\(\mathbf
+B\)</span>是由所有的稳恒电流及其分布决定的，但是，<span
+class="math inline">\(\mathbf
+B\)</span>的环流仅与穿过闭合路径的电流代数和有关.</p>
+<p>​
+在矢量分析中，把矢量环流等于零的场称为无旋场，反之称为有旋场.静电场是无旋场，磁场是有旋场.</p>
+<p>​
+磁场的高斯定理对变化的磁场也适用，但是这里给出的安培环路定理对变化的磁场不成立，需要进一步的推广.</p>
+<h3
+id="无限长均匀载流空心圆柱导体的磁场">无限长均匀载流空心圆柱导体的磁场</h3>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513233449993.png" /></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513233541540.png" /></p>
+<p>​ 均匀空心长圆柱导体产生的磁感应强度<span
+class="math inline">\(\mathbf B\)</span>的大小与到轴线距离<span
+class="math inline">\(r\)</span>的关系曲线</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513233643735.png" /></p>
+<h3 id="无限长载流密绕螺线管">无限长载流密绕螺线管</h3>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513233739529.png" /></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513234225361.png" /></p>
+<h3 id="无限大均匀载量平面">无限大均匀载量平面</h3>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513234531478.png" /></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513234544927.png" /></p>
+<h3 id="载流密绕螺线管">载流密绕螺线管</h3>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513234610013.png" /></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230513234734296.png" /></p>
+<h3 id="计算方法">计算方法</h3>
+<p>​
+在稳恒电流分布具有某种对称性的条件下，利用安培环路定理可以十分方便地求出磁感应强度<span
+class="math inline">\(\mathbf B\)</span></p>
+<ol type="1">
+<li>根据电流分布的对称性确定磁场分布的对称性</li>
+<li>根据磁场分布的对称性适当地选取积分回路，使得<span
+class="math inline">\(\mathbf B\)</span>与<span
+class="math inline">\(d\mathbf l\)</span>要么互相平行，要么相互垂直</li>
+</ol>
+<h2 id="磁场对电流的作用">磁场对电流的作用</h2>
+<h3 id="磁场对载流导线的作用">磁场对载流导线的作用</h3>
+<p>​ 在载流导线取一电流元，电流元受到磁场的作用力 <span
+class="math display">\[
+d \mathbf F =Id\mathbf l \times \mathbf B
+\]</span> ​ 积分得到载流导线受到磁场的总作用力 <span
+class="math display">\[
+\mathbf F=\int d\mathbf F=\int _L I d\mathbf l\times \mathbf B
+\]</span> ​ 积分遍及整个载流导线. ### 计算法</p>
+<ol type="1">
+<li>任取一个电流元</li>
+<li>确定该电流元所处磁场的磁感应强度<span class="math inline">\(\mathbf
+B\)</span></li>
+<li>由安培力公式写出该电流元受到的安培力<span
+class="math inline">\(d\mathbf F=Id\mathbf l\times \mathbf
+B\)</span></li>
+<li>积分得到磁场对电流的作用力（矢量积分，方向不同需要分解）</li>
+</ol>
+<h3 id="电流强度的单位安培">电流强度的单位——安培</h3>
+<p>​ 应用安培力公式计算得到</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514001727663.png" /></p>
+<h3 id="均匀磁场对平面载流线圈的作用">均匀磁场对平面载流线圈的作用</h3>
+<p>​ 设在磁感应强度<span class="math inline">\(\mathbf
+B\)</span>的匀强磁场，有一刚性矩形载流为<span
+class="math inline">\(I\)</span>线圈<span
+class="math inline">\(abcda\)</span>，线圈可绕垂直于磁感应强度<span
+class="math inline">\(\mathbf B\)</span>的轴<span
+class="math inline">\(OO&#39;\)</span>转动.线圈的磁矩为<span
+class="math inline">\(\mathbf m=IS\mathbf e_n\)</span>，其中<span
+class="math inline">\(S=ab\cdot
+da\)</span>是线圈的面积.假定某一时刻，线圈的磁矩<span
+class="math inline">\(\mathbf m\)</span>或线圈法向单位矢量<span
+class="math inline">\(\mathbf e_n\)</span>与磁感应强度<span
+class="math inline">\(\mathbf B\)</span>之间的夹角为<span
+class="math inline">\(\theta\)</span></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514002106920.png" /></p>
+<p>​ 根据安培力公式，四个边受到安培力大小为 <span class="math display">\[
+F_{ab}=Iab\sin(\frac{\pi}{2}+\theta)=IabB\cos \theta
+\]</span></p>
+<p><span class="math display">\[
+F_{bc}=IbcB
+\]</span></p>
+<p><span class="math display">\[
+F_{bc}=Iab\sin(\frac{\pi}{2}-\theta)=IabB\cos \theta
+\]</span></p>
+<p><span class="math display">\[
+F_{da}=IdaB
+\]</span></p>
+<p>​
+四个力的方向如图所示，从图上可以看出四个力的矢量和为零，即在匀强磁场中，载流线圈受到安培力的矢量和为零.</p>
+<p>​ <span class="math inline">\(\mathbf F{ab}\)</span>和<span
+class="math inline">\(\mathbf
+F{cd}\)</span>在同一直线上，相互抵消，但<span
+class="math inline">\(\mathbf F{bc}\)</span>和<span
+class="math inline">\(\mathbf
+F{da}\)</span>并不在同一直线上，两者形成一力偶，对线圈产生力矩作用.他们对线圈产生的磁力矩（力偶矩）<span
+class="math inline">\(\mathbf M\)</span>的大小为 <span
+class="math display">\[
+\mathbf M=F_{da}ab\sin\theta =IdaBab\sin\theta=ISB\sin \theta =\mathbf
+mB\sin\theta
+\]</span> ​
+从上式可以看出，匀强磁场对载流线圈产生的磁力矩不仅与线圈中电流强度I、线圈面积S以及磁感应强度<span
+class="math inline">\(\mathbf
+B\)</span>有关，还与线圈在磁场中的取向即线圈磁矩<span
+class="math inline">\(\mathbf m\)</span>和磁感应强度<span
+class="math inline">\(\mathbf B\)</span>之间的夹角<span
+class="math inline">\(\theta\)</span>有关, <span class="math display">\[
+\mathbf M=\mathbf m\times \mathbf B
+\]</span> ​ 在磁力矩的作用下，线圈的磁矩<span
+class="math inline">\(\mathbf m\)</span>将要朝着磁场的方向转动.</p>
+<h3 id="磁力的功">磁力的功</h3>
+<p>​ 载流导线和载流线圈在磁场中运动时，磁力就要对它们作功</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514003102137.png" /></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514003133923.png" /></p>
+<p>​ 得到一般式 <span class="math display">\[
+A=I \mathbf{\Delta  \Phi_m}
+\]</span> ​ <img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514003312573.png" /></p>
+<h3 id="计算法">计算法</h3>
+<ol type="1">
+<li>确定磁场对载流导线的作用力和对载流线圈的力矩，然后利用力作功及力矩作功的定义求解。</li>
+<li>利用电流强度乘以导线切割的磁场线条数或乘以穿过电流回路的磁通量增量来计算.<span
+class="math inline">\(A=I \mathbf{\Delta  \Phi_m}\)</span></li>
+</ol>
+<h2 id="磁场对运动电荷的作用">磁场对运动电荷的作用</h2>
+<p>​
+我们称磁场对运动电荷的作用力为洛伦兹力.安培力就其微观的本质而言，可以归结为导线中大量运动电荷受到洛伦兹力的宏观表现.</p>
+<p>​ 设一电流元<span class="math inline">\(Id\mathbf
+l\)</span>处在外磁场中，电流元所在处磁感应强度为<span
+class="math inline">\(\mathbf
+B\)</span>.根据安培力公式，该电流元受到的安培力为<span
+class="math inline">\(d\mathbf F=Id\mathbf l\times \mathbf
+B\)</span>，若电流元中载流子总数为<span
+class="math inline">\(dN\)</span>，每个载流子所带电荷为q、定向运动速度为<span
+class="math inline">\(\mathbf v\)</span>，根据安培力公式，电流量矢量
+<span class="math display">\[
+Id\mathbf l=q\mathbf vdN
+\]</span> ​ 将上式代入安培力公式，得： <span class="math display">\[
+d\mathbf F=q\mathbf v\times \mathbf BdN
+\]</span> ​ 由此得到带电为q、运动速度为<span
+class="math inline">\(\mathbf
+v\)</span>的一个带电粒子在磁场中的受到的洛伦兹力<span
+class="math inline">\(\mathbf F&#39;\)</span>为 <span
+class="math display">\[
+\mathbf F&#39;=\frac{d\mathbf F}{dN}=q\mathbf v\times \mathbf B
+\]</span> ​ 根据上式，运动电荷受到的洛伦兹力<span
+class="math inline">\(\mathbf F&#39;\)</span>的大小为 <span
+class="math display">\[
+\mathbf F&#39;=|q|vB\sin \theta
+\]</span> ​ 式中<span
+class="math inline">\(\theta\)</span>是电荷运动速度<span
+class="math inline">\(\mathbf v\)</span>与<span
+class="math inline">\(\mathbf B\)</span>之间的夹角.<span
+class="math inline">\(\mathbf
+F&#39;\)</span>的方向垂直于电荷运动速度<span
+class="math inline">\(\mathbf v\)</span>和磁感应强度<span
+class="math inline">\(\mathbf
+B\)</span>所决定的平面，指向由右手螺旋定则确定.</p>
+<p>​ 由于洛伦兹力始终与电荷的运动速度<span class="math inline">\(\mathbf
+v\)</span>相垂直，所以洛伦兹力对运动电荷作的功恒等于零，也就是说洛伦兹力只能改变带电粒子的运动方向，不能改变带电粒子的速率.</p>
+<p>​
+当带电粒子在既有电场又有磁场的区域运动时，作用在该粒子上电场力和磁场力的矢量和为
+<span class="math display">\[
+\mathbf F=q(\mathbf E+\mathbf v\times \mathbf B)
+\]</span> ​
+上式称为普遍情况下的洛伦兹力公式，它是电磁学的基本公式之一，普遍成立.</p>
+<p>​
+根据普遍的洛伦兹力公式，带电粒子在电磁场中的运动方程可设为（重力可忽略）
+<span class="math display">\[
+q(\mathbf E+\mathbf v\times \mathbf B)=\frac{d\mathbf p}{dt}
+\]</span> ​ 当例子运动速度远小于光速时，上式可写为 <span
+class="math display">\[
+q(\mathbf E+\mathbf v\times \mathbf B)=m\mathbf a
+\]</span> ​ 对于带电粒子在匀强磁场中的运动，下面分为两种情况讨论：</p>
+<h3 id="v和b垂直">v和B垂直</h3>
+<p>​ 设质量为m、带电为q的粒子在磁感应强度为<span
+class="math inline">\(\mathbf
+B\)</span>的匀强电场中运动，粒子的速度<span
+class="math inline">\(\mathbf v\)</span>始终与磁感应强度<span
+class="math inline">\(\mathbf B\)</span>垂直，洛伦兹力<span
+class="math inline">\(\mathbf
+F\)</span>只能改变带电粒子的运动方向，因此，粒子将在垂直于<span
+class="math inline">\(\mathbf
+B\)</span>的平面内作匀速率圆周运动.设粒子运动的圆轨道半径为R，根据牛顿第二定律，有
+<span class="math display">\[
+qvB=m\frac{v^2}{R}
+\]</span> ​ 由此得到粒子的<strong>轨道半径</strong>为 <span
+class="math display">\[
+R=\frac{mv}{qB}
+\]</span> ​ 式中q/m称为带电粒子的<strong>荷质比</strong>.</p>
+<p>​ 对于给定的带电粒子，荷质比是一定的，所以当<span
+class="math inline">\(\mathbf
+B\)</span>一定时，粒子的速率越大，粒子做圆周运动的轨道半径越大.</p>
+<p>​ 粒子在匀强磁场中作<strong>半径为R的圆周运动</strong>时的周期T为
+<span class="math display">\[
+T=\frac{2\pi R}{v}=\frac{2\pi m}{qB}
+\]</span> ​
+由上式可知，在低速条件下，<strong>带电粒子在匀强磁场中旋转的周期与粒子的速度无关</strong>.</p>
+<p>​
+当粒子运动速度很高时，根据狭义相对论，带电粒子的<strong>质量m将随着粒子速度的增加而增加</strong>，因而粒子的旋转周期将随着粒子速度的增加而变长，为了使带电粒子不断得到加速，高频电场的频率要随着粒子的加速过程而同步变化.</p>
+<h3 id="v和b成θ角">v和B成θ角</h3>
+<p>​ 设带电粒子的速度<span class="math inline">\(\mathbf
+v\)</span>和磁感应强度<span class="math inline">\(\mathbf
+B\)</span>之间的夹角为θ，如图</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514010734118.png" style="zoom:150%;" /></p>
+<p>​ 在这种情况下，可以将粒子运动速度<span class="math inline">\(\mathbf
+v\)</span>分解为平行于<span class="math inline">\(\mathbf
+B\)</span>的分量<span class="math inline">\(v_{//}=v\cos
+\theta\)</span>和垂直于<span class="math inline">\(\mathbf
+B\)</span>的分量<span
+class="math inline">\(v_\bot=v\sin\theta\)</span>.粒子沿平行于<span
+class="math inline">\(\mathbf B\)</span>的的方向以速度<span
+class="math inline">\(v_{//}=v\cos
+\theta\)</span>作匀速运动，而在垂直于<span class="math inline">\(\mathbf
+B\)</span>的方向内以速率<span
+class="math inline">\(v_\bot=v\sin\theta\)</span>作匀速率圆周运动，合成的运动轨迹为螺旋线.粒子的回转半径、旋转周期T和螺距h分别为
+<span class="math display">\[
+R=\frac{mv_\bot}{qB}=\frac{mv\sin\theta}{qB}
+\]</span></p>
+<p><span class="math display">\[
+T=\frac{2\pi R}{v_\bot}=\frac{2\pi m}{qB}
+\]</span></p>
+<p><span class="math display">\[
+h=v_{//}T=\frac{2\pi mv\cos \theta}{qB}
+\]</span></p>
+<p>​ <img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514011508864.png" /></p>
+<h2 id="霍尔效应">霍尔效应</h2>
+<p>​ 将一块通有电流I的导电板，放在磁感应强度为<span
+class="math inline">\(\mathbf
+B\)</span>的匀强磁场中，当磁场方向与电流方向垂直时，在垂直于电流的另一个方向上，即在导体板a、b两个表面之间会出现微弱的电势差<span
+class="math inline">\(U_{ab}\)</span>，这一现象被称为霍尔效应. <span
+class="math display">\[
+U_{ab}=R_H\frac{IB}{d}
+\]</span> ​ 式中的比例系数<span
+class="math inline">\(R_H\)</span>是一个常量，称为<strong>霍尔系数</strong>.</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514011820820.png" style="zoom:150%;" /></p>
+<p>​ 形成原因：</p>
+<p>​
+设在导电板内单位体积内<strong>载流子的数目为n</strong>，每个载流子<strong>所带电荷为q</strong>，定向运动速度为<span
+class="math inline">\(\mathbf
+v\)</span>，先讨论载流子带正电，即q&gt;0的情况.</p>
+<p>​ 载流子定向运动方向将沿电流方向，载流子在磁场中受到洛伦兹力<span
+class="math inline">\(F_m\)</span>的大小为<span
+class="math inline">\(F_m=qvB\)</span>方向向下,在洛伦兹力的作用下，载流子向下偏移，结果a面不断积累正电荷，b面不断积累负电荷，在a、b两个表面之间逐渐形成一个不断增强的电场<span
+class="math inline">\(\mathbf
+E\)</span>，称为<strong>霍尔电场</strong>.载流子会同时受到霍尔电场的作用力<span
+class="math inline">\(F_e，F_e\)</span>的大小为<span
+class="math inline">\(F_e=qE\)</span>,方向向上，于洛伦兹力的方向相反，最终霍尔电场力和洛伦兹力<strong>达到平衡</strong>时，<strong>电荷积累过程停止</strong>，最终形成了稳定的霍尔电场<span
+class="math inline">\(E\)</span>和电压<span
+class="math inline">\(U_{ab}\)</span>.</p>
+<p>​ 定量分析</p>
+<p>​ 霍尔电场力和洛伦兹力达到平衡： <span class="math display">\[
+qE=qvB
+\]</span> ​<br />
+<span class="math display">\[
+E=vB
+\]</span> ​ 若l为导体板宽度，d为板的厚度，则a、b两个表面之间的电压<span
+class="math inline">\(U_{ab}\)</span>为 <span class="math display">\[
+U_{ab}=El=vBl
+\]</span> ​ 另外，导体中的电流强度为 <span class="math display">\[
+I=nqvS=nqvld
+\]</span> ​ 将上面两式联立 <span class="math display">\[
+U_{ab}=\frac{1}{nq}\frac{IB}{d}
+\]</span> ​ 得到霍尔系数为 <span class="math display">\[
+R_H=\frac{1}{nq}
+\]</span></p>
+<ol type="1">
+<li>霍尔系数与载流子浓度n成正比.</li>
+<li>霍尔系数的正负由载流子电荷的正负决定，而霍尔电压的正负取决于霍尔系数的正负.</li>
+</ol>
+<h1 id="电磁感应">电磁感应</h1>
+<blockquote>
+<p><strong>James Clerk Maxwell</strong> <a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Fellow_of_the_Royal_Society_of_Edinburgh">FRSE</a>
+<a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Fellow_of_the_Royal_Society">FRS</a>
+(13 June 1831 – 5 November 1879) was a Scottish mathematician and
+scientist responsible for the <a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Classical_theory">classical
+theory</a> of <a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Electromagnetic_radiation">electromagnetic
+radiation</a>, which was the first theory to describe electricity, <a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Magnetism">magnetism</a> and light
+as different manifestations of the same phenomenon. <a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Maxwell&#39;s_equations">Maxwell's
+equations</a> for electromagnetism have been called the "<a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Unification_(physics)#Unification_of_magnetism,_electricity,_light_and_related_radiation">second
+great unification in physics</a>" where <a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Unification_(physics)#Unification_of_gravity_and_astronomy">the
+first one</a> had been realised by <a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Isaac_Newton">Isaac Newton</a>.</p>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/James-Clerk-Maxwell-1831-1879.jpg/800px-James-Clerk-Maxwell-1831-1879.jpg" alt="James-Clerk-Maxwell-1831-1879.jpg" style="zoom: 33%;" /></p>
+</blockquote>
+<h2 id="法拉第电磁感应定律">法拉第电磁感应定律</h2>
+<h3 id="电源电动势">电源电动势</h3>
+<p>​ 电源：在电路中提供非静电力的装置</p>
+<p>​ 电动势：定量地描述电源转化能量的能力大小，用<span
+class="math inline">\(A_非\)</span>表示电源内电荷从负极移动到正极时非静电力作的功，电源的电动势<span
+class="math inline">\(\epsilon\)</span>定义为 <span
+class="math display">\[
+\epsilon =\frac{A_非}{q}
+\]</span> ​
+上式表明，电源的电动势等于非静电力把单位正电荷<strong>从负极经电源内部移动到正极</strong>时所做的功.</p>
+<p>​
+电动势是一个标量，但通常将电源内部电势升高的方向规定为电动势的方向.</p>
+<p>​ 用<span
+class="math inline">\(E_k\)</span>表示非静电性的场强，则作用在电荷q上的非静电力为<span
+class="math inline">\(\mathbf F_k=q\mathbf
+F_k\)</span>，则电源内部，电荷q由负极移动到正极时非静电力所作的功为
+<span class="math display">\[
+A_非=\int _{(-)} ^{(+)}\mathbf F_k\cdot d\mathbf l
+\]</span> ​ 得到： <span class="math display">\[
+\epsilon =A_非=\int _{(-)} ^{(+)}\mathbf E_k\cdot d\mathbf l
+\]</span> ​ 若非静电力存在于整个闭合电流回路中，这时整个回路的总电动势为
+<span class="math display">\[
+\epsilon =\oint _L \mathbf E_k\cdot d\mathbf l
+\]</span> ​ 上式适用于任何包含电源的闭合电路.</p>
+<p>​ 电动势一般都取决于电源本身的性质，而与外电路无关.</p>
+<p>​
+电磁感应现象：当穿过一闭合导体回路所围面积内的磁通量发生变化时，无论这种变化是何种原因引起的，该回路中就会产生电流.这种电流称为<strong>感应电流</strong>，而驱动电流的电动势被称为<strong>感应电动势</strong>，这种现象称为电磁感应现象.</p>
+<h2 id="法拉第电磁感应定律-1">法拉第电磁感应定律</h2>
+<p>​
+导体回路产生的感应<strong>电动势大小</strong>与穿过导体回路的<strong>磁通量变化率</strong>成正比.</p>
+<p>​ 数学表达式如下： <span class="math display">\[
+\epsilon =-\frac{d\Phi_m}{dt}
+\]</span> ​ 楞次定律判断感应电流、感应电动势的方向</p>
+<p>​
+楞次定律：闭合回路中，感应电流的方向总是使得它自身所产生的磁通量<strong>反抗</strong>引起感应电流的<strong>磁通量变化</strong>.</p>
+<p>​ 楞次定律实际上是<strong>能量守恒定理</strong>在电磁学的一种体现.</p>
+<blockquote>
+<p>假设感应电流的方向是顺时针，它将增强磁通的变化进而产生更强的感应电流，这种“正反馈”过程将直接导致能量守恒定理的破坏.</p>
+</blockquote>
+<p>​
+若线圈是N匝<strong>串联</strong>而成的，且穿过各匝线圈的<strong>磁通量相等</strong>，则由于磁通量的变化，整个线圈的感应电动势<span
+class="math inline">\(\epsilon\)</span>应等于各匝线圈中感应电动势的代数和
+<span class="math display">\[
+\epsilon = -N\frac{d\Phi_m}{dt}=-\frac{d\psi}{dt}
+\]</span> ​ 我们称<span
+class="math inline">\(\psi=N\Phi_m\)</span>为<strong>磁通匝链数</strong>.</p>
+<p>​ 设线圈中的电阻为R，则通过线圈的感应电流为 <span
+class="math display">\[
+I=-\frac{1}{R}\frac{d\psi}{dt}
+\]</span> ​ 在<span class="math inline">\(\Delta
+t=t_2-t_1\)</span>的时间内，流过线圈任一匝导线横截面的感应电荷为 <span
+class="math display">\[
+q=|\int _{t_1} ^{t_2}Idt|=\frac{1}{R}|\int _{t_1}
+^{t_2}d\psi|=\frac{1}{R}|\psi_2-\psi_1|
+\]</span> ​
+上式表明流过线圈的感应电荷仅与<strong>磁通匝链数变化的绝对值</strong>成正比.</p>
+<p>​
+用法拉第定律求解回路中的感应电动势，关键是找到回路中的磁通量表达式.一般情况下，磁通量是时间的函数，通过对时间求导即可得到感应电动势的大小.</p>
+<h2 id="动生电动势">动生电动势</h2>
+<p>​
+由法拉第电磁感应定律和磁通量定义得到：要使闭合回路上的磁通量发生变化，大体有以下三种方式“</p>
+<ol type="1">
+<li>磁场中回路的面积发生变化</li>
+<li>磁场与回路间的夹角发生变化</li>
+<li>回路中磁场发生变化</li>
+</ol>
+<p>​
+前两种情况都属于导体回路或其一部分在磁场中运动，我们称这两种情况为<strong>动生电动势</strong>.</p>
+<p>​ 而将由于磁场发生变化产生的电动势称为<strong>感生电动势</strong>.</p>
+<h3 id="运动导体中的感应电动势">运动导体中的感应电动势</h3>
+<p>​
+我们把导体或导体回路在稳恒磁场中运动，或导体回路的形状在稳恒磁场中变化时产生的感应电动势称为动生电动势.</p>
+<p>​ 当导线ab以速度<span class="math inline">\(\mathbf
+v\)</span>向右运动时，其中的自由电子被带着以同一速度向右运动，因而每个电子都受到洛伦兹力<span
+class="math inline">\(\mathbf F_m\)</span>的作用， <span
+class="math display">\[
+\mathbf F_m=-e\mathbf v\times \mathbf B
+\]</span> ​ 它所对应的非静电场强<span class="math inline">\(\mathbf
+E_k\)</span>为 <span class="math display">\[
+\mathbf E_k=-\frac{\mathbf F_m}{e}=\mathbf v\times \mathbf B
+\]</span> ​ 根据电动势的定义，这一非静电性场强所产生的电动势为 <span
+class="math display">\[
+\epsilon=\int_b ^a \mathbf E_k\cdot d\mathbf l=\int _b ^a(\mathbf
+v\times \mathbf B)\cdot d\mathbf l
+\]</span> ​
+显然，产生动生电动势的非静电力是<strong>洛伦兹力</strong>.</p>
+<p>​ 当整个闭合导体回路L都在磁场中运动时，则在回路中产生的动生电动势为
+<span class="math display">\[
+\epsilon=\oint(\mathbf v\times \mathbf B)\cdot d\mathbf l
+\]</span> ​ <code>补偿法可以使得某些问题简化</code></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514171700202.png" /></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514171713590.png" /></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514171918932.png" /></p>
+<p>​ 圆盘可以看作是多条沿圆盘直径方向的细棒并联而成.</p>
+<h3 id="转动线圈的感应电动势">转动线圈的感应电动势</h3>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514172042511.png" alt="image-20230514172042511" style="zoom:200%;" /></p>
+<p>​ abcd是面积为S、匝数为N的矩形线圈，在匀强磁场<span
+class="math inline">\(\mathbf B\)</span>中以匀角速度<span
+class="math inline">\(\omega\)</span>绕中心轴<span
+class="math inline">\(OO&#39;\)</span>转动.若t=0时刻线圈的法线<span
+class="math inline">\(mathbf e_n\)</span>平行于<span
+class="math inline">\(\mathbf B\)</span>,t时刻线圈的发现<span
+class="math inline">\(\mathbf e_n\)</span>与磁感应强度<span
+class="math inline">\(\mathbf B\)</span>间的夹角<span
+class="math inline">\(\theta =\omega
+t\)</span>这时通过线圈的磁通匝链数为 <span class="math display">\[
+\psi=N\mathbf B\cdot S=NBS\cos \omega t
+\]</span> ​ 因此有 <span class="math display">\[
+\epsilon =-\frac{d\psi}{dt}=NBS\omega \sin \omega t=\epsilon_m \sin
+\omega t
+\]</span> ​</p>
+<p>​ 式中<span class="math inline">\(\epsilon
+=NBS\omega\)</span>是动生电动势的<strong>最大值</strong>.</p>
+<p>​ 对于线圈而言，取一段弧微元，然后使用<span
+class="math inline">\(dl=rd\theta\)</span>通常能起到很好的效果.</p>
+<h3 id="计算法-1">计算法</h3>
+<p>​ 动生电动势求解的问题大致有两种</p>
+<ol type="1">
+<li>求一段形状规则的切割磁感线的运动导线两端的电动势</li>
+<li>求一段形状复杂的切割磁感线的运动导线两端的电动势，“以直代曲”</li>
+</ol>
+<h2 id="感生电动势">感生电动势</h2>
+<p>​
+把导体回路固定不变，穿过回路磁通量的变化仅仅是<strong>由于磁场变化所引起的感应电动势</strong>称为<strong>感生电动势</strong>.</p>
+<pre class="mermaid">
+
+
+graph LR
+	变化的磁场--&gt;有旋电场--&gt;自由电荷--&gt;感生电动势
+
+</pre>
+<p>不论有无导体或导体回路，变化的磁场都将在其周围空间产生具有<strong>闭合电场线的电场</strong>，并称此为<strong>有旋电场</strong>或<strong>感生电场</strong>，正是这种有旋电场决定了感生电动势.</p>
+<h3 id="感生电动势方向的确定">感生电动势方向的确定</h3>
+<p>​ Maxwell给出公式 <span class="math display">\[
+\epsilon =\oint \mathbf E_v\cdot d\mathbf
+l=-\frac{d\psi}{dt}=-\iint\limits_S \frac{\partial \mathbf B}{\partial
+t}\cdot dS
+\]</span> ​ 式中<span class="math inline">\(\mathbf
+E_V\)</span>表示有旋电场的电场强度.积分区间S是以闭合路径L为周界的平面或曲面.</p>
+<p>​
+式子说明：在变化的磁场中，<strong>感生电动势</strong>等于电场强度<span
+class="math inline">\(\mathbf
+E_v\)</span>对<strong>任意闭合路径L</strong>的<strong>线积分</strong>，也等于这一闭合路径所包围面积上<strong>磁通量的变化率</strong>.</p>
+<p>​
+静电场与有旋电场都具有能量，都对电荷有力的作用，这是两者的共同点，但它们也有重要区别：</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514175229473.png" /></p>
+<p>​
+闭合路径L的积分绕行正方向与其所包围面积的法线正方向满足右手螺旋定则，则由积分式可知：<span
+class="math inline">\(\mathbf E_v\)</span>线的方向与<span
+class="math inline">\(\partial \mathbf B /\partial
+t\)</span>的方向之间满足右手螺旋法则.</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514175527244.png" style="zoom:150%;" /></p>
+<p>一般由楞次定律判断，感生电动势形成的感应电流会产生磁场去反抗磁场的变化.</p>
+<p>例题：</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514200231584.png" /></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514200304448.png" /></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514200812883.png" /></p>
+<h3 id="计算法-2">计算法</h3>
+<p>​ 计算感生电动势的方法有两种：</p>
+<ol type="1">
+<li><p>对<strong>一段导体</strong>的感生电动势，常用: <span
+class="math display">\[
+\epsilon=\int_a ^b \mathbf E_v \cdot d\mathbf l
+\]</span> 进行计算。</p>
+<p>故先计算出<span class="math inline">\(\mathbf
+E_v\)</span>，再积分，即可得到感生电动势大小.</p>
+<p>但一般情况下，计算<span class="math inline">\(\mathbf
+E_v\)</span>是困难的，只有具有某些对称性的情况才能求出</p></li>
+<li><p>对于<strong>闭合回路</strong>的感生电动势，常用： <span
+class="math display">\[
+\epsilon=\oint \mathbf E_v \cdot d\mathbf l=-\frac{d\Phi_m}{dt}
+\]</span> 进行计算.</p>
+<p>为此常先求出待求闭合回路的磁通量，再利用此式，即可计算出感生电动势.</p>
+<p>如果是非闭合导体，可通过<strong>先做辅助线构成闭合回路</strong>再计算.</p></li>
+</ol>
+<h3 id="电子感应加速器">电子感应加速器</h3>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514201700766.png" /></p>
+<p>​ 利用强的交变电流激励产生交变磁场，变化的磁场产生有旋电场，电场强度为
+<span class="math display">\[
+\mathbf E_v=\frac{1}{2\pi r}\left | \frac{d\Phi_m}{dt} \right |
+\]</span> ​ 该有旋电场的电场线是一些同心圆.</p>
+<p>​ 如何使电子稳定在圆形轨道上加速</p>
+<p>​ 设电子圆形轨道处的磁感应强度的大小为<span
+class="math inline">\(B_R\)</span>,则<span
+class="math inline">\(B_R\)</span>必须满足 <span class="math display">\[
+ev B_R=m\frac{v^2}{R}
+\]</span> ​</p>
+<p>​ 其中，v是电子运动某时刻的速率，R是电子圆轨道的半径，因此有 <span
+class="math display">\[
+B_R=\frac{mv}{eR}
+\]</span> ​
+由上式可以看出，要使电子在有确定半径R的轨道上运动，要求磁感应强度<span
+class="math inline">\(B_R\)</span>随电子动量的增加而增加，上式两边对时间求导，得
+<span class="math display">\[
+\frac{dB_R}{dt}=\frac{1}{eR}\frac{d(mv)}{dt}
+\]</span> ​ 电子沿圆轨道切向运动，其动量变化率等于它受到的切向力<span
+class="math inline">\(eE_v\)</span>，所以上式又可写为 <span
+class="math display">\[
+\frac{dB_R}{dt}=\frac{E_v}{R}
+\]</span> ​ 将<span class="math inline">\(\mathbf E_v=\frac{1}{2\pi
+r}\left | \frac{d\Phi_m}{dt} \right |\)</span>代入，得 <span
+class="math display">\[
+\frac{dB_R}{dt}=\frac{1}{2}\frac{d\bar B}{dt}
+\]</span> ​ 上式表明，<span class="math inline">\(\bar B\)</span>和<span
+class="math inline">\(B_R\)</span>一直在改变，但应一直保持 <span
+class="math display">\[
+B_R=\frac{1}{2}\bar B
+\]</span></p>
+<h3 id="涡电流">涡电流</h3>
+<p>​
+将大块金属放置在随时间变化的磁场中，或使其在非均匀磁场中运动，由于变化的磁场激起的有旋电场的作用，都有可能在导体中产生很大的感应电流，通常称此电流为涡电流或涡流.</p>
+<h3 id="电磁阻尼">电磁阻尼</h3>
+<p>​
+涡流会产生磁效应，形成电磁阻力，阻碍运动.我们称这种现象为电磁阻尼.</p>
+<h2 id="自感与互感">自感与互感</h2>
+<h3 id="自感">自感</h3>
+<p>​
+导体电流发生变化，通过回路自身所包围面积中磁通量也将发生变化，从而在该回路中产生感应电动势.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line">	电流变化--&gt;磁通量变化--&gt;感应电动势--&gt;阻碍电流变化</span><br></pre></td></tr></table></figure>
+<p>​ 设一回路通有电流I，根据毕-萨定律，该电流产生的磁感应强度<span
+class="math inline">\(\mathbf B\)</span>与回路电流<span
+class="math inline">\(I\)</span>成正比，所以穿过该回路的磁通匝链数<span
+class="math inline">\(\psi\)</span>也与电流<span
+class="math inline">\(I\)</span>成正比，即 <span class="math display">\[
+\psi=LI
+\]</span> ​ 式中的比例系数称为该回路的自感系数，简称自感.</p>
+<p>​
+自感L的大小仅取决于<strong>回路的大小、形状、线圈的匝数以及其中磁介质的情况.</strong></p>
+<p>​ 在SI中，自感的单位是<strong>亨利</strong>(<span
+class="math inline">\(H或mH、\mu H等\)</span>)</p>
+<p>​ 若回路的自感L保持不变，则通过回路的磁通匝链数<span
+class="math inline">\(\psi\)</span>仅随回路中电流I的变化而变化.根据法拉第电磁感应定律，自感电动势为
+<span class="math display">\[
+\epsilon _L=-\frac{d\psi}{dt}=-L\frac{dI}{dt}
+\]</span> ​ 以上可得自感系数的另一种表达形式： <span
+class="math display">\[
+L=-\frac{\epsilon}{\frac{dI}{dt}}
+\]</span> ​ 其中的负号表示自感电动势<span
+class="math inline">\(\epsilon_L\)</span>产生的感应电流的方向总是<strong>反抗回路中电流I的变化.</strong></p>
+<p>​
+自感有使回路保持其原有电流不变的性质.有时又把自感系数称为“<strong>电磁惯性</strong>”.</p>
+<h3 id="常用的自感系数公式">常用的自感系数公式</h3>
+<p>​ <img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514210509356.png" /></p>
+<h3 id="互感">互感</h3>
+<p>​
+一个闭合的导体回路，当其中的电流随时间变化时，它周围的磁场也随时间变化，从而在<strong>邻近的另一个回路中</strong>产生感应电动势的现象，称为<strong>互感现象</strong>，所产生的电动势称为<strong>互感电动势</strong>.</p>
+<p>​
+<img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514214609825.png" style="zoom:150%;" /></p>
+<p>图中有两个固定的闭合回路<span
+class="math inline">\(L_1\)</span>和<span
+class="math inline">\(L_2\)</span>，回路<span
+class="math inline">\(L_2\)</span>中的互感电动势是由回路<span
+class="math inline">\(L_1\)</span>中的电流<span
+class="math inline">\(I_1\)</span>随时间变化引起的，以<span
+class="math inline">\(\epsilon_{21}\)</span>表示此电动势.由毕-萨定律可知，电流<span
+class="math inline">\(I_1\)</span>产生的磁感应强度正比于<span
+class="math inline">\(I_1\)</span>，因此，通过<span
+class="math inline">\(L_2\)</span>所围面积的磁通量也应和<span
+class="math inline">\(I_1\)</span>成正比，即 <span
+class="math display">\[
+\Psi_{m21}=M_{21}I_1
+\]</span> ​ 比例系数<span
+class="math inline">\(M_{21}\)</span>定义为回路<span
+class="math inline">\(L_1\)</span>对回路<span
+class="math inline">\(L_2\)</span>的互感系数，简称互感.</p>
+<p>​
+它的大小取决于两个回路的几何形状、相对位置、它们各自的匝数以及它们周围磁介质的分布情况.</p>
+<p>​ 根据法拉第电磁感应定律，互感电动势为 <span class="math display">\[
+\epsilon_{21}=-\frac{d\Phi_{m21}}{dt}=-M_{21}\frac{dI_1}{dt}
+\]</span> ​ 对于给定的一对导体回路有 <span class="math display">\[
+M_{21}=M_{12}=M
+\]</span> ​ M称为这两个导体回路的互感系数，简称为互感，单位为亨利.</p>
+<h3 id="常用的互感系数">常用的互感系数</h3>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514215212510.png" /></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514215226494.png" /></p>
+<p>​ 一般情况下， <span class="math display">\[
+M=k\sqrt{L_1L_2},0\leq k\leq1
+\]</span> ​ k称为耦合系数.当k等于1时，是理性的耦合情况.</p>
+<h3 id="计算法-3">计算法</h3>
+<p>​
+对于自感系数的求解，关键是找出<strong>穿过通电线圈回路自身的磁通量</strong>，找到后根据自感定义便可求得自感系数；</p>
+<p>​
+对于互感系数的求解，可利用两回路互感系数相等的性质进行转化，尝试找出一个闭合回路中电流产生的磁感应强度穿过另一回路的磁通量，再根据互感定义求解.</p>
+<h2 id="磁场能量">磁场能量</h2>
+<p>​
+<img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514220224884.png" style="zoom:150%;" /></p>
+<p>​
+对于图示的简单电路，电源提供的能量一部分用于焦耳热，一部分用于克服自感电动势作功，线圈电流增长的过程，就是自感线圈中的磁场建立的过程.所以克服自感电动势作功所转换的能量就是线圈中电流激发的磁场能量.</p>
+<p>​ 下面定量计算这一能量.</p>
+<p>​ 设电路接通后回路中某瞬时的电流为I. <span class="math display">\[
+\epsilon+\epsilon_L=IR
+\]</span> ​ 自感电动势为 <span class="math display">\[
+\epsilon_L=-L\frac{dI}{dt}
+\]</span> ​ 因此 <span class="math display">\[
+\epsilon=L\frac{dI}{dt}+IR
+\]</span> ​ 将上式两边同时乘以<span
+class="math inline">\(Idt\)</span>，有 <span class="math display">\[
+\epsilon Idt=LIDI+I^2Rdt
+\]</span> ​ 等式左边表示电源再<span
+class="math inline">\(dt\)</span>时间内作的元功<span
+class="math inline">\(\epsilon Idt\)</span>.按</p>
+<p>​ 当电流达到稳定值I时，这部分能量用<span
+class="math inline">\(W_m\)</span>表示为 <span class="math display">\[
+W_m=\int _0 ^I LIdI=\frac{1}{2}LI^2
+\]</span> ​ 上式对任意通有电流I的自感元件都是适用的.</p>
+<h3 id="磁场能量密度">磁场能量密度</h3>
+<p>​ 磁能是存储在磁场的，通过变换，我们能将磁能用磁场的物理量<span
+class="math inline">\(B\)</span>和<span
+class="math inline">\(H\)</span>描述.</p>
+<blockquote>
+<p><span class="math inline">\(H\)</span>是磁场强度，定义 <span
+class="math display">\[
+\mathbf H=\frac{\mathbf B}{\mu _0}
+\]</span></p>
+</blockquote>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514221337215.png" /></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514221436202.png" /></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514221450942.png" /></p>
+<h3 id="计算法-4">计算法</h3>
+<p>​
+求解磁场能量的普遍方法是<strong>利用磁场能量密度</strong>进行体积分.</p>
+<p>​
+当磁场具有球、柱等对称性时，一般体积元dV的选取方法是：在<strong>柱对称</strong>的情况下选薄柱层；在球对称的情况下选取<strong>薄球壳层</strong>.</p>
+<h2 id="麦克斯韦电磁场理论">麦克斯韦电磁场理论</h2>
+<h3 id="位移电流">位移电流</h3>
+<p>​ 稳恒电流的磁场遵从安培环路定律，但是非稳恒电流产生的磁场不适用.</p>
+<p>​
+电容器充放电过程中，电容器极板间虽无传导电流，但却存在不断发生着变化的电场.</p>
+<p>​ 根据电容器的性质： <span class="math display">\[
+Q=CU=\frac{\varepsilon_0S}{d}Ed=\varepsilon_0ES=\varepsilon_0
+\Phi_e=\varepsilon_e \iint_\limits S \mathbf E\cdot d\mathbf S
+\]</span></p>
+<p><span class="math display">\[
+I_c=\frac{dQ}{dt}=\varepsilon_0\iint _\limits S \frac{\partial \mathbf
+E}{\partial t}\cdot d \mathbf S
+\]</span></p>
+<p>​
+若把最右端的电通量的时间变化率看作为一种电流，那么电路就连续了，麦克斯韦把这种电流称为位移电流.
+<span class="math display">\[
+I_D=\varepsilon_0 \iint _\limits S \frac{\partial \mathbf E}{\partial
+t}\cdot d\mathbf S= \iint _\limits S \mathbf J_D\cdot d\mathbf S
+\]</span> ​ 位移电流密度矢量 <span class="math display">\[
+\mathbf J_D=\varepsilon _0\frac{\partial \mathbf E}{\partial t}
+\]</span> ​</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514223646619.png" /></p>
+<h3 id="全电流全电流定律">全电流&amp;全电流定律</h3>
+<p>​ 全电流：通过<strong>某一截面</strong>的传导电流和位移电流的代数和
+<span class="math display">\[
+I_全=I_C+I_D
+\]</span> ​ 全电流安培环路定理 <span class="math display">\[
+\oint_L \mathbf B\cdot d\mathbf l=I_C+I_D=\iint _\limits S (\mathbf
+J_C+\mathbf J_D)\cdot d\mathbf S    
+\]</span>
+麦克斯韦位移电流假说的实质是：位移电流可以在空间中激发磁场.</p>
+<h3 id="麦克斯韦方程组">麦克斯韦方程组</h3>
+<p>电磁波传播形式：</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514224613228.png" /></p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230514224817403.png" /></p>
+<p>​ 麦克斯韦方程组的积分形式： <span class="math display">\[
+\begin{cases}
+\oint _S \mathbf E \cdot d \mathbf S=\frac{1}{\varepsilon_0}\int _V \rho
+\cdot dV&amp;电场高斯定理\\
+\oint _S \mathbf E \cdot d \mathbf l=-\int _S \frac{\partial \mathbf B
+}{\partial t}\cdot d\mathbf S\space \space \space
+&amp;电场安培环路定理\\
+\oint_S \mathbf B \cdot d\mathbf S=0\space \space \space
+&amp;磁场高斯定理\\
+\oint _L \mathbf B \cdot d\mathbf l=\mu_0 \int _S \mathbf J \cdot d
+\mathbf S+\mu_0\varepsilon_0
+\int_S \frac{\partial \mathbf E}{\partial t}\cdot d\mathbf S
+&amp;磁场安培环路定理
+\end{cases}
+\]</span> ​ 物理意义</p>
+<ol type="1">
+<li>通过任意闭合面的<strong>电位移通量</strong>等于该曲面包围的<strong>自由电荷的代数和</strong>.</li>
+<li><strong>电场强度</strong>沿任意<strong>闭曲线</strong>的线积分等于以该曲线为边界的任意曲面的<strong>磁通量对时间变化量</strong>的负值.</li>
+<li>通过任意闭合面的磁通量恒等于零.</li>
+<li>稳恒磁场沿任意闭合曲线的线积分等于穿过以该曲线为边界的曲面的<strong>全电流</strong>.</li>
+</ol>
+<p>​ 涡旋电场和位移电流假说</p>
+<p>​ 变化的磁场可以激发涡流电场。</p>
+<p>​ 变化的电场可以激发涡旋磁场。</p>
+<p>​ 麦克斯韦方程的一般形式： <span class="math display">\[
+\begin{cases}
+\oint _S \mathbf D \times d\mathbf S=\sum\limits_{S内}q_{0i}
+&amp;静电场的高斯定理\\
+\oint_L \mathbf E \cdot d \mathbf l=0 &amp;静电场的环路定理\\
+\oint _S \mathbf B\cdot d\mathbf S=0 &amp;稳恒磁场的高斯定理\\
+\oint _L \mathbf H\cdot d \mathbf l=\sum_\limits {L内}I
+&amp;稳恒磁场的安倍环路定理\\
+\end{cases}
+\]</span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Review/" rel="tag"># Review</a>
+              <a href="/tags/Physics/" rel="tag"># Physics</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/archives/79666db.html" rel="prev" title="数据结构">
+                  <i class="fa fa-angle-left"></i> 数据结构
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/archives/58a6f505.html" rel="next" title="多元函数微分学">
+                  多元函数微分学 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Sa1geChen</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js","integrity":"sha256-mm3Re3y7xlvh+yCD+l/Zs1d+PU0AEad93MkWvljfm/s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

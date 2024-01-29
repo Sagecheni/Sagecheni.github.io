@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.proxy.ustclug.org/css?family=Source+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.sa1ge.ink","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="小明在打geekgame，小美在学no_F5动调,小陈在学Linear Algebra，他们都有光明的未来（ 正经人谁打geekgame啊 geekgame一道题不会写，只好跑来写写线代的部分总结定理大全了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="向量组的线性相关性">
+<meta property="og:url" content="http://blog.sa1ge.ink/archives/e59008e8.html">
+<meta property="og:site_name" content="Sa1ge &#39;s Blog">
+<meta property="og:description" content="小明在打geekgame，小美在学no_F5动调,小陈在学Linear Algebra，他们都有光明的未来（ 正经人谁打geekgame啊 geekgame一道题不会写，只好跑来写写线代的部分总结定理大全了">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-11-19T12:40:34.000Z">
+<meta property="article:modified_time" content="2024-01-26T14:59:27.544Z">
+<meta property="article:author" content="Sa1geChen">
+<meta property="article:tag" content="Linear Algebra">
+<meta property="article:tag" content="vector">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://blog.sa1ge.ink/archives/e59008e8.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://blog.sa1ge.ink/archives/e59008e8.html","path":"archives/e59008e8.html","title":"向量组的线性相关性"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>向量组的线性相关性 | Sa1ge 's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Sa1ge 's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#n%E7%BB%B4%E5%90%91%E9%87%8F%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%85%B6%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97"><span class="nav-number">1.</span> <span class="nav-text">n维向量的概念及其线性运算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#n%E7%BB%B4%E5%90%91%E9%87%8F%E7%9A%84%E5%AE%9A%E4%B9%89%E5%AE%9A%E4%B9%891"><span class="nav-number">1.1.</span> <span class="nav-text">n维向量的定义（定义1）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%892-n%E7%BB%B4%E5%90%91%E9%87%8F%E7%9A%84%E5%8A%A0%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">定义2 n维向量的加法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%893-n%E7%BB%B4%E5%90%91%E9%87%8F%E7%9A%84%E6%95%B0%E4%B9%98%E8%BF%90%E7%AE%97"><span class="nav-number">1.3.</span> <span class="nav-text">定义3 n维向量的数乘运算</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%BB%84%E7%9A%84%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">向量组的线性相关性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%894-%E7%BA%BF%E6%80%A7%E8%A1%A8%E5%87%BA"><span class="nav-number">2.1.</span> <span class="nav-text">定义4 线性表出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%895-%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E6%97%A0%E5%85%B3"><span class="nav-number">2.2.</span> <span class="nav-text">定义5 线性相关&#x2F;无关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%90%861"><span class="nav-number">2.3.</span> <span class="nav-text">定理1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95%E5%92%8C%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.4.</span> <span class="nav-text">判断线性相关的基本方法和步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%90%862"><span class="nav-number">2.5.</span> <span class="nav-text">定理2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9A%84%E5%88%A4%E5%88%AB%E5%AE%9A%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">线性相关性的判别定理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%90%863"><span class="nav-number">3.1.</span> <span class="nav-text">定理3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%AE%BA"><span class="nav-number">3.1.1.</span> <span class="nav-text">推论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%90%864"><span class="nav-number">3.2.</span> <span class="nav-text">定理4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%90%865"><span class="nav-number">3.3.</span> <span class="nav-text">定理5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E8%AE%BA-1"><span class="nav-number">3.4.</span> <span class="nav-text">推论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%90%866"><span class="nav-number">3.5.</span> <span class="nav-text">定理6</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%AE%BA1"><span class="nav-number">3.5.1.</span> <span class="nav-text">推论1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%AE%BA2"><span class="nav-number">3.5.2.</span> <span class="nav-text">推论2</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%BB%84%E7%9A%84%E7%A7%A9"><span class="nav-number">4.</span> <span class="nav-text">向量组的秩</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%896-%E5%90%91%E9%87%8F%E7%BB%84%E7%AD%89%E4%BB%B7"><span class="nav-number">4.1.</span> <span class="nav-text">定义6 向量组等价</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%897-%E5%90%91%E9%87%8F%E7%BB%84%E7%9A%84%E7%A7%A9"><span class="nav-number">4.2.</span> <span class="nav-text">定义7 向量组的秩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%90%867"><span class="nav-number">4.3.</span> <span class="nav-text">定理7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%90%868"><span class="nav-number">4.4.</span> <span class="nav-text">定理8</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%AE%BA1-1"><span class="nav-number">4.4.1.</span> <span class="nav-text">推论1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%AE%BA2-1"><span class="nav-number">4.4.2.</span> <span class="nav-text">推论2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%BB%84%E7%9A%84%E7%A7%A9-1"><span class="nav-number">4.5.</span> <span class="nav-text">向量组的秩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%898"><span class="nav-number">4.6.</span> <span class="nav-text">定义8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%90%869"><span class="nav-number">4.7.</span> <span class="nav-text">定理9</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%90%8610"><span class="nav-number">4.8.</span> <span class="nav-text">定理10</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82%E5%90%91%E9%87%8F%E7%BB%84%E7%9A%84%E7%A7%A9"><span class="nav-number">4.9.</span> <span class="nav-text">求向量组的秩</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4"><span class="nav-number">5.</span> <span class="nav-text">向量空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%899"><span class="nav-number">5.1.</span> <span class="nav-text">定义9</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%8910"><span class="nav-number">5.2.</span> <span class="nav-text">定义10</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E7%A9%BA%E9%97%B4"><span class="nav-number">5.3.</span> <span class="nav-text">生成空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%8911-%E5%9F%BA%E5%9F%BA%E5%90%91%E9%87%8F%E7%BB%B4%E6%95%B0"><span class="nav-number">5.4.</span> <span class="nav-text">定义11 基，基向量，维数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%8912"><span class="nav-number">5.5.</span> <span class="nav-text">定义12</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sa1geChen"
+      src="/uploads/sageac.jpg">
+  <p class="site-author-name" itemprop="name">Sa1geChen</p>
+  <div class="site-description" itemprop="description">Talk is cheap.Show me the code.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Sagecheni" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Sagecheni" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.sa1ge.ink/archives/e59008e8.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/sageac.jpg">
+      <meta itemprop="name" content="Sa1geChen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sa1ge 's Blog">
+      <meta itemprop="description" content="Talk is cheap.Show me the code.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="向量组的线性相关性 | Sa1ge 's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          向量组的线性相关性
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-11-19 20:40:34" itemprop="dateCreated datePublished" datetime="2022-11-19T20:40:34+08:00">2022-11-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-01-26 22:59:27" itemprop="dateModified" datetime="2024-01-26T22:59:27+08:00">2024-01-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Math/" itemprop="url" rel="index"><span itemprop="name">Math</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>3.8k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>14 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>小明在打geekgame，小美在学no_F5动调,小陈在学Linear
+Algebra，他们都有光明的未来（</p>
+<p><del>正经人谁打geekgame啊</del></p>
+<p>geekgame一道题不会写，只好跑来写写线代的<del>部分总结</del>定理大全了</p>
+<span id="more"></span>
+<h1 id="n维向量的概念及其线性运算">n维向量的概念及其线性运算</h1>
+<h2 id="n维向量的定义定义1">n维向量的定义（定义1）</h2>
+<p><span class="math display">\[
+由n个数a_1,a_2,...,a_n组成的有序数组\alpha=(a_1,a_2,...,a_n)称为一个n维向量，数a_i称为该向量的第i个分量(i=1,2,...,n)
+\]</span></p>
+<p>一般指向实向量(分量为实数)</p>
+<p>分量是向量在坐标轴上的投影</p>
+<p>行向量（1 x n）只有1行，列向量（n x 1）只有1列</p>
+<p><strong>向量是一种特殊的矩阵</strong></p>
+<p><strong>规定</strong>：所有分量都是零的n维向量称为<strong>n维零向量</strong>。记作<strong>0</strong>，即<strong>0</strong>=(0,0,...,0)</p>
+<h2 id="定义2-n维向量的加法">定义2 n维向量的加法</h2>
+<p>n维向量的加法</p>
+<p>运算规则与矩阵相同</p>
+<h2 id="定义3-n维向量的数乘运算">定义3 n维向量的数乘运算</h2>
+<p>n维向量的数乘运算</p>
+<p>运算规则与矩阵相同</p>
+<p><strong>约定：</strong>对于任意实数k以及任意的n维向量<strong>α</strong>，都有k<strong>α</strong>=<strong>α</strong>k</p>
+<p>向量的加法运算及数乘运算统称为向量的线性运算。</p>
+<h1 id="向量组的线性相关性">向量组的线性相关性</h1>
+<h2 id="定义4-线性表出">定义4 线性表出</h2>
+<p>设<span
+class="math inline">\(\alpha_1,\alpha_2,...,\alpha_m\)</span>是一组n维向量，<span
+class="math inline">\(k_1,k_2,...,k_m\)</span>是一组实常数，</p>
+<p>则称<span
+class="math inline">\(k_1\alpha_1+k_2\alpha_2+\cdots+k_m\alpha_m\)</span>
+为 <span
+class="math inline">\(\alpha_1,\alpha_2,\cdots,\alpha_m\)</span>
+的一个线性组合；</p>
+<p>常数<span
+class="math inline">\(k_1,k_2,\cdots,k_m\)</span>为该线性组合的组合系数.</p>
+<p>若一个n维向量<span
+class="math inline">\(\beta\)</span>可以表示称<span
+class="math inline">\(\beta=k_1\alpha_1+k_2\alpha_2+...+k_m\alpha_m,\)</span>
+则称<span class="math inline">\(\beta\)</span>是<span
+class="math inline">\(\alpha_1,\alpha_2,...,\alpha_m\)</span>的<strong>线性组合</strong>，或称<span
+class="math inline">\(\beta\)</span>可用<span
+class="math inline">\(\alpha_1,\alpha_2,...,\alpha_m\)</span><strong>线性表出</strong>（线性表示)
+仍称<span
+class="math inline">\(k_1,k_2,...,k_m\)</span>为<strong>组合系数</strong>，或<strong>表出系数</strong></p>
+<p>若干个<strong>同维度的向量</strong>所组成的<strong>集合</strong>叫做向量组，m个向量<strong>α₁</strong>,<strong>α₂,</strong>....,<strong>αₘ</strong>
+组成的向量组可以记为 <span class="math display">\[
+R:\alpha_1,\alpha_2,...,\alpha_m  或R=\{\alpha_1,\alpha_2,...,\alpha_m\}
+\]</span></p>
+<p><span class="math display">\[
+例如矩阵A=(a_{ij})_{m*n}可以看称由n个m维列向量\\
+\alpha_j=
+\left(
+\matrix
+{a_{1j}\\a_{2j}\\...\\a_{mj}
+}
+\right)
+\\
+组成的向量组.称\alpha_1,\alpha_2,...,\alpha_m是矩阵A的列向量组
+\]</span></p>
+<p><span
+class="math inline">\(\alpha\)</span>是n维向量，有n个分量；<span
+class="math inline">\(R\)</span>是由m个n维向量组成的集合。</p>
+<p>一个n*m的矩阵A，可以由m个<strong>n维行向量</strong>组成，也可以由n个<strong>m维列向量</strong>组成</p>
+<p>对于线性方程组<strong>Ax=B</strong>，视为A为列向量组成的向量组，那么方程组可以写为<span
+class="math inline">\(k_1\alpha_1+k_2\alpha_2+\dots+k_n\alpha_n=b\)</span></p>
+<p>因而讨论方程组Ax=B是否有解的问题就是讨论b是否能由A的列向量线性表出。</p>
+<p>n维单位坐标向量：</p>
+<p><span class="math inline">\(\epsilon_i=(0,\dots,0,1,0,\dots,0)\space
+\space(i=1,2,\dots,n)\)</span></p>
+<p><span
+class="math inline">\(\epsilon_i\)</span>中第i个分量为1，其余分量都是0.显然，任意一个n维向量<span
+class="math inline">\(\alpha=(a_1,a_2,\dots,a_n)\)</span>都可以唯一地表示为这n个标准单位向量的线性组合</p>
+<p><span
+class="math inline">\(\alpha=a_1\epsilon_1+a_2\epsilon_2+\dots+a_n\epsilon_n\)</span></p>
+<h2 id="定义5-线性相关无关">定义5 线性相关/无关</h2>
+<p>设有n维向量<span
+class="math inline">\(\alpha_1,\alpha_2,\dots,\alpha_m\)</span>，若存在m个<strong>不全为零</strong>的实数<span
+class="math inline">\(k_1,k_2,\dots,k_m\)</span>，使得<span
+class="math inline">\(k_1\alpha_1+k_2\alpha_2+\dots+k_m\alpha_m=0\)</span>，则称<span
+class="math inline">\(\alpha_1,\alpha_2,\dots,\alpha_m\)</span><strong>线性相关</strong>，称<span
+class="math inline">\(k_1,k_2,\dots,k_m\)</span>为<strong>相关系数</strong>，否则称<span
+class="math inline">\(\alpha_1,\alpha_2,\dots,\alpha_m\)</span><strong>线性无关</strong></p>
+<p>换言之，向量组<span
+class="math inline">\(\alpha_1,\alpha_2,\dots,\alpha_m\)</span>线性无关当且仅当<span
+class="math inline">\(k_1=k_2=\dots=k_m=0\)</span>时，上式成立。</p>
+<h2 id="定理1">定理1</h2>
+<p>n维向量组<span
+class="math inline">\(\alpha_1,\alpha_2,\dots,\alpha_m\)</span> （ <span
+class="math inline">\(m\geqslant2\)</span>）线性相关<span
+class="math inline">\(\Leftrightarrow\)</span>至少存在某个 <span
+class="math inline">\(\alpha_i\)</span> 是其余向量的线性组合</p>
+<p>n维向量组<span
+class="math inline">\(\alpha_1,\alpha_2,\dots,\alpha_m\)</span>（ <span
+class="math inline">\(m\geqslant2\)</span>）线性无关<span
+class="math inline">\(\Leftrightarrow\)</span>任意一个 <span
+class="math inline">\(\alpha_i\)</span> 都不能由其余向量线性表出</p>
+<p>由定义5易知：</p>
+<p>(1)任意一个含有零向量的向量组必为线性相关组</p>
+<p>(2)单个向量<span class="math inline">\(\alpha\)</span>线性相关<span
+class="math inline">\(\Leftrightarrow\)</span><span
+class="math inline">\(\alpha=0\)</span>，即单个向量<span
+class="math inline">\(\alpha\)</span>线性无关<span
+class="math inline">\(\Leftrightarrow\alpha\neq0\)</span></p>
+<p>(3)两个非零的n维向量<span
+class="math inline">\(\alpha，\beta\)</span>线性相关当且仅当存在不全为零的数k,l使得<span
+class="math inline">\(k\alpha+l\beta=0\)</span>，即<span
+class="math inline">\(\alpha=-\frac{l}{k}\beta\)</span>或<span
+class="math inline">\(\beta=-\frac{k}{l}\)</span></p>
+<p>这说明<span class="math inline">\(\alpha\)</span>和<span
+class="math inline">\(\beta\)</span>共线，即它们的对应分量成比例</p>
+<h2 id="判断线性相关的基本方法和步骤">判断线性相关的基本方法和步骤</h2>
+<p>n维向量组<span
+class="math inline">\(\alpha_1,\alpha_2,\dots,\alpha_m\)</span></p>
+<p>1.假定存在一组数<span
+class="math inline">\(k_1,k_2,\dots,k_m\)</span>使得<span
+class="math inline">\(k_1\alpha_1+k_2\alpha_2+\dots+k_m\alpha_m=0\)</span></p>
+<p>2.列出未知量<span
+class="math inline">\(k_1,k_2,\dots,k_m\)</span>的齐次线性方程组</p>
+<p>3.判断方程组有无非零解</p>
+<p>4.若有非零解，则线性相关；若仅有零解，则线性无关</p>
+<p>线性相关——向量组中存在可替代性——存在冗余信息</p>
+<h2 id="定理2">定理2</h2>
+<p>如果向量组<span
+class="math inline">\(\alpha_1,\alpha_2,\dots,\alpha_m\)</span>线性无关，而向量组<span
+class="math inline">\(\alpha_1,\alpha_2,\dots,\alpha_m,\beta\)</span>线性相关，则<span
+class="math inline">\(\beta\)</span>可以用<span
+class="math inline">\(\alpha_1,\alpha_2,\dots,\alpha_m\)</span>唯一线性表出</p>
+<h1 id="线性相关性的判别定理">线性相关性的判别定理</h1>
+<p>对于一个有<strong>m个向量</strong>的<strong>n维</strong>向量组，线性相关性判定来说
+<span class="math display">\[
+\begin{split}
+R：\alpha_j=\left(\matrix{a_{1},a_{2},\cdots,a_{n}}\right)^T\\
+若该向量组线性&amp;相关，则有\\
+k_1a_{1}+k_2a_2+\dots+k_na_n=&amp;0\space该方程存在非零解
+\end{split}
+\]</span> n维相当于有n个方程，即<strong>约束个数</strong></p>
+<p>m个向量相当于有m个未知数，即<strong>未知数个数</strong></p>
+<p>当向量个数大于向量维数时，方程组存在自由未知量，则必有非零解</p>
+<p>k₁,k₂，...,k ₙ为未知数</p>
+<h2 id="定理3">定理3</h2>
+<p><span class="math display">\[
+若\alpha_1,\alpha_2,...,\alpha_r线性相关，则\alpha_1,\alpha_2,\cdots,\alpha_r,\alpha_{r+1},\cdots,\alpha_m也线性相关
+\]</span></p>
+<p><strong>相关组的扩充向量组必为相关组</strong> or
+<strong>部分相关，整体相关</strong></p>
+<p>⇔</p>
+<p><strong>无关组的子向量组必为无关组</strong> or
+<strong>整体无关，部分必无关</strong></p>
+<p>向量组扩充<span
+class="math inline">\(\rightarrow\)</span>增加向量个数<span
+class="math inline">\(\rightarrow\)</span>增加未知数个数</p>
+<h3 id="推论">推论</h3>
+<p>若向量中含有零向量，则此向量组线性相关</p>
+<p>由此可知，线性无关向量组中一定不含有零向量</p>
+<h2 id="定理4">定理4</h2>
+<p>设有两个向量组 <span class="math display">\[
+\begin{split}
+R：\alpha_j&amp;=\left(\matrix{a_{1j},a_{2j},\cdots,a_{nj}}\right)^T  \space\
+(j=1,2,3,\dots,m)\\
+S：\beta_j&amp;=\left(\matrix{a_{p_1j},a_{p_2j},\cdots,a_{p_nj}}\right)^T  \space\
+(j=1,2,3,\dots,m)\\
+其中p_1p_2\dots,p_n是自然数1,2&amp;,\dots,n的某个确定的排列，则向量组R与向量组S的线性相关性相同
+\end{split}
+\]</span> 即向量组内向量相同，排放位置不同，线性相关性相同</p>
+<h2 id="定理5">定理5</h2>
+<p>设有两个向量组，它们的前r个向量对应相同 <span class="math display">\[
+\begin{split}
+S：\beta_j=\left(\matrix{a_{1j},a_{2j},&amp;\cdots,a_{rj},a_{r+1,j}}\right)^T  \space\
+(j=1,2,3,\dots,m)\\
+如果\beta_1,\beta_2,\dots,\beta_m为线性相关组，则\alpha_1,\alpha_2,\dots,\alpha_m必为线性相关&amp;组
+\end{split}
+\]</span> 方程理解：前r个方程有非零解，则再添加方程个数，方程依旧有解
+<span class="math display">\[
+\begin{split}
+把向量组\beta_1,\beta_2,\dots,\beta_m称为向量&amp;组\alpha_1,\alpha_2,\dots,\alpha_m的^”接长^“向量组\\
+而把向量组\alpha_1,\alpha_2,\dots,\alpha_m称为向&amp;量组\beta_1,\beta_2,\dots,\beta_m的^”截短^“向量组\\
+\end{split}
+\]</span></p>
+<p><strong>短的无关，长的无关</strong></p>
+<p>较少约束时无解，增加约束也无解</p>
+<p><strong>长的有关，短的有关</strong></p>
+<p>较多约束时有解，减少约束也有解</p>
+<p><strong>长短指的是向量维数，即线性方程组的方程个数</strong></p>
+<h2 id="推论-1">推论</h2>
+<p>r维向量组的每个向量添上n-r个分量，成为n维向量组.若r维向量组线性无关，则n维向量组也线性无关，即<strong>短的无关，长的无关</strong></p>
+<p>n-r次应用定理5，每次添上一个向量即可得到结论</p>
+<h2 id="定理6">定理6</h2>
+<p>向量组<span
+class="math inline">\(\alpha_1,\alpha_2,\dots,\alpha_m\)</span>线性相关的充要条件是它所构成的矩阵<span
+class="math inline">\(A=(\alpha_1,\alpha_2,\dots,\alpha_m)\)</span>的秩小于向量个数m；该向量组线性无关的充分必要条件是r(A)=m</p>
+<h3 id="推论1">推论1</h3>
+<p>n个n维向量线性无关的充分必要条件是它们构成的方阵的行列式不为0</p>
+<h3 id="推论2">推论2</h3>
+<p>当m&gt;n时，m个n维向量<span
+class="math inline">\(\alpha_1,\alpha_2,\dots,\alpha_m\)</span>一定线性相关</p>
+<p>向量个数（未知量个数）&gt;向量维数（方程个数），则必有自由未知量的产生</p>
+<h1 id="向量组的秩">向量组的秩</h1>
+<h2 id="定义6-向量组等价">定义6 向量组等价</h2>
+<p>设有两个n维向量组<span
+class="math inline">\(R:\{\alpha_{1},\alpha_{2},\cdots,\alpha_{r}\}\)</span>，<span
+class="math inline">\(S：\{\beta_{1},\beta_{2},\cdots,\beta_{s}\}\)</span></p>
+<p>若向量组R中的每一个向量<span
+class="math inline">\(\alpha_i\)</span>都可以由向量组S中的向量<span
+class="math inline">\(\beta_{1},\beta_{2},\cdots,\beta_{s}\)</span>线性表出，则称向量组R可以由向量组S线性表出，若向量组S也可以由向量组R线性表出，那则称这两个向量组等价</p>
+<p>可以将向量组R由向量组S线性表出记为：<strong>R=SK</strong>，K为系数矩阵，K为r*s的矩阵</p>
+<p>向量组之间的线性表出关系具有传递性</p>
+<p>向量组之间的等价关系具有：<strong>反身性，对称性，传递性</strong></p>
+<h2 id="定义7-向量组的秩">定义7 向量组的秩</h2>
+<p>若T是由若干个（有限个或无限多个）向量组成的向量组。若存在T的一个部分组<span
+class="math inline">\(\alpha_1,\alpha_2,\dots,\alpha_r\)</span>满足以下条件：</p>
+<p>(1)<span
+class="math inline">\(\alpha_1,\alpha_2,\dots,\alpha_r\)</span>线性无关</p>
+<p>(2)对于任意一个向量<span class="math inline">\(\beta\in
+T\)</span>，向量组<span
+class="math inline">\(\beta,\alpha_1,\alpha_2,\dots,\alpha_r\)</span>都线性相关</p>
+<p>则称<span
+class="math inline">\(\alpha_1,\alpha_2,\dots,\alpha_r\)</span>为T的一个极大线性无关组向量组，简称为极大无关组.极大线性无关组所含向量的个数r称为向量组T的秩</p>
+<p>只含零向量的向量组没有极大线性无关组，规定它的秩为0</p>
+<h2 id="定理7">定理7</h2>
+<p>向量组T与它的一个极大线性无关组等价，因而T的任意两个极大无关组等价</p>
+<p>R<sup>n</sup>的任意n个线性无关向量都构成R<sup>n</sup>中的极大无关组</p>
+<h2 id="定理8">定理8</h2>
+<p>设向量组R的秩为r，向量组S的秩为s，若向量组R可由向量组S线性表出，则必有<span
+class="math inline">\(r\leqslant s\)</span></p>
+<h3 id="推论1-1">推论1</h3>
+<p>等价的向量组必有相同的秩</p>
+<h3 id="推论2-1">推论2</h3>
+<p>任意两个线性无关的等价向量组所含向量个数相等</p>
+<p>等价的向量组一定由相同的秩，但秩相等的两个向量组未必等价</p>
+<h2 id="向量组的秩-1">向量组的秩</h2>
+<p>设A是一个<span class="math inline">\(m\times n\)</span>矩阵</p>
+<p><span class="math inline">\(A=\space\left(
+\begin{matrix}
+a_{11} &amp; a_{12} &amp;\dots &amp;a_{1n}\\
+a_{21} &amp; a_{22} &amp;\dots &amp;a_{2n}\\
+\vdots &amp;\vdots &amp; &amp;\vdots\\
+a_{m1} &amp; a_{m2} &amp;\dots &amp;a_{mn}\end{matrix}
+\right)\space\)</span></p>
+<p>将矩阵A分别按行分块和按列分块</p>
+<p><span class="math inline">\(A=\space\left(
+\begin{matrix}
+\alpha_1\\
+\alpha_2\\
+\vdots\\
+\alpha_m
+\end{matrix}
+\right)，其中\alpha_i=
+\left(
+\begin{matrix}
+a_{i1},a_{i2},\dots,a_{in}
+\end{matrix}
+\right)
+(i=1,2,\dots,m)\)</span></p>
+<p><span class="math inline">\(A=\left(
+\begin{matrix}
+\beta_1,\beta_2,\dots,\beta_n
+\end{matrix}
+\right)
+其中，\beta_j=
+\left(
+\begin{matrix}
+a_{1j}\\
+a_{2j}\\
+\vdots \\
+a_{mj}
+\end{matrix}
+\right)
+(j=1,2,\dots,n)\)</span></p>
+<p>于是矩阵A对应两个向量组（分别为n维行向量组和m维列向量组），<span
+class="math inline">\(M=\left(
+\begin{matrix}
+\alpha_1,
+\alpha_2,
+\cdots,
+\alpha_m
+\end{matrix}
+\right),N=\left(
+\begin{matrix}
+\beta_1,\beta_2,\cdots,\beta_n
+\end{matrix}
+\right)\)</span></p>
+<p>称M为A的行向量组，N为A的列向量组</p>
+<h2 id="定义8">定义8</h2>
+<p>矩阵A的行向量组M的秩称为A的行秩；列向量组N的秩称为A的列秩</p>
+<h2 id="定理9">定理9</h2>
+<p>矩阵的秩等于它的列秩，也等于它的行秩</p>
+<p>一般地，将一个向量组<span
+class="math inline">\(\begin{matrix}\alpha_1,\alpha_2,\cdots,\alpha_m\end{matrix}\)</span>的秩记作秩<span
+class="math inline">\(\left(\begin{matrix}\alpha_1,\alpha_2,\cdots,\alpha_m\end{matrix}\right)\)</span></p>
+<h2 id="定理10">定理10</h2>
+<p>矩阵A经过<strong>初等行变换</strong>化为矩阵B，则A的列向量组的任一部分组与B的列向量组的对应部分组有相同的线性组合关系</p>
+<h2 id="求向量组的秩">求向量组的秩</h2>
+<p>(1)把向量组排成矩阵</p>
+<p>(2)把矩阵化成行阶梯形矩阵</p>
+<p>(3)把矩阵化为行最简形矩阵（用极大无关组向量表示其他向量）</p>
+<p>由定理10可知，初等行变化后对应部分组具有相同的线性组合关系，便能得到线性表示关系</p>
+<h1 id="向量空间">向量空间</h1>
+<h2 id="定义9">定义9</h2>
+<p>设V是n维向量构成的非空集合，且满足</p>
+<p>(1)若<span class="math inline">\(\alpha,\beta\in V,\)</span> 则 <span
+class="math inline">\(\alpha+\beta \in
+V\)</span>（V对向量的加法封闭）</p>
+<p>(2)若<span class="math inline">\(\forall \alpha \in V\)</span>，及
+<span class="math inline">\(\forall k \in R\)</span>，都有<span
+class="math inline">\(k\alpha \in
+V\)</span>（V对向量的数乘运算封闭）</p>
+<p>则称集合V是<strong>向量空间</strong></p>
+<p>上述两个条件可以合并为 <span
+class="math inline">\(\forall\alpha,\beta\in V,\forall k,l \in
+R,都有k\alpha+l\beta\in V\)</span></p>
+<p>全体n为行（列）向量的集合也构成向量空间，记为R<sup>n</sup></p>
+<h2 id="定义10">定义10</h2>
+<p>设V<sub>1</sub>和V<sub>2</sub>都是向量空间，且<span
+class="math inline">\(V_1\subseteq V_2\)</span>，则称<span
+class="math inline">\(V_1\)</span>是<span
+class="math inline">\(V_2\)</span>的子空间</p>
+<p>特别地，V={0}是向量空间，称为零空间</p>
+<p>在任意一个向量空间V中一定包含零向量</p>
+<p>由V不是空集得到<span class="math inline">\(\forall \alpha \in
+V,满足-\alpha=(-1)\alpha\in V\)</span> 于是由封闭性知<span
+class="math inline">\(\alpha+(-1)\alpha=0\in V\)</span></p>
+<p>我们可以把零向量称为向量空间的“原点”</p>
+<h2 id="生成空间">生成空间</h2>
+<p>设<span class="math inline">\(\alpha,\beta\)</span>
+是两个已知的n维向量，集合<span class="math inline">\(V=\{x=\lambda
+\alpha+\mu\beta|\lambda,\mu \in R\}\)</span>是一个向量空间</p>
+<p>这个向量空间称为由向量<span
+class="math inline">\(\alpha,\beta\)</span>生成的向量空间</p>
+<p>一般地，任意取定向量组<span
+class="math inline">\(\alpha_1,\alpha_2,\cdots,\alpha_m\in
+R^n\)</span>，则可证明由它们的线性组合全体所组成的向量集合</p>
+<p><span
+class="math inline">\(V=\{\alpha=k_1\alpha_1,k_2\alpha_2,\cdots,k_m\alpha_m|\forall
+k_i\in R,j=1,2,\cdots,m\}\)</span></p>
+<p>是<span class="math inline">\(R^n\)</span>的一个向量空间，记为<span
+class="math inline">\(V=L(\alpha_1,\alpha_2,\cdots,\alpha_n)\)</span>，并称它为由<span
+class="math inline">\(\alpha_1,\alpha_2,\cdots,\alpha_m\)</span><strong>生成的向量空间</strong></p>
+<h2 id="定义11-基基向量维数">定义11 基，基向量，维数</h2>
+<p>设V是<span
+class="math inline">\(R^n\)</span>的一个子空间。若V中的向量组<span
+class="math inline">\(\alpha_1,\alpha_2,\cdots,\alpha_r\)</span>满足：</p>
+<p>(1)<span
+class="math inline">\(\alpha_1,\alpha_2,\cdots,\alpha_r\)</span>线性无关</p>
+<p>(2)V中的任意一个向量<span
+class="math inline">\(\alpha\)</span>都可以由向量组<span
+class="math inline">\(\alpha_1,\alpha_2,\cdots,\alpha_r\)</span>线性表出：</p>
+<p>即存在常数<span class="math inline">\(k_1,k_2,\cdots,k_r\in
+R\)</span>使得<span
+class="math inline">\(\alpha=k_1\alpha_1,k_2\alpha_2,\cdots,k_r\alpha_r\)</span>，则称向量组)<span
+class="math inline">\(\alpha_1,\alpha_2,\cdots,\alpha_r\)</span>为向量空间V的一个<strong>基</strong>，</p>
+<p>其中每个<span
+class="math inline">\(\alpha_i(i=1,2,\cdots,r)\)</span>都称为<strong>基向量</strong>.基中所含向量的个数r称为V的<strong>维数</strong>，记为<span
+class="math inline">\(dimV=r\)</span>，并称V为r维向量空间</p>
+<p>零空间的维数为0</p>
+<p>向量空间V的一个基实际上就是向量集合V中的一个<strong>极大线性无关组</strong>，V的维数就是极大无关组中所含向量的个数，也即V的秩</p>
+<p><span class="math inline">\(R^n\)</span>
+中任意n个线性无关的向量都是<span
+class="math inline">\(R^n\)</span>的一个基</p>
+<p>R<sup>3</sup>中过原点的直线是一维子空间，过原点的屏平面是二维子空间</p>
+<p>由向量组生成的线性子空间的<strong>维数</strong>即为该向量组的秩，其<strong>基</strong>为该向量组的<strong>一个极大线性无关组</strong></p>
+<h2 id="定义12">定义12</h2>
+<p>设<span
+class="math inline">\(\alpha_1,\alpha_2,\cdots,\alpha_n\)</span>是n维向量空间的一个基，向量空间V中的任意一个向量<span
+class="math inline">\(\alpha\)</span> 都可唯一地表示为</p>
+<p><span
+class="math inline">\(\alpha=x_1\alpha_1+x_2\alpha_2+\cdots+x_n\alpha_r\)</span>，</p>
+<p><span
+class="math inline">\(\alpha_i(i=1,2,\cdots,n)\)</span>的系数构成的有序数组<span
+class="math inline">\(x_1,x_2,\cdots,x_n\)</span> 称为向量<span
+class="math inline">\(\alpha\)</span> 在基<span
+class="math inline">\(\alpha_1,\alpha_2,\cdots,\alpha_n\)</span>下的<strong>坐标</strong></p>
+<p>同一个向量在不同的下有不同的坐标向量。求坐标向量的方法就是求表出系数，也就是解线性方程组</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linear-Algebra/" rel="tag"># Linear Algebra</a>
+              <a href="/tags/vector/" rel="tag"># vector</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/archives/ab5f57f8.html" rel="prev" title="模运算以及乘法逆元">
+                  <i class="fa fa-angle-left"></i> 模运算以及乘法逆元
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/archives/767cd5d9.html" rel="next" title="特征值与特征向量">
+                  特征值与特征向量 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Sa1geChen</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js","integrity":"sha256-mm3Re3y7xlvh+yCD+l/Zs1d+PU0AEad93MkWvljfm/s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
