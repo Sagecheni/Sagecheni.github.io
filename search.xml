@@ -2913,1179 +2913,6 @@ class="math inline">\(\alpha_1,\alpha_2,\cdots,\alpha_n\)</span>下的<strong>�
       </tags>
   </entry>
   <entry>
-    <title>多元函数微分学</title>
-    <url>/archives/58a6f505.html</url>
-    <content><![CDATA[<h1 id="偏导数">偏导数</h1>
-<p>​ 令一个自变量固定，研究一个自变量的变化率</p>
-<blockquote>
-<p>定义（偏导数）：设函数z=f(x,y)在点<span
-class="math inline">\((x_0,y_0)\)</span>的某一邻域U<span
-class="math inline">\((x_0,y_0)\)</span>内有定义，当自变量y固定在<span
-class="math inline">\(y=y_0\)</span>,而x在<span
-class="math inline">\(x_0\)</span>有改变量<span
-class="math inline">\(\Delta x,(x_0+\Delta x,y_0)\in
-U(x_0,y_0)\)</span>时，相应地，函数f有改变量 <span
-class="math display">\[
-f(x_0+\Delta x,y_0)-f(x_0,y_0)
-\]</span> 如果极限 <span class="math display">\[
-\lim _{\Delta x\to 0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x}
-\]</span> 存在，则称此极限值为函数<span
-class="math inline">\(z=f(x,y)\)</span>在点<span
-class="math inline">\((x_0,y_0)\)</span>处对x的偏导数，记作 <span
-class="math display">\[
-f_x(x_0,y_0),\frac{\partial f(x_0,y_0)}{\partial
-x},z_x(x_0,y_0)或\frac{\partial z}{\partial x} |_{(x_0,y_0)}
-\]</span> 即 <span class="math display">\[
-f_x(x_0,y_0)=\frac{\partial f(x_0,y_0)}{\partial x}=\lim _{\Delta x\to
-0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x}
-\]</span> <span id="more"></span> ​ 如果二元函数<span
-class="math inline">\(z=f(x,y)\)</span>在点<span
-class="math inline">\((x_0,y_0)\)</span>处对x与y的偏导数均存在，那么称<span
-class="math inline">\(f(x,y)\)</span>在<span
-class="math inline">\((x_0,y_0)\)</span>处可偏导.</p>
-</blockquote>
-<p>​ 把其中一个自变量固定，对另一个自变量求导.</p>
-<p>​ <strong>注意，可偏导不一定可连续</strong></p>
-<p>​
-偏导只能保证当点(x,y)分别沿平行于x轴和y轴两个<strong>特殊路径</strong>趋于点<span
-class="math inline">\((x_0,y_0)\)</span>时，<span
-class="math inline">\(f(x,y)\to f(x_0,y_0)\)</span>，不能保证当点<span
-class="math inline">\((x,y)\)</span>以<strong>任意路径和方式</strong>趋于点<span
-class="math inline">\((x_0,y_0)\)</span>时，都有<span
-class="math inline">\(f(x,y)\to f(x_0,y_0)\)</span>,所以不能保证<span
-class="math inline">\(f(x,y)\)</span>在点<span
-class="math inline">\((x_0,y_0)\)</span>连续</p>
-<h2 id="几何意义">几何意义</h2>
-<p>​ 固定y，即<span
-class="math inline">\(y=y_0\)</span>的平面对函数曲面的截面，对x求导，即得到截面的函数曲线的斜率</p>
-<p>​ <img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230418163204860.png" /></p>
-<h2 id="notes">Notes</h2>
-<p>​ 对于n元函数求偏导，也是固定n-1个变量，对剩余的变量求偏导</p>
-<h1 id="全微分">全微分</h1>
-<p>​ 一元函数的微分：对于一元函数<span
-class="math inline">\(f:U(x_0)\subseteq R \to
-R\)</span>，若存在一个关于<span class="math inline">\(\Delta
-x\)</span>的线性函数<span class="math inline">\(L(\Delta x)=a\Delta
-x\)</span>，使得函数的改变量可表示为: <span class="math display">\[
-f(x_0+\Delta x)-f(x_0)=a \Delta x+o(\Delta x)
-\]</span> ​ 其中常数<span class="math inline">\(a\)</span>与<span
-class="math inline">\(\Delta x\)</span>无关，<span
-class="math inline">\(o(\Delta x)\)</span>是当<span
-class="math inline">\(\Delta x\to 0\)</span>时关于<span
-class="math inline">\(\Delta
-x\)</span>的高阶无穷小，则称f在点x<sub>0</sub>处可微，且称函数改变量的线性主部<span
-class="math inline">\(a\Delta x\)</span>为f在x<sub>0</sub>处的微分.</p>
-<p>​ 由此我们能得到二元函数的全微分：</p>
-<p>​ 设二元函数z=f(x,y)在点<span class="math inline">\((x_0,y_0)\)</span>
-的某邻域<span
-class="math inline">\(U(x_0,y_0)\)</span>内有定义.如果对于<span
-class="math inline">\((x_0+\Delta x,y_0+\Delta y)\in
-U(x_0,y_0)\)</span>，函数f在<span
-class="math inline">\((x_0,y_0)\)</span>处的改变量 <span
-class="math display">\[
-\Delta z=f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)
-\]</span> ​ 可以表示为: <span class="math display">\[
-\Delta z=a_1\Delta x+a_2\Delta y+o(p)
-\]</span> ​ 其中，<span
-class="math inline">\(\alpha_1,\alpha_2\)</span>是与<span
-class="math inline">\(\Delta x,\Delta
-y\)</span>无关的两个常数（但与一般点<span
-class="math inline">\((x_0,y_0)\)</span>有关)，<span
-class="math inline">\(p=\sqrt{(\Delta x)^2+(\Delta
-y)^2},o(p)\)</span>是当<span class="math inline">\(p\to 0(即\Delta x\to
-0,\Delta y\to 0)\)</span>时关于p的高阶无穷小，则称函数f在点<span
-class="math inline">\((x_0,y_0)\)</span>处可微，并称<span
-class="math inline">\(a_1\Delta x+a_2\Delta y\)</span> 为函数f在点<span
-class="math inline">\((x_0,y_0)\)</span>处的全微分记作<span
-class="math inline">\(dz \mid _{(x_0,y_0)}\)</span>或<span
-class="math inline">\(df(x_0,y_0)\)</span> <span class="math display">\[
-dz\mid _{(x_0,y_0)}=a_1 \Delta x+ a_2 \Delta y
-\]</span> ​ 也即是 <span class="math display">\[
-dz\mid _{(x_0,y_0)}=a_1 dx+ a_2 dy
-\]</span> ​ 当p充分小，且a<sub>1</sub>，a<sub>2</sub>不为0时，全微分<span
-class="math inline">\(dz\mid _{(x_0,y_0)}\)</span>就是函数f在<span
-class="math inline">\((x_0,y_0)\)</span>处的<strong>线性主部</strong></p>
-<h2 id="可微的必要条件">可微的必要条件</h2>
-<p>​ 设函数<span class="math inline">\(z=f(x,y)\)</span>在点<span
-class="math inline">\((x_0,y_0)\)</span>处可微，则</p>
-<ol type="1">
-<li><p>f在<span
-class="math inline">\((x_0,y_0)\)</span>处<strong>连续</strong></p></li>
-<li><p>f在<span
-class="math inline">\((x_0,y_0)\)</span>处的两个<strong>偏导数均存在</strong>，且有<span
-class="math inline">\(a_1=f_x(x_0,y_0),a_2=f_y(x_0,y_0)\)</span>即 <span
-class="math display">\[
-df(x_0,y_0)=f_x(x_0,y_0)dx+f_y(x_0,y_0)dy
-\]</span></p></li>
-</ol>
-<blockquote>
-<p>证明可微得到偏导存在：</p>
-<p>​ 由可微的定义，函数f在<span
-class="math inline">\((x_0,y_0)\)</span>处的改变量可表示为： <span
-class="math display">\[
-f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)=a_1 \Delta x+ a_2 \Delta y+o(p)
-\]</span> ​ 取<span class="math inline">\(\Delta y=0\)</span>，则有<span
-class="math inline">\(\rho=|\Delta x|\)</span>，上式变为： <span
-class="math display">\[
-f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)=a_1 \Delta x+o(|x|)
-\]</span> ​ 所以： <span class="math display">\[
-\lim _{\Delta x\to 0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta
-x}=\lim _{\Delta x\to 0}[a_1+\frac{o(|x|)}{\Delta x}]=a_1
-\]</span> ​ 即在点<span class="math inline">\((x_0,y_0)\)</span>处<span
-class="math inline">\(f(x,y)\)</span>对x的偏导数存在且<span
-class="math inline">\(f_x(x_0,y_0)=a_1\)</span></p>
-<p>​ 同理可得，当取<span class="math inline">\(\Delta
-x=0\)</span>时，可得到在该点对y的偏导数也存在且<span
-class="math inline">\(f_y(x_0,y_0)=a_2\)</span></p>
-</blockquote>
-<p>​ 当<span class="math inline">\(z=f(x,y)\)</span>在<span
-class="math inline">\(x_0=(x_0,y_0)\)</span>处可微时，f在<span
-class="math inline">\(x_0\)</span>处的改变量必可表示为： <span
-class="math display">\[
-\Delta z=f_x(x_0)\Delta x+f_y(x_0)\Delta y+o(\rho)
-\]</span> ​ 其中<span class="math inline">\(o(\rho)\)</span>是当<span
-class="math inline">\(\rho \to 0\)</span>时关于<span
-class="math inline">\(\rho\)</span>的高阶无穷小；反之，若<span
-class="math inline">\(\Delta
-z\)</span>可表示为上式，则由全微分的定义可知：<span
-class="math inline">\(f\)</span>在<span
-class="math inline">\(x_0\)</span>处可微.</p>
-<p>​ 若<span class="math inline">\(z=f(x,y)\)</span>在区域<span
-class="math inline">\(\Omega\subseteq
-R^2\)</span>的每一点处都可微，则称f是<span
-class="math inline">\(\Omega\)</span>内的可微函数，此时，有 <span
-class="math display">\[
-dz=f_xdx+f_ydy
-\]</span> ​
-多元函数在一点处连续而且所有的偏导数都存在也不能保证其在该点可微.</p>
-<h2 id="可微的充分条件">可微的充分条件</h2>
-<p>​ 设函数<span class="math inline">\(z=f(x,y)\)</span>在点<span
-class="math inline">\((x_0,y_0)\)</span>的某邻域有定义，若<span
-class="math inline">\(f(x,y)\)</span>的两个偏导数均在点<span
-class="math inline">\((x_0,y_0)\)</span>处连续，则该函数在点<span
-class="math inline">\((x_0,y_0)\)</span>处可微.（<strong>即偏导数存在且连续</strong>）</p>
-<blockquote>
-<p>证明：</p>
-<p>​ 证明可微，证明<span class="math inline">\(\Delta z=f_x(x_0)\Delta
-x+f_y(x_0)\Delta y+o(p)\)</span>成立即可</p>
-<p>​ 首先通过插项的方法把二元函数的改变量转化为一元函数的改变量</p>
-<p><span class="math display">\[\begin{align*}
-
-\Delta z&amp;=f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)\\&amp;=
-[f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0+\Delta y)]+[f(x_0,y_0+\Delta
-y)-f(x_0,y_0)]
-
-\end{align*}\]</span></p>
-<p>​
-上式右端中每一方括号内都是一元函数的改变量，由Lagrange微分中值公式，存在<span
-class="math inline">\(\theta
-_i(0&lt;\theta_i&lt;1,i=1,2)\)</span>使得上式化为： <span
-class="math display">\[
-\Delta z=f_x(x_0+\theta_1 \Delta x,y_0+\Delta y)\Delta
-x+f_y(x_0,y_0+\theta_2\Delta y)\Delta y
-\]</span> ​ 由于<span
-class="math inline">\(f_x(x,y)在(x_0,y_0)\)</span>连续，有： <span
-class="math display">\[
-  \lim_{\rho \to 0}f_x(x_0+\theta_1\Delta x,y_0+\Delta y)=f_x(x_0,y_0)
-\]</span> ​ 其中<span class="math inline">\(\rho =\sqrt{\Delta x^2+\Delta
-y^2}\)</span>，因此有 <span class="math display">\[
-f_x(x_0+\theta_1\Delta x,y_0+\Delta y)=f_x(x_0,y_0)+\alpha_1(\rho)
-\]</span> ​ 其中<span
-class="math inline">\(\alpha_1(\rho)\)</span>是当<span
-class="math inline">\(\rho \to 0\)</span>时的无穷小.同理可得： <span
-class="math display">\[
-  f_y(x_0,y_0+\theta_2\Delta y)=f_y(x_0,y_0)+\alpha_2(\rho)
-\]</span> ​ 其中<span
-class="math inline">\(\alpha_2(\rho)\)</span>是当<span
-class="math inline">\(\rho \to 0\)</span>时的无穷小.</p>
-<p>​ 最后得到： <span class="math display">\[
-\Delta z=f_x(x_0,y_0)\Delta x+f_y(x_0,y_0)\Delta y+a_1(\rho)\Delta
-x+a_2(\rho) \Delta y
-\]</span> ​ 由： <span class="math display">\[
-\left| \frac{a_1(\rho)\Delta x+a_2(\rho)\Delta y}{\rho}
-\right| \le |a_1(\rho)|+|a_2(\rho)|
-\]</span> ​ 易知： <span class="math display">\[
-\lim _{\rho \to 0}\frac{a_1(\rho)\Delta x+a_2(\rho)\Delta y}{\rho}=0
-\]</span> ​ 所以： <span class="math display">\[
-a_1(\rho)\Delta x+a_2(\rho)\Delta y=o(\rho)
-\]</span> ​ 证毕</p>
-</blockquote>
-<p>​ f的所有偏导数均在点<span
-class="math inline">\((x_0,y_0)\)</span>处连续时，f必在点<span
-class="math inline">\((x_0,y_0)\)</span>处可微，但可微函数的偏导数未必连续.</p>
-<h2 id="n元函数的全微分">n元函数的全微分</h2>
-<p>​ 设n元函数<span
-class="math inline">\(u=f(\mathbf{x})=f(x_1,x_2,\cdots,x_n)\)</span>在点<span
-class="math inline">\(\mathbf{x_0}=(x_{0.1},x_{0.2},\cdots,x_{0.n})\in
-R^n\)</span>的邻域<span class="math inline">\(U(\mathbf{x_0})\subseteq
-R^n\)</span>内有定义，如果<span class="math inline">\(\forall
-\mathbf{x=x_0+\Delta x\in}U(\mathbf{x_0})\)</span>,存在一组与<span
-class="math inline">\(\mathbf{\Delta x}=(\mathbf{\Delta
-x_1,\cdots,\Delta x_n})\)</span>无关的常数<span
-class="math inline">\(a_1,a_2,\cdots ,a_n\)</span>，使得函数f在<span
-class="math inline">\(\mathbf{x_0}\)</span>处的改变量 <span
-class="math display">\[
-\Delta u=f(\mathbf{x_0+\Delta x})-f(\mathbf{x_0})
-\]</span> ​ 可表示为： <span class="math display">\[
-\Delta u=a_1\Delta \mathbf{x_1}+\cdots +a_n\Delta \mathbf{x_n}+o(\rho)
-\]</span> ​ 其中<span class="math inline">\(o(\rho)\)</span>是当<span
-class="math inline">\(\rho=\left \| \Delta x \right \| \to
-0\)</span>时关于<span
-class="math inline">\(\rho\)</span>的高阶无穷小，则称<span
-class="math inline">\(f\)</span>在点<span
-class="math inline">\(\mathbf{x_0}\)</span>可微，且称关于<span
-class="math inline">\(\Delta
-x_1,\cdots,\Delta            x_n\)</span>的线性函数 <span
-class="math display">\[
-a_1\mathbf{\Delta x_1}+\cdots+a\mathbf{\Delta x_n}
-\]</span> ​ 为<span class="math inline">\(f\)</span>在<span
-class="math inline">\(\mathbf{x_0}\)</span>处全微分，记为<span
-class="math inline">\(df(\mathbf{x_0})\)</span>，或<span
-class="math inline">\(du |_{x=x_0}\)</span>，即 <span
-class="math display">\[
-df(\mathbf{x_0})=a\mathbf{\Delta x_1}+\cdots+a_n\mathbf{\Delta x_n}
-\]</span> ​ 同二元函数一样，常记<span
-class="math inline">\(\mathbf{x_i}=dx_i\)</span>，于是<span
-class="math inline">\(f\)</span>的全微分也常写成： <span
-class="math display">\[
-df(\mathbf{x_0})=\sum _{i=1} ^n a_idx_i
-\]</span></p>
-<h2 id="近似计算和误差估计">近似计算和误差估计</h2>
-<p>​ 局部线性逼近（局部线性化）</p>
-<p>​ 例题：</p>
-<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230419183945211.png" /></p>
-<p>​ 误差估计：</p>
-<p>​ 乘积的相对误差等于各个因子的相对误差之和</p>
-<p>​ 商的相对误差等于分子和分母的相对误差之和</p>
-<h1 id="方向导数和梯度">方向导数和梯度</h1>
-<h2 id="方向导数">方向导数</h2>
-<p>​ 设点<span class="math inline">\(\mathbf{x_0}\in
-R^2,\mathbf{l}\)</span>是平面上的某一向量，其单位向量记为<span
-class="math inline">\(\mathbf{e_l},f:U(\mathbf{x_0})\subseteq R^2 \to
-R\)</span>是一个二元函数.我们讨论<span
-class="math inline">\(f\)</span>在点<span
-class="math inline">\(\mathbf{x_0}\)</span>处沿<span
-class="math inline">\(l\)</span>方向的变化率（记作<span
-class="math inline">\(\frac{\partial f}{\partial
-\mathbf{l}}|_{\mathbf{x_0}}\)</span>）.过点<span
-class="math inline">\(\mathbf{x_0}\)</span>作与<span
-class="math inline">\(\mathbf{l}\)</span>平行的直线L，它的方程是 <span
-class="math display">\[
-\mathbf{x=x_0+}t\mathbf{e_l},t\in R
-\]</span> ​ <span class="math inline">\(f(\mathbf{x})\)</span>在点<span
-class="math inline">\(\mathbf{(x_0)}\)</span>处沿<span
-class="math inline">\(l\)</span>方向的变化率，就是当点<span
-class="math inline">\(x\)</span>在直线<span
-class="math inline">\(\mathbf l\)</span>上变动时<span
-class="math inline">\(f(x)\)</span>在点<span
-class="math inline">\(\mathbf{x_0}\)</span>处的变化率.在点<span
-class="math inline">\(\mathbf{x_0}\)</span>和<span
-class="math inline">\(\mathbf{e_l}\)</span>固定的情况下，当<span
-class="math inline">\(\mathbf{x}\)</span>在L上变动时，函数 <span
-class="math display">\[
-f(\mathbf{x})=f(\mathbf{x_0+}t\mathbf{e_l})
-\]</span> ​ 实际上是自变量t的一元函数，记作 <span class="math display">\[
-F(t)=f(\mathbf{x_0+}t\mathbf{e_l})
-\]</span> ​ 因此，<span
-class="math inline">\(f(\mathbf{x})\)</span>在点<span
-class="math inline">\(\mathbf{(x_0)}\)</span>处沿<span
-class="math inline">\(l\)</span>方向的变化率也就是一元函数F(t)在t=0处的导数，即
-<span class="math display">\[
-\frac{\partial f}{\partial \mathbf {l} }|_{ \mathbf{x_0}
-}=\frac{dF(t)}{dt}|_{ {t=0} }=\lim _{t \to 0}\frac{F(t)-F(0)}{t}=\lim
-_{t \to 0}\frac{f(\mathbf{x_0+}t\mathbf{e_l})-f(\mathbf{x_0})}{t}
-\]</span> ​ 由此，我们给出以下定义：</p>
-<p>​ 设点<span class="math inline">\(\mathbf{x_0}\in R^2\)</span>,<span
-class="math inline">\(\mathbf
-l\)</span>是平面上的某一向量，与l同向的单位向量为<span
-class="math inline">\(\mathbf{e_l}\)</span>，二元函数f定义在<span
-class="math inline">\(\mathbf{x_0}\)</span>的邻域<span
-class="math inline">\(U(\mathbf{x_0})\subseteq R^2\)</span>内，在<span
-class="math inline">\(U(\mathbf{x_0})\)</span>内让自变量<span
-class="math inline">\(\mathbf{x}\)</span>由<span
-class="math inline">\(\mathbf{x_0}\)</span>沿与<span
-class="math inline">\(\mathbf{e_l}\)</span>的平行的直线变到<span
-class="math inline">\(\mathbf{x_0+}t\mathbf{e_l}\)</span>,从而函数值有对应的改变量<span
-class="math inline">\(f(\mathbf{x_0+}t\mathbf{e_l})-f(\mathbf{x_0})\)</span>.若
-<span class="math display">\[
-\lim _{t \to 0}\frac{f(\mathbf{x_0+}t\mathbf{e_l})-f(\mathbf{x_0})}{t}
-\]</span> ​ 存在，则称该极限值为f在点<span
-class="math inline">\(\mathbf{x_0}\)</span>处沿<span
-class="math inline">\(\mathbf l\)</span>方向的方向导数，记作<span
-class="math inline">\(\frac{\partial f(\mathbf{x_0})}{\partial
-\mathbf{l}}|_{\mathbf{x_0}}\)</span>，或<span
-class="math inline">\(\frac{\partial f}{\partial
-\mathbf{l}}|_{\mathbf{x_0}}\)</span>，即 <span class="math display">\[
-\frac{\partial f}{\partial \mathbf{l}}|_{\mathbf{x_0}}=\lim _{t \to
-0}\frac{f(\mathbf{x_0+}t\mathbf{e_l})-f(\mathbf{x_0})}{t}
-\]</span></p>
-<ol type="1">
-<li><p>定义中的t的绝对值就是两点<span
-class="math inline">\(\mathbf{x_0}\)</span>与<span
-class="math inline">\(\mathbf{x_0+}t\mathbf{e_l}\)</span>之间的距离d，事实上，注意到<span
-class="math inline">\(\mathbf{e_l}\)</span>单位向量，于是有 <span
-class="math display">\[
-d=\left \| (\mathbf{x_0+}t\mathbf{e_l})-\mathbf{x_0} \right \|=\left \|
-t\mathbf{e_l} \right \| =|t|\| \mathbf{e_l} \|=|t|
-\]</span></p></li>
-<li><p>方向导数实际上是函数f在<span
-class="math inline">\(\mathbf{x_0}\)</span>处沿l方向关于距离的变化率</p></li>
-</ol>
-<h3 id="几何意义-1">几何意义</h3>
-<p>​ 过直线<span
-class="math inline">\(L:\mathbf{x=x_0+}t\mathbf{e_l}\)</span>作平行于z轴的平面<span
-class="math inline">\(\pi\)</span>，它与曲面<span
-class="math inline">\(z=f(x,y)\)</span>所交的曲线记为C.取一点<span
-class="math inline">\(P_0\)</span>，曲线C在<span
-class="math inline">\(P_0\)</span>仅有唯一的切线T，它关于l方向的斜率就是方向导数<span
-class="math inline">\(\frac{\partial f}{\partial
-\mathbf{l}}|_{\mathbf{x_0}}\)</span></p>
-<h3 id="方向导数存在条件及计算公式">方向导数存在条件及计算公式</h3>
-<p>​ 若<span class="math inline">\(f(x,y)\)</span>在点<span
-class="math inline">\((x_0,y_0)\)</span>可微，则函数f在点<span
-class="math inline">\((x_0,y_0)\)</span>沿任意l方向的方向导数均存在，且
-<span class="math display">\[
-\frac{\partial f}{\partial
-\mathbf{l}}|_{\mathbf{(x_0,y_0)}}=f_x(x_0,y_0)\cos \alpha
-+f_y(x_0,y_0)\cos \beta
-\]</span> ​ 其中<span
-class="math inline">\(l\)</span>方向上的单位向量是<span
-class="math inline">\(\mathbf{e_l}=(\cos\alpha,\cos \beta)\)</span></p>
-<blockquote>
-<p>证明：</p>
-<p>​ 当<span class="math inline">\(f(x,y)\)</span>在点<span
-class="math inline">\((x_0,y_0)\)</span>可微时，函数<span
-class="math inline">\(f(x,y)\)</span>在<span
-class="math inline">\((x_0,y_0)\)</span>处的改变量为： <span
-class="math display">\[
-f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)=a_1 \Delta x+a _2 \Delta
-y+o(\rho)
-\]</span> ​ 其中<span
-class="math inline">\(a_1=f_x(x_0,y_0)\)</span>,<span
-class="math inline">\(a=f_y(x_0,y_0)\)</span>.取<span
-class="math inline">\(\Delta x=t\cos \alpha,\Delta y=t\cos
-\beta,\mathbf{x_0}=(x_0,y_0)\)</span>,则有<span
-class="math inline">\(\rho=\sqrt{\Delta x^2+\Delta
-y^2}=|t|\)</span>,且</p>
-<p><span class="math display">\[\begin{align*}
-
-&amp;f(x_0+t\cos \alpha,y_0+t\cos \beta)-f(x_0,y_0)\\
-
-&amp;=f(\mathbf{x_0}+t\mathbf{e_l})-f(\mathbf{x_0})=a_1t\cos \alpha+a_2
-t\cos \beta+o(\rho)
-
-\end{align*}\]</span></p>
-<p>于是由方向导数的定义式有：</p>
-<p><span class="math display">\[\begin{align*}
-\frac{\partial f}{\partial \mathbf{l}}|_{\mathbf{(x_0,y_0)}}&amp;=\lim
-_{t\to 0}\frac{f(\mathbf{x_0+}t\mathbf{e_l})-f(\mathbf{x_0})}{t}\\
-&amp;=\lim _{t\to 0}(a_1\cos
-\alpha+a_2\cos\beta+\frac{o(\rho)}{t})=a_1\cos \alpha+a_2\cos \beta
-+\lim _{t \to 0}\frac{o(|t|)}{t}\\
-&amp;=a_1\cos \alpha+a_2 \cos \beta
-\end{align*}\]</span></p>
-<p>​ 证毕</p>
-</blockquote>
-<h2 id="梯度">梯度</h2>
-<p>​ 梯度即某点最大的方向导数</p>
-<p>​ 定义：设二元函数<span
-class="math inline">\(z=f(x,y)\)</span>在点<span
-class="math inline">\((x_0,y_0)\)</span>处可微，则<span
-class="math inline">\(f\)</span>在该点的梯度一定存在，并且： <span
-class="math display">\[
-\mathbf{grad}f(x_0,y_0)=f_x(x_0,y_0)\mathbf{i}+f_y(x_0,y_0)\mathbf j
-\]</span></p>
-<blockquote>
-<p>证明：</p>
-<p>​ <span class="math inline">\(f(x,y)\)</span>在点<span
-class="math inline">\((x_0,y_0)\)</span>处可微，则<span
-class="math inline">\(f\)</span>在点<span
-class="math inline">\((x_0,y_0)\)</span>处沿<span
-class="math inline">\(\mathbf{e_l}=(\cos \alpha,\cos \beta
-)\)</span>的方向导数必定存在，并且 <span class="math display">\[
-\frac{\partial f}{\partial
-\mathbf{l}}|_{\mathbf{(x_0,y_0)}}=f_x(x_0,y_0)\cos
-\alpha+f_y(x_0,y_0)\cos \beta
-\]</span> ​ 作向量<span class="math inline">\(\mathbf
-g=(f_x(x_0,y_0),f_y(x_0,y_0))\)</span>,下面证明<span
-class="math inline">\(\mathbf g\)</span>就是<span
-class="math inline">\(f\)</span>在点<span
-class="math inline">\((x_0,y_0)\)</span>处的梯度</p>
-<p>​ 由于： <span class="math display">\[
-\frac{\partial f}{\partial \mathbf{l}}|_{\mathbf{(x_0,y_0)}}=&lt;\mathbf
-g,\mathbf {e_l}&gt;=\|\mathbf g\|\cos (\mathbf g,\mathbf{e_l})\le
-\|\mathbf g\|
-\]</span> ​ 方向导数<span class="math inline">\(\frac{\partial
-f}{\partial \mathbf{l}}|_{\mathbf{(x_0,y_0)}}\)</span>等于梯度在<span
-class="math inline">\(\mathbf l\)</span>方向的<strong>投影</strong></p>
-<p>​ 所以，当<span class="math inline">\(\cos (\mathbf
-g,\mathbf{e_l})=1\)</span>时，即<span
-class="math inline">\(\mathbf{e_l}\)</span>与<span
-class="math inline">\(\mathbf g\)</span>同向时，<span
-class="math inline">\(\frac{\partial f}{\partial
-\mathbf{l}}|_{\mathbf{(x_0,y_0)}}=\|\mathbf g\|\)</span>.</p>
-<p>​ 也就是说，向量<span class="math inline">\(\mathbf
-g\)</span>的方向是函数<span class="math inline">\(f\)</span>在点<span
-class="math inline">\((x_0,y_0)\)</span>处取得方向导数最大值的方向，<span
-class="math inline">\(\mathbf g\)</span>的模就是<span
-class="math inline">\(f\)</span>在该点方向导数的最大值，因此： <span
-class="math display">\[
-\mathbf g=f_x(x_0,y_0)\mathbf{i}+f_y(x_0,y_0)\mathbf
-j=\mathbf{grad}f(x_0,y_0)
-\]</span> ​</p>
-</blockquote>
-<p>​ 函数<span class="math inline">\(f\)</span>在<span
-class="math inline">\((x_0,y_0)\)</span>处的梯度可用<strong>nabla算符</strong><span
-class="math inline">\(\nabla\)</span>表示（也称向量微分算子），记作<span
-class="math inline">\(\nabla f(x_0,y_0)\)</span>其中符号<span
-class="math inline">\(\nabla =(\frac{\partial f(x_0,y_0)}{\partial
-x},\frac{\partial f(x_0,y_0)}{\partial
-y}  )\)</span>,它本身并无意义，仅当将<span
-class="math inline">\(\nabla\)</span>作用于函数<span
-class="math inline">\(f\)</span>后表示如下向量 <span
-class="math display">\[
-\nabla f(x_0,y_0)=\left( \frac{\partial f(x_0,y_0)}{\partial
-x},\frac{\partial f(x_0,y_0)}{\partial y} \right)
-\]</span></p>
-<h2 id="n元函数的方向导数与梯度">n元函数的方向导数与梯度</h2>
-<p>​ 设<span class="math inline">\(\mathbf {x_0}\)</span>是<span
-class="math inline">\(R^n\)</span>中的一个点，<span
-class="math inline">\(f\)</span>为定义在<span
-class="math inline">\(\mathbf{x_0}\)</span>的邻域的<span
-class="math inline">\(U(\mathbf{x_0})\)</span>内的一个n元函数，<span
-class="math inline">\(\mathbf{e_l}\)</span>为<span
-class="math inline">\(R^n\)</span>中的一个单位向量，则n元函数<span
-class="math inline">\(f(\mathbf x)\)</span>在点<span
-class="math inline">\(\mathbf {x_0}\)</span>沿<span
-class="math inline">\(\mathbf {e_l}\)</span>方向的方向导数定义为 <span
-class="math display">\[
-\frac{\partial f}{\partial \mathbf{l}}|_{\mathbf{x_0}}=\lim _{t \to
-0}\frac{f(\mathbf{x_0+}t\mathbf{e_l})-f(\mathbf{x_0})}{t}
-\]</span> 当<span class="math inline">\(f\)</span>在点<span
-class="math inline">\(\mathbf {x_0}\)</span>可微时，<span
-class="math inline">\(f\)</span>在点<span class="math inline">\(\mathbf
-{x_0}\)</span>沿任意<span class="math inline">\(\mathbf
-l\)</span>方向的方向导数都存在，并且有如下计算公式： <span
-class="math display">\[
-\frac{\partial f}{\partial \mathbf{l}}|_{\mathbf{x_0}}=\sum _{k=1}
-^n\frac{\partial f(\mathbf {x_0}) }{\partial x_k}\cos \alpha _k
-\]</span> ​ 其中<span class="math inline">\(\cos \alpha_1,\cos \alpha_2
-,\cdots ,\cos \alpha _n\)</span>为向量<span
-class="math inline">\(\mathbf l\)</span>的方向余弦.</p>
-<p>​ 梯度计算公式： <span class="math display">\[
-\mathbf{grad}f(\mathbf {x_0} )=\nabla f(\mathbf {x_0})=\left (
-\frac{\partial f }{\partial x_1},\frac{\partial f }{\partial
-x_2},\cdots,\frac{\partial f }{\partial x_n}\right )
-\]</span> ​ 求梯度实际上就是求偏导数，故梯度的运算法则类似于求导法则</p>
-<p>​</p>
-<h1 id="高阶偏导数和高阶全微分">高阶偏导数和高阶全微分</h1>
-<h2 id="二阶偏导数">二阶偏导数</h2>
-<p>​ 若<span
-class="math inline">\(z=f(x,y)\)</span>在区域D内的两个偏导函数 <span
-class="math display">\[
-z_x=\frac{\partial z}{\partial x} =f_x(x,y),\space z_y=\frac{\partial
-z}{\partial y}=f_y(x,y)
-\]</span> ​ 在D内某点x处的偏导数仍存在，则这两个函数<span
-class="math inline">\(f_x(x,y)\)</span>与<span
-class="math inline">\(f_y(x,y)\)</span>的偏导数称为函数<span
-class="math inline">\(f(x,y)\)</span>的<strong>二阶偏导数</strong>.</p>
-<p>​ 按照求导次序的不同，二元函数z有四种不同的偏导数</p>
-<p>​ 当<span class="math inline">\(f_{xy}\)</span>和<span
-class="math inline">\(f_{yx}\)</span>都在点P连续时，则在点P处有<span
-class="math inline">\(f_{xy}=f_{yx}\)</span>，即<strong>二阶混合偏导数与求导次序无关</strong></p>
-<p>​</p>
-<h2 id="二阶全微分">二阶全微分</h2>
-<p>​ 当二元函数<span class="math inline">\(u=f(x,y)\)</span>在区域<span
-class="math inline">\(\Omega \subseteq
-R^2\)</span>内每一点均可微时，则在<span
-class="math inline">\(\Omega\)</span>内u的全微分为： <span
-class="math display">\[
-du=\left \langle \nabla f,\Delta \mathbf x \right \rangle=\frac{\partial
-f}{\partial x}dx+\frac{\partial f}{\partial y}dy
-\]</span> ​
-如果把dx,dy看作固定不变，那么du就是(x,y)的函数.如果函数du仍在<span
-class="math inline">\(\Omega\)</span>内可微，那么把这个函数du再求全微分，其结果称为u的<strong>二阶全微分</strong>，记作<span
-class="math inline">\(d^2u=d(du)\)</span> <span class="math display">\[
-\begin{align*}
-d^2u=d(du)&amp;=\frac{\partial }{\partial
-x}(f_xdx+f_ydy)dx+\frac{\partial}{\partial x}(f_xdx+f_ydy)dy\\
-&amp;=f_{xx}dx^2+2f_{xy}dxdy+f_{yy}dy^2\\
-&amp;=\frac{\partial^2 }{\partial x^2}dx^2+2\frac{\partial^2 }{\partial
-x \partial y}dxdy+\frac{\partial ^2}{\partial y^2}dy^2\\
-&amp;=\left ( \frac{\partial }{\partial x}dx+\frac{\partial }{\partial
-x}dy\right )^2
-\end{align*}
-\]</span> ​ 二阶全微分也可简洁地写成，按二项式定理展开 <span
-class="math display">\[
-d^2u=\left ( \frac{\partial }{\partial x}dx+\frac{\partial }{\partial
-x}dy\right )^2f
-\]</span></p>
-<h2 id="多元复合函数的偏导数和全微分">多元复合函数的偏导数和全微分</h2>
-<p>​ 若<span class="math inline">\(u=u(x,y)\)</span>和<span
-class="math inline">\(v=v(x,y)\)</span>均在点<span
-class="math inline">\((x,y)\)</span>处可微，且函数<span
-class="math inline">\(z=f(u,v)\)</span>在对应的点<span
-class="math inline">\((u,v)\)</span>处可微，则复合函数<span
-class="math inline">\(z=f[u(x,y),v(x,y)]\)</span>在点<span
-class="math inline">\((x,y)\)</span>处也必可微，且其全微分为： <span
-class="math display">\[
-dz=(\frac{\partial z}{\partial u}\frac{\partial u}{\partial
-x}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial
-x})dx+(\frac{\partial z}{\partial u}\frac{\partial u}{\partial
-y}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial y})dy
-\]</span> ​ 求导有如下链式法则： <span class="math display">\[
-\frac{\partial z}{\partial x}=\frac{\partial z}{\partial
-u}\frac{\partial u}{\partial x}+\frac{\partial z}{\partial
-v}\frac{\partial u}{\partial y}
-\]</span></p>
-<p><span class="math display">\[
-\frac{\partial z}{\partial y}=\frac{\partial z}{\partial
-u}\frac{\partial z}{\partial y}+\frac{\partial z}{\partial
-v}\frac{\partial z}{\partial y}
-\]</span></p>
-<p>​ 推广到m个中间变量，n个自变量构成的一般复合函数</p>
-<p>​ 设函数： <span class="math display">\[
-v=f(u_1,u_2,\cdots,u_m)及u_i=u_i(x_1,x_2,\cdots,x_n),i=1,2,\cdots,m
-\]</span> ​ 都可微，则复合函数<span class="math inline">\(y=f(u_1(\mathbf
-x),u_2(\mathbf x),\cdots,u_n(\mathbf x))\)</span>也可微，其中<span
-class="math inline">\(\mathbf x=(x_1,x_2,\cdots,x_n)\)</span>，且有
-<span class="math display">\[
-dy=\frac{\partial y}{\partial x_1}dx_1+\frac{\partial y}{\partial
-x_2}dx_2+\cdots+\frac{\partial y}{\partial x_n}dx_n
-\]</span> ​ 其中： <span class="math display">\[
-\frac{\partial y}{\partial x_j}=\frac{\partial y}{\partial
-u_1}\frac{\partial u_1}{\partial x_j}+\frac{\partial y}{\partial
-u_2}\frac{\partial u_2}{\partial x_j}+\cdots+\frac{\partial y}{\partial
-u_m}\frac{\partial u_m}{\partial x_j},j=1,2,\cdots,n
-\]</span> ​ 多元函数的复合有多种情况：</p>
-<ol type="1">
-<li><p>设<span class="math inline">\(z=f(u,v),u=\varphi(x),v=\psi
-(x)\)</span>均可微，则复合函数<span class="math inline">\(z=f[\varphi
-(x),\psi (x)]\)</span>是x的一元函数 <span class="math display">\[
-\frac{dz}{dx}=\frac{\partial z}{\partial u}\frac{du}{dx}+\frac{\partial
-z}{\partial v}\frac{dv}{dx}
-\]</span> 它称为复合函数z对x的全导数</p></li>
-<li><p>设<span class="math inline">\(w=f(u),u=\varphi
-(x,y,z)\)</span>均可微，则复合函数<span
-class="math inline">\(w=f[u(x,y,z)]\)</span>可微，它有一个中间变量，有三个自变量
-<span class="math display">\[
-\frac{\partial w}{\partial x}=\frac{dw}{du}\frac{\partial u}{\partial
-x},\frac{\partial w}{\partial y}=\frac{dw}{du}\frac{\partial u}{\partial
-y},\frac{\partial w}{\partial z}=\frac{dw}{du}\frac{\partial u}{\partial
-z}
-\]</span> ​</p></li>
-<li><p>设<span
-class="math inline">\(u=f(x,y,z),z=\varphi(x,y)\)</span>均可微，则复合函数<span
-class="math inline">\(u=f[x,y,z(x,y)]\)</span>可微，它有三个中间变量，两个自变量
-<span class="math display">\[
-\frac{\partial u}{\partial x}=\frac{\partial f}{\partial
-x}+\frac{\partial f}{\partial z}\frac{\partial z}{\partial
-x},\frac{\partial u}{\partial y}=\frac{\partial f}{\partial
-y}+\frac{\partial f}{\partial z}\frac{\partial z}{\partial y}
-\]</span></p></li>
-</ol>
-<p>​ <img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230420145710153.png" /></p>
-<p>​ <strong>一阶全微分形式不变性</strong></p>
-<blockquote>
-<p>​ 证明：</p>
-<p>​ 设有函数<span class="math inline">\(z=f(u,v)\)</span>与<span
-class="math inline">\(u=\varphi(x,y),v=\psi(x,y)\)</span>复合.若<span
-class="math inline">\(\varphi,\psi\)</span>在点<span
-class="math inline">\((x,y)\)</span>处可微，且<span
-class="math inline">\(f\)</span>在与<span
-class="math inline">\((x,y)\)</span>相应的<span
-class="math inline">\((u,v)\)</span>处可微，则复合函数的全微分为： <span
-class="math display">\[
-dz=\frac{\partial z}{\partial x}dx+\frac{\partial z}{\partial y}dy
-\]</span> ​ 由复合函数求导法则： <span class="math display">\[
-\frac{\partial z}{\partial x}=\frac{\partial z}{\partial
-u}\frac{\partial u}{\partial x}+\frac{\partial z}{\partial
-v}\frac{\partial v}{\partial x},
-\frac{\partial z}{\partial y}=\frac{\partial z}{\partial
-u}\frac{\partial u}{\partial y}+\frac{\partial z}{\partial
-v}\frac{\partial v}{\partial y}
-\]</span> ​ 整理得到： <span class="math display">\[
-dz=\frac{\partial z}{\partial u}(\frac{\partial u}{\partial
-x}dx+\frac{\partial u}{\partial y}dy)+\frac{\partial z}{\partial
-v}(\frac{\partial v}{\partial x}dx+\frac{\partial v}{\partial y}dy)
-\]</span> ​ 而<span class="math inline">\(\frac{\partial u}{\partial
-x}dx+\frac{\partial u}{\partial y}dy=du,\frac{\partial v}{\partial
-x}dx+\frac{\partial v}{\partial y}dy=dv\)</span></p>
-<p>​ 所以有： <span class="math display">\[
-dz=\frac{\partial z}{\partial u}du+\frac{\partial z}{\partial v}dv
-\]</span></p>
-<p><span class="math display">\[
-\frac{\partial z}{\partial x}dx+\frac{\partial z}{\partial
-y}dy=\frac{\partial z}{\partial u}du+\frac{\partial z}{\partial v}dv
-\]</span></p>
-</blockquote>
-<p>​ 上面的全微分形式与把函数<span
-class="math inline">\(z=f(u,v)\)</span>中的中间变量<span
-class="math inline">\(u,v\)</span>看作是自变量时的全微分形式的完全一样的，我们把这一性质成为<strong>一阶全微分形式不变性</strong></p>
-<h2 id="隐函数微分法determined-by-1-equation">隐函数微分法（determined
-by 1 equation）</h2>
-<p>​ 一般地，设有方程 <span class="math display">\[
-F(x_1,\cdots,x_n,y)=0
-\]</span> ​ 如果存在一个n元函数<span
-class="math inline">\(y=\varphi(\mathbf x),\mathbf x=(x_1,\cdots,x_n)\in
-\Omega \subseteq R^n(\Omega 为一区域)\)</span>使得将<span
-class="math inline">\(y=\varphi (\mathbf x)\)</span>代入后成为恒等式
-<span class="math display">\[
-F(x_1,\cdots,x_n,\varphi(x_1,\cdots,x_n)) \equiv 0
-\]</span> ​ 则称<span class="math inline">\(y=\varphi(\mathbf
-x)\)</span>是由上述方程确定的隐函数</p>
-<h3 id="隐函数存在定理">隐函数存在定理</h3>
-<p>​ 如果二元函数<span class="math inline">\(F(x,y)\)</span>满足：</p>
-<ol type="1">
-<li><span class="math inline">\(F(x_0,y_0)=0\)</span></li>
-<li>在点<span
-class="math inline">\((x_0,y_0)\)</span>的某邻域中有连续的偏导数</li>
-<li><span class="math inline">\(F_y(x_0,y_0)\neq 0\)</span></li>
-</ol>
-<p>​ 则方程<span class="math inline">\(F(x,y)=0\)</span>在点<span
-class="math inline">\((x_0,y_0)\)</span>的某一邻域中唯一确定了一个具有连续导数的函数<span
-class="math inline">\(y=f(x)\)</span>，它满足<span
-class="math inline">\(y_0=f(x_0)\)</span>，及<span
-class="math inline">\(F(x,f(x))\equiv 0\)</span>并且 <span
-class="math display">\[
-\frac{dy}{dx}=-\frac{F_x}{F_y}
-\]</span> ​
-计算公式的推导就是对满足的方程进行求导，然后解一个方程，多元函数也是同理</p>
-<h1 id="多元函数的泰勒公式和极值问题">多元函数的泰勒公式和极值问题</h1>
-<p>​ 设二元函数<span class="math inline">\(z=f(x,y)\)</span>在点<span
-class="math inline">\((x_0,y_0)\)</span>的某邻域<span
-class="math inline">\(U(x_0,y_0)\)</span>内连续的二阶偏导数.<span
-class="math inline">\((x_0+\Delta x,y_0+\Delta y)\in
-U(x_0,y_0)\)</span>，则存在<span class="math inline">\(\theta \in
-(0,1)\)</span>使得 <span class="math display">\[
-f(x_0+\Delta x,y_0+\Delta y)=f(x_0,y_0)+f_x(x_0,y_0)\Delta
-x+f_y(x_0,y_0)\Delta y+R_1
-\]</span> ​ 其中 <span class="math display">\[
-R_1=\frac{1}{2!}(f_{xx}\Delta x^2+2f_{xy}\Delta x \Delta y +f_{yy}\Delta
-y^2)|_{(x_0+\theta \Delta ,y_0+\theta \Delta)}
-\]</span> ​
-二元函数Tylor公式证明的基本思路也是<strong>引入参数t</strong>，将二元函数化为t的一元函数<span
-class="math inline">\(\varphi(t)=f(x_0+t\Delta x,y_0+t\Delta
-y)\)</span>，要使证明的公式中的各项<span
-class="math inline">\((f(x_0,y_0),f_x(x_0,y_0),f_y(x_0,y_0)及二阶偏导数)\)</span>可利用一元函数<span
-class="math inline">\(\varphi
-(t)\)</span>的对应项来表示，并利用一元函数<span
-class="math inline">\(\varphi(t)\)</span>的Taylor公式来证明</p>
-<p>​ 将上述式子写成矩阵形式</p>
-<blockquote>
-<p>​ 令<span class="math inline">\(\Delta
-x_0=(x_0,y_0)^T,\mathbf{x_0+\Delta x}=(x_0+\Delta x,y_0+\Delta
-y)^T\)</span>,则<span class="math inline">\(f(x_0+\Delta x,y_0+\Delta
-y)=f(x_0,y_0)+f_x(x_0,y_0)\Delta x+f_y(x_0,y_0)\Delta
-y+R_1\)</span>中的一阶导数部分可以写成二元函数<span
-class="math inline">\(f\)</span>的梯度向量<span
-class="math inline">\(\nabla
-f(x_0,y_0)=(f_x(x_0,y_0),f_y(x_0,y_0))\)</span>与向量<span
-class="math inline">\(\mathbf{\Delta x=(\Delta x,\Delta
-y)}^T\)</span>的内积形式，即 <span class="math display">\[
-(f_x\Delta x+f_y\Delta y)|_{(x_0,y_0)}=\left \langle \nabla
-f(x_0,y_0),\mathbf {\Delta x} \right \rangle
-\]</span> ​ 而<span class="math inline">\(R_1=\frac{1}{2!}(f_{xx}\Delta
-x^2+2f_{xy}\Delta x \Delta y +f_{yy}\Delta y^2)|_{(x_0+\theta \Delta
-,y_0+\theta \Delta)}\)</span>是关于<span class="math inline">\(\Delta
-x,\Delta y\)</span>的一个二次型，其系数矩阵为 <span
-class="math display">\[
-\mathbf {H_f(x_0+\theta \Delta x)}=\begin{bmatrix}
-f_{xx} &amp; f_{xy}\\
-f_{xy} &amp; f_{yy}
-\end{bmatrix} \bigg|_\mathbf{(x_0+\theta \Delta x)}
-\]</span> ​ 称为函数<span class="math inline">\(f\)</span>在<span
-class="math inline">\(\mathbf{x_0+\theta \Delta
-x}\)</span>处的<strong>Hesse矩阵</strong>,故二次型的矩阵形式为 <span
-class="math display">\[
-R_1=\frac{1}{2!}(\mathbf {\Delta x})^T\mathbf{H_f(x_0+\theta \Delta
-x)\Delta x}
-\]</span> ​ 这样，我们就可以把Taylor公式写成如下的矩阵形式 <span
-class="math display">\[
-f(\mathbf{x_0+\Delta x})=f(\mathbf{x_0}+\left \langle \nabla f(\mathbf
-{x_0} ),\mathbf {\Delta x_0} \right \rangle +\frac{1}{2!}(\mathbf
-{\Delta x})^T\mathbf{H_f(x_0+\theta \Delta x)\Delta x}
-\]</span> ​ 由于<span class="math inline">\(\mathbf
-{H_f}\)</span>的元素由<span
-class="math inline">\(f\)</span>的二阶偏导数构成，而<span
-class="math inline">\(f\)</span>的所有二阶偏导数均连续，可以证明 <span
-class="math display">\[
-(\mathbf {\Delta x})^T\mathbf{H_f(x_0+\theta \Delta x)\Delta x}=(\mathbf
-{\Delta x})^T\mathbf{H_f(x_0)\Delta x}+o(\|\mathbf{\Delta x} \|^2)
-\]</span> ​ 由此得到<span
-class="math inline">\(f(\mathbf{x})\)</span>在<span
-class="math inline">\(\mathbf
-{x_0}\)</span>处带有Peano余项的二阶Taylor公式： <span
-class="math display">\[
-f(\mathbf{x_0+\Delta x})=f(\mathbf {x_0})+\left \langle \nabla f(\mathbf
-{x_0},\mathbf {\Delta x}) \right \rangle +\frac{1}{2!}(\mathbf {\Delta
-x})^T\mathbf{H_f(x_0)\Delta x}+o(\|\mathbf{\Delta x} \|^2)
-\]</span></p>
-</blockquote>
-<h3 id="类函数">类函数</h3>
-<p>​ 定义：设<span class="math inline">\(f(x)\)</span>是定义在区域<span
-class="math inline">\(\Omega \subseteq R^n\)</span>内的n元函数，若<span
-class="math inline">\(f\)</span>在<span
-class="math inline">\(\Omega\)</span>内连续，则称<span
-class="math inline">\(f\)</span>是定义在<span
-class="math inline">\(\Omega\)</span>上的<span
-class="math inline">\(C^{(0)}\)</span><strong>类函数</strong>，记为<span
-class="math inline">\(f\in C^{(0)}(\Omega)\)</span>，或<span
-class="math inline">\(C(\Omega)\)</span>若函数在<span
-class="math inline">\(\Omega\)</span>内具有连续的<span
-class="math inline">\(m(m\ge 1为正整数)\)</span>阶偏导数，则称<span
-class="math inline">\(f\)</span>是<span
-class="math inline">\(\Omega\)</span>上的<span
-class="math inline">\(C^{(m)}\)</span><strong>类函数</strong>，记作<span
-class="math inline">\(f\in C^{(m)}(\Omega)\)</span></p>
-<p>​ 设n元函数<span class="math inline">\(f\in C^{(2)}(U(\mathbf
-{x_0})),\mathbf{x_0+\Delta x\in U(x_0)}\)</span>，其中<span
-class="math inline">\(\mathbf{x_0}=(x_{0.1},x_{0.2},\cdots,x_{0.n}^T\)</span>.则存在<span
-class="math inline">\(\theta \in(0,1)\)</span>使得 <span
-class="math display">\[
-f(\mathbf{x_0+\Delta x})=f(\mathbf{x_0})+\sum _{i=1} ^n \frac{\partial
-f(\mathbf {x_0})}{\partial x_i}\mathbf{\Delta x_i}+R_1
-\]</span> ​ 其中 <span class="math display">\[
-R_1=\frac{1}{2!}\sum _{i=1}^n \sum _{j=1}^{j} \frac{\partial^2f
-(\mathbf{x_0+\Delta x)} } {\partial x_i \partial x_j }\mathbf{\Delta x_i
-\Delta x_j}
-\]</span> ​ 称为Lagrange余项的一阶形式.</p>
-<p>​ 上述公式也可写成如下的矩阵形式 <span class="math display">\[
-f(\mathbf{x_0+\Delta x})=f(\mathbf{x_0}+\left \langle \nabla f(\mathbf
-{x_0} ),\mathbf {\Delta x_0} \right \rangle +\frac{1}{2!}(\mathbf
-{\Delta x})^T\mathbf{H_f(x_0+\theta \Delta x)\Delta x}
-\]</span> ​ 其中实对称矩阵 <span class="math display">\[
-\mathbf{H_f}(\mathbf{x_0+\Delta x})=
-\begin{bmatrix}
-f_{x_1x_1}(\mathbf x) &amp;f_{x_1x_2}(\mathbf x)  &amp; \cdots  &amp;
-f_{x_1x_n}(\mathbf x)\\
-f_{x_2x_1}(\mathbf x) &amp; f_{x_2x_2}(\mathbf x) &amp; \cdots
-&amp;f_{x_2x_n}(\mathbf x) \\
-\vdots &amp; \vdots &amp;  &amp;\vdots \\
-f_{x_nx_1}(\mathbf x) &amp; f_{x_nx_2}(\mathbf x)
-&amp;\cdots  &amp;f_{x_nx_n}(\mathbf x)
-\end{bmatrix} _{\mathbf{x_0+\Delta x}}
-\]</span> ​ 是函数<span class="math inline">\(f\)</span>在点<span
-class="math inline">\(\mathbf{x_0+\Delta x}\)</span>的Hesse矩阵</p>
-<p>​ 同理可以得到n元函数<span class="math inline">\(f\)</span>在<span
-class="math inline">\(\mathbf{x_0}\)</span>处带有Peano余项的Taylo公式</p>
-<h1 id="无约束极值最大值与最小值">无约束极值、最大值与最小值</h1>
-<h2 id="极值的必要条件">极值的必要条件：</h2>
-<p>​ 由一元函数极值的必要条件，必有<span
-class="math inline">\(f_x(x_0,y_0)=0\)</span>同理能得到<span
-class="math inline">\(f_y(x_0,y_0)=0\)</span>,由梯度计算公式能得到</p>
-<p>​ 设n元函数<span class="math inline">\(f\)</span>在点<span
-class="math inline">\(\mathbf{x_0}\)</span>处可微，且<span
-class="math inline">\(\mathbf{x_0}\)</span>为<span
-class="math inline">\(f\)</span>的极值点，则必有<span
-class="math inline">\(\nabla f(\mathbf{x_0)=0}\)</span></p>
-<p>​ 我们称满足<span class="math inline">\(\nabla
-f(\mathbf{x_0)=0}\)</span>的点为<span
-class="math inline">\(f\)</span>的驻点，</p>
-<p>​
-驻点不一定是极值点，极值点也不一定是驻点（极值点处偏导数不存在），若极值点处存在偏导数，则极值点一定是驻点。</p>
-<h2 id="极值的充分条件">极值的充分条件</h2>
-<p>​ 设n元函数<span class="math inline">\(f\in C^{(2)}(\Omega),\nabla
-f(\mathbf{x_0)=0},\mathbf{H_f}(\mathbf{x_0})\)</span>为<span
-class="math inline">\(f\)</span>在点<span
-class="math inline">\(\mathbf{x_0}\)</span>的Hesse矩阵.若<span
-class="math inline">\(\mathbf{H_f}(\mathbf{x_0})\)</span>正定（负定），则<span
-class="math inline">\(f(\mathbf {x_0})\)</span>为<span
-class="math inline">\(f\)</span>的极小值（极大值）.</p>
-<p>​ <em>The concept of positive definite matrix can move to <a
-href="https://www.sa1ge.ink/post/c0da8988.html">Linear Algebra Notes |
-Sa1ge 's Blog</a>)</em></p>
-<blockquote>
-<p>证明：</p>
-<p>​ 因为<span class="math inline">\(\nabla
-f(\mathbf{x_0)=0}\)</span>由Talyor公式，有 <span class="math display">\[
-f(\mathbf{x_0+\Delta x})-f(\mathbf {x_0})=\frac{1}{2!}(\mathbf {\Delta
-x})^T\mathbf{H_f(x_0)\Delta x}+o(\|\mathbf{\Delta x} \|^2)
-\]</span> ​ 当<span
-class="math inline">\(\mathbf{H_f(x_0)}\)</span>正定时，知<span
-class="math inline">\(\mathbf{H_f(x_0)}\)</span>的最小特征值<span
-class="math inline">\(\lambda_1&gt;0\)</span>，而且<span
-class="math inline">\(\forall \mathbf{\Delta x\neq 0}\)</span>，恒有：
-<span class="math display">\[
-(\mathbf {\Delta x})^T\mathbf{H_f(x_0)\Delta x} \ge
-\lambda_1\|\mathbf{\Delta x}\|^2
-\]</span> ​ 于是有： <span class="math display">\[
-f(\mathbf{x_0+\Delta x})-f(\mathbf {x_0})\ge
-\frac{1}{2}\lambda_1\|\mathbf{\Delta x}\|^2+o(\|\mathbf{\Delta x}
-\|^2)=[\frac{1}{2}\lambda_1o(1)]\|\mathbf{\Delta x}\|
-\]</span> ​ 其中o(1)是当<span class="math inline">\(\mathbf{\Delta x \to
-0}\)</span>时的无穷小量.由上式即知：当<span
-class="math inline">\(\mathbf{\Delta x\neq 0}\)</span>且<span
-class="math inline">\(\|\mathbf{\Delta x}\|\)</span>充分小时，就有：
-<span class="math display">\[
-f(\mathbf{x_0+\Delta x})-f(\mathbf {x_0})&gt;0,或f(\mathbf{x_0+\Delta
-x})&gt;f(\mathbf {x_0})
-\]</span> ​ 这就是说，当<span
-class="math inline">\(\mathbf{H_f(x_0)}\)</span>正定时，<span
-class="math inline">\(f(\mathbf{x_0})\)</span>为<span
-class="math inline">\(f\)</span>的极小值；同理可得，当当负定时，<span
-class="math inline">\(f(\mathbf{x_0})\)</span>为<span
-class="math inline">\(f\)</span>的极大值</p>
-</blockquote>
-<p>​ 求<span class="math inline">\(C^{(2)}\)</span>类函数<span
-class="math inline">\(f\)</span>的极值的步骤：</p>
-<ol type="1">
-<li>求出<span class="math inline">\(f\)</span>的所有驻点</li>
-<li>求出<span class="math inline">\(f\)</span>在各个驻点的Hesse矩阵</li>
-<li>判断Hesse矩阵的类型，确定出<span
-class="math inline">\(f\)</span>的极值点</li>
-</ol>
-<p>​ 当<span
-class="math inline">\(\mathbf{H_f(x_0)}\)</span>不定时，因为二次型<span
-class="math inline">\((\mathbf{x-x_0})^T\mathbf{H_f}(\mathbf{x-x_0})\)</span>不定，从而在<span
-class="math inline">\(\mathbf{x_0}\)</span>的邻域内<span
-class="math inline">\([f(\mathbf{x})-f(\mathbf{x_0})]\)</span>不定号，所以<span
-class="math inline">\(f(\mathbf{x_0})\)</span>不是极值.</p>
-<p>​ 特别地，对于二元函数<span
-class="math inline">\(z=f(x,y)\)</span>，若点<span
-class="math inline">\(P_0(x_0,y_0)\)</span>为<span
-class="math inline">\(f\)</span>的驻点，记 <span class="math display">\[
-f_{xx}(P_0)=A,f_{xy}(P_0)=B,f_{yy}(P_0)=C
-\]</span> ​ 则<span class="math inline">\(f\)</span>在点<span
-class="math inline">\(P_0\)</span>的Hesse矩阵为 <span
-class="math display">\[
-\mathbf{H_f}(P_0)=\begin{bmatrix}
-A &amp;B \\
-B &amp;C
-\end{bmatrix}
-\]</span> ​ 于是根据矩阵判定，有：</p>
-<ul>
-<li>若<span class="math inline">\(A&gt;0,AC-B^2&gt;0\)</span>则<span
-class="math inline">\({H_f}(P_0)\)</span>正定，故<span
-class="math inline">\(f(P_0)\)</span>为极小值;</li>
-<li>若<span class="math inline">\(A&lt;0,AC-B^2&gt;0\)</span>则<span
-class="math inline">\({H_f}(P_0)\)</span>负定，故<span
-class="math inline">\(f(P_0)\)</span>为极大值;</li>
-<li>若<span class="math inline">\(AC-B^2&lt;0\)</span>则<span
-class="math inline">\({H_f}(P_0)\)</span>不定，故<span
-class="math inline">\(f(P_0)\)</span>不是极值;</li>
-</ul>
-<p>​ 当<span
-class="math inline">\(AC-B^2=0\)</span>，称为临界情况，这是只根据二阶泰勒公式不能确定点<span
-class="math inline">\(P_0\)</span>是否是<span
-class="math inline">\(f\)</span>的极值点，需要进一步用极限的定义来讨论</p>
-<h2 id="最大值和最小值">最大值和最小值</h2>
-<p>​ 可以先求<span class="math inline">\(f\)</span>在<span
-class="math inline">\(\Omega\)</span>内部的一切驻点处的函数值、偏导数不存在点处的函数值以及<span
-class="math inline">\(f\)</span>在<span
-class="math inline">\(\Omega\)</span>边界上的最大值（最小值），这些数中最大（最小）的一个便是所求的最大（最小）值.</p>
-<h2 id="有约束极值lagrange乘数法">有约束极值，Lagrange乘数法</h2>
-<p>​
-附有约束条件的极值问题，称为<strong>有约束极值问题</strong>（或条件极值问题）</p>
-<p>​
-某些情形下，这种有约束极值问题可以化为无约束极值问题来求解，但并不一般适用</p>
-<h3 id="lagrange乘数法">Lagrange乘数法</h3>
-<p>​ 设目标函数 <span class="math display">\[
-z=f(x,y)
-\]</span> ​ 在约束条件 <span class="math display">\[
-\varphi(x,y)=0
-\]</span> ​ 下取得极值，且<span
-class="math inline">\((x_0,y_0)\)</span>为其极值点，并设<span
-class="math inline">\(f,\varphi\in C ^{(1)}(U(x_0,y_0))\)</span>且<span
-class="math inline">\(\varphi_y(x_0,y_0)\neq 0\)</span>，于是有 <span
-class="math display">\[
-\varphi(x_0,y_0)=0
-\]</span> ​ 且由隐函数存在定理可知，方程<span
-class="math inline">\(\varphi(x,y)=0\)</span>确定了一可导函数<span
-class="math inline">\(y=y(x)\)</span>，它满足<span
-class="math inline">\(\varphi[x,y(x)]\equiv 0\)</span>且<span
-class="math inline">\(y_0=y(x_0)\)</span>，把它代入目标函数得： <span
-class="math display">\[
-z=f[x,y(x)]
-\]</span> ​ 这样将有约束极值问题化为了一元函数的无约束极值问题，而<span
-class="math inline">\(x=x_0\)</span>就是函数的极值点，由一元可导函数取得极值的必要条件可知：
-<span class="math display">\[
-\frac{dz}{dx}\bigg
-|_{x=x_0}=f_x(x_0,y_0)+f_y(x_0,y_0)\frac{dy}{dx}\bigg|_{x=x_0}=0
-\]</span> ​ 对<span
-class="math inline">\(\varphi(x,y)=0\)</span>运用隐函数求导法则，得：
-<span class="math display">\[
-\frac{dy}{dx}\bigg|_{x=x_0}=-\frac{\partial_x(x_0,y_0)}{\partial_y(x_0,y_0)}
-\]</span> ​ 代入<span class="math inline">\(\frac{dz}{dx}\bigg
-|_{x=x_0}=f_x(x_0,y_0)+f_y(x_0,y_0)\frac{dy}{dx}\bigg|_{x=x_0}=0\)</span>得：
-<span class="math display">\[
-f_x(x_0,y_0)-f_y(x_0,y_0)\frac{\partial_x(x_0,y_0)}{\partial_y(x_0,y_0)}=0
-\]</span> ​ 于是 <span class="math display">\[
-\varphi(x_0,y_0)=0\varphi(x_0,y_0)=0
-\]</span></p>
-<p><span class="math display">\[
-f_x(x_0,y_0)-f_y(x_0,y_0)\frac{\partial_x(x_0,y_0)}{\partial_y(x_0,y_0)}=0
-\]</span></p>
-<p>​ 两式就是所求有约束极值的必要条件.从此两式解出的<span
-class="math inline">\((x_0,y_0)\)</span>就可能是所求有约束极值的极值点（<strong>条件极值点</strong>）</p>
-<p>​ 用行列式写成 <span class="math display">\[
-\begin{vmatrix}
-f_x(x_0,y_0) &amp;f_y(x_0,y_0) \\
-\varphi_x(x_0,y_0) &amp; \varphi_y(x_0,y_0)
-\end{vmatrix}=0
-\]</span> ​</p>
-<p>​ 由行列式的性质知，其两行对应成比例，令此比例系数为<span
-class="math inline">\(-\lambda_0\)</span>，于是得到： <span
-class="math display">\[
-\begin{cases}
-f_x(x_0,y_0)+\lambda_0\varphi_x(x_0,y_0)=0\\
-f_y(x_0,y_0)+\lambda_0\varphi_y(x_0,y_0)=0\\
-\varphi(x_0,y_0)=0
-\end{cases}
-\]</span> ​ 容易看出，上式就是三元函数 <span class="math display">\[
-L(x,y,\lambda)=f(x,y)+\lambda\varphi(x,y)
-\]</span> ​ 在<span
-class="math inline">\((x_0,y_0,\lambda_0)\)</span>取得无约束极值的必要条件.</p>
-<p>​ 所以要求目标函数在约束条件下的有<strong>约束极值点</strong><span
-class="math inline">\((x_0,y_0)\)</span>，可先构成函数<span
-class="math inline">\(L(x,y,\lambda)=f(x,y)+\lambda\varphi(x,y)\)</span>，然后令它的三个偏导数为零得：
-<span class="math display">\[
-\begin{cases}
-L_x(x,y,\lambda)=f_x(x,y)+\lambda\varphi_x(x,y)=0\\
-L_x(x,y,\lambda)=f_y(x,y)+\lambda\varphi_y(x,y)=0\\
-L_\lambda(x,y,\lambda)=\varphi_(x,y)=0
-\end{cases}
-\]</span> ​ 再从这三个方程中解出<span
-class="math inline">\(x_0,y_0,\lambda\)</span>，则其中的点<span
-class="math inline">\((x_0,y_0)\)</span>就可能是所求的有约束极值点</p>
-<p>​ 函数<span
-class="math inline">\(L(x,y,\lambda)=f(x,y)+\lambda\varphi(x,y)\)</span>称为<strong>Lagrange函数</strong>，数<span
-class="math inline">\(\lambda\)</span>称为<strong>Lagrange乘数</strong>，这种求有约束极值点的必要条件的方法称为<strong>Lagrange乘数法</strong>，<span
-class="math inline">\((x_0,y_0,\lambda_0)\)</span>就是Lagrange函数L的驻点.</p>
-<p>​ 方程组也可写成向量形式： <span class="math display">\[
-\begin{cases}
-\nabla f(P)=-\lambda\nabla\varphi(P)\\
-\varphi(P)=
-\end{cases}
-\]</span> ​ 其中<span class="math inline">\(\nabla
-f=(f_x,f_y)\)</span>是函数<span
-class="math inline">\(f\)</span>的梯度，<span
-class="math inline">\(\nabla \varphi\)</span>是<span
-class="math inline">\(\varphi\)</span>的梯度. ​
-当约束条件有多个时，需要构造的Lagrange函数是 <span
-class="math display">\[
-L(x_1,\cdots,x_n,\lambda_1,\cdots,\lambda_m)=f(x_1,\cdots,x_n)+\sum
-_{k=1} ^m \lambda_k\varphi_k(x_1,\cdots,x_n)
-\]</span></p>
-<h1 id="隐函数的求导公式">隐函数的求导公式</h1>
-<p>​ 一个方程确定的隐函数已在上文给出<a
-href="#隐函数微分法determined-by-1-equation">隐函数微分法</a></p>
-<p>​ 由m个m+n元方程组成的方程组 <span class="math display">\[
-\begin{cases}
-F_1(x_1,\cdots,x_n,y_1,\cdots,y_m)=0,\\
-F_2(x_1,\cdots,x_n,y_1,\cdots,y_m)=0,\\
-\cdots\cdots\\
-F_n(x_1,\cdots,x_n,y_1,\cdots,y_m)=0,\\
-\end{cases}
-\]</span> ​ 对于给定的<span
-class="math inline">\(x_1,\cdots,x_n\)</span>，上式就是包含m个方程、m+n个变量的方程组.如果存在定义在点集<span
-class="math inline">\(A\subseteq R^n\)</span>上的m个函数 <span
-class="math display">\[
-y_i=f_i(x_1,\cdots,x_n),i=1,2,\cdots,m
-\]</span> ​
-使得其代入方程组后变成m个恒等式，那么就称m个函数是它的解，或称由该方程组所确定的隐函数</p>
-<pre><code>### 隐函数存在定理</code></pre>
-<p>​ 设有函数方程组 <span class="math display">\[
-\begin{cases}
-F_1(x,y,u,v)=0\\
-F_2(x,y,u,v)=0
-\end{cases}
-\]</span> ​ 如果函数<span class="math inline">\(F_1,F_2\)</span>满足</p>
-<ol type="1">
-<li><p><span class="math inline">\(F_i\in
-C^{(1)}(U(x_0,y_0,u_0,v_0)),i=1,2\)</span></p></li>
-<li><p><span
-class="math inline">\(F_i(x_0,y_0,u_0,v_0)=0,i=1,2\)</span></p></li>
-<li><p>Jacobi行列式 <span class="math display">\[
-J=\frac{\partial (F_1,F_2)}{\partial (u,v)}\bigg
-|_{(x_0,y_0,u_0,v_0)}=\begin{vmatrix}
-\frac{\partial F_1}{\partial u}  &amp;\frac{\partial F_1}{\partial v} \\
-\frac{\partial F_2}{\partial u} &amp;\frac{\partial F_2}{\partial v}
-\end{vmatrix}
-\neq0
-\]</span></p></li>
-</ol>
-<p>​ 则在点<span class="math inline">\((x_0,y_0,u_0,v_0)\in
-R^4\)</span>的某邻域<span
-class="math inline">\(U(x_0,y_0,u_0,v_0)\)</span>内由方程组唯一确定了两个单值且有连续偏导数的二元函数
-<span class="math display">\[
-u=u(x,y),v=v(x,y)
-\]</span> ​ 它满足 <span class="math display">\[
-u_0=u(x_0,y_0),v_0=v(x_0,y_0)
-\]</span> ​ 及 <span class="math display">\[
-F_i(x,y,(x,y),v(x,y))\equiv 0,u=1,2,(x,y)\in U((x_0,y_0))
-\]</span> ​ 对隐函数的导数公式的推导：</p>
-<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/f59dbd741f8c1d6bce0b771054782bc.jpg" /></p>
-<p>​ 例题：</p>
-<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230420235353397.png" /></p>
-<h1 id="几何学应用">几何学应用</h1>
-<h2 id="空间曲线的切线与切面">空间曲线的切线与切面</h2>
-<h3 id="空间曲线的切线与法平面">空间曲线的切线与法平面</h3>
-<p>​ 设空间简单曲线<span class="math inline">\(\Gamma\)</span>的方程为
-<span class="math display">\[
-\mathbf {r=r(t)}=(x(t),y(t),z(t))\space \space (\alpha \le t \le \beta)
-\]</span> ​ 其中向量值函数<span class="math inline">\(\mathbf
-r(t)\)</span>在<span
-class="math inline">\([\alpha,\beta]\)</span>上可导，其导数记作<span
-class="math inline">\(\mathbf{\dot{r(t)}
-}=(\dot{x(t)},\dot{y(t)},\dot{z(t)})\neq \mathbf 0 \space \space (\alpha
-\le t\le \beta)\)</span></p>
-<p>​ 向径<span class="math inline">\(\mathbf{r(t)}\)</span>的导数<span
-class="math inline">\(\mathbf{\dot{r(t)} }\)</span>是<span
-class="math inline">\(\Gamma\)</span>在点<span
-class="math inline">\(P_0\)</span>的切线的一个方向向量，而且它的方向与<span
-class="math inline">\(\Gamma\)</span>的正方向一致，称它为<span
-class="math inline">\(\Gamma\)</span>在点<span
-class="math inline">\(P_0\)</span>的<strong>切向量</strong>.</p>
-<p>​ 曲线<span class="math inline">\(\Gamma\)</span>在<span
-class="math inline">\(P_0(\mathbf r(t_0))\)</span>处切线的向量方程写为
-<span class="math display">\[
-\mathbf \rho =\mathbf{r(t_0)}+t\dot{\mathbf r}(t_0)
-\]</span> ​ 其中<span class="math inline">\(\mathbf
-\rho=(x,y,z)\)</span>为切线上动点<span
-class="math inline">\(P(x,y,z)\)</span>的向径，<span
-class="math inline">\(t\in
-R\)</span>为参数，消去参数t，即得该切线的对称式方程 <span
-class="math display">\[
-\frac{x-x(t_0)}{\dot{x}(t_0)}=\frac{y-y(t_0)}{\dot{y}(t_0)}=\frac{z-z(t_0)}{\dot{z}(t_0)}
-\]</span> ​ 过曲线<span class="math inline">\(\Gamma\)</span>上的点<span
-class="math inline">\(P_0\)</span>且与点<span
-class="math inline">\(P_0\)</span>处的切线垂直的任一直线称为此曲线<span
-class="math inline">\(\Gamma\)</span>在点<span
-class="math inline">\(P_0\)</span>的法线，这些法线位于的同一平面称为<span
-class="math inline">\(\Gamma\)</span>在点<span
-class="math inline">\(P_0\)</span>的法平面.</p>
-<p>​ 显然<span class="math inline">\(\dot{\mathbf
-r(t_0)}\)</span>是法平面的一个法线向量，于是法平面的方程是 <span
-class="math display">\[
-\dot{\mathbf r(t_0)}\cdot[\mathbf \rho -\mathbf r(t_0)]=0
-\]</span> ​ 或 <span class="math display">\[
-\dot{x(t_0)}[x-x(t_0)]+\dot{y(t_0)}[y-y(t_0)]+\dot{z(t_0)}[z-z(t_0)]=0
-\]</span> ​ 其中<span class="math inline">\(\mathbf \rho
-=(x,y,z)\)</span>是法平面上点<span
-class="math inline">\((x,y,z)\)</span>的向径.</p>
-<p>​ 如果曲线<span
-class="math inline">\(\Gamma\)</span>是由两柱面的交线给出，设它的方程为
-<span class="math display">\[
-y=y(x),z=z(x)\space (a \le x \le b)
-\]</span> ​ 把x看作是参数，得出 <span class="math display">\[
-x=x,y=y(x),z=z(x)\space (a \le x \le b)
-\]</span> ​ 那么<span class="math inline">\(\Gamma\)</span>上与参数<span
-class="math inline">\(x=x_0\)</span>相对应的点的切线方程是 <span
-class="math display">\[
-\frac{x-x(t_0)}{1}=\frac{y-y(t_0)}{\dot{y}(t_0)}=\frac{z-z(t_0)}{\dot{z}(t_0)}
-\]</span> ​ 法平面方程： <span class="math display">\[
-x-x(t_0)+\dot{y(t_0)}[y-y(t_0)]+\dot{z(t_0)}[z-z(t_0)]=0
-\]</span> ​ 如果曲线<span
-class="math inline">\(\Gamma\)</span>的方程由一般式方程 <span
-class="math display">\[
-\begin{cases}
-F(x,y,z)=0\\
-G(x,y,z)=0
-\end{cases}
-\]</span> ​ 给出，且在点<span
-class="math inline">\(P(x_0,y_0,z_0)\)</span>的某邻域内方程组满足隐函数存在定理的条件，不妨设
-<span class="math display">\[
-\frac{\partial(F,G)}{\partial(y,z)}\bigg |_{P_0}\neq 0
-\]</span> ​ 那么在点<span
-class="math inline">\(P_0\)</span>的某邻域内由方程组确定两个具有连续导数的一元隐函数<span
-class="math inline">\(y=y(x),z=z(x)\)</span>.由隐函数求导法求出<span
-class="math inline">\(\dot{y(x)}\)</span>和<span
-class="math inline">\(\dot{z(x)}\)</span>之后，再代入方程组，得到曲线的切线方程和法平面方程</p>
-<h2 id="弧长">弧长</h2>
-<p>​ 定义：设简单曲线<span class="math inline">\(\Gamma\)</span>的方程是
-<span class="math display">\[
-\mathbf{r=r(t)}=(x(t),y(t),z(t))\space \space (\alpha \le t\le \beta)
-\]</span> ​ <span
-class="math inline">\(\Gamma\)</span>的两个端点A，B分别对应于向径<span
-class="math inline">\(\mathbf{r(\alpha)},\mathbf{r(\beta)}\)</span>，在<span
-class="math inline">\(\Gamma\)</span>上介于A和B之间沿着参数t增大的方向依次去n-1个分点<span
-class="math inline">\(P_1,P_2,\cdots,P_{n-1}\)</span>，它们把<span
-class="math inline">\(\Gamma\)</span>分为了n段，用直线段把相邻分点连结起来，即得到一折线，它的长度是
-<span class="math display">\[
-s_n=\sum _{i=1} ^n \| \overrightarrow {P_{i-1}P_i}\|
-\]</span> ​ 其中<span
-class="math inline">\(A=P_0,B=P_N\)</span>.如果不管分点如何选取，当<span
-class="math inline">\(d=max\|\overrightarrow {P_{i-1}P_i}\|\to
-0\)</span>时，折线的长度<span
-class="math inline">\(s_n\)</span>有确认的极限<span
-class="math inline">\(s\)</span>，则称<span
-class="math inline">\(\Gamma\)</span>为可求长的曲线，且这个极限值<span
-class="math inline">\(s\)</span>为<span
-class="math inline">\(\Gamma\)</span>的长度，或<span
-class="math inline">\(\Gamma\)</span>的弧长，即 <span
-class="math display">\[
-s=\lim _{d\to 0}\sum _{i=1} ^n \|\overrightarrow {P_{i-1}P_i}\|
-\]</span> ​ 弧长的计算公式：</p>
-<p>​ 设在<span class="math inline">\([\alpha,\beta]\)</span>上<span
-class="math inline">\(\dot{\mathbf r}(t)\)</span>连续且<span
-class="math inline">\(\dot{\mathbf r}(t)\neq \mathbf
-0\)</span>，则曲线<span class="math inline">\(\mathbf r=\mathbf
-r(t)\space (\alpha \le t\le \beta)\)</span>是可求长的曲线，且<span
-class="math inline">\(\Gamma\)</span>的长度为 <span
-class="math display">\[
-s=\int _\alpha ^\beta \|\dot{\mathbf {r} }(t)dt=\int _\alpha ^\beta
-\sqrt{[\dot{x}(t)]^2+\dot{y}(t)]^2+\dot{z}(t)]^2}dt
-\]</span> ​ 对于平面曲线<span
-class="math inline">\(\Gamma:x=x(t),y=y(t)(\alpha \le t\le
-\beta)\)</span>，其弧长为： <span class="math display">\[
-s=\int _\alpha ^\beta \sqrt{ [\dot{x}(t)]^2+\dot{y}(t) ]^2 } dt
-\]</span> ​ 从而有：</p>
-<ul>
-<li><p>若平面曲线<span
-class="math inline">\(\Gamma\)</span>在直角坐标系下的方程为： <span
-class="math display">\[
-y=y(x) (a\le x\le b)
-\]</span> ​ 则<span class="math inline">\(\Gamma\)</span>有参数方程<span
-class="math inline">\(x=x,y=y(x)(a\le x\le b)\)</span>，因而<span
-class="math inline">\(\Gamma\)</span>的弧长为 <span
-class="math display">\[
-s=\int _a ^b \sqrt{1+[y&#39;(x)]^2}dx
-\]</span></p></li>
-<li><p>若平面曲线<span
-class="math inline">\(\Gamma\)</span>在极坐标下的方程是 <span
-class="math display">\[
-\rho=\rho(\theta) (\alpha\le \theta\le \beta)
-\]</span> ​ 则<span class="math inline">\(\Gamma\)</span>有参数方程<span
-class="math inline">\(x=\rho(\theta)\cos \theta,y=x=\rho(\theta)\sin
-\theta\space (\alpha \le \theta \le \beta)\)</span>.于是<span
-class="math inline">\(\Gamma\)</span>的弧长为 <span
-class="math display">\[
-s=\int _\alpha ^\beta
-\sqrt{[x&#39;(\theta)]^2+[y&#39;(\theta)]^2}d\theta=\int _\alpha ^\beta
-\sqrt{[\rho(\theta)]^2+[\rho&#39;(\theta)]^2}d\theta
-\]</span> ​</p>
-<p>## 弧微分</p></li>
-</ul>
-<p>​ 我们称 <span class="math display">\[
-ds=\|\dot{\mathbf{r}}(t)\|=\sqrt{[\dot{x}(t)]^2+\dot{y}(t)]^2+\dot{z}(t)]^2}dt
-\]</span> ​ 为弧长<span
-class="math inline">\(s(t)\)</span>的微分，简称弧微分.</p>
-<p>​ 由于<span
-class="math inline">\(\frac{ds}{dt}=\|\dot{\mathbf{r}}(t)\|&gt;0\)</span>，故<span
-class="math inline">\(s=s(t)\)</span>存在反函数<span
-class="math inline">\(t=t(s)\)</span>，将它代入<span
-class="math inline">\(\Gamma\)</span>的参数方程<span
-class="math inline">\(\mathbf{r=r}(t)\)</span>，便得到<span
-class="math inline">\(\Gamma\)</span>​以弧长s为参数的方程 <span
-class="math display">\[
-\mathbf{r=r}(t(s)) \space (a\le s\le b)
-\]</span> ​ 称<span class="math inline">\(s\)</span>为曲线<span
-class="math inline">\(\Gamma\)</span>的<strong>自然参数</strong>,其中<span
-class="math inline">\([a,b]\)</span>为函数<span
-class="math inline">\(s=s(t)\space (\alpha \le t\le
-\beta)\)</span>的值域</p>
-<p>​</p>
-]]></content>
-      <categories>
-        <category>Review</category>
-      </categories>
-      <tags>
-        <tag>Review</tag>
-        <tag>Math</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>大雾的一点</title>
     <url>/archives/a5d49d08.html</url>
     <content><![CDATA[<h1 id="动力学">动力学</h1>
@@ -5754,6 +4581,1179 @@ class="math inline">\(\int_a^{+\infty}f(x)dx\)</span>和<span
 class="math inline">\(\int_a^{+\infty}\frac{1}{x^p}\)</span>同敛散</p>
 <p>​ 要判断瑕积分<span
 class="math inline">\(\int_a^bf(x)dx\)</span>的敛散性，需要瑕点附近f(x)的等价无穷大，由由于无穷大的倒数是无穷小，所以找等价无穷小即可。</p>
+]]></content>
+      <categories>
+        <category>Review</category>
+      </categories>
+      <tags>
+        <tag>Review</tag>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多元函数微分学</title>
+    <url>/archives/58a6f505.html</url>
+    <content><![CDATA[<h1 id="偏导数">偏导数</h1>
+<p>​ 令一个自变量固定，研究一个自变量的变化率</p>
+<blockquote>
+<p>定义（偏导数）：设函数z=f(x,y)在点<span
+class="math inline">\((x_0,y_0)\)</span>的某一邻域U<span
+class="math inline">\((x_0,y_0)\)</span>内有定义，当自变量y固定在<span
+class="math inline">\(y=y_0\)</span>,而x在<span
+class="math inline">\(x_0\)</span>有改变量<span
+class="math inline">\(\Delta x,(x_0+\Delta x,y_0)\in
+U(x_0,y_0)\)</span>时，相应地，函数f有改变量 <span
+class="math display">\[
+f(x_0+\Delta x,y_0)-f(x_0,y_0)
+\]</span> 如果极限 <span class="math display">\[
+\lim _{\Delta x\to 0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x}
+\]</span> 存在，则称此极限值为函数<span
+class="math inline">\(z=f(x,y)\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>处对x的偏导数，记作 <span
+class="math display">\[
+f_x(x_0,y_0),\frac{\partial f(x_0,y_0)}{\partial
+x},z_x(x_0,y_0)或\frac{\partial z}{\partial x} |_{(x_0,y_0)}
+\]</span> 即 <span class="math display">\[
+f_x(x_0,y_0)=\frac{\partial f(x_0,y_0)}{\partial x}=\lim _{\Delta x\to
+0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x}
+\]</span> <span id="more"></span> ​ 如果二元函数<span
+class="math inline">\(z=f(x,y)\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>处对x与y的偏导数均存在，那么称<span
+class="math inline">\(f(x,y)\)</span>在<span
+class="math inline">\((x_0,y_0)\)</span>处可偏导.</p>
+</blockquote>
+<p>​ 把其中一个自变量固定，对另一个自变量求导.</p>
+<p>​ <strong>注意，可偏导不一定可连续</strong></p>
+<p>​
+偏导只能保证当点(x,y)分别沿平行于x轴和y轴两个<strong>特殊路径</strong>趋于点<span
+class="math inline">\((x_0,y_0)\)</span>时，<span
+class="math inline">\(f(x,y)\to f(x_0,y_0)\)</span>，不能保证当点<span
+class="math inline">\((x,y)\)</span>以<strong>任意路径和方式</strong>趋于点<span
+class="math inline">\((x_0,y_0)\)</span>时，都有<span
+class="math inline">\(f(x,y)\to f(x_0,y_0)\)</span>,所以不能保证<span
+class="math inline">\(f(x,y)\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>连续</p>
+<h2 id="几何意义">几何意义</h2>
+<p>​ 固定y，即<span
+class="math inline">\(y=y_0\)</span>的平面对函数曲面的截面，对x求导，即得到截面的函数曲线的斜率</p>
+<p>​ <img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230418163204860.png" /></p>
+<h2 id="notes">Notes</h2>
+<p>​ 对于n元函数求偏导，也是固定n-1个变量，对剩余的变量求偏导</p>
+<h1 id="全微分">全微分</h1>
+<p>​ 一元函数的微分：对于一元函数<span
+class="math inline">\(f:U(x_0)\subseteq R \to
+R\)</span>，若存在一个关于<span class="math inline">\(\Delta
+x\)</span>的线性函数<span class="math inline">\(L(\Delta x)=a\Delta
+x\)</span>，使得函数的改变量可表示为: <span class="math display">\[
+f(x_0+\Delta x)-f(x_0)=a \Delta x+o(\Delta x)
+\]</span> ​ 其中常数<span class="math inline">\(a\)</span>与<span
+class="math inline">\(\Delta x\)</span>无关，<span
+class="math inline">\(o(\Delta x)\)</span>是当<span
+class="math inline">\(\Delta x\to 0\)</span>时关于<span
+class="math inline">\(\Delta
+x\)</span>的高阶无穷小，则称f在点x<sub>0</sub>处可微，且称函数改变量的线性主部<span
+class="math inline">\(a\Delta x\)</span>为f在x<sub>0</sub>处的微分.</p>
+<p>​ 由此我们能得到二元函数的全微分：</p>
+<p>​ 设二元函数z=f(x,y)在点<span class="math inline">\((x_0,y_0)\)</span>
+的某邻域<span
+class="math inline">\(U(x_0,y_0)\)</span>内有定义.如果对于<span
+class="math inline">\((x_0+\Delta x,y_0+\Delta y)\in
+U(x_0,y_0)\)</span>，函数f在<span
+class="math inline">\((x_0,y_0)\)</span>处的改变量 <span
+class="math display">\[
+\Delta z=f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)
+\]</span> ​ 可以表示为: <span class="math display">\[
+\Delta z=a_1\Delta x+a_2\Delta y+o(p)
+\]</span> ​ 其中，<span
+class="math inline">\(\alpha_1,\alpha_2\)</span>是与<span
+class="math inline">\(\Delta x,\Delta
+y\)</span>无关的两个常数（但与一般点<span
+class="math inline">\((x_0,y_0)\)</span>有关)，<span
+class="math inline">\(p=\sqrt{(\Delta x)^2+(\Delta
+y)^2},o(p)\)</span>是当<span class="math inline">\(p\to 0(即\Delta x\to
+0,\Delta y\to 0)\)</span>时关于p的高阶无穷小，则称函数f在点<span
+class="math inline">\((x_0,y_0)\)</span>处可微，并称<span
+class="math inline">\(a_1\Delta x+a_2\Delta y\)</span> 为函数f在点<span
+class="math inline">\((x_0,y_0)\)</span>处的全微分记作<span
+class="math inline">\(dz \mid _{(x_0,y_0)}\)</span>或<span
+class="math inline">\(df(x_0,y_0)\)</span> <span class="math display">\[
+dz\mid _{(x_0,y_0)}=a_1 \Delta x+ a_2 \Delta y
+\]</span> ​ 也即是 <span class="math display">\[
+dz\mid _{(x_0,y_0)}=a_1 dx+ a_2 dy
+\]</span> ​ 当p充分小，且a<sub>1</sub>，a<sub>2</sub>不为0时，全微分<span
+class="math inline">\(dz\mid _{(x_0,y_0)}\)</span>就是函数f在<span
+class="math inline">\((x_0,y_0)\)</span>处的<strong>线性主部</strong></p>
+<h2 id="可微的必要条件">可微的必要条件</h2>
+<p>​ 设函数<span class="math inline">\(z=f(x,y)\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>处可微，则</p>
+<ol type="1">
+<li><p>f在<span
+class="math inline">\((x_0,y_0)\)</span>处<strong>连续</strong></p></li>
+<li><p>f在<span
+class="math inline">\((x_0,y_0)\)</span>处的两个<strong>偏导数均存在</strong>，且有<span
+class="math inline">\(a_1=f_x(x_0,y_0),a_2=f_y(x_0,y_0)\)</span>即 <span
+class="math display">\[
+df(x_0,y_0)=f_x(x_0,y_0)dx+f_y(x_0,y_0)dy
+\]</span></p></li>
+</ol>
+<blockquote>
+<p>证明可微得到偏导存在：</p>
+<p>​ 由可微的定义，函数f在<span
+class="math inline">\((x_0,y_0)\)</span>处的改变量可表示为： <span
+class="math display">\[
+f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)=a_1 \Delta x+ a_2 \Delta y+o(p)
+\]</span> ​ 取<span class="math inline">\(\Delta y=0\)</span>，则有<span
+class="math inline">\(\rho=|\Delta x|\)</span>，上式变为： <span
+class="math display">\[
+f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)=a_1 \Delta x+o(|x|)
+\]</span> ​ 所以： <span class="math display">\[
+\lim _{\Delta x\to 0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta
+x}=\lim _{\Delta x\to 0}[a_1+\frac{o(|x|)}{\Delta x}]=a_1
+\]</span> ​ 即在点<span class="math inline">\((x_0,y_0)\)</span>处<span
+class="math inline">\(f(x,y)\)</span>对x的偏导数存在且<span
+class="math inline">\(f_x(x_0,y_0)=a_1\)</span></p>
+<p>​ 同理可得，当取<span class="math inline">\(\Delta
+x=0\)</span>时，可得到在该点对y的偏导数也存在且<span
+class="math inline">\(f_y(x_0,y_0)=a_2\)</span></p>
+</blockquote>
+<p>​ 当<span class="math inline">\(z=f(x,y)\)</span>在<span
+class="math inline">\(x_0=(x_0,y_0)\)</span>处可微时，f在<span
+class="math inline">\(x_0\)</span>处的改变量必可表示为： <span
+class="math display">\[
+\Delta z=f_x(x_0)\Delta x+f_y(x_0)\Delta y+o(\rho)
+\]</span> ​ 其中<span class="math inline">\(o(\rho)\)</span>是当<span
+class="math inline">\(\rho \to 0\)</span>时关于<span
+class="math inline">\(\rho\)</span>的高阶无穷小；反之，若<span
+class="math inline">\(\Delta
+z\)</span>可表示为上式，则由全微分的定义可知：<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\(x_0\)</span>处可微.</p>
+<p>​ 若<span class="math inline">\(z=f(x,y)\)</span>在区域<span
+class="math inline">\(\Omega\subseteq
+R^2\)</span>的每一点处都可微，则称f是<span
+class="math inline">\(\Omega\)</span>内的可微函数，此时，有 <span
+class="math display">\[
+dz=f_xdx+f_ydy
+\]</span> ​
+多元函数在一点处连续而且所有的偏导数都存在也不能保证其在该点可微.</p>
+<h2 id="可微的充分条件">可微的充分条件</h2>
+<p>​ 设函数<span class="math inline">\(z=f(x,y)\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>的某邻域有定义，若<span
+class="math inline">\(f(x,y)\)</span>的两个偏导数均在点<span
+class="math inline">\((x_0,y_0)\)</span>处连续，则该函数在点<span
+class="math inline">\((x_0,y_0)\)</span>处可微.（<strong>即偏导数存在且连续</strong>）</p>
+<blockquote>
+<p>证明：</p>
+<p>​ 证明可微，证明<span class="math inline">\(\Delta z=f_x(x_0)\Delta
+x+f_y(x_0)\Delta y+o(p)\)</span>成立即可</p>
+<p>​ 首先通过插项的方法把二元函数的改变量转化为一元函数的改变量</p>
+<p><span class="math display">\[\begin{align*}
+
+\Delta z&amp;=f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)\\&amp;=
+[f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0+\Delta y)]+[f(x_0,y_0+\Delta
+y)-f(x_0,y_0)]
+
+\end{align*}\]</span></p>
+<p>​
+上式右端中每一方括号内都是一元函数的改变量，由Lagrange微分中值公式，存在<span
+class="math inline">\(\theta
+_i(0&lt;\theta_i&lt;1,i=1,2)\)</span>使得上式化为： <span
+class="math display">\[
+\Delta z=f_x(x_0+\theta_1 \Delta x,y_0+\Delta y)\Delta
+x+f_y(x_0,y_0+\theta_2\Delta y)\Delta y
+\]</span> ​ 由于<span
+class="math inline">\(f_x(x,y)在(x_0,y_0)\)</span>连续，有： <span
+class="math display">\[
+  \lim_{\rho \to 0}f_x(x_0+\theta_1\Delta x,y_0+\Delta y)=f_x(x_0,y_0)
+\]</span> ​ 其中<span class="math inline">\(\rho =\sqrt{\Delta x^2+\Delta
+y^2}\)</span>，因此有 <span class="math display">\[
+f_x(x_0+\theta_1\Delta x,y_0+\Delta y)=f_x(x_0,y_0)+\alpha_1(\rho)
+\]</span> ​ 其中<span
+class="math inline">\(\alpha_1(\rho)\)</span>是当<span
+class="math inline">\(\rho \to 0\)</span>时的无穷小.同理可得： <span
+class="math display">\[
+  f_y(x_0,y_0+\theta_2\Delta y)=f_y(x_0,y_0)+\alpha_2(\rho)
+\]</span> ​ 其中<span
+class="math inline">\(\alpha_2(\rho)\)</span>是当<span
+class="math inline">\(\rho \to 0\)</span>时的无穷小.</p>
+<p>​ 最后得到： <span class="math display">\[
+\Delta z=f_x(x_0,y_0)\Delta x+f_y(x_0,y_0)\Delta y+a_1(\rho)\Delta
+x+a_2(\rho) \Delta y
+\]</span> ​ 由： <span class="math display">\[
+\left| \frac{a_1(\rho)\Delta x+a_2(\rho)\Delta y}{\rho}
+\right| \le |a_1(\rho)|+|a_2(\rho)|
+\]</span> ​ 易知： <span class="math display">\[
+\lim _{\rho \to 0}\frac{a_1(\rho)\Delta x+a_2(\rho)\Delta y}{\rho}=0
+\]</span> ​ 所以： <span class="math display">\[
+a_1(\rho)\Delta x+a_2(\rho)\Delta y=o(\rho)
+\]</span> ​ 证毕</p>
+</blockquote>
+<p>​ f的所有偏导数均在点<span
+class="math inline">\((x_0,y_0)\)</span>处连续时，f必在点<span
+class="math inline">\((x_0,y_0)\)</span>处可微，但可微函数的偏导数未必连续.</p>
+<h2 id="n元函数的全微分">n元函数的全微分</h2>
+<p>​ 设n元函数<span
+class="math inline">\(u=f(\mathbf{x})=f(x_1,x_2,\cdots,x_n)\)</span>在点<span
+class="math inline">\(\mathbf{x_0}=(x_{0.1},x_{0.2},\cdots,x_{0.n})\in
+R^n\)</span>的邻域<span class="math inline">\(U(\mathbf{x_0})\subseteq
+R^n\)</span>内有定义，如果<span class="math inline">\(\forall
+\mathbf{x=x_0+\Delta x\in}U(\mathbf{x_0})\)</span>,存在一组与<span
+class="math inline">\(\mathbf{\Delta x}=(\mathbf{\Delta
+x_1,\cdots,\Delta x_n})\)</span>无关的常数<span
+class="math inline">\(a_1,a_2,\cdots ,a_n\)</span>，使得函数f在<span
+class="math inline">\(\mathbf{x_0}\)</span>处的改变量 <span
+class="math display">\[
+\Delta u=f(\mathbf{x_0+\Delta x})-f(\mathbf{x_0})
+\]</span> ​ 可表示为： <span class="math display">\[
+\Delta u=a_1\Delta \mathbf{x_1}+\cdots +a_n\Delta \mathbf{x_n}+o(\rho)
+\]</span> ​ 其中<span class="math inline">\(o(\rho)\)</span>是当<span
+class="math inline">\(\rho=\left \| \Delta x \right \| \to
+0\)</span>时关于<span
+class="math inline">\(\rho\)</span>的高阶无穷小，则称<span
+class="math inline">\(f\)</span>在点<span
+class="math inline">\(\mathbf{x_0}\)</span>可微，且称关于<span
+class="math inline">\(\Delta
+x_1,\cdots,\Delta            x_n\)</span>的线性函数 <span
+class="math display">\[
+a_1\mathbf{\Delta x_1}+\cdots+a\mathbf{\Delta x_n}
+\]</span> ​ 为<span class="math inline">\(f\)</span>在<span
+class="math inline">\(\mathbf{x_0}\)</span>处全微分，记为<span
+class="math inline">\(df(\mathbf{x_0})\)</span>，或<span
+class="math inline">\(du |_{x=x_0}\)</span>，即 <span
+class="math display">\[
+df(\mathbf{x_0})=a\mathbf{\Delta x_1}+\cdots+a_n\mathbf{\Delta x_n}
+\]</span> ​ 同二元函数一样，常记<span
+class="math inline">\(\mathbf{x_i}=dx_i\)</span>，于是<span
+class="math inline">\(f\)</span>的全微分也常写成： <span
+class="math display">\[
+df(\mathbf{x_0})=\sum _{i=1} ^n a_idx_i
+\]</span></p>
+<h2 id="近似计算和误差估计">近似计算和误差估计</h2>
+<p>​ 局部线性逼近（局部线性化）</p>
+<p>​ 例题：</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230419183945211.png" /></p>
+<p>​ 误差估计：</p>
+<p>​ 乘积的相对误差等于各个因子的相对误差之和</p>
+<p>​ 商的相对误差等于分子和分母的相对误差之和</p>
+<h1 id="方向导数和梯度">方向导数和梯度</h1>
+<h2 id="方向导数">方向导数</h2>
+<p>​ 设点<span class="math inline">\(\mathbf{x_0}\in
+R^2,\mathbf{l}\)</span>是平面上的某一向量，其单位向量记为<span
+class="math inline">\(\mathbf{e_l},f:U(\mathbf{x_0})\subseteq R^2 \to
+R\)</span>是一个二元函数.我们讨论<span
+class="math inline">\(f\)</span>在点<span
+class="math inline">\(\mathbf{x_0}\)</span>处沿<span
+class="math inline">\(l\)</span>方向的变化率（记作<span
+class="math inline">\(\frac{\partial f}{\partial
+\mathbf{l}}|_{\mathbf{x_0}}\)</span>）.过点<span
+class="math inline">\(\mathbf{x_0}\)</span>作与<span
+class="math inline">\(\mathbf{l}\)</span>平行的直线L，它的方程是 <span
+class="math display">\[
+\mathbf{x=x_0+}t\mathbf{e_l},t\in R
+\]</span> ​ <span class="math inline">\(f(\mathbf{x})\)</span>在点<span
+class="math inline">\(\mathbf{(x_0)}\)</span>处沿<span
+class="math inline">\(l\)</span>方向的变化率，就是当点<span
+class="math inline">\(x\)</span>在直线<span
+class="math inline">\(\mathbf l\)</span>上变动时<span
+class="math inline">\(f(x)\)</span>在点<span
+class="math inline">\(\mathbf{x_0}\)</span>处的变化率.在点<span
+class="math inline">\(\mathbf{x_0}\)</span>和<span
+class="math inline">\(\mathbf{e_l}\)</span>固定的情况下，当<span
+class="math inline">\(\mathbf{x}\)</span>在L上变动时，函数 <span
+class="math display">\[
+f(\mathbf{x})=f(\mathbf{x_0+}t\mathbf{e_l})
+\]</span> ​ 实际上是自变量t的一元函数，记作 <span class="math display">\[
+F(t)=f(\mathbf{x_0+}t\mathbf{e_l})
+\]</span> ​ 因此，<span
+class="math inline">\(f(\mathbf{x})\)</span>在点<span
+class="math inline">\(\mathbf{(x_0)}\)</span>处沿<span
+class="math inline">\(l\)</span>方向的变化率也就是一元函数F(t)在t=0处的导数，即
+<span class="math display">\[
+\frac{\partial f}{\partial \mathbf {l} }|_{ \mathbf{x_0}
+}=\frac{dF(t)}{dt}|_{ {t=0} }=\lim _{t \to 0}\frac{F(t)-F(0)}{t}=\lim
+_{t \to 0}\frac{f(\mathbf{x_0+}t\mathbf{e_l})-f(\mathbf{x_0})}{t}
+\]</span> ​ 由此，我们给出以下定义：</p>
+<p>​ 设点<span class="math inline">\(\mathbf{x_0}\in R^2\)</span>,<span
+class="math inline">\(\mathbf
+l\)</span>是平面上的某一向量，与l同向的单位向量为<span
+class="math inline">\(\mathbf{e_l}\)</span>，二元函数f定义在<span
+class="math inline">\(\mathbf{x_0}\)</span>的邻域<span
+class="math inline">\(U(\mathbf{x_0})\subseteq R^2\)</span>内，在<span
+class="math inline">\(U(\mathbf{x_0})\)</span>内让自变量<span
+class="math inline">\(\mathbf{x}\)</span>由<span
+class="math inline">\(\mathbf{x_0}\)</span>沿与<span
+class="math inline">\(\mathbf{e_l}\)</span>的平行的直线变到<span
+class="math inline">\(\mathbf{x_0+}t\mathbf{e_l}\)</span>,从而函数值有对应的改变量<span
+class="math inline">\(f(\mathbf{x_0+}t\mathbf{e_l})-f(\mathbf{x_0})\)</span>.若
+<span class="math display">\[
+\lim _{t \to 0}\frac{f(\mathbf{x_0+}t\mathbf{e_l})-f(\mathbf{x_0})}{t}
+\]</span> ​ 存在，则称该极限值为f在点<span
+class="math inline">\(\mathbf{x_0}\)</span>处沿<span
+class="math inline">\(\mathbf l\)</span>方向的方向导数，记作<span
+class="math inline">\(\frac{\partial f(\mathbf{x_0})}{\partial
+\mathbf{l}}|_{\mathbf{x_0}}\)</span>，或<span
+class="math inline">\(\frac{\partial f}{\partial
+\mathbf{l}}|_{\mathbf{x_0}}\)</span>，即 <span class="math display">\[
+\frac{\partial f}{\partial \mathbf{l}}|_{\mathbf{x_0}}=\lim _{t \to
+0}\frac{f(\mathbf{x_0+}t\mathbf{e_l})-f(\mathbf{x_0})}{t}
+\]</span></p>
+<ol type="1">
+<li><p>定义中的t的绝对值就是两点<span
+class="math inline">\(\mathbf{x_0}\)</span>与<span
+class="math inline">\(\mathbf{x_0+}t\mathbf{e_l}\)</span>之间的距离d，事实上，注意到<span
+class="math inline">\(\mathbf{e_l}\)</span>单位向量，于是有 <span
+class="math display">\[
+d=\left \| (\mathbf{x_0+}t\mathbf{e_l})-\mathbf{x_0} \right \|=\left \|
+t\mathbf{e_l} \right \| =|t|\| \mathbf{e_l} \|=|t|
+\]</span></p></li>
+<li><p>方向导数实际上是函数f在<span
+class="math inline">\(\mathbf{x_0}\)</span>处沿l方向关于距离的变化率</p></li>
+</ol>
+<h3 id="几何意义-1">几何意义</h3>
+<p>​ 过直线<span
+class="math inline">\(L:\mathbf{x=x_0+}t\mathbf{e_l}\)</span>作平行于z轴的平面<span
+class="math inline">\(\pi\)</span>，它与曲面<span
+class="math inline">\(z=f(x,y)\)</span>所交的曲线记为C.取一点<span
+class="math inline">\(P_0\)</span>，曲线C在<span
+class="math inline">\(P_0\)</span>仅有唯一的切线T，它关于l方向的斜率就是方向导数<span
+class="math inline">\(\frac{\partial f}{\partial
+\mathbf{l}}|_{\mathbf{x_0}}\)</span></p>
+<h3 id="方向导数存在条件及计算公式">方向导数存在条件及计算公式</h3>
+<p>​ 若<span class="math inline">\(f(x,y)\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>可微，则函数f在点<span
+class="math inline">\((x_0,y_0)\)</span>沿任意l方向的方向导数均存在，且
+<span class="math display">\[
+\frac{\partial f}{\partial
+\mathbf{l}}|_{\mathbf{(x_0,y_0)}}=f_x(x_0,y_0)\cos \alpha
++f_y(x_0,y_0)\cos \beta
+\]</span> ​ 其中<span
+class="math inline">\(l\)</span>方向上的单位向量是<span
+class="math inline">\(\mathbf{e_l}=(\cos\alpha,\cos \beta)\)</span></p>
+<blockquote>
+<p>证明：</p>
+<p>​ 当<span class="math inline">\(f(x,y)\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>可微时，函数<span
+class="math inline">\(f(x,y)\)</span>在<span
+class="math inline">\((x_0,y_0)\)</span>处的改变量为： <span
+class="math display">\[
+f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)=a_1 \Delta x+a _2 \Delta
+y+o(\rho)
+\]</span> ​ 其中<span
+class="math inline">\(a_1=f_x(x_0,y_0)\)</span>,<span
+class="math inline">\(a=f_y(x_0,y_0)\)</span>.取<span
+class="math inline">\(\Delta x=t\cos \alpha,\Delta y=t\cos
+\beta,\mathbf{x_0}=(x_0,y_0)\)</span>,则有<span
+class="math inline">\(\rho=\sqrt{\Delta x^2+\Delta
+y^2}=|t|\)</span>,且</p>
+<p><span class="math display">\[\begin{align*}
+
+&amp;f(x_0+t\cos \alpha,y_0+t\cos \beta)-f(x_0,y_0)\\
+
+&amp;=f(\mathbf{x_0}+t\mathbf{e_l})-f(\mathbf{x_0})=a_1t\cos \alpha+a_2
+t\cos \beta+o(\rho)
+
+\end{align*}\]</span></p>
+<p>于是由方向导数的定义式有：</p>
+<p><span class="math display">\[\begin{align*}
+\frac{\partial f}{\partial \mathbf{l}}|_{\mathbf{(x_0,y_0)}}&amp;=\lim
+_{t\to 0}\frac{f(\mathbf{x_0+}t\mathbf{e_l})-f(\mathbf{x_0})}{t}\\
+&amp;=\lim _{t\to 0}(a_1\cos
+\alpha+a_2\cos\beta+\frac{o(\rho)}{t})=a_1\cos \alpha+a_2\cos \beta
++\lim _{t \to 0}\frac{o(|t|)}{t}\\
+&amp;=a_1\cos \alpha+a_2 \cos \beta
+\end{align*}\]</span></p>
+<p>​ 证毕</p>
+</blockquote>
+<h2 id="梯度">梯度</h2>
+<p>​ 梯度即某点最大的方向导数</p>
+<p>​ 定义：设二元函数<span
+class="math inline">\(z=f(x,y)\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>处可微，则<span
+class="math inline">\(f\)</span>在该点的梯度一定存在，并且： <span
+class="math display">\[
+\mathbf{grad}f(x_0,y_0)=f_x(x_0,y_0)\mathbf{i}+f_y(x_0,y_0)\mathbf j
+\]</span></p>
+<blockquote>
+<p>证明：</p>
+<p>​ <span class="math inline">\(f(x,y)\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>处可微，则<span
+class="math inline">\(f\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>处沿<span
+class="math inline">\(\mathbf{e_l}=(\cos \alpha,\cos \beta
+)\)</span>的方向导数必定存在，并且 <span class="math display">\[
+\frac{\partial f}{\partial
+\mathbf{l}}|_{\mathbf{(x_0,y_0)}}=f_x(x_0,y_0)\cos
+\alpha+f_y(x_0,y_0)\cos \beta
+\]</span> ​ 作向量<span class="math inline">\(\mathbf
+g=(f_x(x_0,y_0),f_y(x_0,y_0))\)</span>,下面证明<span
+class="math inline">\(\mathbf g\)</span>就是<span
+class="math inline">\(f\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>处的梯度</p>
+<p>​ 由于： <span class="math display">\[
+\frac{\partial f}{\partial \mathbf{l}}|_{\mathbf{(x_0,y_0)}}=&lt;\mathbf
+g,\mathbf {e_l}&gt;=\|\mathbf g\|\cos (\mathbf g,\mathbf{e_l})\le
+\|\mathbf g\|
+\]</span> ​ 方向导数<span class="math inline">\(\frac{\partial
+f}{\partial \mathbf{l}}|_{\mathbf{(x_0,y_0)}}\)</span>等于梯度在<span
+class="math inline">\(\mathbf l\)</span>方向的<strong>投影</strong></p>
+<p>​ 所以，当<span class="math inline">\(\cos (\mathbf
+g,\mathbf{e_l})=1\)</span>时，即<span
+class="math inline">\(\mathbf{e_l}\)</span>与<span
+class="math inline">\(\mathbf g\)</span>同向时，<span
+class="math inline">\(\frac{\partial f}{\partial
+\mathbf{l}}|_{\mathbf{(x_0,y_0)}}=\|\mathbf g\|\)</span>.</p>
+<p>​ 也就是说，向量<span class="math inline">\(\mathbf
+g\)</span>的方向是函数<span class="math inline">\(f\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>处取得方向导数最大值的方向，<span
+class="math inline">\(\mathbf g\)</span>的模就是<span
+class="math inline">\(f\)</span>在该点方向导数的最大值，因此： <span
+class="math display">\[
+\mathbf g=f_x(x_0,y_0)\mathbf{i}+f_y(x_0,y_0)\mathbf
+j=\mathbf{grad}f(x_0,y_0)
+\]</span> ​</p>
+</blockquote>
+<p>​ 函数<span class="math inline">\(f\)</span>在<span
+class="math inline">\((x_0,y_0)\)</span>处的梯度可用<strong>nabla算符</strong><span
+class="math inline">\(\nabla\)</span>表示（也称向量微分算子），记作<span
+class="math inline">\(\nabla f(x_0,y_0)\)</span>其中符号<span
+class="math inline">\(\nabla =(\frac{\partial f(x_0,y_0)}{\partial
+x},\frac{\partial f(x_0,y_0)}{\partial
+y}  )\)</span>,它本身并无意义，仅当将<span
+class="math inline">\(\nabla\)</span>作用于函数<span
+class="math inline">\(f\)</span>后表示如下向量 <span
+class="math display">\[
+\nabla f(x_0,y_0)=\left( \frac{\partial f(x_0,y_0)}{\partial
+x},\frac{\partial f(x_0,y_0)}{\partial y} \right)
+\]</span></p>
+<h2 id="n元函数的方向导数与梯度">n元函数的方向导数与梯度</h2>
+<p>​ 设<span class="math inline">\(\mathbf {x_0}\)</span>是<span
+class="math inline">\(R^n\)</span>中的一个点，<span
+class="math inline">\(f\)</span>为定义在<span
+class="math inline">\(\mathbf{x_0}\)</span>的邻域的<span
+class="math inline">\(U(\mathbf{x_0})\)</span>内的一个n元函数，<span
+class="math inline">\(\mathbf{e_l}\)</span>为<span
+class="math inline">\(R^n\)</span>中的一个单位向量，则n元函数<span
+class="math inline">\(f(\mathbf x)\)</span>在点<span
+class="math inline">\(\mathbf {x_0}\)</span>沿<span
+class="math inline">\(\mathbf {e_l}\)</span>方向的方向导数定义为 <span
+class="math display">\[
+\frac{\partial f}{\partial \mathbf{l}}|_{\mathbf{x_0}}=\lim _{t \to
+0}\frac{f(\mathbf{x_0+}t\mathbf{e_l})-f(\mathbf{x_0})}{t}
+\]</span> 当<span class="math inline">\(f\)</span>在点<span
+class="math inline">\(\mathbf {x_0}\)</span>可微时，<span
+class="math inline">\(f\)</span>在点<span class="math inline">\(\mathbf
+{x_0}\)</span>沿任意<span class="math inline">\(\mathbf
+l\)</span>方向的方向导数都存在，并且有如下计算公式： <span
+class="math display">\[
+\frac{\partial f}{\partial \mathbf{l}}|_{\mathbf{x_0}}=\sum _{k=1}
+^n\frac{\partial f(\mathbf {x_0}) }{\partial x_k}\cos \alpha _k
+\]</span> ​ 其中<span class="math inline">\(\cos \alpha_1,\cos \alpha_2
+,\cdots ,\cos \alpha _n\)</span>为向量<span
+class="math inline">\(\mathbf l\)</span>的方向余弦.</p>
+<p>​ 梯度计算公式： <span class="math display">\[
+\mathbf{grad}f(\mathbf {x_0} )=\nabla f(\mathbf {x_0})=\left (
+\frac{\partial f }{\partial x_1},\frac{\partial f }{\partial
+x_2},\cdots,\frac{\partial f }{\partial x_n}\right )
+\]</span> ​ 求梯度实际上就是求偏导数，故梯度的运算法则类似于求导法则</p>
+<p>​</p>
+<h1 id="高阶偏导数和高阶全微分">高阶偏导数和高阶全微分</h1>
+<h2 id="二阶偏导数">二阶偏导数</h2>
+<p>​ 若<span
+class="math inline">\(z=f(x,y)\)</span>在区域D内的两个偏导函数 <span
+class="math display">\[
+z_x=\frac{\partial z}{\partial x} =f_x(x,y),\space z_y=\frac{\partial
+z}{\partial y}=f_y(x,y)
+\]</span> ​ 在D内某点x处的偏导数仍存在，则这两个函数<span
+class="math inline">\(f_x(x,y)\)</span>与<span
+class="math inline">\(f_y(x,y)\)</span>的偏导数称为函数<span
+class="math inline">\(f(x,y)\)</span>的<strong>二阶偏导数</strong>.</p>
+<p>​ 按照求导次序的不同，二元函数z有四种不同的偏导数</p>
+<p>​ 当<span class="math inline">\(f_{xy}\)</span>和<span
+class="math inline">\(f_{yx}\)</span>都在点P连续时，则在点P处有<span
+class="math inline">\(f_{xy}=f_{yx}\)</span>，即<strong>二阶混合偏导数与求导次序无关</strong></p>
+<p>​</p>
+<h2 id="二阶全微分">二阶全微分</h2>
+<p>​ 当二元函数<span class="math inline">\(u=f(x,y)\)</span>在区域<span
+class="math inline">\(\Omega \subseteq
+R^2\)</span>内每一点均可微时，则在<span
+class="math inline">\(\Omega\)</span>内u的全微分为： <span
+class="math display">\[
+du=\left \langle \nabla f,\Delta \mathbf x \right \rangle=\frac{\partial
+f}{\partial x}dx+\frac{\partial f}{\partial y}dy
+\]</span> ​
+如果把dx,dy看作固定不变，那么du就是(x,y)的函数.如果函数du仍在<span
+class="math inline">\(\Omega\)</span>内可微，那么把这个函数du再求全微分，其结果称为u的<strong>二阶全微分</strong>，记作<span
+class="math inline">\(d^2u=d(du)\)</span> <span class="math display">\[
+\begin{align*}
+d^2u=d(du)&amp;=\frac{\partial }{\partial
+x}(f_xdx+f_ydy)dx+\frac{\partial}{\partial x}(f_xdx+f_ydy)dy\\
+&amp;=f_{xx}dx^2+2f_{xy}dxdy+f_{yy}dy^2\\
+&amp;=\frac{\partial^2 }{\partial x^2}dx^2+2\frac{\partial^2 }{\partial
+x \partial y}dxdy+\frac{\partial ^2}{\partial y^2}dy^2\\
+&amp;=\left ( \frac{\partial }{\partial x}dx+\frac{\partial }{\partial
+x}dy\right )^2
+\end{align*}
+\]</span> ​ 二阶全微分也可简洁地写成，按二项式定理展开 <span
+class="math display">\[
+d^2u=\left ( \frac{\partial }{\partial x}dx+\frac{\partial }{\partial
+x}dy\right )^2f
+\]</span></p>
+<h2 id="多元复合函数的偏导数和全微分">多元复合函数的偏导数和全微分</h2>
+<p>​ 若<span class="math inline">\(u=u(x,y)\)</span>和<span
+class="math inline">\(v=v(x,y)\)</span>均在点<span
+class="math inline">\((x,y)\)</span>处可微，且函数<span
+class="math inline">\(z=f(u,v)\)</span>在对应的点<span
+class="math inline">\((u,v)\)</span>处可微，则复合函数<span
+class="math inline">\(z=f[u(x,y),v(x,y)]\)</span>在点<span
+class="math inline">\((x,y)\)</span>处也必可微，且其全微分为： <span
+class="math display">\[
+dz=(\frac{\partial z}{\partial u}\frac{\partial u}{\partial
+x}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial
+x})dx+(\frac{\partial z}{\partial u}\frac{\partial u}{\partial
+y}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial y})dy
+\]</span> ​ 求导有如下链式法则： <span class="math display">\[
+\frac{\partial z}{\partial x}=\frac{\partial z}{\partial
+u}\frac{\partial u}{\partial x}+\frac{\partial z}{\partial
+v}\frac{\partial u}{\partial y}
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial z}{\partial y}=\frac{\partial z}{\partial
+u}\frac{\partial z}{\partial y}+\frac{\partial z}{\partial
+v}\frac{\partial z}{\partial y}
+\]</span></p>
+<p>​ 推广到m个中间变量，n个自变量构成的一般复合函数</p>
+<p>​ 设函数： <span class="math display">\[
+v=f(u_1,u_2,\cdots,u_m)及u_i=u_i(x_1,x_2,\cdots,x_n),i=1,2,\cdots,m
+\]</span> ​ 都可微，则复合函数<span class="math inline">\(y=f(u_1(\mathbf
+x),u_2(\mathbf x),\cdots,u_n(\mathbf x))\)</span>也可微，其中<span
+class="math inline">\(\mathbf x=(x_1,x_2,\cdots,x_n)\)</span>，且有
+<span class="math display">\[
+dy=\frac{\partial y}{\partial x_1}dx_1+\frac{\partial y}{\partial
+x_2}dx_2+\cdots+\frac{\partial y}{\partial x_n}dx_n
+\]</span> ​ 其中： <span class="math display">\[
+\frac{\partial y}{\partial x_j}=\frac{\partial y}{\partial
+u_1}\frac{\partial u_1}{\partial x_j}+\frac{\partial y}{\partial
+u_2}\frac{\partial u_2}{\partial x_j}+\cdots+\frac{\partial y}{\partial
+u_m}\frac{\partial u_m}{\partial x_j},j=1,2,\cdots,n
+\]</span> ​ 多元函数的复合有多种情况：</p>
+<ol type="1">
+<li><p>设<span class="math inline">\(z=f(u,v),u=\varphi(x),v=\psi
+(x)\)</span>均可微，则复合函数<span class="math inline">\(z=f[\varphi
+(x),\psi (x)]\)</span>是x的一元函数 <span class="math display">\[
+\frac{dz}{dx}=\frac{\partial z}{\partial u}\frac{du}{dx}+\frac{\partial
+z}{\partial v}\frac{dv}{dx}
+\]</span> 它称为复合函数z对x的全导数</p></li>
+<li><p>设<span class="math inline">\(w=f(u),u=\varphi
+(x,y,z)\)</span>均可微，则复合函数<span
+class="math inline">\(w=f[u(x,y,z)]\)</span>可微，它有一个中间变量，有三个自变量
+<span class="math display">\[
+\frac{\partial w}{\partial x}=\frac{dw}{du}\frac{\partial u}{\partial
+x},\frac{\partial w}{\partial y}=\frac{dw}{du}\frac{\partial u}{\partial
+y},\frac{\partial w}{\partial z}=\frac{dw}{du}\frac{\partial u}{\partial
+z}
+\]</span> ​</p></li>
+<li><p>设<span
+class="math inline">\(u=f(x,y,z),z=\varphi(x,y)\)</span>均可微，则复合函数<span
+class="math inline">\(u=f[x,y,z(x,y)]\)</span>可微，它有三个中间变量，两个自变量
+<span class="math display">\[
+\frac{\partial u}{\partial x}=\frac{\partial f}{\partial
+x}+\frac{\partial f}{\partial z}\frac{\partial z}{\partial
+x},\frac{\partial u}{\partial y}=\frac{\partial f}{\partial
+y}+\frac{\partial f}{\partial z}\frac{\partial z}{\partial y}
+\]</span></p></li>
+</ol>
+<p>​ <img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230420145710153.png" /></p>
+<p>​ <strong>一阶全微分形式不变性</strong></p>
+<blockquote>
+<p>​ 证明：</p>
+<p>​ 设有函数<span class="math inline">\(z=f(u,v)\)</span>与<span
+class="math inline">\(u=\varphi(x,y),v=\psi(x,y)\)</span>复合.若<span
+class="math inline">\(\varphi,\psi\)</span>在点<span
+class="math inline">\((x,y)\)</span>处可微，且<span
+class="math inline">\(f\)</span>在与<span
+class="math inline">\((x,y)\)</span>相应的<span
+class="math inline">\((u,v)\)</span>处可微，则复合函数的全微分为： <span
+class="math display">\[
+dz=\frac{\partial z}{\partial x}dx+\frac{\partial z}{\partial y}dy
+\]</span> ​ 由复合函数求导法则： <span class="math display">\[
+\frac{\partial z}{\partial x}=\frac{\partial z}{\partial
+u}\frac{\partial u}{\partial x}+\frac{\partial z}{\partial
+v}\frac{\partial v}{\partial x},
+\frac{\partial z}{\partial y}=\frac{\partial z}{\partial
+u}\frac{\partial u}{\partial y}+\frac{\partial z}{\partial
+v}\frac{\partial v}{\partial y}
+\]</span> ​ 整理得到： <span class="math display">\[
+dz=\frac{\partial z}{\partial u}(\frac{\partial u}{\partial
+x}dx+\frac{\partial u}{\partial y}dy)+\frac{\partial z}{\partial
+v}(\frac{\partial v}{\partial x}dx+\frac{\partial v}{\partial y}dy)
+\]</span> ​ 而<span class="math inline">\(\frac{\partial u}{\partial
+x}dx+\frac{\partial u}{\partial y}dy=du,\frac{\partial v}{\partial
+x}dx+\frac{\partial v}{\partial y}dy=dv\)</span></p>
+<p>​ 所以有： <span class="math display">\[
+dz=\frac{\partial z}{\partial u}du+\frac{\partial z}{\partial v}dv
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial z}{\partial x}dx+\frac{\partial z}{\partial
+y}dy=\frac{\partial z}{\partial u}du+\frac{\partial z}{\partial v}dv
+\]</span></p>
+</blockquote>
+<p>​ 上面的全微分形式与把函数<span
+class="math inline">\(z=f(u,v)\)</span>中的中间变量<span
+class="math inline">\(u,v\)</span>看作是自变量时的全微分形式的完全一样的，我们把这一性质成为<strong>一阶全微分形式不变性</strong></p>
+<h2 id="隐函数微分法determined-by-1-equation">隐函数微分法（determined
+by 1 equation）</h2>
+<p>​ 一般地，设有方程 <span class="math display">\[
+F(x_1,\cdots,x_n,y)=0
+\]</span> ​ 如果存在一个n元函数<span
+class="math inline">\(y=\varphi(\mathbf x),\mathbf x=(x_1,\cdots,x_n)\in
+\Omega \subseteq R^n(\Omega 为一区域)\)</span>使得将<span
+class="math inline">\(y=\varphi (\mathbf x)\)</span>代入后成为恒等式
+<span class="math display">\[
+F(x_1,\cdots,x_n,\varphi(x_1,\cdots,x_n)) \equiv 0
+\]</span> ​ 则称<span class="math inline">\(y=\varphi(\mathbf
+x)\)</span>是由上述方程确定的隐函数</p>
+<h3 id="隐函数存在定理">隐函数存在定理</h3>
+<p>​ 如果二元函数<span class="math inline">\(F(x,y)\)</span>满足：</p>
+<ol type="1">
+<li><span class="math inline">\(F(x_0,y_0)=0\)</span></li>
+<li>在点<span
+class="math inline">\((x_0,y_0)\)</span>的某邻域中有连续的偏导数</li>
+<li><span class="math inline">\(F_y(x_0,y_0)\neq 0\)</span></li>
+</ol>
+<p>​ 则方程<span class="math inline">\(F(x,y)=0\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>的某一邻域中唯一确定了一个具有连续导数的函数<span
+class="math inline">\(y=f(x)\)</span>，它满足<span
+class="math inline">\(y_0=f(x_0)\)</span>，及<span
+class="math inline">\(F(x,f(x))\equiv 0\)</span>并且 <span
+class="math display">\[
+\frac{dy}{dx}=-\frac{F_x}{F_y}
+\]</span> ​
+计算公式的推导就是对满足的方程进行求导，然后解一个方程，多元函数也是同理</p>
+<h1 id="多元函数的泰勒公式和极值问题">多元函数的泰勒公式和极值问题</h1>
+<p>​ 设二元函数<span class="math inline">\(z=f(x,y)\)</span>在点<span
+class="math inline">\((x_0,y_0)\)</span>的某邻域<span
+class="math inline">\(U(x_0,y_0)\)</span>内连续的二阶偏导数.<span
+class="math inline">\((x_0+\Delta x,y_0+\Delta y)\in
+U(x_0,y_0)\)</span>，则存在<span class="math inline">\(\theta \in
+(0,1)\)</span>使得 <span class="math display">\[
+f(x_0+\Delta x,y_0+\Delta y)=f(x_0,y_0)+f_x(x_0,y_0)\Delta
+x+f_y(x_0,y_0)\Delta y+R_1
+\]</span> ​ 其中 <span class="math display">\[
+R_1=\frac{1}{2!}(f_{xx}\Delta x^2+2f_{xy}\Delta x \Delta y +f_{yy}\Delta
+y^2)|_{(x_0+\theta \Delta ,y_0+\theta \Delta)}
+\]</span> ​
+二元函数Tylor公式证明的基本思路也是<strong>引入参数t</strong>，将二元函数化为t的一元函数<span
+class="math inline">\(\varphi(t)=f(x_0+t\Delta x,y_0+t\Delta
+y)\)</span>，要使证明的公式中的各项<span
+class="math inline">\((f(x_0,y_0),f_x(x_0,y_0),f_y(x_0,y_0)及二阶偏导数)\)</span>可利用一元函数<span
+class="math inline">\(\varphi
+(t)\)</span>的对应项来表示，并利用一元函数<span
+class="math inline">\(\varphi(t)\)</span>的Taylor公式来证明</p>
+<p>​ 将上述式子写成矩阵形式</p>
+<blockquote>
+<p>​ 令<span class="math inline">\(\Delta
+x_0=(x_0,y_0)^T,\mathbf{x_0+\Delta x}=(x_0+\Delta x,y_0+\Delta
+y)^T\)</span>,则<span class="math inline">\(f(x_0+\Delta x,y_0+\Delta
+y)=f(x_0,y_0)+f_x(x_0,y_0)\Delta x+f_y(x_0,y_0)\Delta
+y+R_1\)</span>中的一阶导数部分可以写成二元函数<span
+class="math inline">\(f\)</span>的梯度向量<span
+class="math inline">\(\nabla
+f(x_0,y_0)=(f_x(x_0,y_0),f_y(x_0,y_0))\)</span>与向量<span
+class="math inline">\(\mathbf{\Delta x=(\Delta x,\Delta
+y)}^T\)</span>的内积形式，即 <span class="math display">\[
+(f_x\Delta x+f_y\Delta y)|_{(x_0,y_0)}=\left \langle \nabla
+f(x_0,y_0),\mathbf {\Delta x} \right \rangle
+\]</span> ​ 而<span class="math inline">\(R_1=\frac{1}{2!}(f_{xx}\Delta
+x^2+2f_{xy}\Delta x \Delta y +f_{yy}\Delta y^2)|_{(x_0+\theta \Delta
+,y_0+\theta \Delta)}\)</span>是关于<span class="math inline">\(\Delta
+x,\Delta y\)</span>的一个二次型，其系数矩阵为 <span
+class="math display">\[
+\mathbf {H_f(x_0+\theta \Delta x)}=\begin{bmatrix}
+f_{xx} &amp; f_{xy}\\
+f_{xy} &amp; f_{yy}
+\end{bmatrix} \bigg|_\mathbf{(x_0+\theta \Delta x)}
+\]</span> ​ 称为函数<span class="math inline">\(f\)</span>在<span
+class="math inline">\(\mathbf{x_0+\theta \Delta
+x}\)</span>处的<strong>Hesse矩阵</strong>,故二次型的矩阵形式为 <span
+class="math display">\[
+R_1=\frac{1}{2!}(\mathbf {\Delta x})^T\mathbf{H_f(x_0+\theta \Delta
+x)\Delta x}
+\]</span> ​ 这样，我们就可以把Taylor公式写成如下的矩阵形式 <span
+class="math display">\[
+f(\mathbf{x_0+\Delta x})=f(\mathbf{x_0}+\left \langle \nabla f(\mathbf
+{x_0} ),\mathbf {\Delta x_0} \right \rangle +\frac{1}{2!}(\mathbf
+{\Delta x})^T\mathbf{H_f(x_0+\theta \Delta x)\Delta x}
+\]</span> ​ 由于<span class="math inline">\(\mathbf
+{H_f}\)</span>的元素由<span
+class="math inline">\(f\)</span>的二阶偏导数构成，而<span
+class="math inline">\(f\)</span>的所有二阶偏导数均连续，可以证明 <span
+class="math display">\[
+(\mathbf {\Delta x})^T\mathbf{H_f(x_0+\theta \Delta x)\Delta x}=(\mathbf
+{\Delta x})^T\mathbf{H_f(x_0)\Delta x}+o(\|\mathbf{\Delta x} \|^2)
+\]</span> ​ 由此得到<span
+class="math inline">\(f(\mathbf{x})\)</span>在<span
+class="math inline">\(\mathbf
+{x_0}\)</span>处带有Peano余项的二阶Taylor公式： <span
+class="math display">\[
+f(\mathbf{x_0+\Delta x})=f(\mathbf {x_0})+\left \langle \nabla f(\mathbf
+{x_0},\mathbf {\Delta x}) \right \rangle +\frac{1}{2!}(\mathbf {\Delta
+x})^T\mathbf{H_f(x_0)\Delta x}+o(\|\mathbf{\Delta x} \|^2)
+\]</span></p>
+</blockquote>
+<h3 id="类函数">类函数</h3>
+<p>​ 定义：设<span class="math inline">\(f(x)\)</span>是定义在区域<span
+class="math inline">\(\Omega \subseteq R^n\)</span>内的n元函数，若<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\(\Omega\)</span>内连续，则称<span
+class="math inline">\(f\)</span>是定义在<span
+class="math inline">\(\Omega\)</span>上的<span
+class="math inline">\(C^{(0)}\)</span><strong>类函数</strong>，记为<span
+class="math inline">\(f\in C^{(0)}(\Omega)\)</span>，或<span
+class="math inline">\(C(\Omega)\)</span>若函数在<span
+class="math inline">\(\Omega\)</span>内具有连续的<span
+class="math inline">\(m(m\ge 1为正整数)\)</span>阶偏导数，则称<span
+class="math inline">\(f\)</span>是<span
+class="math inline">\(\Omega\)</span>上的<span
+class="math inline">\(C^{(m)}\)</span><strong>类函数</strong>，记作<span
+class="math inline">\(f\in C^{(m)}(\Omega)\)</span></p>
+<p>​ 设n元函数<span class="math inline">\(f\in C^{(2)}(U(\mathbf
+{x_0})),\mathbf{x_0+\Delta x\in U(x_0)}\)</span>，其中<span
+class="math inline">\(\mathbf{x_0}=(x_{0.1},x_{0.2},\cdots,x_{0.n}^T\)</span>.则存在<span
+class="math inline">\(\theta \in(0,1)\)</span>使得 <span
+class="math display">\[
+f(\mathbf{x_0+\Delta x})=f(\mathbf{x_0})+\sum _{i=1} ^n \frac{\partial
+f(\mathbf {x_0})}{\partial x_i}\mathbf{\Delta x_i}+R_1
+\]</span> ​ 其中 <span class="math display">\[
+R_1=\frac{1}{2!}\sum _{i=1}^n \sum _{j=1}^{j} \frac{\partial^2f
+(\mathbf{x_0+\Delta x)} } {\partial x_i \partial x_j }\mathbf{\Delta x_i
+\Delta x_j}
+\]</span> ​ 称为Lagrange余项的一阶形式.</p>
+<p>​ 上述公式也可写成如下的矩阵形式 <span class="math display">\[
+f(\mathbf{x_0+\Delta x})=f(\mathbf{x_0}+\left \langle \nabla f(\mathbf
+{x_0} ),\mathbf {\Delta x_0} \right \rangle +\frac{1}{2!}(\mathbf
+{\Delta x})^T\mathbf{H_f(x_0+\theta \Delta x)\Delta x}
+\]</span> ​ 其中实对称矩阵 <span class="math display">\[
+\mathbf{H_f}(\mathbf{x_0+\Delta x})=
+\begin{bmatrix}
+f_{x_1x_1}(\mathbf x) &amp;f_{x_1x_2}(\mathbf x)  &amp; \cdots  &amp;
+f_{x_1x_n}(\mathbf x)\\
+f_{x_2x_1}(\mathbf x) &amp; f_{x_2x_2}(\mathbf x) &amp; \cdots
+&amp;f_{x_2x_n}(\mathbf x) \\
+\vdots &amp; \vdots &amp;  &amp;\vdots \\
+f_{x_nx_1}(\mathbf x) &amp; f_{x_nx_2}(\mathbf x)
+&amp;\cdots  &amp;f_{x_nx_n}(\mathbf x)
+\end{bmatrix} _{\mathbf{x_0+\Delta x}}
+\]</span> ​ 是函数<span class="math inline">\(f\)</span>在点<span
+class="math inline">\(\mathbf{x_0+\Delta x}\)</span>的Hesse矩阵</p>
+<p>​ 同理可以得到n元函数<span class="math inline">\(f\)</span>在<span
+class="math inline">\(\mathbf{x_0}\)</span>处带有Peano余项的Taylo公式</p>
+<h1 id="无约束极值最大值与最小值">无约束极值、最大值与最小值</h1>
+<h2 id="极值的必要条件">极值的必要条件：</h2>
+<p>​ 由一元函数极值的必要条件，必有<span
+class="math inline">\(f_x(x_0,y_0)=0\)</span>同理能得到<span
+class="math inline">\(f_y(x_0,y_0)=0\)</span>,由梯度计算公式能得到</p>
+<p>​ 设n元函数<span class="math inline">\(f\)</span>在点<span
+class="math inline">\(\mathbf{x_0}\)</span>处可微，且<span
+class="math inline">\(\mathbf{x_0}\)</span>为<span
+class="math inline">\(f\)</span>的极值点，则必有<span
+class="math inline">\(\nabla f(\mathbf{x_0)=0}\)</span></p>
+<p>​ 我们称满足<span class="math inline">\(\nabla
+f(\mathbf{x_0)=0}\)</span>的点为<span
+class="math inline">\(f\)</span>的驻点，</p>
+<p>​
+驻点不一定是极值点，极值点也不一定是驻点（极值点处偏导数不存在），若极值点处存在偏导数，则极值点一定是驻点。</p>
+<h2 id="极值的充分条件">极值的充分条件</h2>
+<p>​ 设n元函数<span class="math inline">\(f\in C^{(2)}(\Omega),\nabla
+f(\mathbf{x_0)=0},\mathbf{H_f}(\mathbf{x_0})\)</span>为<span
+class="math inline">\(f\)</span>在点<span
+class="math inline">\(\mathbf{x_0}\)</span>的Hesse矩阵.若<span
+class="math inline">\(\mathbf{H_f}(\mathbf{x_0})\)</span>正定（负定），则<span
+class="math inline">\(f(\mathbf {x_0})\)</span>为<span
+class="math inline">\(f\)</span>的极小值（极大值）.</p>
+<p>​ <em>The concept of positive definite matrix can move to <a
+href="https://www.sa1ge.ink/post/c0da8988.html">Linear Algebra Notes |
+Sa1ge 's Blog</a>)</em></p>
+<blockquote>
+<p>证明：</p>
+<p>​ 因为<span class="math inline">\(\nabla
+f(\mathbf{x_0)=0}\)</span>由Talyor公式，有 <span class="math display">\[
+f(\mathbf{x_0+\Delta x})-f(\mathbf {x_0})=\frac{1}{2!}(\mathbf {\Delta
+x})^T\mathbf{H_f(x_0)\Delta x}+o(\|\mathbf{\Delta x} \|^2)
+\]</span> ​ 当<span
+class="math inline">\(\mathbf{H_f(x_0)}\)</span>正定时，知<span
+class="math inline">\(\mathbf{H_f(x_0)}\)</span>的最小特征值<span
+class="math inline">\(\lambda_1&gt;0\)</span>，而且<span
+class="math inline">\(\forall \mathbf{\Delta x\neq 0}\)</span>，恒有：
+<span class="math display">\[
+(\mathbf {\Delta x})^T\mathbf{H_f(x_0)\Delta x} \ge
+\lambda_1\|\mathbf{\Delta x}\|^2
+\]</span> ​ 于是有： <span class="math display">\[
+f(\mathbf{x_0+\Delta x})-f(\mathbf {x_0})\ge
+\frac{1}{2}\lambda_1\|\mathbf{\Delta x}\|^2+o(\|\mathbf{\Delta x}
+\|^2)=[\frac{1}{2}\lambda_1o(1)]\|\mathbf{\Delta x}\|
+\]</span> ​ 其中o(1)是当<span class="math inline">\(\mathbf{\Delta x \to
+0}\)</span>时的无穷小量.由上式即知：当<span
+class="math inline">\(\mathbf{\Delta x\neq 0}\)</span>且<span
+class="math inline">\(\|\mathbf{\Delta x}\|\)</span>充分小时，就有：
+<span class="math display">\[
+f(\mathbf{x_0+\Delta x})-f(\mathbf {x_0})&gt;0,或f(\mathbf{x_0+\Delta
+x})&gt;f(\mathbf {x_0})
+\]</span> ​ 这就是说，当<span
+class="math inline">\(\mathbf{H_f(x_0)}\)</span>正定时，<span
+class="math inline">\(f(\mathbf{x_0})\)</span>为<span
+class="math inline">\(f\)</span>的极小值；同理可得，当当负定时，<span
+class="math inline">\(f(\mathbf{x_0})\)</span>为<span
+class="math inline">\(f\)</span>的极大值</p>
+</blockquote>
+<p>​ 求<span class="math inline">\(C^{(2)}\)</span>类函数<span
+class="math inline">\(f\)</span>的极值的步骤：</p>
+<ol type="1">
+<li>求出<span class="math inline">\(f\)</span>的所有驻点</li>
+<li>求出<span class="math inline">\(f\)</span>在各个驻点的Hesse矩阵</li>
+<li>判断Hesse矩阵的类型，确定出<span
+class="math inline">\(f\)</span>的极值点</li>
+</ol>
+<p>​ 当<span
+class="math inline">\(\mathbf{H_f(x_0)}\)</span>不定时，因为二次型<span
+class="math inline">\((\mathbf{x-x_0})^T\mathbf{H_f}(\mathbf{x-x_0})\)</span>不定，从而在<span
+class="math inline">\(\mathbf{x_0}\)</span>的邻域内<span
+class="math inline">\([f(\mathbf{x})-f(\mathbf{x_0})]\)</span>不定号，所以<span
+class="math inline">\(f(\mathbf{x_0})\)</span>不是极值.</p>
+<p>​ 特别地，对于二元函数<span
+class="math inline">\(z=f(x,y)\)</span>，若点<span
+class="math inline">\(P_0(x_0,y_0)\)</span>为<span
+class="math inline">\(f\)</span>的驻点，记 <span class="math display">\[
+f_{xx}(P_0)=A,f_{xy}(P_0)=B,f_{yy}(P_0)=C
+\]</span> ​ 则<span class="math inline">\(f\)</span>在点<span
+class="math inline">\(P_0\)</span>的Hesse矩阵为 <span
+class="math display">\[
+\mathbf{H_f}(P_0)=\begin{bmatrix}
+A &amp;B \\
+B &amp;C
+\end{bmatrix}
+\]</span> ​ 于是根据矩阵判定，有：</p>
+<ul>
+<li>若<span class="math inline">\(A&gt;0,AC-B^2&gt;0\)</span>则<span
+class="math inline">\({H_f}(P_0)\)</span>正定，故<span
+class="math inline">\(f(P_0)\)</span>为极小值;</li>
+<li>若<span class="math inline">\(A&lt;0,AC-B^2&gt;0\)</span>则<span
+class="math inline">\({H_f}(P_0)\)</span>负定，故<span
+class="math inline">\(f(P_0)\)</span>为极大值;</li>
+<li>若<span class="math inline">\(AC-B^2&lt;0\)</span>则<span
+class="math inline">\({H_f}(P_0)\)</span>不定，故<span
+class="math inline">\(f(P_0)\)</span>不是极值;</li>
+</ul>
+<p>​ 当<span
+class="math inline">\(AC-B^2=0\)</span>，称为临界情况，这是只根据二阶泰勒公式不能确定点<span
+class="math inline">\(P_0\)</span>是否是<span
+class="math inline">\(f\)</span>的极值点，需要进一步用极限的定义来讨论</p>
+<h2 id="最大值和最小值">最大值和最小值</h2>
+<p>​ 可以先求<span class="math inline">\(f\)</span>在<span
+class="math inline">\(\Omega\)</span>内部的一切驻点处的函数值、偏导数不存在点处的函数值以及<span
+class="math inline">\(f\)</span>在<span
+class="math inline">\(\Omega\)</span>边界上的最大值（最小值），这些数中最大（最小）的一个便是所求的最大（最小）值.</p>
+<h2 id="有约束极值lagrange乘数法">有约束极值，Lagrange乘数法</h2>
+<p>​
+附有约束条件的极值问题，称为<strong>有约束极值问题</strong>（或条件极值问题）</p>
+<p>​
+某些情形下，这种有约束极值问题可以化为无约束极值问题来求解，但并不一般适用</p>
+<h3 id="lagrange乘数法">Lagrange乘数法</h3>
+<p>​ 设目标函数 <span class="math display">\[
+z=f(x,y)
+\]</span> ​ 在约束条件 <span class="math display">\[
+\varphi(x,y)=0
+\]</span> ​ 下取得极值，且<span
+class="math inline">\((x_0,y_0)\)</span>为其极值点，并设<span
+class="math inline">\(f,\varphi\in C ^{(1)}(U(x_0,y_0))\)</span>且<span
+class="math inline">\(\varphi_y(x_0,y_0)\neq 0\)</span>，于是有 <span
+class="math display">\[
+\varphi(x_0,y_0)=0
+\]</span> ​ 且由隐函数存在定理可知，方程<span
+class="math inline">\(\varphi(x,y)=0\)</span>确定了一可导函数<span
+class="math inline">\(y=y(x)\)</span>，它满足<span
+class="math inline">\(\varphi[x,y(x)]\equiv 0\)</span>且<span
+class="math inline">\(y_0=y(x_0)\)</span>，把它代入目标函数得： <span
+class="math display">\[
+z=f[x,y(x)]
+\]</span> ​ 这样将有约束极值问题化为了一元函数的无约束极值问题，而<span
+class="math inline">\(x=x_0\)</span>就是函数的极值点，由一元可导函数取得极值的必要条件可知：
+<span class="math display">\[
+\frac{dz}{dx}\bigg
+|_{x=x_0}=f_x(x_0,y_0)+f_y(x_0,y_0)\frac{dy}{dx}\bigg|_{x=x_0}=0
+\]</span> ​ 对<span
+class="math inline">\(\varphi(x,y)=0\)</span>运用隐函数求导法则，得：
+<span class="math display">\[
+\frac{dy}{dx}\bigg|_{x=x_0}=-\frac{\partial_x(x_0,y_0)}{\partial_y(x_0,y_0)}
+\]</span> ​ 代入<span class="math inline">\(\frac{dz}{dx}\bigg
+|_{x=x_0}=f_x(x_0,y_0)+f_y(x_0,y_0)\frac{dy}{dx}\bigg|_{x=x_0}=0\)</span>得：
+<span class="math display">\[
+f_x(x_0,y_0)-f_y(x_0,y_0)\frac{\partial_x(x_0,y_0)}{\partial_y(x_0,y_0)}=0
+\]</span> ​ 于是 <span class="math display">\[
+\varphi(x_0,y_0)=0\varphi(x_0,y_0)=0
+\]</span></p>
+<p><span class="math display">\[
+f_x(x_0,y_0)-f_y(x_0,y_0)\frac{\partial_x(x_0,y_0)}{\partial_y(x_0,y_0)}=0
+\]</span></p>
+<p>​ 两式就是所求有约束极值的必要条件.从此两式解出的<span
+class="math inline">\((x_0,y_0)\)</span>就可能是所求有约束极值的极值点（<strong>条件极值点</strong>）</p>
+<p>​ 用行列式写成 <span class="math display">\[
+\begin{vmatrix}
+f_x(x_0,y_0) &amp;f_y(x_0,y_0) \\
+\varphi_x(x_0,y_0) &amp; \varphi_y(x_0,y_0)
+\end{vmatrix}=0
+\]</span> ​</p>
+<p>​ 由行列式的性质知，其两行对应成比例，令此比例系数为<span
+class="math inline">\(-\lambda_0\)</span>，于是得到： <span
+class="math display">\[
+\begin{cases}
+f_x(x_0,y_0)+\lambda_0\varphi_x(x_0,y_0)=0\\
+f_y(x_0,y_0)+\lambda_0\varphi_y(x_0,y_0)=0\\
+\varphi(x_0,y_0)=0
+\end{cases}
+\]</span> ​ 容易看出，上式就是三元函数 <span class="math display">\[
+L(x,y,\lambda)=f(x,y)+\lambda\varphi(x,y)
+\]</span> ​ 在<span
+class="math inline">\((x_0,y_0,\lambda_0)\)</span>取得无约束极值的必要条件.</p>
+<p>​ 所以要求目标函数在约束条件下的有<strong>约束极值点</strong><span
+class="math inline">\((x_0,y_0)\)</span>，可先构成函数<span
+class="math inline">\(L(x,y,\lambda)=f(x,y)+\lambda\varphi(x,y)\)</span>，然后令它的三个偏导数为零得：
+<span class="math display">\[
+\begin{cases}
+L_x(x,y,\lambda)=f_x(x,y)+\lambda\varphi_x(x,y)=0\\
+L_x(x,y,\lambda)=f_y(x,y)+\lambda\varphi_y(x,y)=0\\
+L_\lambda(x,y,\lambda)=\varphi_(x,y)=0
+\end{cases}
+\]</span> ​ 再从这三个方程中解出<span
+class="math inline">\(x_0,y_0,\lambda\)</span>，则其中的点<span
+class="math inline">\((x_0,y_0)\)</span>就可能是所求的有约束极值点</p>
+<p>​ 函数<span
+class="math inline">\(L(x,y,\lambda)=f(x,y)+\lambda\varphi(x,y)\)</span>称为<strong>Lagrange函数</strong>，数<span
+class="math inline">\(\lambda\)</span>称为<strong>Lagrange乘数</strong>，这种求有约束极值点的必要条件的方法称为<strong>Lagrange乘数法</strong>，<span
+class="math inline">\((x_0,y_0,\lambda_0)\)</span>就是Lagrange函数L的驻点.</p>
+<p>​ 方程组也可写成向量形式： <span class="math display">\[
+\begin{cases}
+\nabla f(P)=-\lambda\nabla\varphi(P)\\
+\varphi(P)=
+\end{cases}
+\]</span> ​ 其中<span class="math inline">\(\nabla
+f=(f_x,f_y)\)</span>是函数<span
+class="math inline">\(f\)</span>的梯度，<span
+class="math inline">\(\nabla \varphi\)</span>是<span
+class="math inline">\(\varphi\)</span>的梯度. ​
+当约束条件有多个时，需要构造的Lagrange函数是 <span
+class="math display">\[
+L(x_1,\cdots,x_n,\lambda_1,\cdots,\lambda_m)=f(x_1,\cdots,x_n)+\sum
+_{k=1} ^m \lambda_k\varphi_k(x_1,\cdots,x_n)
+\]</span></p>
+<h1 id="隐函数的求导公式">隐函数的求导公式</h1>
+<p>​ 一个方程确定的隐函数已在上文给出<a
+href="#隐函数微分法determined-by-1-equation">隐函数微分法</a></p>
+<p>​ 由m个m+n元方程组成的方程组 <span class="math display">\[
+\begin{cases}
+F_1(x_1,\cdots,x_n,y_1,\cdots,y_m)=0,\\
+F_2(x_1,\cdots,x_n,y_1,\cdots,y_m)=0,\\
+\cdots\cdots\\
+F_n(x_1,\cdots,x_n,y_1,\cdots,y_m)=0,\\
+\end{cases}
+\]</span> ​ 对于给定的<span
+class="math inline">\(x_1,\cdots,x_n\)</span>，上式就是包含m个方程、m+n个变量的方程组.如果存在定义在点集<span
+class="math inline">\(A\subseteq R^n\)</span>上的m个函数 <span
+class="math display">\[
+y_i=f_i(x_1,\cdots,x_n),i=1,2,\cdots,m
+\]</span> ​
+使得其代入方程组后变成m个恒等式，那么就称m个函数是它的解，或称由该方程组所确定的隐函数</p>
+<pre><code>### 隐函数存在定理</code></pre>
+<p>​ 设有函数方程组 <span class="math display">\[
+\begin{cases}
+F_1(x,y,u,v)=0\\
+F_2(x,y,u,v)=0
+\end{cases}
+\]</span> ​ 如果函数<span class="math inline">\(F_1,F_2\)</span>满足</p>
+<ol type="1">
+<li><p><span class="math inline">\(F_i\in
+C^{(1)}(U(x_0,y_0,u_0,v_0)),i=1,2\)</span></p></li>
+<li><p><span
+class="math inline">\(F_i(x_0,y_0,u_0,v_0)=0,i=1,2\)</span></p></li>
+<li><p>Jacobi行列式 <span class="math display">\[
+J=\frac{\partial (F_1,F_2)}{\partial (u,v)}\bigg
+|_{(x_0,y_0,u_0,v_0)}=\begin{vmatrix}
+\frac{\partial F_1}{\partial u}  &amp;\frac{\partial F_1}{\partial v} \\
+\frac{\partial F_2}{\partial u} &amp;\frac{\partial F_2}{\partial v}
+\end{vmatrix}
+\neq0
+\]</span></p></li>
+</ol>
+<p>​ 则在点<span class="math inline">\((x_0,y_0,u_0,v_0)\in
+R^4\)</span>的某邻域<span
+class="math inline">\(U(x_0,y_0,u_0,v_0)\)</span>内由方程组唯一确定了两个单值且有连续偏导数的二元函数
+<span class="math display">\[
+u=u(x,y),v=v(x,y)
+\]</span> ​ 它满足 <span class="math display">\[
+u_0=u(x_0,y_0),v_0=v(x_0,y_0)
+\]</span> ​ 及 <span class="math display">\[
+F_i(x,y,(x,y),v(x,y))\equiv 0,u=1,2,(x,y)\in U((x_0,y_0))
+\]</span> ​ 对隐函数的导数公式的推导：</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/f59dbd741f8c1d6bce0b771054782bc.jpg" /></p>
+<p>​ 例题：</p>
+<p><img data-src="https://sa1geblogimage-1316665129.cos.ap-beijing.myqcloud.com/img/image-20230420235353397.png" /></p>
+<h1 id="几何学应用">几何学应用</h1>
+<h2 id="空间曲线的切线与切面">空间曲线的切线与切面</h2>
+<h3 id="空间曲线的切线与法平面">空间曲线的切线与法平面</h3>
+<p>​ 设空间简单曲线<span class="math inline">\(\Gamma\)</span>的方程为
+<span class="math display">\[
+\mathbf {r=r(t)}=(x(t),y(t),z(t))\space \space (\alpha \le t \le \beta)
+\]</span> ​ 其中向量值函数<span class="math inline">\(\mathbf
+r(t)\)</span>在<span
+class="math inline">\([\alpha,\beta]\)</span>上可导，其导数记作<span
+class="math inline">\(\mathbf{\dot{r(t)}
+}=(\dot{x(t)},\dot{y(t)},\dot{z(t)})\neq \mathbf 0 \space \space (\alpha
+\le t\le \beta)\)</span></p>
+<p>​ 向径<span class="math inline">\(\mathbf{r(t)}\)</span>的导数<span
+class="math inline">\(\mathbf{\dot{r(t)} }\)</span>是<span
+class="math inline">\(\Gamma\)</span>在点<span
+class="math inline">\(P_0\)</span>的切线的一个方向向量，而且它的方向与<span
+class="math inline">\(\Gamma\)</span>的正方向一致，称它为<span
+class="math inline">\(\Gamma\)</span>在点<span
+class="math inline">\(P_0\)</span>的<strong>切向量</strong>.</p>
+<p>​ 曲线<span class="math inline">\(\Gamma\)</span>在<span
+class="math inline">\(P_0(\mathbf r(t_0))\)</span>处切线的向量方程写为
+<span class="math display">\[
+\mathbf \rho =\mathbf{r(t_0)}+t\dot{\mathbf r}(t_0)
+\]</span> ​ 其中<span class="math inline">\(\mathbf
+\rho=(x,y,z)\)</span>为切线上动点<span
+class="math inline">\(P(x,y,z)\)</span>的向径，<span
+class="math inline">\(t\in
+R\)</span>为参数，消去参数t，即得该切线的对称式方程 <span
+class="math display">\[
+\frac{x-x(t_0)}{\dot{x}(t_0)}=\frac{y-y(t_0)}{\dot{y}(t_0)}=\frac{z-z(t_0)}{\dot{z}(t_0)}
+\]</span> ​ 过曲线<span class="math inline">\(\Gamma\)</span>上的点<span
+class="math inline">\(P_0\)</span>且与点<span
+class="math inline">\(P_0\)</span>处的切线垂直的任一直线称为此曲线<span
+class="math inline">\(\Gamma\)</span>在点<span
+class="math inline">\(P_0\)</span>的法线，这些法线位于的同一平面称为<span
+class="math inline">\(\Gamma\)</span>在点<span
+class="math inline">\(P_0\)</span>的法平面.</p>
+<p>​ 显然<span class="math inline">\(\dot{\mathbf
+r(t_0)}\)</span>是法平面的一个法线向量，于是法平面的方程是 <span
+class="math display">\[
+\dot{\mathbf r(t_0)}\cdot[\mathbf \rho -\mathbf r(t_0)]=0
+\]</span> ​ 或 <span class="math display">\[
+\dot{x(t_0)}[x-x(t_0)]+\dot{y(t_0)}[y-y(t_0)]+\dot{z(t_0)}[z-z(t_0)]=0
+\]</span> ​ 其中<span class="math inline">\(\mathbf \rho
+=(x,y,z)\)</span>是法平面上点<span
+class="math inline">\((x,y,z)\)</span>的向径.</p>
+<p>​ 如果曲线<span
+class="math inline">\(\Gamma\)</span>是由两柱面的交线给出，设它的方程为
+<span class="math display">\[
+y=y(x),z=z(x)\space (a \le x \le b)
+\]</span> ​ 把x看作是参数，得出 <span class="math display">\[
+x=x,y=y(x),z=z(x)\space (a \le x \le b)
+\]</span> ​ 那么<span class="math inline">\(\Gamma\)</span>上与参数<span
+class="math inline">\(x=x_0\)</span>相对应的点的切线方程是 <span
+class="math display">\[
+\frac{x-x(t_0)}{1}=\frac{y-y(t_0)}{\dot{y}(t_0)}=\frac{z-z(t_0)}{\dot{z}(t_0)}
+\]</span> ​ 法平面方程： <span class="math display">\[
+x-x(t_0)+\dot{y(t_0)}[y-y(t_0)]+\dot{z(t_0)}[z-z(t_0)]=0
+\]</span> ​ 如果曲线<span
+class="math inline">\(\Gamma\)</span>的方程由一般式方程 <span
+class="math display">\[
+\begin{cases}
+F(x,y,z)=0\\
+G(x,y,z)=0
+\end{cases}
+\]</span> ​ 给出，且在点<span
+class="math inline">\(P(x_0,y_0,z_0)\)</span>的某邻域内方程组满足隐函数存在定理的条件，不妨设
+<span class="math display">\[
+\frac{\partial(F,G)}{\partial(y,z)}\bigg |_{P_0}\neq 0
+\]</span> ​ 那么在点<span
+class="math inline">\(P_0\)</span>的某邻域内由方程组确定两个具有连续导数的一元隐函数<span
+class="math inline">\(y=y(x),z=z(x)\)</span>.由隐函数求导法求出<span
+class="math inline">\(\dot{y(x)}\)</span>和<span
+class="math inline">\(\dot{z(x)}\)</span>之后，再代入方程组，得到曲线的切线方程和法平面方程</p>
+<h2 id="弧长">弧长</h2>
+<p>​ 定义：设简单曲线<span class="math inline">\(\Gamma\)</span>的方程是
+<span class="math display">\[
+\mathbf{r=r(t)}=(x(t),y(t),z(t))\space \space (\alpha \le t\le \beta)
+\]</span> ​ <span
+class="math inline">\(\Gamma\)</span>的两个端点A，B分别对应于向径<span
+class="math inline">\(\mathbf{r(\alpha)},\mathbf{r(\beta)}\)</span>，在<span
+class="math inline">\(\Gamma\)</span>上介于A和B之间沿着参数t增大的方向依次去n-1个分点<span
+class="math inline">\(P_1,P_2,\cdots,P_{n-1}\)</span>，它们把<span
+class="math inline">\(\Gamma\)</span>分为了n段，用直线段把相邻分点连结起来，即得到一折线，它的长度是
+<span class="math display">\[
+s_n=\sum _{i=1} ^n \| \overrightarrow {P_{i-1}P_i}\|
+\]</span> ​ 其中<span
+class="math inline">\(A=P_0,B=P_N\)</span>.如果不管分点如何选取，当<span
+class="math inline">\(d=max\|\overrightarrow {P_{i-1}P_i}\|\to
+0\)</span>时，折线的长度<span
+class="math inline">\(s_n\)</span>有确认的极限<span
+class="math inline">\(s\)</span>，则称<span
+class="math inline">\(\Gamma\)</span>为可求长的曲线，且这个极限值<span
+class="math inline">\(s\)</span>为<span
+class="math inline">\(\Gamma\)</span>的长度，或<span
+class="math inline">\(\Gamma\)</span>的弧长，即 <span
+class="math display">\[
+s=\lim _{d\to 0}\sum _{i=1} ^n \|\overrightarrow {P_{i-1}P_i}\|
+\]</span> ​ 弧长的计算公式：</p>
+<p>​ 设在<span class="math inline">\([\alpha,\beta]\)</span>上<span
+class="math inline">\(\dot{\mathbf r}(t)\)</span>连续且<span
+class="math inline">\(\dot{\mathbf r}(t)\neq \mathbf
+0\)</span>，则曲线<span class="math inline">\(\mathbf r=\mathbf
+r(t)\space (\alpha \le t\le \beta)\)</span>是可求长的曲线，且<span
+class="math inline">\(\Gamma\)</span>的长度为 <span
+class="math display">\[
+s=\int _\alpha ^\beta \|\dot{\mathbf {r} }(t)dt=\int _\alpha ^\beta
+\sqrt{[\dot{x}(t)]^2+\dot{y}(t)]^2+\dot{z}(t)]^2}dt
+\]</span> ​ 对于平面曲线<span
+class="math inline">\(\Gamma:x=x(t),y=y(t)(\alpha \le t\le
+\beta)\)</span>，其弧长为： <span class="math display">\[
+s=\int _\alpha ^\beta \sqrt{ [\dot{x}(t)]^2+\dot{y}(t) ]^2 } dt
+\]</span> ​ 从而有：</p>
+<ul>
+<li><p>若平面曲线<span
+class="math inline">\(\Gamma\)</span>在直角坐标系下的方程为： <span
+class="math display">\[
+y=y(x) (a\le x\le b)
+\]</span> ​ 则<span class="math inline">\(\Gamma\)</span>有参数方程<span
+class="math inline">\(x=x,y=y(x)(a\le x\le b)\)</span>，因而<span
+class="math inline">\(\Gamma\)</span>的弧长为 <span
+class="math display">\[
+s=\int _a ^b \sqrt{1+[y&#39;(x)]^2}dx
+\]</span></p></li>
+<li><p>若平面曲线<span
+class="math inline">\(\Gamma\)</span>在极坐标下的方程是 <span
+class="math display">\[
+\rho=\rho(\theta) (\alpha\le \theta\le \beta)
+\]</span> ​ 则<span class="math inline">\(\Gamma\)</span>有参数方程<span
+class="math inline">\(x=\rho(\theta)\cos \theta,y=x=\rho(\theta)\sin
+\theta\space (\alpha \le \theta \le \beta)\)</span>.于是<span
+class="math inline">\(\Gamma\)</span>的弧长为 <span
+class="math display">\[
+s=\int _\alpha ^\beta
+\sqrt{[x&#39;(\theta)]^2+[y&#39;(\theta)]^2}d\theta=\int _\alpha ^\beta
+\sqrt{[\rho(\theta)]^2+[\rho&#39;(\theta)]^2}d\theta
+\]</span> ​</p>
+<p>## 弧微分</p></li>
+</ul>
+<p>​ 我们称 <span class="math display">\[
+ds=\|\dot{\mathbf{r}}(t)\|=\sqrt{[\dot{x}(t)]^2+\dot{y}(t)]^2+\dot{z}(t)]^2}dt
+\]</span> ​ 为弧长<span
+class="math inline">\(s(t)\)</span>的微分，简称弧微分.</p>
+<p>​ 由于<span
+class="math inline">\(\frac{ds}{dt}=\|\dot{\mathbf{r}}(t)\|&gt;0\)</span>，故<span
+class="math inline">\(s=s(t)\)</span>存在反函数<span
+class="math inline">\(t=t(s)\)</span>，将它代入<span
+class="math inline">\(\Gamma\)</span>的参数方程<span
+class="math inline">\(\mathbf{r=r}(t)\)</span>，便得到<span
+class="math inline">\(\Gamma\)</span>​以弧长s为参数的方程 <span
+class="math display">\[
+\mathbf{r=r}(t(s)) \space (a\le s\le b)
+\]</span> ​ 称<span class="math inline">\(s\)</span>为曲线<span
+class="math inline">\(\Gamma\)</span>的<strong>自然参数</strong>,其中<span
+class="math inline">\([a,b]\)</span>为函数<span
+class="math inline">\(s=s(t)\space (\alpha \le t\le
+\beta)\)</span>的值域</p>
+<p>​</p>
 ]]></content>
       <categories>
         <category>Review</category>
